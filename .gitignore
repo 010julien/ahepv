@@ -1,9 +1,4 @@
-# dependencies
-node_modules/
-
-# build
-build/
-
-# editor
-.vscode
-
+node_modules
+dist
+.env
+.env.local
