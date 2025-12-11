@@ -38,7 +38,7 @@ export const teamMembers = [
   {
     id: 4,
     name: "David Lee",
-    role: "Communications Director",
+    role: "Communication Director",
     image: "/images/about-preview.jpg",
     bio: "Sharing our impact stories and connecting with supporters through compelling narratives.",
     social: {
