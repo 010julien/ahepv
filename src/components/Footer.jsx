@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaHeart, FaEnvelope, FaPhone, FaLocationDot } from 'react-icons/fa6';
 import { useTranslation } from '../i18n/useTranslation';
-import logo from '../images/Logo.png';  
-import logoARR from '../images/LogoARR.png';
+import logoARR from '/images/LogoARR.png';
 
 const Footer = () => {
   const { t } = useTranslation();

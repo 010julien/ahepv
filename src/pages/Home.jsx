@@ -56,7 +56,7 @@ const Home = () => {
               </Link>
             </div>
             <div className="about-preview-image">
-              <img src="/images/about-preview.jpg" alt="About us" />
+              <img src="/images/bienvenue.jpg" alt="About us" />
             </div>
           </div>
         </div>
@@ -69,28 +69,28 @@ const Home = () => {
             <div className="stat-item">
               <FaHeart className="stat-icon" />
               <h3 className="stat-number">
-                <Counter end={1500} suffix="+" />
+                <Counter end={80} suffix="+" />
               </h3>
               <p className="stat-label">{t('home.stats.livesChanged')}</p>
             </div>
             <div className="stat-item">
               <FaUsers className="stat-icon" />
               <h3 className="stat-number">
-                <Counter end={500} suffix="+" />
+                <Counter end={34} suffix="+" />
               </h3>
               <p className="stat-label">{t('home.stats.volunteers')}</p>
             </div>
             <div className="stat-item">
               <FaHandHoldingHeart className="stat-icon" />
               <h3 className="stat-number">
-                <Counter end={50} suffix="+" />
+                <Counter end={10} suffix="+" />
               </h3>
               <p className="stat-label">{t('home.stats.projects')}</p>
             </div>
             <div className="stat-item">
               <FaHeart className="stat-icon" />
               <h3 className="stat-number">
-                $<Counter end={250} suffix="K+" />
+                $<Counter end={130} suffix="K+" />
               </h3>
               <p className="stat-label">{t('home.stats.fundsRaised')}</p>
             </div>
@@ -155,7 +155,7 @@ const Home = () => {
       </section>
 
       {/* Latest Blog Posts */}
-      {/* <section className="section section-bg">
+       {/* <section className="section section-bg">
         <div className="container">
           <div className="section-title">
             <h2>{t('home.latestNews')}</h2>
@@ -180,7 +180,7 @@ const Home = () => {
             </Link>
           </div>
         </div>
-      </section> */}
+      </section>  */}
 
       {/* CTA Section */}
       <section className="cta-section">
@@ -203,15 +203,15 @@ const Home = () => {
       <style>{`
         .home-hero {
           position: relative;
-          min-height: 600px;
+          min-height: 720px;
           display: flex;
           align-items: center;
           justify-content: center;
-          background-image: url('/images/hero-home.jpg');
+          background-image: url('/images/hero-image.jpg');
           background-size: cover;
           background-position: center;
           background-attachment: fixed;
-          margin-top: 80px;
+          // margin-top: 80px;
         }
 
         .home-hero-overlay {
@@ -220,7 +220,7 @@ const Home = () => {
           left: 0;
           right: 0;
           bottom: 0;
-          background: #000000bc;
+          background: #00000091;
           opacity: 0.9;
         }
 
@@ -238,6 +238,7 @@ const Home = () => {
           font-size: var(--font-size-6xl);
           font-weight: var(--font-weight-extrabold);
           color: var(--color-white);
+          margin-top: 10rem;
           margin-bottom: var(--spacing-lg);
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
@@ -349,6 +350,7 @@ const Home = () => {
           padding: var(--spacing-4xl) 0;
           background: var(--gradient-secondary);
           text-align: center;
+          margin-bottom: 10rem;
         }
 
         .cta-content h2 {

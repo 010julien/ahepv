@@ -31,7 +31,7 @@ const Causes = () => {
                   />
                   <div className="cause-donors">
                     <FaUsers />
-                    <span>{cause.donors} {t('causes.donors')}</span>
+                    <span className="donors-text btn-outline">{cause.donors} {t('causes.donors')}</span>
                   </div>
                   <Button variant="primary">{t('home.donateNow')}</Button>
                 </Card>
@@ -44,35 +44,35 @@ const Causes = () => {
       <style>{`
         .causes-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
           gap: var(--spacing-xl);
+          margin-top: var(--spacing-lg);
         }
 
         .cause-donors {
           display: flex;
           align-items: center;
           gap: var(--spacing-sm);
-          color: var(--text-secondary);
+          color: var(--text-primary) !important;
           margin-bottom: var(--spacing-md);
           font-size: var(--font-size-sm);
         }
 
-        .btn-outline {
-          color: var(--color-primary);
-        }
         
 
         .cause-donors svg {
           color: var(--color-primary);
         }
 
-        .cause-donors t{
-          color: var(--color-primary);
+        .donors-text {
+          color: var(--color-primary) !important;
+          font-weight: var(--font-weight-medium);
         }
 
         @media (max-width: 768px) {
           .causes-grid {
             grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
           }
         }
       `}</style>

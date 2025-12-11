@@ -25,7 +25,7 @@ const Hero = ({ title, subtitle, breadcrumb, backgroundImage = '/images/hero-bg.
       <style>{`
         .hero {
           position: relative;
-          min-height: 400px;
+          min-height: 600px;
           display: flex;
           align-items: center;
           justify-content: center;

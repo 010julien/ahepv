@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FaBars, FaTimes, FaHeart, FaChevronDown } from 'react-icons/fa';
 import { useTranslation } from '../i18n/useTranslation';
-import logo from '../images/Logo.png';
+// import logo from '/images/Logo.png';
+import logoARR from '/images/LogoARR.png';
 
 const Header = () => {
   const { t } = useTranslation();
@@ -18,6 +19,8 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+
 
   const navLinks = [
     { path: '/', label: t('nav.home') },
@@ -39,12 +42,7 @@ const Header = () => {
       <div className="container">
         <div className="header-content">
           <Link to="/" className="logo">
-            <img src={logo} alt="" style={
-              {
-                width: '130px',
-                height: '80px'
-              }
-            }/>
+            <img src={logoARR} alt="Logo" className="logo-img" />
           </Link>
 
           <nav className={`nav ${mobileMenuOpen ? 'nav-open' : ''}`}>
@@ -54,6 +52,7 @@ const Header = () => {
                 to={link.path}
                 className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
                 onClick={() => setMobileMenuOpen(false)}
+                
               >
                 {link.label}
               </NavLink>
@@ -107,14 +106,15 @@ const Header = () => {
           left: 0;
           right: 0;
           z-index: var(--z-sticky);
-          background: var(--color-white);
-          box-shadow: var(--shadow-sm);
-          transition: all var(--transition-base);
+          background-color: transparent;
+          box-shadow: none;
+          transition: all 0.4s ease; /* Smooth transition */
         }
 
         .header-scrolled {
           background: var(--color-white);
           box-shadow: var(--shadow-md);
+          padding: var(--spacing-md) 0; /* Slightly compact on scroll */
         }
 
         .header-content {
@@ -122,6 +122,62 @@ const Header = () => {
           align-items: center;
           justify-content: space-between;
           padding: var(--spacing-lg) 0;
+          transition: padding 0.4s ease;
+        }
+        
+        .header-scrolled .header-content {
+          padding: var(--spacing-sm) 0;
+        }
+
+        /* Default Text Colors (Transparent Header) */
+        .header .nav-link,
+        .header .dropdown-icon,
+        .mobile-menu-toggle {
+          color: var(--color-white);
+          text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Legibility on images */
+        }
+
+        /* Scrolled Text Colors */
+        .header-scrolled .nav-link,
+        .header-scrolled .dropdown-icon,
+        .header-scrolled .mobile-menu-toggle {
+          color: var(--text-primary);
+          text-shadow: none;
+        }
+
+        .header .logo-img {
+          filter: brightness(0) invert(1); /* Make logo white if it's black initially */
+          transition: filter 0.4s ease;
+        }
+
+        .header-scrolled .logo-img {
+          filter: none; /* Restore original colored logo */
+        }
+
+        /* Special handling for Donate button */
+        .header .donate-btn {
+          background: transparent; /* Override global gradient */
+          border: 2px solid var(--color-white);
+          color: var(--color-white) !important;
+          box-shadow: none; /* Remove global shadow initially */
+        }
+        
+        .header .donate-btn:hover {
+          background: var(--color-white);
+          color: var(--color-primary) !important;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .header-scrolled .donate-btn {
+          background: linear-gradient(135deg, #006a4e 0%, #004a37 100%); /* Re-apply global gradient */
+          border: 2px solid transparent; /* Reset border */
+          color: var(--color-white) !important;
+          box-shadow: 0 4px 15px rgba(0, 106, 78, 0.3);
+        }
+
+        .header-scrolled .donate-btn:hover {
+          background: linear-gradient(135deg, #008562 0%, #005c45 100%);
+          box-shadow: 0 6px 20px rgba(0, 106, 78, 0.4);
         }
 
         .logo {
@@ -137,6 +193,17 @@ const Header = () => {
 
         .logo:hover {
           color: var(--color-primary);
+        }
+
+        .logo-img {
+          width: 130px;
+          height: 80px;
+          object-fit: contain;
+          transition: all 0.4s ease;
+        }
+
+        .header-scrolled .logo-img {
+             width: 110px; /* Slight resize on scroll */
         }
 
         .logo-icon {
@@ -238,6 +305,7 @@ const Header = () => {
         }
 
         .donate-btn {
+        color: var(--color-primary) !important;
           margin-left: var(--spacing-lg);
         }
 
