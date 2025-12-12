@@ -25,14 +25,14 @@ const Hero = ({ title, subtitle, breadcrumb, backgroundImage = '/images/hero-bg.
       <style>{`
         .hero {
           position: relative;
-          min-height: 600px;
+          min-height: 500px; /* Standardize height */
           display: flex;
           align-items: center;
           justify-content: center;
           background-size: cover;
           background-position: center;
           background-attachment: fixed;
-          margin-top: 80px;
+          padding-top: 80px; /* Compensate for fixed header */
         }
 
         .hero-overlay {
@@ -41,8 +41,8 @@ const Hero = ({ title, subtitle, breadcrumb, backgroundImage = '/images/hero-bg.
           left: 0;
           right: 0;
           bottom: 0;
-          background: #000000bc;
-          opacity: 0.9;
+          background: rgba(0, 0, 0, 0.6); /* Consistent premium overlay */
+          z-index: 1;
         }
 
         .hero-content {
@@ -51,6 +51,7 @@ const Hero = ({ title, subtitle, breadcrumb, backgroundImage = '/images/hero-bg.
           text-align: center;
           color: var(--color-white);
           animation: fadeInUp 0.8s ease-out;
+          width: 100%;
         }
 
         .hero-title {
@@ -65,9 +66,10 @@ const Hero = ({ title, subtitle, breadcrumb, backgroundImage = '/images/hero-bg.
           font-size: var(--font-size-xl);
           color: var(--color-white);
           margin-bottom: var(--spacing-xl);
-          max-width: 600px;
+          max-width: 700px;
           margin-left: auto;
           margin-right: auto;
+          line-height: 1.6;
         }
 
         .breadcrumb {
@@ -76,6 +78,11 @@ const Hero = ({ title, subtitle, breadcrumb, backgroundImage = '/images/hero-bg.
           justify-content: center;
           gap: var(--spacing-md);
           font-size: var(--font-size-base);
+          background: rgba(255, 255, 255, 0.1);
+          padding: var(--spacing-sm) var(--spacing-lg);
+          border-radius: var(--radius-full);
+          display: inline-flex;
+          backdrop-filter: blur(5px);
         }
 
         .breadcrumb a {
@@ -96,7 +103,7 @@ const Hero = ({ title, subtitle, breadcrumb, backgroundImage = '/images/hero-bg.
 
         @media (max-width: 768px) {
           .hero {
-            min-height: 300px;
+            min-height: 400px;
           }
 
           .hero-title {

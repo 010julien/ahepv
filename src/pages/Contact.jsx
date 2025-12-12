@@ -38,9 +38,9 @@ const Contact = () => {
   return (
     <div className="contact-page">
       <Hero 
-        title="Contactez-nous" 
-        subtitle="Nous sommes là pour répondre à toutes vos questions. N'hésitez pas à nous contacter !"
-        breadcrumb="Contact"
+        title={t('contactPage.title')}
+        subtitle={t('contactPage.subtitle')}
+        breadcrumb={t('contactPage.breadcrumb')}
         backgroundImage="/images/hero-faq.jpg"
       />
 
@@ -49,13 +49,13 @@ const Contact = () => {
           <div className="contact-layout">
             {/* Contact Form */}
             <div className="contact-form-container">
-              <h2>Envoyez-nous un message</h2>
-              <p className="form-intro">Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.</p>
+              <h2>{t('contactPage.formTitle')}</h2>
+              <p className="form-intro">{t('contactPage.formIntro')}</p>
               
               <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="firstName">Prénom *</label>
+                    <label htmlFor="firstName">{t('contactPage.firstName')} *</label>
                     <input
                       type="text"
                       id="firstName"
@@ -63,11 +63,11 @@ const Contact = () => {
                       value={formData.firstName}
                       onChange={handleChange}
                       required
-                      placeholder="Votre prénom"
+                      placeholder={t('contactPage.placeholders.firstName')}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="lastName">Nom *</label>
+                    <label htmlFor="lastName">{t('contactPage.lastName')} *</label>
                     <input
                       type="text"
                       id="lastName"
@@ -75,14 +75,14 @@ const Contact = () => {
                       value={formData.lastName}
                       onChange={handleChange}
                       required
-                      placeholder="Votre nom"
+                      placeholder={t('contactPage.placeholders.lastName')}
                     />
                   </div>
                 </div>
 
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="email">Email *</label>
+                    <label htmlFor="email">{t('contactPage.email')} *</label>
                     <input
                       type="email"
                       id="email"
@@ -90,24 +90,24 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      placeholder="votre.email@example.com"
+                      placeholder={t('contactPage.placeholders.email')}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="phone">Téléphone</label>
+                    <label htmlFor="phone">{t('contactPage.phone')}</label>
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="+33 6 12 34 56 78"
+                      placeholder={t('contactPage.placeholders.phone')}
                     />
                   </div>
                 </div>
 
                 <div className="form-group full-width">
-                  <label htmlFor="subject">Sujet *</label>
+                  <label htmlFor="subject">{t('contactPage.subject')} *</label>
                   <input
                     type="text"
                     id="subject"
@@ -115,12 +115,12 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    placeholder="Sujet de votre message"
+                    placeholder={t('contactPage.placeholders.subject')}
                   />
                 </div>
 
                 <div className="form-group full-width">
-                  <label htmlFor="message">Message *</label>
+                  <label htmlFor="message">{t('contactPage.message')} *</label>
                   <textarea
                     id="message"
                     name="message"
@@ -128,12 +128,12 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows="6"
-                    placeholder="Écrivez votre message ici..."
+                    placeholder={t('contactPage.placeholders.message')}
                   ></textarea>
                 </div>
 
                 <Button variant="primary" type="submit" style={{ width: '100%', padding: '1rem 2rem' }}>
-                  Envoyer le message
+                  {t('contactPage.send')}
                 </Button>
               </form>
             </div>
@@ -141,14 +141,14 @@ const Contact = () => {
             {/* Contact Info Sidebar */}
             <aside className="contact-sidebar">
               <div className="contact-info-card">
-                <h3>Informations de contact</h3>
+                <h3>{t('contactPage.infoTitle')}</h3>
                 
                 <div className="contact-info-item">
                   <div className="info-icon">
                     <FaLocationDot />
                   </div>
                   <div className="info-content">
-                    <h4>Adresse</h4>
+                    <h4>{t('contactPage.addressTitle')}</h4>
                     <p>123 Avenue de la Charité<br />75001 Paris, France</p>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ const Contact = () => {
                     <FaPhone />
                   </div>
                   <div className="info-content">
-                    <h4>Téléphone</h4>
+                    <h4>{t('contactPage.phoneTitle')}</h4>
                     <p>+33 1 23 45 67 89</p>
                   </div>
                 </div>
@@ -168,7 +168,7 @@ const Contact = () => {
                     <FaEnvelope />
                   </div>
                   <div className="info-content">
-                    <h4>Email</h4>
+                    <h4>{t('contactPage.emailTitle')}</h4>
                     <p>contact@ah2pv.org<br />info@ah2pv.org</p>
                   </div>
                 </div>
@@ -178,18 +178,14 @@ const Contact = () => {
                     <FaClock />
                   </div>
                   <div className="info-content">
-                    <h4>Horaires d'ouverture</h4>
-                    <p>
-                      Lundi - Vendredi: 9h00 - 18h00<br />
-                      Samedi: 10h00 - 16h00<br />
-                      Dimanche: Fermé
-                    </p>
+                    <h4>{t('contactPage.hoursTitle')}</h4>
+                    <p style={{ whiteSpace: 'pre-line' }}>{t('contactPage.hoursText')}</p>
                   </div>
                 </div>
               </div>
 
               <div className="social-card">
-                <h3>Suivez-nous</h3>
+                <h3>{t('contactPage.followUs')}</h3>
                 <div className="social-links">
                   <a href="#" className="social-link" aria-label="Facebook">
                     <FaFacebookF size={20} style={{
@@ -230,7 +226,7 @@ const Contact = () => {
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Notre localisation"
+            title={t('contactPage.addressTitle')}
           ></iframe>
         </div>
       </section>

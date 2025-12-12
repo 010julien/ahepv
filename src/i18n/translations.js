@@ -140,6 +140,51 @@ export const translations = {
       stillQuestionsText: 'Vous ne trouvez pas la réponse que vous cherchez ? N\'hésitez pas à contacter notre équipe.',
       contactUs: 'Nous Contacter',
       noQuestions: 'Aucune question trouvée correspondant à vos critères.'
+    },
+
+    // Contact Page
+    contactPage: {
+      title: 'Contactez-nous',
+      subtitle: 'Nous sommes là pour répondre à toutes vos questions. N\'hésitez pas à nous contacter !',
+      breadcrumb: 'Contact',
+      formTitle: 'Envoyez-nous un message',
+      formIntro: 'Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.',
+      firstName: 'Prénom',
+      lastName: 'Nom',
+      email: 'Email',
+      phone: 'Téléphone',
+      subject: 'Sujet',
+      message: 'Message',
+      send: 'Envoyer le message',
+      success: 'Merci ! Votre message a été envoyé.',
+      placeholders: {
+        firstName: 'Votre prénom',
+        lastName: 'Votre nom',
+        email: 'votre.email@example.com',
+        phone: '+33 6 12 34 56 78',
+        subject: 'Sujet de votre message',
+        message: 'Écrivez votre message ici...'
+      },
+      infoTitle: 'Informations de contact',
+      addressTitle: 'Adresse',
+      phoneTitle: 'Téléphone',
+      emailTitle: 'Email',
+      hoursTitle: 'Horaires d\'ouverture',
+      hoursText: 'Lundi - Vendredi: 9h00 - 18h00\nSamedi: 10h00 - 16h00\nDimanche: Fermé',
+      followUs: 'Suivez-nous'
+    },
+
+    // Volunteer Page
+    volunteer: {
+      title: 'Devenir Bénévole',
+      subtitle: 'Rejoignez notre communauté de bénévoles passionnés et contribuez à faire une différence.',
+      breadcrumb: 'Bénévole',
+      formTitle: 'Rejoignez notre équipe',
+      formIntro: 'Remplissez ce formulaire pour postuler en tant que bénévole.',
+      interests: 'Centres d\'intérêt',
+      availability: 'Disponibilité',
+      submit: 'Soumettre ma candidature',
+      success: 'Merci ! Votre candidature a été reçue.'
     }
   },
   
@@ -284,6 +329,51 @@ export const translations = {
       stillQuestionsText: 'Can\'t find the answer you\'re looking for? Feel free to reach out to our team.',
       contactUs: 'Contact Us',
       noQuestions: 'No questions found matching your criteria.'
+    },
+
+    // Contact Page
+    contactPage: {
+      title: 'Contact Us',
+      subtitle: 'We are here to answer all your questions. Feel free to reach out!',
+      breadcrumb: 'Contact',
+      formTitle: 'Send us a message',
+      formIntro: 'Fill out the form below and we will get back to you as soon as possible.',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      email: 'Email',
+      phone: 'Phone',
+      subject: 'Subject',
+      message: 'Message',
+      send: 'Send Message',
+      success: 'Thank you! Your message has been sent.',
+      placeholders: {
+        firstName: 'Your first name',
+        lastName: 'Your last name',
+        email: 'your.email@example.com',
+        phone: '+1 234 567 890',
+        subject: 'Subject of your message',
+        message: 'Write your message here...'
+      },
+      infoTitle: 'Contact Information',
+      addressTitle: 'Address',
+      phoneTitle: 'Phone',
+      emailTitle: 'Email',
+      hoursTitle: 'Opening Hours',
+      hoursText: 'Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed',
+      followUs: 'Follow Us'
+    },
+
+    // Volunteer Page
+    volunteer: {
+      title: 'Become a Volunteer',
+      subtitle: 'Join our community of passionate volunteers and help make a difference.',
+      breadcrumb: 'Volunteer',
+      formTitle: 'Join Our Team',
+      formIntro: 'Fill out this form to apply as a volunteer.',
+      interests: 'Interests',
+      availability: 'Availability',
+      submit: 'Submit Application',
+      success: 'Thank you! Your application has been received.'
     }
   },
   
@@ -428,6 +518,51 @@ export const translations = {
       stillQuestionsText: 'Können Sie die gesuchte Antwort nicht finden? Zögern Sie nicht, unser Team zu kontaktieren.',
       contactUs: 'Kontaktieren Sie Uns',
       noQuestions: 'Keine Fragen gefunden, die Ihren Kriterien entsprechen.'
+    },
+
+    // Contact Page
+    contactPage: {
+      title: 'Kontaktieren Sie uns',
+      subtitle: 'Wir sind hier, um alle Ihre Fragen zu beantworten. Zögern Sie nicht, uns zu kontaktieren!',
+      breadcrumb: 'Kontakt',
+      formTitle: 'Senden Sie uns eine Nachricht',
+      formIntro: 'Füllen Sie das untenstehende Formular aus und wir werden uns so schnell wie möglich bei Ihnen melden.',
+      firstName: 'Vorname',
+      lastName: 'Nachname',
+      email: 'E-Mail',
+      phone: 'Telefon',
+      subject: 'Betreff',
+      message: 'Nachricht',
+      send: 'Nachricht Senden',
+      success: 'Danke! Ihre Nachricht wurde gesendet.',
+      placeholders: {
+        firstName: 'Ihr Vorname',
+        lastName: 'Ihr Nachname',
+        email: 'ihre.email@beispiel.com',
+        phone: '+49 123 456 789',
+        subject: 'Betreff Ihrer Nachricht',
+        message: 'Schreiben Sie Ihre Nachricht hier...'
+      },
+      infoTitle: 'Kontaktinformationen',
+      addressTitle: 'Adresse',
+      phoneTitle: 'Telefon',
+      emailTitle: 'E-Mail',
+      hoursTitle: 'Öffnungszeiten',
+      hoursText: 'Montag - Freitag: 9:00 - 18:00\nSamstag: 10:00 - 16:00\nSonntag: Geschlossen',
+      followUs: 'Folgen Sie uns'
+    },
+
+    // Volunteer Page
+    volunteer: {
+      title: 'Freiwilliger werden',
+      subtitle: 'Treten Sie unserer Gemeinschaft leidenschaftlicher Freiwilliger bei und helfen Sie, einen Unterschied zu machen.',
+      breadcrumb: 'Freiwilliger',
+      formTitle: 'Treten Sie unserem Team bei',
+      formIntro: 'Füllen Sie dieses Formular aus, um sich als Freiwilliger zu bewerben.',
+      interests: 'Interessen',
+      availability: 'Verfügbarkeit',
+      submit: 'Bewerbung absenden',
+      success: 'Danke! Ihre Bewerbung ist eingegangen.'
     }
   }
 };

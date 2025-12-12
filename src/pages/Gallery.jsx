@@ -18,18 +18,18 @@ const Gallery = () => {
   ];
 
   const galleryImages = [
-    { id: 1, src: '/images/about-preview.jpg', category: 'education', title: 'Education Program' },
-    { id: 2, src: '/images/about-preview.jpg', category: 'medical', title: 'Medical Camp' },
-    { id: 3, src: '/images/about-preview.jpg', category: 'food', title: 'Food Distribution' },
-    { id: 4, src: '/images/about-preview.jpg', category: 'water', title: 'Clean Water Project' },
-    { id: 5, src: '/images/about-preview.jpg', category: 'events', title: 'Community Event' },
-    { id: 6, src: '/images/about-preview.jpg', category: 'education', title: 'School Building' },
-    { id: 7, src: '/images/about-preview.jpg', category: 'medical', title: 'Healthcare Service' },
-    { id: 8, src: '/images/about-preview.jpg', category: 'food', title: 'Meal Program' },
-    { id: 9, src: '/images/about-preview.jpg', category: 'water', title: 'Well Construction' },
-    { id: 10, src: '/images/about-preview.jpg', category: 'events', title: 'Fundraising Gala' },
-    { id: 11, src: '/images/about-preview.jpg', category: 'education', title: 'Library Donation' },
-    { id: 12, src: '/images/about-preview.jpg', category: 'medical', title: 'Mobile Clinic' }
+    { id: 1, src: '/images/education.jpg', category: 'education', title: 'Education Program', paragraph:'paragraph' },
+    { id: 2, src: '/images/medical.jpg', category: 'medical', title: 'Medical Camp' },
+    { id: 3, src: '/images/food.jpg', category: 'food', title: 'Food Distribution' },
+    { id: 4, src: '/images/water.jpg', category: 'water', title: 'Clean Water Project' },
+    { id: 5, src: '/images/events.jpg', category: 'events', title: 'Community Event' },
+    { id: 6, src: '/images/education.jpg', category: 'education', title: 'School Building' },
+    { id: 7, src: '/images/medical.jpg', category: 'medical', title: 'Healthcare Service' },
+    { id: 8, src: '/images/food.jpg', category: 'food', title: 'Meal Program' },
+    { id: 9, src: '/images/water.jpg', category: 'water', title: 'Well Construction' },
+    { id: 10, src: '/images/events.jpg', category: 'events', title: 'Fundraising Gala' },
+    { id: 11, src: '/images/education.jpg', category: 'education', title: 'Library Donation' },
+    { id: 12, src: '/images/medical.jpg', category: 'medical', title: 'Mobile Clinic' }
   ];
 
   const filteredImages = activeFilter === 'all' 
@@ -81,8 +81,9 @@ const Gallery = () => {
                 onClick={() => openLightbox(image)}
               >
                 <img src={image.src} alt={image.title} />
-                <div className="gallery-overlay">
+                <div className="gallery-overlay ">
                   <h4>{image.title}</h4>
+                <p>{image.paragraph}</p>
                 </div>
               </div>
             ))}
@@ -163,6 +164,11 @@ const Gallery = () => {
 
         .gallery-overlay {
           position: absolute;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          
           top: 0;
           left: 0;
           right: 0;
@@ -183,7 +189,7 @@ const Gallery = () => {
           color: var(--color-white);
           font-size: var(--font-size-xl);
           text-align: center;
-          padding: var(--spacing-md);
+          
         }
 
         .lightbox {

@@ -313,7 +313,9 @@ const Header = () => {
           display: none;
           background: transparent;
           font-size: var(--font-size-2xl);
-          color: var(--color-primary);
+          color: var(--color-white);
+          font-size: 1.7rem !important;
+          margin-right: 2.5rem !important;
         }
 
         @media (max-width: 1024px) {

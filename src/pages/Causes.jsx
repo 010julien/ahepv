@@ -23,7 +23,7 @@ const Causes = () => {
             {causes.map((cause) => {
               const percentage = Math.floor((cause.raised / cause.goal) * 100);
               return (
-                <Card key={cause.id} image={cause.image} title={cause.title} description={cause.description}>
+                <Card key={cause.id} image={cause.image} images={cause.images} title={cause.title} description={cause.description}>
                   <ProgressBar
                     percentage={percentage}
                     raised={cause.raised}
@@ -31,7 +31,7 @@ const Causes = () => {
                   />
                   <div className="cause-donors">
                     <FaUsers />
-                    <span className="donors-text btn-outline">{cause.donors} {t('causes.donors')}</span>
+                    <span className="donors-text">{cause.donors} {t('causes.donors')}</span>
                   </div>
                   <Button variant="primary">{t('home.donateNow')}</Button>
                 </Card>
