@@ -1,7 +1,8 @@
 import Hero from '../components/Hero';
 import { teamMembers } from '../data/team';
 import { useTranslation } from '../i18n/useTranslation';
-import { FaEye, FaBullseye, FaHeart, FaUsers, FaHandshake, FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
+import { FaEye, FaBullseye, FaHeart, FaUsers, FaHandshake } from 'react-icons/fa';
+import SocialLink from '../components/SocialLink';
 
 const About = () => {
   const { t } = useTranslation();
@@ -20,7 +21,7 @@ const About = () => {
         <div className="container">
           <div className="story-content">
             <div className="story-text">
-              <h2>{t('about.ourStory')}</h2>
+              <h2 >{t('about.ourStory')}</h2>
               <p>
                 {t('about.storyText1')}
               </p>
@@ -98,9 +99,9 @@ const About = () => {
                   <img src={member.image} alt={member.name} />
                   <div className="team-overlay">
                     <div className="team-social">
-                      <a href={member.social.facebook} aria-label="Facebook"><FaFacebookF /></a>
-                      <a href={member.social.twitter} aria-label="Twitter"><FaTwitter /></a>
-                      <a href={member.social.linkedin} aria-label="LinkedIn"><FaLinkedinIn /></a>
+                      <SocialLink platform="facebook" url={member.social.facebook} />
+                      <SocialLink platform="twitter" url={member.social.twitter} />
+                      <SocialLink platform="linkedin" url={member.social.linkedin} />
                     </div>
                   </div>
                 </div>

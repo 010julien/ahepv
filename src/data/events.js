@@ -28,9 +28,9 @@ export const events = [
     time: "14:00",
     location: "Local Elementary School",
     description: "Interactive learning sessions and educational activities for children from underprivileged backgrounds.",
-    image: "/images/about-preview.jpg",
+    image: "/images/education.jpg",
     category: "education",
-    status: "upcoming"
+    status: "past"
   },
   // {
   //   id: 4,

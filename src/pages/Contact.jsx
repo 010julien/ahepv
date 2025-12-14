@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Hero from '../components/Hero';
 import Button from '../components/Button';
 import { useTranslation } from '../i18n/useTranslation';
-import { FaPhone, FaEnvelope, FaLocationDot, FaClock, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa6';
+import { FaPhone, FaEnvelope, FaLocationDot, FaClock } from 'react-icons/fa6';
+import SocialLink from '../components/SocialLink';
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -187,27 +188,10 @@ const Contact = () => {
               <div className="social-card">
                 <h3>{t('contactPage.followUs')}</h3>
                 <div className="social-links">
-                  <a href="#" className="social-link" aria-label="Facebook">
-                    <FaFacebookF size={20} style={{
-                      color: "var(--color-primary)"
-                    }} />
-                  </a>
-                  <a href="#" className="social-link" aria-label="Twitter">
-                    <FaTwitter size={20} style={{
-                      color: "var(--color-primary)"
-                    }} />
-                  </a>
-                  <a href="#" className="social-link" aria-label="LinkedIn">
-                    <FaLinkedinIn size={20} style={{
-                      color: "var(--color-primary)",
-                      
-                    }} />
-                  </a>
-                  <a href="#" className="social-link" aria-label="Instagram">
-                    <FaInstagram size={20} style={{
-                      color: "var(--color-primary)"
-                    }} />
-                  </a>
+                  <SocialLink platform="facebook" url="#" style={{ color: 'var(--color-primary)' }} />
+                  <SocialLink platform="twitter" url="#" style={{ color: 'var(--color-primary)' }} />
+                  <SocialLink platform="linkedin" url="#" style={{ color: 'var(--color-primary)' }} />
+                  <SocialLink platform="instagram" url="#" style={{ color: 'var(--color-primary)' }} />
                 </div>
               </div>
             </aside>
@@ -372,26 +356,6 @@ const Contact = () => {
         .social-links {
           display: flex;
           gap: var(--spacing-md);
-        }
-
-        .social-link {
-          width: 50px;
-          height: 50px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: "var(--color-primary)"
-          
-          border-radius: var(--radius-md);
-        
-          font-size: var(--font-size-xl);
-          transition: all var(--transition-base);
-        }
-
-        .social-link:hover {
-          background: var(--gradient-primary);
-          color: var(--color-white);
-          transform: translateY(-3px);
         }
 
         .map-section {

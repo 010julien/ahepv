@@ -31,7 +31,7 @@ const Home = () => {
               <Link to="/causes" className="btn btn-primary btn-lg">
                 {t('home.ourCauses')}
               </Link>
-              <Link to="/about" className="btn btn-outline btn-lg">
+              <Link to="/about" className="btn btn-outline-hero btn-lg">
                 {t('home.learnMore')}
               </Link>
             </div>
@@ -122,7 +122,7 @@ const Home = () => {
           </div>
           <div className="text-center" style={{ marginTop: 'var(--spacing-2xl)' }}>
             <Link to="/causes" className="btn btn-outline">
-              {t('home.viewAll')} <FaArrowRight style={{ marginLeft: '8px', color: 'var(--color-primary)' }} />
+              {t('home.viewAll')} <FaArrowRight />
             </Link>
           </div>
         </div>
@@ -148,7 +148,7 @@ const Home = () => {
           </div>
           <div className="text-center" style={{ marginTop: 'var(--spacing-2xl)' }}>
             <Link to="/events" className="btn btn-outline">
-              {t('home.viewAll')} <FaArrowRight style={{ marginLeft: '8px' }} />
+              {t('home.viewAll')} <FaArrowRight />
             </Link>
           </div>
         </div>
@@ -220,7 +220,7 @@ const Home = () => {
           left: 0;
           right: 0;
           bottom: 0;
-          background: #00000091;
+          background: #0000007b;
           opacity: 0.9;
         }
 
@@ -257,13 +257,13 @@ const Home = () => {
           flex-wrap: wrap;
         }
 
-        .btn-outline {
+        .btn-outline-hero {
           background: transparent;
           border: 2px solid var(--color-white);
           color: var(--color-white);
         }
 
-        .btn-outline:hover {
+        .btn-outline-hero:hover {
           background: var(--color-white);
           color: var(--color-primary);
         }

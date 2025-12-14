@@ -17,24 +17,39 @@ const Gallery = () => {
     { key: 'events', label: t('gallery.events') }
   ];
 
+  /* Gallery Data with Dates */
   const galleryImages = [
-    { id: 1, src: '/images/education.jpg', category: 'education', title: 'Education Program', paragraph:'paragraph' },
-    { id: 2, src: '/images/medical.jpg', category: 'medical', title: 'Medical Camp' },
-    { id: 3, src: '/images/food.jpg', category: 'food', title: 'Food Distribution' },
-    { id: 4, src: '/images/water.jpg', category: 'water', title: 'Clean Water Project' },
-    { id: 5, src: '/images/events.jpg', category: 'events', title: 'Community Event' },
-    { id: 6, src: '/images/education.jpg', category: 'education', title: 'School Building' },
-    { id: 7, src: '/images/medical.jpg', category: 'medical', title: 'Healthcare Service' },
-    { id: 8, src: '/images/food.jpg', category: 'food', title: 'Meal Program' },
-    { id: 9, src: '/images/water.jpg', category: 'water', title: 'Well Construction' },
-    { id: 10, src: '/images/events.jpg', category: 'events', title: 'Fundraising Gala' },
-    { id: 11, src: '/images/education.jpg', category: 'education', title: 'Library Donation' },
-    { id: 12, src: '/images/medical.jpg', category: 'medical', title: 'Mobile Clinic' }
+    { id: 1, src: '/images/education.jpg', category: 'education', title: 'Education Program', paragraph:'paragraph', date: '2025-01-15' },
+    { id: 2, src: '/images/medical.jpg', category: 'medical', title: 'Medical Camp', date: '2025-02-20' },
+    { id: 3, src: '/images/food.jpg', category: 'food', title: 'Food Distribution', date: '2024-11-10' },
+    { id: 4, src: '/images/water.jpg', category: 'water', title: 'Clean Water Project', date: '2024-10-05' },
+    { id: 5, src: '/images/events.jpg', category: 'events', title: 'Community Event', date: '2024-12-25' },
+    { id: 6, src: '/images/education.jpg', category: 'education', title: 'School Building', date: '2023-09-15' },
+    { id: 7, src: '/images/medical.jpg', category: 'medical', title: 'Healthcare Service', date: '2023-08-20' },
+    { id: 8, src: '/images/food.jpg', category: 'food', title: 'Meal Program', date: '2024-11-28' },
+    { id: 9, src: '/images/water.jpg', category: 'water', title: 'Well Construction', date: '2023-05-12' },
+    { id: 10, src: '/images/events.jpg', category: 'events', title: 'Fundraising Gala', date: '2023-12-10' },
+    { id: 11, src: '/images/education.jpg', category: 'education', title: 'Library Donation', date: '2024-03-15' },
+    { id: 12, src: '/images/medical.jpg', category: 'medical', title: 'Mobile Clinic', date: '2022-11-05' }
   ];
 
+  /* Filtering */
   const filteredImages = activeFilter === 'all' 
     ? galleryImages 
     : galleryImages.filter(img => img.category === activeFilter);
+
+  /* Grouping by Date (Year) */
+  const groupedImages = filteredImages.reduce((acc, image) => {
+    const year = new Date(image.date).getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(image);
+    return acc;
+  }, {});
+
+  // Sort years in descending order
+  const sortedYears = Object.keys(groupedImages).sort((a, b) => b - a);
 
   const openLightbox = (image) => {
     setCurrentImage(image);
@@ -72,22 +87,32 @@ const Gallery = () => {
             ))}
           </div>
 
-          {/* Gallery Grid */}
-          <div className="gallery-grid">
-            {filteredImages.map((image) => (
-              <div 
-                key={image.id} 
-                className="gallery-item"
-                onClick={() => openLightbox(image)}
-              >
-                <img src={image.src} alt={image.title} />
-                <div className="gallery-overlay ">
-                  <h4>{image.title}</h4>
-                <p>{image.paragraph}</p>
-                </div>
+          {/* Gallery Sections by Year */}
+          {sortedYears.map(year => (
+            <div key={year} className="gallery-section">
+              <h3 className="gallery-year-title">{year}</h3>
+              <div className="gallery-grid">
+                {groupedImages[year].map((image) => (
+                  <div 
+                    key={image.id} 
+                    className="gallery-item"
+                    onClick={() => openLightbox(image)}
+                  >
+                    <img src={image.src} alt={image.title} />
+                    <div className="gallery-overlay">
+                      <h4>{image.title}</h4>
+                      <p>{new Date(image.date).toLocaleDateString()}</p>
+                      {image.paragraph && <p className="text-sm mt-2">{image.paragraph}</p>}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+          
+          {sortedYears.length === 0 && (
+            <p className="text-center text-gray-500">{t('gallery.noImages') || 'No images found.'}</p>
+          )}
         </div>
       </section>
 
@@ -128,6 +153,18 @@ const Gallery = () => {
           background: var(--color-primary);
           border-color: var(--color-primary);
           color: var(--color-white);
+        }
+
+        .gallery-section {
+          margin-bottom: var(--spacing-3xl);
+        }
+
+        .gallery-year-title {
+          font-size: var(--font-size-2xl);
+          color: var(--color-primary);
+          margin-bottom: var(--spacing-lg);
+          padding-bottom: var(--spacing-sm);
+          border-bottom: 2px solid var(--color-gray-200);
         }
 
         .gallery-grid {

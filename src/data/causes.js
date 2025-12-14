@@ -12,7 +12,7 @@ export const causes = [
   },
   {
     id: 2,
-    title: "Medical Care Support",
+    title: "Sante Care Support",
     category: "medical",
     description: "Support medical treatment and healthcare services for families who cannot afford medical expenses.",
     image: "/images/medical.jpg",

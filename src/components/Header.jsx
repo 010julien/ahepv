@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FaBars, FaTimes, FaHeart, FaChevronDown } from 'react-icons/fa';
 import { useTranslation } from '../i18n/useTranslation';
+import SocialLink from './SocialLink';
 // import logo from '/images/Logo.png';
 import logoARR from '/images/LogoARR.png';
 
@@ -37,6 +38,13 @@ const Header = () => {
     { path: '/faq', label: t('nav.faq') }
   ];
 
+  const socialLinks = [
+    { url: '#', name: 'facebook' },
+    { url: '#', name: 'linkedin' },
+    { url: '#', name: 'instagram' },
+    { url: '#', name: 'tiktok' }
+  ];
+
   return (
     <header className={`header ${isScrolled ? 'header-scrolled' : ''}`}>
       <div className="container">
@@ -44,6 +52,12 @@ const Header = () => {
           <Link to="/" className="logo">
             <img src={logoARR} alt="Logo" className="logo-img" />
           </Link>
+
+          {/* Mobile Overlay */}
+          <div 
+            className={`mobile-nav-overlay ${mobileMenuOpen ? 'active' : ''}`} 
+            onClick={() => setMobileMenuOpen(false)}
+          />
 
           <nav className={`nav ${mobileMenuOpen ? 'nav-open' : ''}`}>
             {navLinks.map((link) => (
@@ -83,25 +97,52 @@ const Header = () => {
                 ))}
               </div>
             </div>
+
+            {/* Mobile Social Icons */}
+            <div className="mobile-social-header">
+              {socialLinks.map((social) => (
+                <SocialLink 
+                  key={social.name}
+                  platform={social.name}
+                  url={social.url}
+                  style={{ color: 'var(--text-primary)' }}
+                />
+              ))}
+            </div>
           </nav>
 
-          <Link to="/donate" className="btn btn-primary donate-btn">
-            {t('nav.donate')}
-          </Link>
+          <div className="header-actions">
+            <div className="social-header">
+              {socialLinks.map((social) => (
+                <SocialLink 
+                  key={social.name}
+                  platform={social.name}
+                  url={social.url}
+                />
+              ))}
+            </div>
 
-          <button
-            className="mobile-menu-toggle"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <FaTimes /> : <FaBars />}
-          </button>
+            <Link to="/donate" className="btn btn-primary donate-btn">
+              {t('nav.donate')}
+            </Link>
+
+            <button
+              className="mobile-menu-toggle"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
         </div>
       </div>
 
       <style>{`
         .header {
           position: fixed;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           top: 0;
           left: 0;
           right: 0;
@@ -121,6 +162,7 @@ const Header = () => {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          width: 100%;
           padding: var(--spacing-lg) 0;
           transition: padding 0.4s ease;
         }
@@ -132,7 +174,8 @@ const Header = () => {
         /* Default Text Colors (Transparent Header) */
         .header .nav-link,
         .header .dropdown-icon,
-        .mobile-menu-toggle {
+        .mobile-menu-toggle,
+        .social-link-item {
           color: var(--color-white);
           text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Legibility on images */
         }
@@ -140,7 +183,8 @@ const Header = () => {
         /* Scrolled Text Colors */
         .header-scrolled .nav-link,
         .header-scrolled .dropdown-icon,
-        .header-scrolled .mobile-menu-toggle {
+        .header-scrolled .mobile-menu-toggle,
+        .header-scrolled .social-link-item {
           color: var(--text-primary);
           text-shadow: none;
         }
@@ -152,6 +196,25 @@ const Header = () => {
 
         .header-scrolled .logo-img {
           filter: none; /* Restore original colored logo */
+        }
+
+        .header-actions {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-lg);
+        }
+
+        /* Social Icons Styles */
+        .social-header {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-sm);
+          color: var(--color-white);
+        }
+
+        /* Mobile Social Icons Styles - Hidden on Desktop */
+        .mobile-social-header {
+          display: none;
         }
 
         /* Special handling for Donate button */
@@ -304,9 +367,24 @@ const Header = () => {
           padding-left: calc(var(--spacing-lg) + 5px);
         }
 
-        .donate-btn {
-        color: var(--color-primary) !important;
-          margin-left: var(--spacing-lg);
+        /* Mobile Overlay */
+        .mobile-nav-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: calc(var(--z-sticky) - 1); /* Just behind the nav drawer */
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(2px);
+        }
+        
+        .mobile-nav-overlay.active {
+          opacity: 1;
+          visibility: visible;
         }
 
         .mobile-menu-toggle {
@@ -316,6 +394,7 @@ const Header = () => {
           color: var(--color-white);
           font-size: 1.7rem !important;
           margin-right: 2.5rem !important;
+          z-index: var(--z-sticky);
         }
 
         @media (max-width: 1024px) {
@@ -336,6 +415,7 @@ const Header = () => {
             gap: var(--spacing-lg);
             box-shadow: var(--shadow-xl);
             transition: right var(--transition-base);
+            z-index: var(--z-sticky);
           }
 
           .nav-open {
@@ -346,6 +426,12 @@ const Header = () => {
             color: var(--text-primary);
             width: 100%;
             padding: var(--spacing-sm) 0;
+            text-shadow: none;
+          }
+          
+          .nav .dropdown-icon {
+            color: var(--text-primary);
+            text-shadow: none;
           }
 
           .nav-dropdown {
@@ -381,8 +467,47 @@ const Header = () => {
             padding: var(--spacing-sm) var(--spacing-md);
           }
 
+          .header-actions {
+             gap: var(--spacing-sm);
+          }
+          
+          .social-header {
+             display: none; 
+          }
+          
+          /* Show Mobile Social Icons */
+          .mobile-social-header {
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             gap: var(--spacing-md);
+             width: 100%;
+             margin-top: auto; /* Push to bottom */
+             padding-top: var(--spacing-lg);
+             border-top: 1px solid var(--color-gray-200);
+          }
+           
+           /* Force dark theme icons on mobile drawer */
+           .mobile-social-header .social-link-item {
+             color: var(--text-primary); 
+             text-shadow: none;
+           }
+
+
           .donate-btn {
             display: none;
+          }
+          @media (max-width: 768px) {
+            .header {
+              padding: 0;
+              height: 130px !important;
+              justify-content: space-between;
+              
+            }
+            .logo-img {
+              width: 100px !important;
+              height: 100px !important;
+            }
           }
         }
       `}</style>

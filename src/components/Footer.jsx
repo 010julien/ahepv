@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaHeart, FaEnvelope, FaPhone, FaLocationDot } from 'react-icons/fa6';
+import { FaHeart, FaEnvelope, FaPhone, FaLocationDot } from 'react-icons/fa6';
 import { useTranslation } from '../i18n/useTranslation';
 import logoARR from '/images/LogoARR.png';
+import SocialLink from './SocialLink';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -45,22 +46,14 @@ const Footer = () => {
                 {t('footer.description')}
               </p>
               <div className="social-links">
-                <a href="#" aria-label="Facebook" className="social-link">
-                  <FaFacebookF size={18} />
-                </a>
-                <a href="#" aria-label="Twitter" className="social-link">
-                  <FaTwitter size={18} />
-                </a>
-                <a href="#" aria-label="Instagram" className="social-link">
-                  <FaInstagram size={18} />
-                </a>
-                <a href="#" aria-label="LinkedIn" className="social-link">
-                  <FaLinkedinIn size={18} />
-                </a>
+                <SocialLink platform="facebook" url="#" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
+                <SocialLink platform="twitter" url="#" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
+                <SocialLink platform="instagram" url="#" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
+                <SocialLink platform="linkedin" url="#" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
               </div>
             </div>
 
-            {/* Column 2: Quick Links */}
+            {/* ... other cols ... */}
             <div className="footer-col">
               <h4>{t('footer.quickLinks')}</h4>
               <ul className="footer-links">

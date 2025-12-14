@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Card from '../components/Card';
 import ProgressBar from '../components/ProgressBar';
@@ -33,7 +34,7 @@ const Causes = () => {
                     <FaUsers />
                     <span className="donors-text">{cause.donors} {t('causes.donors')}</span>
                   </div>
-                  <Button variant="primary">{t('home.donateNow')}</Button>
+                  <Link to="/donate" className="btn btn-primary">{t('home.donateNow')}</Link>
                 </Card>
               );
             })}
