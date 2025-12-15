@@ -17,6 +17,7 @@ import EventDetails from './pages/EventDetails';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import ScrollToTop from './components/ScrollToTop';
+
 import './styles/index.css';
 
 function App() {

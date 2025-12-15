@@ -1,9 +1,35 @@
-import { useState } from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { useState, useEffect } from 'react';
 
 const LanguageSwitcher = () => {
-  const { language, changeLanguage } = useLanguage();
+  const [selectedLang, setSelectedLang] = useState('fr');
   const [isOpen, setIsOpen] = useState(false);
+
+  // Initialize Google Translate Script
+  useEffect(() => {
+    // Check if script is already added
+    if (document.querySelector('script[src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"]')) {
+      return;
+    }
+
+    // Create script element
+    const script = document.createElement('script');
+    script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Initialize function
+    window.googleTranslateElementInit = () => {
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: 'fr',
+          includedLanguages: 'fr,en,de',
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false,
+        },
+        'google_translate_element'
+      );
+    };
+  }, []);
 
   const languages = [
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
@@ -11,38 +37,51 @@ const LanguageSwitcher = () => {
     { code: 'de', label: 'Deutsch', flag: '🇩🇪' }
   ];
 
-  const currentLang = languages.find(lang => lang.code === language);
+  const currentLang = languages.find(lang => lang.code === selectedLang) || languages[0];
 
   const handleLanguageChange = (code) => {
-    changeLanguage(code);
+    setSelectedLang(code);
     setIsOpen(false);
+    
+    // Robust Fallback: Set Cookie and Reload
+    // This is the most reliable way to force Google Translate to apply the new language
+    document.cookie = `googtrans=/auto/${code}; path=/; domain=${window.location.hostname}`;
+    document.cookie = `googtrans=/auto/${code}; path=/`; 
+
+    // Reloading the page forces the Google script to re-initialize with the new language cookie
+    window.location.reload();
   };
 
   return (
-    <div className="language-switcher">
-      <button 
-        className="lang-button"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Change language"
-      >
-        <span className="lang-flag">{currentLang.flag}</span>
-        <span className="lang-code">{currentLang.code.toUpperCase()}</span>
-      </button>
+    <>
+      {/* Hidden Google Translate Element - Opacity 0 to ensure DOM presence */}
+      <div id="google_translate_element" style={{ opacity: 0, width: 1, height: 1, overflow: 'hidden', position: 'absolute', pointerEvents: 'none', zIndex: -1 }}></div>
+      
+      <div className="language-switcher">
+        <button 
+          className="lang-button"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Change language"
+        >
+          <span className="lang-flag">{currentLang.flag}</span>
+          <span className="lang-code">{currentLang.code.toUpperCase()}</span>
+        </button>
 
-      {isOpen && (
-        <div className="lang-dropdown">
-          {languages.map((lang) => (
-            <button
-              key={lang.code}
-              className={`lang-option ${language === lang.code ? 'active' : ''}`}
-              onClick={() => handleLanguageChange(lang.code)}
-            >
-              <span className="lang-flag">{lang.flag}</span>
-              <span className="lang-label">{lang.label}</span>
-            </button>
-          ))}
-        </div>
-      )}
+        {isOpen && (
+          <div className="lang-dropdown">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                className={`lang-option ${selectedLang === lang.code ? 'active' : ''}`}
+                onClick={() => handleLanguageChange(lang.code)}
+              >
+                <span className="lang-flag">{lang.flag}</span>
+                <span className="lang-label">{lang.label}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
 
       <style>{`
         .language-switcher {
@@ -125,6 +164,25 @@ const LanguageSwitcher = () => {
           font-weight: var(--font-weight-medium);
         }
 
+        /* Hide Google Translate Toolbar */
+        .goog-te-banner-frame.skiptranslate, 
+        .goog-te-gadget-icon, 
+        #google_translate_element .skiptranslate {
+            display: none !important;
+        }
+        body {
+            top: 0px !important;
+        }
+        
+        /* Hide Google Tooltips */
+        .goog-tooltip, .goog-tooltip:hover {
+            display: none !important;
+        }
+        .goog-text-highlight {
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+
         @media (max-width: 768px) {
           .language-switcher {
             bottom: 20px;
@@ -140,7 +198,7 @@ const LanguageSwitcher = () => {
           }
         }
       `}</style>
-    </div>
+    </>
   );
 };
 
