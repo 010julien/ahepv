@@ -28,6 +28,14 @@ const EventDetails = () => {
   }, [id, navigate]);
 
   const handleChange = (e) => {
+    // Restrict Name field to alphabetic characters only
+    if (e.target.name === 'name') {
+      const regex = /^[a-zA-ZÀ-ÿ\s'-]*$/;
+      if (!regex.test(e.target.value)) {
+        return;
+      }
+    }
+
     setFormData({
       ...formData,
       [e.target.name]: e.target.value

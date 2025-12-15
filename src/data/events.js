@@ -6,7 +6,7 @@ export const events = [
     time: "18:00",
     location: "Grand Hotel Ballroom",
     description: "Join us for an elegant evening of dining, entertainment, and fundraising to support our causes.",
-    image: "/images/evenement-don.jpeg",
+    image: "/images/evenement_don2.jpeg",
     category: "fundraiser",
     status: "upcoming"
   },

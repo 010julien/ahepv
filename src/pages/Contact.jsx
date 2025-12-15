@@ -17,9 +17,20 @@ const Contact = () => {
   });
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    
+    // Restrict Name fields to alphabetic characters only
+    if (name === 'firstName' || name === 'lastName') {
+      // Regex allows letters (including accents), spaces, hyphens, and apostrophes
+      const regex = /^[a-zA-ZÀ-ÿ\s'-]*$/;
+      if (!regex.test(value)) {
+        return;
+      }
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
   };
 

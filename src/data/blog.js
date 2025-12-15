@@ -4,7 +4,7 @@ export const blogPosts = [
     title: "The Impact of Your Donations: 2023 Year in Review",
     excerpt: "Discover how your generous contributions have transformed lives and communities throughout the year.",
     content: "Full article content here...",
-    image: "/images/blog-impact.jpg",
+    image: "/images/education.jpg",
     author: "Sarah Johnson",
     date: "2023-12-28",
     category: "Impact Stories",

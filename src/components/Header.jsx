@@ -422,7 +422,7 @@ const Header = () => {
             right: 0;
           }
 
-          .nav-link {
+          .header .nav-link {
             color: var(--text-primary);
             width: 100%;
             padding: var(--spacing-sm) 0;

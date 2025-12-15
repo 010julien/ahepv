@@ -10,13 +10,36 @@ const Donate = () => {
   const [selectedAmount, setSelectedAmount] = useState(50);
   const [customAmount, setCustomAmount] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('card');
+  const [personalInfo, setPersonalInfo] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: ''
+  });
+
+  const handleInfoChange = (e) => {
+    const { name, value } = e.target;
+    
+    // Restrict Name fields to alphabetic characters only
+    if (name === 'firstName' || name === 'lastName') {
+      const regex = /^[a-zA-ZÀ-ÿ\s'-]*$/;
+      if (!regex.test(value)) {
+        return;
+      }
+    }
+
+    setPersonalInfo({
+      ...personalInfo,
+      [name]: value
+    });
+  };
 
   const predefinedAmounts = [25, 50, 100, 250, 500, 1000];
 
   const handleDonate = (e) => {
     e.preventDefault();
     const amount = customAmount || selectedAmount;
-    alert(`Merci pour votre don de ${amount}€ !`);
+    alert(`Merci ${personalInfo.firstName} ${personalInfo.lastName} pour votre don de ${amount}€ !`);
   };
 
   return (
@@ -157,19 +180,46 @@ const Donate = () => {
                   <div className="form-grid">
                     <div className="form-group">
                       <label>Prénom *</label>
-                      <input type="text" required placeholder="Votre prénom" />
+                      <input 
+                        type="text" 
+                        name="firstName"
+                        value={personalInfo.firstName}
+                        onChange={handleInfoChange}
+                        required 
+                        placeholder="Votre prénom" 
+                      />
                     </div>
                     <div className="form-group">
                       <label>Nom *</label>
-                      <input type="text" required placeholder="Votre nom" />
+                      <input 
+                        type="text" 
+                        name="lastName"
+                        value={personalInfo.lastName}
+                        onChange={handleInfoChange}
+                        required 
+                        placeholder="Votre nom" 
+                      />
                     </div>
                     <div className="form-group full-width">
                       <label>Email *</label>
-                      <input type="email" required placeholder="votre.email@example.com" />
+                      <input 
+                        type="email" 
+                        name="email"
+                        value={personalInfo.email}
+                        onChange={handleInfoChange}
+                        required 
+                        placeholder="votre.email@example.com" 
+                      />
                     </div>
                     <div className="form-group full-width">
                       <label>Téléphone</label>
-                      <input type="tel" placeholder="+33 6 12 34 56 78" />
+                      <input 
+                        type="tel" 
+                        name="phone"
+                        value={personalInfo.phone}
+                        onChange={handleInfoChange}
+                        placeholder="+33 6 12 34 56 78" 
+                      />
                     </div>
                   </div>
                 </div>

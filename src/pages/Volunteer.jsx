@@ -27,6 +27,14 @@ const Volunteer = () => {
         interests: updatedInterests
       });
     } else {
+      // Restrict Name field to alphabetic characters only
+      if (name === 'name') {
+        const regex = /^[a-zA-ZÀ-ÿ\s'-]*$/;
+        if (!regex.test(value)) {
+          return;
+        }
+      }
+
       setFormData({
         ...formData,
         [name]: value

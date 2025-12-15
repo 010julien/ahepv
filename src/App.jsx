@@ -14,12 +14,16 @@ import Donate from './pages/Donate';
 import Contact from './pages/Contact';
 import Volunteer from './pages/Volunteer';
 import EventDetails from './pages/EventDetails';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import ScrollToTop from './components/ScrollToTop';
 import './styles/index.css';
 
 function App() {
   return (
     <LanguageProvider>
       <Router>
+        <ScrollToTop />
         <div className="app">
           <Header />
           <main>
@@ -35,6 +39,8 @@ function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
             </Routes>
           </main>
           <Footer />
