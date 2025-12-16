@@ -2,9 +2,9 @@ export const teamMembers = [
   {
     id: 1,
     name: "Jennifer Smith",
-    role: "Executive Director",
+    role: "Directrice Exécutive",
     image: "/images/about-preview.jpg",
-    bio: "Leading the organization with 15 years of experience in nonprofit management and community development.",
+    bio: "Dirige l'organisation avec 15 ans d'expérience dans la gestion d'organisations à but non lucratif et le développement communautaire.",
     social: {
       facebook: "#",
       twitter: "#",
@@ -14,9 +14,9 @@ export const teamMembers = [
   {
     id: 2,
     name: "Michael Brown",
-    role: "Program Director",
+    role: "Directeur de Programme",
     image: "/images/about-preview.jpg",
-    bio: "Overseeing all charitable programs and ensuring maximum impact for beneficiaries.",
+    bio: "Supervise tous les programmes caritatifs et assure un impact maximal pour les bénéficiaires.",
     social: {
       facebook: "#",
       twitter: "#",

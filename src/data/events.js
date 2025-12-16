@@ -1,35 +1,35 @@
 export const events = [
   {
     id: 1,
-    title: "Annual Charity Gala",
+    title: "Gala de Charité Annuel",
     date: "2024-01-15",
     time: "18:00",
-    location: "Grand Hotel Ballroom",
-    description: "Join us for an elegant evening of dining, entertainment, and fundraising to support our causes.",
+    location: "Salle de Bal du Grand Hôtel",
+    description: "Rejoignez-nous pour une soirée élégante avec dîner, divertissement et collecte de fonds pour soutenir nos causes.",
     image: "/images/evenement_don2.jpeg",
-    category: "fundraiser",
+    category: "collecte de fonds",
     status: "upcoming"
   },
   {
     id: 2,
-    title: "Community Food Drive",
+    title: "Collecte Alimentaire Communautaire",
     date: "2024-01-22",
     time: "09:00",
-    location: "City Community Center",
-    description: "Help us collect and distribute food packages to families in need in our community.",
+    location: "Centre Communautaire de la Ville",
+    description: "Aidez-nous à collecter et distribuer des colis alimentaires aux familles dans le besoin de notre communauté.",
     image: "/images/evenement_don2.jpeg",
-    category: "volunteer",
+    category: "bénévolat",
     status: "upcoming"
   },
   {
     id: 3,
-    title: "Children's Education Workshop",
+    title: "Atelier Éducatif pour Enfants",
     date: "2024-02-05",
     time: "14:00",
-    location: "Local Elementary School",
-    description: "Interactive learning sessions and educational activities for children from underprivileged backgrounds.",
+    location: "École Élémentaire Locale",
+    description: "Sessions d'apprentissage interactives et activités éducatives pour les enfants issus de milieux défavorisés.",
     image: "/images/education.jpg",
-    category: "education",
+    category: "éducation",
     status: "past"
   },
   // {

@@ -1,82 +1,82 @@
 export const faqData = [
   {
     id: 1,
-    category: "Donations",
-    question: "How can I make a donation?",
-    answer: "You can make a donation through our website using credit card, PayPal, or bank transfer. Simply click the 'Donate Now' button on any page and follow the secure checkout process. You can also mail a check to our office address."
+    category: "Dons",
+    question: "Comment puis-je faire un don ?",
+    answer: "Vous pouvez faire un don via notre site web en utilisant une carte de crédit, PayPal ou un virement bancaire. Cliquez simplement sur le bouton 'Faire un don' sur n'importe quelle page et suivez le processus de paiement sécurisé. Vous pouvez également envoyer un chèque à l'adresse de notre bureau."
   },
   {
     id: 2,
-    category: "Donations",
-    question: "Are my donations tax-deductible?",
-    answer: "Yes, we are a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the fullest extent permitted by law. You will receive a receipt for your records after each donation."
+    category: "Dons",
+    question: "Mes dons sont-ils déductibles des impôts ?",
+    answer: "Oui, nous sommes une organisation à but non lucratif enregistrée. Tous les dons sont déductibles des impôts dans toute la mesure permise par la loi. Vous recevrez un reçu pour vos dossiers après chaque don."
   },
   {
     id: 3,
-    category: "Donations",
-    question: "Can I set up a monthly recurring donation?",
-    answer: "Absolutely! Monthly recurring donations are incredibly valuable as they provide us with predictable funding to plan long-term programs. You can set up recurring donations during the checkout process or through your donor account."
+    category: "Dons",
+    question: "Puis-je mettre en place un don mensuel récurrent ?",
+    answer: "Absolument ! Les dons mensuels récurrents sont incroyablement précieux car ils nous fournissent un financement prévisible pour planifier des programmes à long terme. Vous pouvez configurer des dons récurrents lors du processus de paiement ou via votre compte donateur."
   },
   {
     id: 4,
-    category: "Donations",
-    question: "How is my donation used?",
-    answer: "We are committed to transparency. Approximately 85% of all donations go directly to our programs, 10% to administrative costs, and 5% to fundraising efforts. You can view our detailed financial reports on our website."
+    category: "Dons",
+    question: "Comment mon don est-il utilisé ?",
+    answer: "Nous nous engageons à la transparence. Environ 85 % de tous les dons vont directement à nos programmes, 10 % aux frais administratifs et 5 % aux efforts de collecte de fonds. Vous pouvez consulter nos rapports financiers détaillés sur notre site web."
   },
   {
     id: 5,
-    category: "Volunteering",
-    question: "How can I volunteer with your organization?",
-    answer: "We welcome volunteers of all backgrounds! Visit our 'Get Involved' page to see current volunteer opportunities. You can sign up online, and our Volunteer Coordinator will contact you with next steps and available positions."
+    category: "Bénévolat",
+    question: "Comment puis-je devenir bénévole auprès de votre organisation ?",
+    answer: "Nous accueillons des bénévoles de tous horizons ! Visitez notre page 'Bénévolat' pour voir les opportunités de bénévolat actuelles. Vous pouvez vous inscrire en ligne, et notre coordinateur des bénévoles vous contactera pour les prochaines étapes."
   },
   {
     id: 6,
-    category: "Volunteering",
-    question: "Do I need any special skills to volunteer?",
-    answer: "Not necessarily! While some positions may require specific skills, we have many opportunities that require only enthusiasm and commitment. We provide training and support for all volunteers."
+    category: "Bénévolat",
+    question: "Ai-je besoin de compétences particulières pour faire du bénévolat ?",
+    answer: "Pas nécessairement ! Bien que certains postes nécessitent des compétences spécifiques, nous avons de nombreuses opportunités qui ne demandent que de l'enthousiasme et de l'engagement. Nous offrons une formation et un soutien à tous les bénévoles."
   },
   {
     id: 7,
-    category: "Volunteering",
-    question: "What is the minimum time commitment for volunteers?",
-    answer: "This varies by position. Some opportunities are one-time events (like food drives), while others may require a regular weekly or monthly commitment. We work with each volunteer to find opportunities that fit their schedule."
+    category: "Bénévolat",
+    question: "Quel est l'engagement minimum pour les bénévoles ?",
+    answer: "Cela varie selon le poste. Certaines opportunités sont des événements ponctuels (comme les collectes de nourriture), tandis que d'autres peuvent nécessiter un engagement régulier hebdomadaire ou mensuel. Nous travaillons avec chaque bénévole pour trouver des opportunités qui correspondent à son emploi du temps."
   },
   {
     id: 8,
-    category: "General",
-    question: "How long has your organization been operating?",
-    answer: "We were founded in 2005 and have been serving communities for over 18 years. During this time, we've helped thousands of individuals and families through our various programs."
+    category: "Général",
+    question: "Depuis combien de temps votre organisation existe-t-elle ?",
+    answer: "Nous avons été fondés en 2005 et servons les communautés depuis plus de 18 ans. Durant cette période, nous avons aidé des milliers d'individus et de familles grâce à nos divers programmes."
   },
   {
     id: 9,
-    category: "General",
-    question: "What areas do you serve?",
-    answer: "While our main office is located in the city, our programs reach communities across the entire region, including rural and underserved areas. We also support select international projects."
+    category: "Général",
+    question: "Quelles régions servez-vous ?",
+    answer: "Bien que notre bureau principal soit situé en ville, nos programmes touchent des communautés dans toute la région, y compris les zones rurales et mal desservies. Nous soutenons également certains projets internationaux."
   },
   {
     id: 10,
-    category: "General",
-    question: "How can I stay updated on your work?",
-    answer: "Subscribe to our newsletter for monthly updates, follow us on social media (Facebook, Twitter, Instagram), and check our blog for regular stories and news about our impact."
+    category: "Général",
+    question: "Comment puis-je rester informé de votre travail ?",
+    answer: "Abonnez-vous à notre newsletter pour des mises à jour mensuelles, suivez-nous sur les réseaux sociaux (Facebook, Instagram, TikTok) et consultez notre blog pour des histoires régulières et des nouvelles de notre impact."
   },
   {
     id: 11,
-    category: "Programs",
-    question: "What types of programs do you offer?",
-    answer: "We run programs in education, healthcare, food security, clean water access, housing, and women's empowerment. Each program is designed to create sustainable, long-term impact in communities."
+    category: "Programmes",
+    question: "Quels types de programmes proposez-vous ?",
+    answer: "Nous menons des programmes dans les domaines de l'éducation, de la santé, de la sécurité alimentaire, de l'accès à l'eau potable, du logement et de l'autonomisation des femmes. Chaque programme est conçu pour créer un impact durable à long terme."
   },
   {
     id: 12,
-    category: "Programs",
-    question: "How do you measure program success?",
-    answer: "We use evidence-based metrics and regular evaluations to measure impact. This includes quantitative data (number of beneficiaries, resources distributed) and qualitative assessments (community feedback, life improvements)."
+    category: "Programmes",
+    question: "Comment mesurez-vous le succès des programmes ?",
+    answer: "Nous utilisons des mesures fondées sur des preuves et des évaluations régulières pour mesurer l'impact. Cela inclut des données quantitatives (nombre de bénéficiaires, ressources distribuées) et des évaluations qualitatives (retours de la communauté, améliorations de la vie)."
   }
 ];
 
 export const faqCategories = [
-  "All",
-  "Donations",
-  "Volunteering",
-  "General",
-  "Programs"
+  "Tout",
+  "Dons",
+  "Bénévolat",
+  "Général",
+  "Programmes"
 ];

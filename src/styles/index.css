@@ -669,3 +669,45 @@ input, textarea, select {
     height: 200px;
   }
 }
+
+/* ===================================
+   GOOGLE TRANSLATE OVERRIDES
+   =================================== */
+
+/* Hide Google Translate Toolbar/Banner */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget-icon,
+#google_translate_element .skiptranslate,
+.goog-te-banner-frame {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+}
+
+/* Force body back to top */
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+/* Hide Google Tooltips on hover */
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Remove text highlighting styles */
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}
+
+/* Hide the powered by google logo if present */
+.goog-logo-link {
+    display: none !important;
+}
+.goog-te-gadget {
+    color: transparent !important;
+}

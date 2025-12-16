@@ -29,6 +29,73 @@ const LanguageSwitcher = () => {
         'google_translate_element'
       );
     };
+
+    // Robust hidden styles injection
+    const style = document.createElement('style');
+    style.id = 'google-translate-overrides';
+    style.innerHTML = `
+      .goog-te-banner-frame.skiptranslate, 
+      .goog-te-gadget-icon, 
+      #google_translate_element .skiptranslate, 
+      .goog-te-banner-frame,
+      .goog-tooltip,
+      .goog-tooltip:hover {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        z-index: -9999 !important;
+      }
+      body {
+        top: 0px !important;
+        position: static !important;
+      }
+      .goog-text-highlight {
+        background-color: transparent !important;
+        box-shadow: none !important;
+        box-sizing: border-box !important;
+      }
+    `;
+    // Ensure we don't validly duplicate
+    if (!document.getElementById('google-translate-overrides')) {
+        document.head.appendChild(style);
+    }
+
+    // Aggressive Interval to fight Google's script
+    const intervalId = setInterval(() => {
+      // Hide banner frame
+      const banners = document.querySelectorAll('.goog-te-banner-frame');
+      banners.forEach(banner => {
+          if (banner) {
+            banner.style.display = 'none';
+            banner.style.visibility = 'hidden';
+            banner.style.height = '0';
+            banner.style.width = '0';
+            banner.style.opacity = '0';
+          }
+      });
+
+      // Fix body
+      if (document.body.style.top !== '0px') {
+        document.body.style.top = '0px';
+        document.body.style.position = 'static';
+      }
+
+      // Hide tooltips
+      const tooltips = document.querySelectorAll('.goog-tooltip');
+      tooltips.forEach(tooltip => {
+          tooltip.style.display = 'none';
+      });
+
+    }, 100); // Check every 100ms
+
+    return () => {
+       clearInterval(intervalId);
+       // We can choose to leave the style or remove it. 
+       // Keeping it might be safer if component unmounts but script stays.
+    };
   }, []);
 
   const languages = [
@@ -164,24 +231,7 @@ const LanguageSwitcher = () => {
           font-weight: var(--font-weight-medium);
         }
 
-        /* Hide Google Translate Toolbar */
-        .goog-te-banner-frame.skiptranslate, 
-        .goog-te-gadget-icon, 
-        #google_translate_element .skiptranslate {
-            display: none !important;
-        }
-        body {
-            top: 0px !important;
-        }
-        
-        /* Hide Google Tooltips */
-        .goog-tooltip, .goog-tooltip:hover {
-            display: none !important;
-        }
-        .goog-text-highlight {
-            background-color: transparent !important;
-            box-shadow: none !important;
-        }
+        /* Styles moved to global index.css */
 
         @media (max-width: 768px) {
           .language-switcher {

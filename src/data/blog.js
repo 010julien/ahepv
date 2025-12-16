@@ -1,78 +1,78 @@
 export const blogPosts = [
   {
     id: 1,
-    title: "The Impact of Your Donations: 2023 Year in Review",
-    excerpt: "Discover how your generous contributions have transformed lives and communities throughout the year.",
-    content: "Full article content here...",
+    title: "L'impact de vos dons : Bilan de l'année 2023",
+    excerpt: "Découvrez comment vos généreuses contributions ont transformé des vies et des communautés tout au long de l'année.",
+    content: "Contenu complet de l'article ici...",
     image: "/images/education.jpg",
     author: "Sarah Johnson",
     date: "2023-12-28",
-    category: "Impact Stories",
-    readTime: "5 min read"
+    category: "Histoires d'impact",
+    readTime: "5 min de lecture"
   },
   {
     id: 2,
-    title: "5 Ways You Can Make a Difference in Your Community",
-    excerpt: "Simple yet powerful actions you can take today to create positive change in your local area.",
-    content: "Full article content here...",
+    title: "5 façons de faire une différence dans votre communauté",
+    excerpt: "Des actions simples mais puissantes que vous pouvez entreprendre dès aujourd'hui pour créer un changement positif dans votre région.",
+    content: "Contenu complet de l'article ici...",
     image: "/images/blog-community.jpg",
     author: "Michael Chen",
     date: "2023-12-22",
-    category: "Community",
-    readTime: "4 min read"
+    category: "Communauté",
+    readTime: "4 min de lecture"
   },
   {
     id: 3,
-    title: "Education Changes Lives: Meet Sarah",
-    excerpt: "Read Sarah's inspiring journey from scholarship recipient to community leader and educator.",
-    content: "Full article content here...",
+    title: "L'éducation change des vies : Rencontrez Sarah",
+    excerpt: "Lisez le parcours inspirant de Sarah, de bénéficiaire d'une bourse à leader communautaire et éducatrice.",
+    content: "Contenu complet de l'article ici...",
     image: "/images/blog-education.jpg",
     author: "Emma Davis",
     date: "2023-12-15",
-    category: "Success Stories",
-    readTime: "6 min read"
+    category: "Histoires de réussite",
+    readTime: "6 min de lecture"
   },
   {
     id: 4,
-    title: "Building Clean Water Solutions in Rural Villages",
-    excerpt: "How our water projects are bringing clean, safe drinking water to communities in need.",
-    content: "Full article content here...",
+    title: "Construire des solutions d'eau potable dans les villages ruraux",
+    excerpt: "Comment nos projets d'eau apportent de l'eau potable propre et sûre aux communautés dans le besoin.",
+    content: "Contenu complet de l'article ici...",
     image: "/images/blog-water.jpg",
     author: "David Wilson",
     date: "2023-12-08",
-    category: "Projects",
-    readTime: "7 min read"
+    category: "Projets",
+    readTime: "7 min de lecture"
   },
   {
     id: 5,
-    title: "Volunteer Spotlight: Maria's Story",
-    excerpt: "Meet Maria, a dedicated volunteer whose compassion has touched countless lives in our organization.",
-    content: "Full article content here...",
+    title: "Pleins feux sur les bénévoles : L'histoire de Maria",
+    excerpt: "Rencontrez Maria, une bénévole dévouée dont la compassion a touché d'innombrables vies dans notre organisation.",
+    content: "Contenu complet de l'article ici...",
     image: "/images/blog-volunteer.jpg",
     author: "Lisa Anderson",
     date: "2023-12-01",
-    category: "Volunteers",
-    readTime: "5 min read"
+    category: "Bénévoles",
+    readTime: "5 min de lecture"
   },
   {
     id: 6,
-    title: "The Power of Monthly Giving",
-    excerpt: "Learn how recurring donations create sustainable impact and long-term change in communities.",
-    content: "Full article content here...",
+    title: "Le pouvoir du don mensuel",
+    excerpt: "Apprenez comment les dons récurrents créent un impact durable et un changement à long terme dans les communautés.",
+    content: "Contenu complet de l'article ici...",
     image: "/images/blog-giving.jpg",
     author: "Robert Martinez",
     date: "2023-11-25",
-    category: "Giving",
-    readTime: "4 min read"
+    category: "Dons",
+    readTime: "4 min de lecture"
   }
 ];
 
 export const categories = [
-  "All",
-  "Impact Stories",
-  "Community",
-  "Success Stories",
-  "Projects",
-  "Volunteers",
-  "Giving"
+  "Tout",
+  "Histoires d'impact",
+  "Communauté",
+  "Histoires de réussite",
+  "Projets",
+  "Bénévoles",
+  "Dons"
 ];
