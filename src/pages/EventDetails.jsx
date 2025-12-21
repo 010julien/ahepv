@@ -4,10 +4,14 @@ import Hero from '../components/Hero';
 import Button from '../components/Button';
 import { events } from '../data/events';
 import { FaCalendar, FaClock, FaMapMarkerAlt, FaTicketAlt } from 'react-icons/fa';
+import { useTranslation } from '../i18n/useTranslation';
+import { CONTACT } from '../config/site';
+import { sendEmail } from '../utils/email';
 
 const EventDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [event, setEvent] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -42,10 +46,27 @@ const EventDetails = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Merci ${formData.name} ! Votre inscription pour "${event.title}" a été confirmée.`);
-    navigate('/events');
+    const payload = {
+      to_email: CONTACT.email,
+      from_email: formData.email,
+      from_name: formData.name,
+      phone: formData.phone,
+      tickets: formData.tickets,
+      event_title: event?.title || '',
+      subject: `Inscription activité: ${event?.title || ''}`,
+      reply_to: formData.email,
+    };
+    try {
+      await sendEmail(import.meta?.env?.VITE_EMAILJS_TEMPLATE_EVENT || 'event_registration_template', payload);
+      alert(`Merci ${formData.name} ! Votre inscription pour "${event.title}" a été confirmée.`);
+      navigate('/events');
+    } catch (err) {
+      const body = `Nom: ${formData.name}\nEmail: ${formData.email}\nTéléphone: ${formData.phone}\nPlaces: ${formData.tickets}\n\nActivité: ${event?.title || ''}`;
+      const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(`Inscription activité: ${event?.title || ''}`)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    }
   };
 
   if (!event) return <div className="loading">Chargement...</div>;
@@ -54,7 +75,7 @@ const EventDetails = () => {
     <div className="event-details-page">
       <Hero 
         title={event.title} 
-        breadcrumb="Événement"
+        breadcrumb={t('events.breadcrumb')}
         backgroundImage="/images/hero-events.jpg"
       />
 
@@ -68,14 +89,14 @@ const EventDetails = () => {
               </div>
               
               <div className="event-info-card">
-                <h3>À propos de l'événement</h3>
+                <h3>{t('events.aboutTitle')}</h3>
                 <p className="event-description">{event.description}</p>
                 
                 <div className="event-meta">
                   <div className="meta-item">
                     <div className="meta-icon"><FaCalendar /></div>
                     <div>
-                      <span className="label">Date</span>
+                      <span className="label">{t('events.dateTitle')}</span>
                       <span className="value">{new Date(event.date).toLocaleDateString('fr-FR', { 
                         weekday: 'long', 
                         year: 'numeric', 
@@ -87,14 +108,14 @@ const EventDetails = () => {
                   <div className="meta-item">
                     <div className="meta-icon"><FaClock /></div>
                     <div>
-                      <span className="label">Heure</span>
+                      <span className="label">{t('events.timeTitle')}</span>
                       <span className="value">{event.time}</span>
                     </div>
                   </div>
                   <div className="meta-item">
                     <div className="meta-icon"><FaMapMarkerAlt /></div>
                     <div>
-                      <span className="label">Lieu</span>
+                      <span className="label">{t('events.placeTitle')}</span>
                       <span className="value">{event.location}</span>
                     </div>
                   </div>
@@ -102,9 +123,21 @@ const EventDetails = () => {
               </div>
             </div>
 
+            {event.video && (
+              <div className="event-video">
+                <h3>{t('events.videoTitle')}</h3>
+                <div className="video-wrapper">
+                  <video controls preload="metadata" poster={event.image}>
+                    <source src={event.video} type="video/mp4" />
+                    Votre navigateur ne supporte pas la lecture de vidéos.
+                  </video>
+                </div>
+              </div>
+            )}
+
             <div className="event-sidebar">
               <div className="registration-card">
-                <h3>Inscription</h3>
+                <h3>{t('events.registerTitle')}</h3>
                 <form className="registration-form" onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label htmlFor="name">Nom complet</label>
@@ -156,7 +189,7 @@ const EventDetails = () => {
                   </div>
                   
                   <Button variant="primary" type="submit" style={{ width: '100%' }}>
-                    Confirmer l'inscription
+                    {t('events.registerConfirm')}
                   </Button>
                 </form>
               </div>
@@ -254,6 +287,33 @@ const EventDetails = () => {
         .meta-item .value {
           font-weight: var(--font-weight-semibold);
           color: var(--text-primary);
+        }
+
+        /* Video section */
+        .event-video {
+          margin-top: var(--spacing-3xl);
+          background: var(--color-white);
+          padding: var(--spacing-2xl);
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-md);
+        }
+
+        .event-video h3 {
+          margin-bottom: var(--spacing-lg);
+        }
+
+        .video-wrapper {
+          position: relative;
+          width: 100%;
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          box-shadow: var(--shadow-sm);
+        }
+
+        .video-wrapper video {
+          width: 100%;
+          height: auto;
+          display: block;
         }
 
         .event-sidebar {

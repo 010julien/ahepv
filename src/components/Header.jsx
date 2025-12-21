@@ -27,14 +27,14 @@ const Header = () => {
     { path: '/', label: t('nav.home') },
     { path: '/about', label: t('nav.about') },
     { path: '/causes', label: t('nav.causes') },
-    { path: '/events', label: t('nav.events') },
+    { path: '/activities', label: t('nav.events') },
     { path: '/gallery', label: t('nav.gallery') }
   ];
 
   const contactSubmenu = [
     { path: '/contact', label: 'Contact' },
     { path: '/volunteer', label: 'Devenir bénévole' },
-    { path: '/blog', label: t('nav.blog') },
+    // { path: '/blog', label: t('nav.blog') },
     { path: '/faq', label: t('nav.faq') }
   ];
 
@@ -219,28 +219,28 @@ const Header = () => {
 
         /* Special handling for Donate button */
         .header .donate-btn {
-          background: transparent; /* Override global gradient */
-          border: 2px solid var(--color-white);
+          background: var(--gradient-primary);
+          border: 2px solid transparent;
           color: var(--color-white) !important;
-          box-shadow: none; /* Remove global shadow initially */
+          box-shadow: 0 4px 15px rgba(52, 149, 67, 0.3);
         }
         
         .header .donate-btn:hover {
-          background: var(--color-white);
-          color: var(--color-primary) !important;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+          background: var(--gradient-secondary);
+          color: var(--color-white) !important;
+          box-shadow: 0 6px 20px rgba(52, 149, 67, 0.4);
         }
 
         .header-scrolled .donate-btn {
-          background: linear-gradient(135deg, #006a4e 0%, #004a37 100%); /* Re-apply global gradient */
-          border: 2px solid transparent; /* Reset border */
+          background: var(--gradient-primary);
+          border: 2px solid transparent;
           color: var(--color-white) !important;
-          box-shadow: 0 4px 15px rgba(0, 106, 78, 0.3);
+          box-shadow: 0 4px 15px rgba(52, 149, 67, 0.3);
         }
 
         .header-scrolled .donate-btn:hover {
-          background: linear-gradient(135deg, #008562 0%, #005c45 100%);
-          box-shadow: 0 6px 20px rgba(0, 106, 78, 0.4);
+          background: var(--gradient-secondary);
+          box-shadow: 0 6px 20px rgba(52, 149, 67, 0.4);
         }
 
         .logo {

@@ -1,10 +1,10 @@
 export const teamMembers = [
   {
     id: 1,
-    name: "Jennifer Smith",
-    role: "Directrice Exécutive",
+    name: "Madame Esther Ayawoavi Trédé",
+    role: "Fondateuse et Directrice Exécutive de l'Association Humanitaire Plus Proche de Vous (AH2PV)",
     image: "/images/about-preview.jpg",
-    bio: "Dirige l'organisation avec 15 ans d'expérience dans la gestion d'organisations à but non lucratif et le développement communautaire.",
+    bio: "Elle œuvre principalement au Togo, avec une approche centrée sur la proximité communautaire, la collaboration et la transparence. ",
     social: {
       facebook: "#",
       twitter: "#",

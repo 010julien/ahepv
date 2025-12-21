@@ -43,11 +43,21 @@ const Events = () => {
           {/* Events Grid */}
           <div className="events-grid">
             {filteredEvents.map((event) => (
-              <Card key={event.id} image={event.image} title={event.title} description={event.description}>
+              <Card
+                key={event.id}
+                image={event.image}
+                title={event.title}
+                description={event.description}
+                clickable
+                link={`/events/${event.id}`}
+                linkText={t('home.readMore')}
+                linkVariant="button"
+                alwaysShowLink
+              >
                 <div className="event-details">
                   <div className="event-detail-item">
                     <FaCalendar />
-                    <span>{new Date(event.date).toLocaleDateString('en-US', { 
+                    <span>{new Date(event.date).toLocaleDateString('fr-FR', { 
                       weekday: 'long', 
                       year: 'numeric', 
                       month: 'long', 
@@ -64,7 +74,7 @@ const Events = () => {
                   </div>
                 </div>
                 {activeTab === 'upcoming' && (
-                  <Link to={`/events/${event.id}`} className="btn btn-secondary">
+                  <Link to={`/events/${event.id}`} className="btn btn-secondary" onClick={(e) => e.stopPropagation()}>
                     {t('home.joinEvent')}
                   </Link>
                 )}
@@ -112,6 +122,14 @@ const Events = () => {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
           gap: var(--spacing-xl);
+        }
+
+        /* Clamp description lines on event cards */
+        .events-page .card-text {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          overflow: hidden;
         }
 
         .event-details {

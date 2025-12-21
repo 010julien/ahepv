@@ -1,102 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 const LanguageSwitcher = () => {
-  const [selectedLang, setSelectedLang] = useState('fr');
+  const { language, changeLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-
-  // Initialize Google Translate Script
-  useEffect(() => {
-    // Check if script is already added
-    if (document.querySelector('script[src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"]')) {
-      return;
-    }
-
-    // Create script element
-    const script = document.createElement('script');
-    script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    script.async = true;
-    document.body.appendChild(script);
-
-    // Initialize function
-    window.googleTranslateElementInit = () => {
-      new window.google.translate.TranslateElement(
-        {
-          pageLanguage: 'fr',
-          includedLanguages: 'fr,en,de',
-          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-          autoDisplay: false,
-        },
-        'google_translate_element'
-      );
-    };
-
-    // Robust hidden styles injection
-    const style = document.createElement('style');
-    style.id = 'google-translate-overrides';
-    style.innerHTML = `
-      .goog-te-banner-frame.skiptranslate, 
-      .goog-te-gadget-icon, 
-      #google_translate_element .skiptranslate, 
-      .goog-te-banner-frame,
-      .goog-tooltip,
-      .goog-tooltip:hover {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-        width: 0 !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        z-index: -9999 !important;
-      }
-      body {
-        top: 0px !important;
-        position: static !important;
-      }
-      .goog-text-highlight {
-        background-color: transparent !important;
-        box-shadow: none !important;
-        box-sizing: border-box !important;
-      }
-    `;
-    // Ensure we don't validly duplicate
-    if (!document.getElementById('google-translate-overrides')) {
-        document.head.appendChild(style);
-    }
-
-    // Aggressive Interval to fight Google's script
-    const intervalId = setInterval(() => {
-      // Hide banner frame
-      const banners = document.querySelectorAll('.goog-te-banner-frame');
-      banners.forEach(banner => {
-          if (banner) {
-            banner.style.display = 'none';
-            banner.style.visibility = 'hidden';
-            banner.style.height = '0';
-            banner.style.width = '0';
-            banner.style.opacity = '0';
-          }
-      });
-
-      // Fix body
-      if (document.body.style.top !== '0px') {
-        document.body.style.top = '0px';
-        document.body.style.position = 'static';
-      }
-
-      // Hide tooltips
-      const tooltips = document.querySelectorAll('.goog-tooltip');
-      tooltips.forEach(tooltip => {
-          tooltip.style.display = 'none';
-      });
-
-    }, 100); // Check every 100ms
-
-    return () => {
-       clearInterval(intervalId);
-       // We can choose to leave the style or remove it. 
-       // Keeping it might be safer if component unmounts but script stays.
-    };
-  }, []);
 
   const languages = [
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
@@ -104,26 +11,15 @@ const LanguageSwitcher = () => {
     { code: 'de', label: 'Deutsch', flag: '🇩🇪' }
   ];
 
-  const currentLang = languages.find(lang => lang.code === selectedLang) || languages[0];
+  const currentLang = languages.find(lang => lang.code === language) || languages[0];
 
   const handleLanguageChange = (code) => {
-    setSelectedLang(code);
+    changeLanguage(code);
     setIsOpen(false);
-    
-    // Robust Fallback: Set Cookie and Reload
-    // This is the most reliable way to force Google Translate to apply the new language
-    document.cookie = `googtrans=/auto/${code}; path=/; domain=${window.location.hostname}`;
-    document.cookie = `googtrans=/auto/${code}; path=/`; 
-
-    // Reloading the page forces the Google script to re-initialize with the new language cookie
-    window.location.reload();
   };
 
   return (
     <>
-      {/* Hidden Google Translate Element - Opacity 0 to ensure DOM presence */}
-      <div id="google_translate_element" style={{ opacity: 0, width: 1, height: 1, overflow: 'hidden', position: 'absolute', pointerEvents: 'none', zIndex: -1 }}></div>
-      
       <div className="language-switcher">
         <button 
           className="lang-button"
@@ -139,7 +35,7 @@ const LanguageSwitcher = () => {
             {languages.map((lang) => (
               <button
                 key={lang.code}
-                className={`lang-option ${selectedLang === lang.code ? 'active' : ''}`}
+                className={`lang-option ${language === lang.code ? 'active' : ''}`}
                 onClick={() => handleLanguageChange(lang.code)}
               >
                 <span className="lang-flag">{lang.flag}</span>

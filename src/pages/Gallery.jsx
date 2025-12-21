@@ -1,55 +1,75 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Hero from '../components/Hero';
 import { useTranslation } from '../i18n/useTranslation';
 
 const Gallery = () => {
   const { t } = useTranslation();
-  const [activeFilter, setActiveFilter] = useState('all');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
+  const base = (import.meta?.env?.BASE_URL || '/');
 
-  const categories = [
-    { key: 'all', label: t('gallery.all') },
-    { key: 'education', label: t('gallery.education') },
-    { key: 'medical', label: t('gallery.medical') },
-    { key: 'food', label: t('gallery.food') },
-    { key: 'water', label: t('gallery.water') },
-    { key: 'events', label: t('gallery.events') }
+  // Force reveal visibility in case old reveal classes linger
+  useEffect(() => {
+    const els = document.querySelectorAll('.gallery-page .reveal');
+    els.forEach((el) => {
+      el.classList.remove('reveal');
+      el.classList.add('reveal-visible');
+    });
+  }, []);
+
+  // Build galleries (ensure existing images only)
+  const gallery1 = [1,2,3,4,5,6,7].map(n => ({
+    src: `${base}images/gall1.${n}.jpg`,
+    title: `Galerie 1 - Photo ${n}`,
+    paragraph: 'Cliquez pour agrandir'
+  }));
+
+  const gallery2 = [1,2,3,4,5,6,7,8].map(n => ({
+    src: `${base}images/gall2.${n}.jpg`,
+    title: `Galerie 2 - Photo ${n}`,
+    paragraph: 'Nos actions sur le terrain'
+  }));
+
+  const gallery3 = [1,2,3,4,5,6,7,8].map(n => ({
+    src: `${base}images/gall3.${n}.jpg`,
+    title: `Galerie 3 - Photo ${n}`,
+    paragraph: 'Moments de solidarité'
+  }));
+
+  const gallery4 = [1,2,3,4,5,6,7,8,9,10,11,12].map(n => ({
+    src: `${base}images/gall4.${n}.jpg`,
+    title: `Galerie 4 - Photo ${n}`,
+    paragraph: 'Moments de solidarité'
+  }));
+
+  const gallery5 = [1,2,3,4,5,6,7,8,9,10,11].map(n => ({
+    src: `${base}images/gall5.${n}.jpg`,
+    title: `Galerie 5 - Photo ${n}`,
+    paragraph: 'Moments de solidarité'
+  }));
+
+  const gallery6 = [1,2,3,4,5,6,7,8,9,10,11].map(n => ({
+    src: `${base}images/gall6.${n}.jpg`,
+    title: `Galerie 6 - Photo ${n}`,
+    paragraph: 'Moments de solidarité'
+  }));
+
+  // const gallery7 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map(n => ({
+  //   src: `/images/gall7.${n}.jpg`,
+  //   title: `Galerie 7 - Photo ${n}`,
+  //   paragraph: 'Moments de solidarité'
+  // }));
+  
+
+  const galleries = [
+    { title: 'Galerie 1', images: gallery1 },
+    { title: 'Galerie 2', images: gallery2 },
+    { title: 'Galerie 3', images: gallery3 },
+    { title: 'Galerie 4', images: gallery4 },
+    { title: 'Galerie 5', images: gallery5 },
+    { title: 'Galerie 6', images: gallery6 },
+    // { title: 'Galerie 7', images: gallery7 },
   ];
-
-  /* Gallery Data with Dates */
-  const galleryImages = [
-    { id: 1, src: '/images/education.jpg', category: 'education', title: 'Education Program', paragraph:'paragraph', date: '2025-01-15' },
-    { id: 2, src: '/images/medical.jpg', category: 'medical', title: 'Medical Camp', date: '2025-02-20' },
-    { id: 3, src: '/images/food.jpg', category: 'food', title: 'Food Distribution', date: '2024-11-10' },
-    { id: 4, src: '/images/water.jpg', category: 'water', title: 'Clean Water Project', date: '2024-10-05' },
-    { id: 5, src: '/images/events.jpg', category: 'events', title: 'Community Event', date: '2024-12-25' },
-    { id: 6, src: '/images/education.jpg', category: 'education', title: 'School Building', date: '2023-09-15' },
-    { id: 7, src: '/images/medical.jpg', category: 'medical', title: 'Healthcare Service', date: '2023-08-20' },
-    { id: 8, src: '/images/food.jpg', category: 'food', title: 'Meal Program', date: '2024-11-28' },
-    { id: 9, src: '/images/water.jpg', category: 'water', title: 'Well Construction', date: '2023-05-12' },
-    { id: 10, src: '/images/events.jpg', category: 'events', title: 'Fundraising Gala', date: '2023-12-10' },
-    { id: 11, src: '/images/education.jpg', category: 'education', title: 'Library Donation', date: '2024-03-15' },
-    { id: 12, src: '/images/medical.jpg', category: 'medical', title: 'Mobile Clinic', date: '2022-11-05' }
-  ];
-
-  /* Filtering */
-  const filteredImages = activeFilter === 'all' 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === activeFilter);
-
-  /* Grouping by Date (Year) */
-  const groupedImages = filteredImages.reduce((acc, image) => {
-    const year = new Date(image.date).getFullYear();
-    if (!acc[year]) {
-      acc[year] = [];
-    }
-    acc[year].push(image);
-    return acc;
-  }, {});
-
-  // Sort years in descending order
-  const sortedYears = Object.keys(groupedImages).sort((a, b) => b - a);
 
   const openLightbox = (image) => {
     setCurrentImage(image);
@@ -69,50 +89,42 @@ const Gallery = () => {
         title={t('gallery.title')} 
         subtitle={t('gallery.subtitle')}
         breadcrumb={t('gallery.breadcrumb')}
-        backgroundImage="/images/hero-gallery.jpg"
+        backgroundImage={`${base}images/gall3.jpg`}
       />
 
       <section className="section">
         <div className="container">
-          {/* Filter Buttons */}
-          <div className="gallery-filters">
-            {categories.map((cat) => (
-              <button
-                key={cat.key}
-                className={`filter-btn ${activeFilter === cat.key ? 'active' : ''}`}
-                onClick={() => setActiveFilter(cat.key)}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Gallery Sections by Year */}
-          {sortedYears.map(year => (
-            <div key={year} className="gallery-section">
-              <h3 className="gallery-year-title">{year}</h3>
+          {galleries.map((gal) => (
+            <div key={gal.title} className="gallery-section">
+              <h3 className="gallery-year-title">{gal.title}</h3>
               <div className="gallery-grid">
-                {groupedImages[year].map((image) => (
-                  <div 
-                    key={image.id} 
+                {gal.images.map((image) => (
+                  <div
+                    key={image.src}
                     className="gallery-item"
                     onClick={() => openLightbox(image)}
                   >
-                    <img src={image.src} alt={image.title} />
+                    <img
+                      src={image.src}
+                      alt={image.title}
+                      loading="lazy"
+                      onError={(e) => {
+                        if (e.currentTarget.dataset.fallback !== '1') {
+                          e.currentTarget.dataset.fallback = '1';
+                          e.currentTarget.src = `${base}images/5ans.jpg`;
+                          try { console.warn('Gallery image missing, using fallback:', image.src); } catch(_) {}
+                        }
+                      }}
+                    />
                     <div className="gallery-overlay">
                       <h4>{image.title}</h4>
-                      <p>{new Date(image.date).toLocaleDateString()}</p>
-                      {image.paragraph && <p className="text-sm mt-2">{image.paragraph}</p>}
+                      {image.paragraph && <p className="text-sm text-white mt-2">{image.paragraph}</p>}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           ))}
-          
-          {sortedYears.length === 0 && (
-            <p className="text-center text-gray-500">{t('gallery.noImages') || 'No images found.'}</p>
-          )}
         </div>
       </section>
 
@@ -128,33 +140,6 @@ const Gallery = () => {
       )}
 
       <style>{`
-        .gallery-filters {
-          display: flex;
-          justify-content: center;
-          gap: var(--spacing-md);
-          margin-bottom: var(--spacing-3xl);
-          flex-wrap: wrap;
-        }
-
-        .filter-btn {
-          padding: var(--spacing-md) var(--spacing-xl);
-          background: var(--color-white);
-          border: 2px solid var(--color-gray-300);
-          border-radius: var(--radius-md);
-          font-family: var(--font-primary);
-          font-weight: var(--font-weight-semibold);
-          color: var(--text-primary);
-          transition: all var(--transition-base);
-          cursor: pointer;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-          background: var(--color-primary);
-          border-color: var(--color-primary);
-          color: var(--color-white);
-        }
-
         .gallery-section {
           margin-bottom: var(--spacing-3xl);
         }
@@ -165,6 +150,12 @@ const Gallery = () => {
           margin-bottom: var(--spacing-lg);
           padding-bottom: var(--spacing-sm);
           border-bottom: 2px solid var(--color-gray-200);
+        }
+
+        /* Safety: if any stale .reveal classes remain in the gallery, make them visible */
+        .gallery-page .reveal {
+          opacity: 1 !important;
+          transform: none !important;
         }
 
         .gallery-grid {

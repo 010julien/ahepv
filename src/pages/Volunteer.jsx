@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Hero from '../components/Hero';
 import Button from '../components/Button';
 import { useTranslation } from '../i18n/useTranslation';
+import { CONTACT } from '../config/site';
+import { sendEmail } from '../utils/email';
 
 const Volunteer = () => {
   const { t } = useTranslation();
@@ -42,10 +44,27 @@ const Volunteer = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Merci ${formData.name} ! Votre candidature a été envoyée.`);
-    // Reset form or redirect
+    const payload = {
+      to_email: CONTACT.email,
+      from_email: formData.email,
+      from_name: formData.name,
+      phone: formData.phone,
+      interests: Array.isArray(formData.interests) ? formData.interests.join(', ') : '',
+      availability: formData.availability,
+      message: formData.message,
+      subject: 'Candidature bénévole',
+      reply_to: formData.email,
+    };
+    try {
+      await sendEmail(import.meta?.env?.VITE_EMAILJS_TEMPLATE_VOLUNTEER || 'volunteer_template', payload);
+      alert(`Merci ${formData.name} ! Votre candidature a été envoyée.`);
+    } catch (err) {
+      const body = `Nom: ${formData.name}\nEmail: ${formData.email}\nTéléphone: ${formData.phone}\nIntérêts: ${payload.interests}\nDisponibilités: ${formData.availability}\n\n${formData.message}`;
+      const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent('Candidature bénévole')}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    }
   };
 
   const interestOptions = [
@@ -62,7 +81,7 @@ const Volunteer = () => {
         title="Devenir Bénévole" 
         subtitle="Rejoignez notre équipe et faites une différence concrète."
         breadcrumb="Bénévolat"
-        backgroundImage="/images/hero-about.jpg" 
+        backgroundImage="/images/hero-volunteer.jpg" 
       />
 
       <section className="section">

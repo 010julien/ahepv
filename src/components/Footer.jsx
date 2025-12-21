@@ -3,6 +3,7 @@ import { FaHeart, FaEnvelope, FaPhone, FaLocationDot } from 'react-icons/fa6';
 import { useTranslation } from '../i18n/useTranslation';
 import logoARR from '/images/LogoARR.png';
 import SocialLink from './SocialLink';
+import { CONTACT } from '../config/site';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -10,8 +11,7 @@ const Footer = () => {
     { path: '/', label: t('nav.home') },
     { path: '/about', label: t('nav.about') },
     { path: '/causes', label: t('nav.causes') },
-    { path: '/events', label: t('nav.events') },
-    { path: '/blog', label: t('nav.blog') },
+    { path: '/activities', label: t('nav.events') },
     { path: '/donate', label: 'Faire un don' }
   ];
 
@@ -83,15 +83,18 @@ const Footer = () => {
               <div className="contact-info">
                 <div className="contact-item">
                   <FaLocationDot />
-                  <span>123 Avenue de la Charité<br/>75001 Paris, France</span>
+                  <span>Adresse 
+Bruno-körnerstr 
+67059
+Allemagne</span>
                 </div>
                 <div className="contact-item">
                   <FaPhone />
-                  <span>+33 1 23 45 67 89</span>
+                  <span><a href={`tel:${CONTACT.phone.replace(/\s+/g, '')}`} style={{ color: 'inherit' }}>{CONTACT.phone}</a></span>
                 </div>
                 <div className="contact-item">
                   <FaEnvelope />
-                  <span>contact@ah2pv.org</span>
+                  <span><a href={`mailto:${CONTACT.email}`} style={{ color: 'inherit' }}>{CONTACT.email}</a></span>
                 </div>
               </div>
               

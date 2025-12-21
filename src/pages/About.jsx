@@ -1,7 +1,7 @@
 import Hero from '../components/Hero';
 import { teamMembers } from '../data/team';
 import { useTranslation } from '../i18n/useTranslation';
-import { FaEye, FaBullseye, FaHeart, FaUsers, FaHandshake } from 'react-icons/fa';
+import { FaEye, FaBullseye, FaHeart, FaUsers, FaHandshake, FaMapMarkerAlt, FaStethoscope, FaLeaf } from 'react-icons/fa';
 import SocialLink from '../components/SocialLink';
 
 const About = () => {
@@ -12,75 +12,49 @@ const About = () => {
         title={t('about.title')} 
         subtitle={t('about.subtitle')}
         breadcrumb={t('about.breadcrumb')}
-        backgroundImage="/images/hero-about.jpg"
+        backgroundImage="/images/apropos.jpg"
         
       />
-
-      {/* Our Story */}
+      
+      {/* Intro + Highlights */}
       <section className="section">
         <div className="container">
-          <div className="story-content">
-            <div className="story-text">
-              <h2 >{t('about.ourStory')}</h2>
-              <p>
-                {t('about.storyText1')}
-              </p>
-              <p>
-                {t('about.storyText2')}
-              </p>
-            </div>
-            <div className="story-image">
-              <img src="/images/apropos.jpg" alt="Our Story" />
-            </div>
+          <div className="intro-header">
+            <h2>{t('about.introTitle')}</h2>
+            <p className="intro-subtitle">{t('about.introSubtitle')}</p>
+            <p>{t('about.introText')}</p>
           </div>
-        </div>
-      </section>
 
-      {/* Mission & Vision */}
-      <section className="section section-bg">
-        <div className="container">
-          <div className="mission-vision">
-            <div className="mv-card">
-              <FaBullseye className="mv-icon" />
-              <h3>{t('about.mission')}</h3>
-              <p>
-                {t('about.missionText')}
-              </p>
-            </div>
-            <div className="mv-card">
-              <FaEye className="mv-icon" />
-              <h3>{t('about.vision')}</h3>
-              <p>
-                {t('about.visionText')}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Values */}
-      <section className="section">
-        <div className="container">
-          <div className="section-title">
-            <h2>{t('about.values')}</h2>
-            <p>{t('about.valuesDesc')}</p>
-          </div>
           <div className="values-grid">
             <div className="value-item">
-              <FaHeart className="value-icon" />
-              <h4>{t('about.compassion')}</h4>
-              <p>{t('about.compassionText')}</p>
+              <FaMapMarkerAlt className="value-icon" />
+              <h4>{t('about.highlights.presenceTitle')}</h4>
+              <p>{t('about.highlights.presenceText')}</p>
             </div>
             <div className="value-item">
-              <FaUsers className="value-icon" />
-              <h4>{t('about.community')}</h4>
-              <p>{t('about.communityText')}</p>
+              <FaStethoscope className="value-icon" />
+              <h4>{t('about.highlights.focusTitle')}</h4>
+              <p>{t('about.highlights.focusText')}</p>
             </div>
             <div className="value-item">
               <FaHandshake className="value-icon" />
-              <h4>{t('about.integrity')}</h4>
-              <p>{t('about.integrityText')}</p>
+              <h4>{t('about.highlights.collabTitle')}</h4>
+              <p>{t('about.highlights.collabText')}</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ONG Presentation */}
+      <section className="section">
+        <div className="container ">
+          <div className="w-1/2 h-full"> <img src="images/ong.jpg" alt="ONG-Association Humanitaire Plus Proche de vous (AH2PV)" className="w-full h-full object-cover" /></div>
+
+          <div className="about-block">
+            <h2>{t('about.ong.title')}</h2>
+            <p>{t('about.ong.p1')}</p>
+            <p>{t('about.ong.p2')}</p>
+            <p>{t('about.ong.p3')}</p>
           </div>
         </div>
       </section>
@@ -116,6 +90,119 @@ const About = () => {
         </div>
       </section>
 
+      {/* Roadmap: Vision, Mission & Objectives */}
+      <section className="section section-bg">
+        <div className="container">
+          <div className="section-title">
+            <h2>{t('about.roadmapTitle')}</h2>
+          </div>
+          <div className="mission-vision">
+            <div className="mv-card">
+              <FaEye className="mv-icon" />
+              <h3>{t('about.vision')}</h3>
+              <p>{t('about.visionText')}</p>
+            </div>
+            <div className="mv-card">
+              <FaBullseye className="mv-icon" />
+              <h3>{t('about.mission')}</h3>
+              <p>{t('about.missionText')}</p>
+            </div>
+          </div>
+
+          <div className="objectives">
+            <h3 className="objectives-title">{t('about.objectivesTitle')}</h3>
+            <div className="values-grid">
+              <div className="value-item">
+                <FaMapMarkerAlt className="value-icon" />
+                <h4>Proximité Significative</h4>
+                <p>
+                  Nous nous engageons à être au plus près des communautés que nous servons. En nous imprégnant de la réalité togolaise, nous œuvrons pour comprendre les besoins locaux
+                  de manière approfondie et agir de manière adaptée.
+                </p>
+              </div>
+              <div className="value-item">
+                <FaStethoscope className="value-icon" />
+                <h4>Soins de Santé Accessibles</h4>
+                <p>
+                  Nous visons à éliminer les barrières à l'accès aux soins de santé de qualité. Des cliniques mobiles aux initiatives de sensibilisation, nous œuvrons pour améliorer la santé
+                  et le bien-être des populations les plus vulnérables.
+                </p>
+              </div>
+              <div className="value-item">
+                <FaLeaf className="value-icon" />
+                <h4>Développement Durable</h4>
+                <p>
+                  Notre engagement envers le développement durable se manifeste par des projets visant à renforcer les capacités locales, à promouvoir des pratiques respectueuses de l'environnement
+                  et à favoriser l'autosuffisance.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Values */}
+      <section className="section">
+        <div className="container">
+          <div className="section-title">
+            <h2>{t('about.values')}</h2>
+            <p>{t('about.valuesDesc')}</p>
+          </div>
+          <div className="values-grid">
+            <div className="value-item">
+              <FaHeart className="value-icon" />
+              <h4>{t('about.compassion')}</h4>
+              <p>{t('about.compassionText')}</p>
+            </div>
+            <div className="value-item">
+              <FaUsers className="value-icon" />
+              <h4>{t('about.community')}</h4>
+              <p>{t('about.communityText')}</p>
+            </div>
+            <div className="value-item">
+              <FaHandshake className="value-icon" />
+              <h4>{t('about.integrity')}</h4>
+              <p>{t('about.integrityText')}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Callout */}
+      <section className="section">
+        <div className="container">
+          <div className="callout">
+            <h3>{t('about.calloutTitle')}</h3>
+            <p>{t('about.calloutText')}</p>
+          </div>
+        </div>
+      </section>
+
+      
+
+      
+
+      {/* Discover Togo */}
+      <section className="section section-bg">
+        <div className="container">
+          <div className="togo-grid">
+            <div className="togo-image">
+              <img src="/images/CarteTogo.jpg" alt="Carte du Togo" loading="lazy" />
+            </div>
+            <div className="togo-content">
+              <h2 className="togo-title">{t('about.togo.title')}</h2>
+              <p className="togo-subtitle">{t('about.togo.subtitle')}</p>
+              <p>{t('about.togo.p1')}</p>
+              <p>{t('about.togo.p2')}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+
+      
+
       <style>{`
         .story-content {
           display: grid;
@@ -143,6 +230,87 @@ const About = () => {
           width: 100%;
           height: 100%;
           object-fit: cover;
+        }
+
+        /* New blocks */
+        .intro-header {
+          max-width: 900px;
+          margin: 0 auto var(--spacing-3xl);
+          text-align: center;
+        }
+
+        .intro-subtitle {
+          color: var(--color-primary);
+          font-weight: var(--font-weight-semibold);
+          margin-bottom: var(--spacing-sm);
+        }
+
+        .objectives-title {
+          margin: var(--spacing-2xl) 0 var(--spacing-lg);
+          text-align: center;
+          color: var(--color-primary);
+        }
+
+        .about-block {
+          background: var(--color-white);
+          padding: var(--spacing-2xl);
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-md);
+        }
+
+        .callout {
+          background: var(--bg-secondary);
+          padding: var(--spacing-2xl);
+          border-radius: var(--radius-lg);
+          text-align: center;
+        }
+
+        /* Discover Togo block */
+        .togo-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.4fr;
+          gap: var(--spacing-3xl);
+          align-items: start;
+        }
+
+        .togo-image {
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          box-shadow: var(--shadow-md);
+          background: var(--color-white);
+        }
+
+        .togo-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .togo-title {
+          color: var(--color-primary);
+          font-size: clamp(28px, 4vw, 40px);
+          margin-bottom: var(--spacing-xs);
+        }
+
+        .togo-subtitle {
+          font-size: clamp(18px, 2.2vw, 24px);
+          color: var(--text-primary);
+          margin-bottom: var(--spacing-lg);
+          font-weight: var(--font-weight-semibold);
+        }
+
+        .togo-content p {
+          line-height: 1.9;
+          margin-bottom: var(--spacing-md);
+        }
+
+        .togo-content p strong {
+          font-weight: var(--font-weight-bold);
+        }
+
+        @media (max-width: 1024px) {
+          .togo-grid { grid-template-columns: 1fr; }
         }
 
         .mission-vision {

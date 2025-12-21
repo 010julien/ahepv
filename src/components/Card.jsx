@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-const Card = ({ image, images, title, description, link, linkText = 'Learn More', children }) => {
+const Card = ({ image, images, title, description, link, linkText = 'Learn More', linkVariant = 'text', linkClassName = '', linkSize = '', clickable = false, alwaysShowLink = false, linkPosition = 'after', children }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const navigate = useNavigate();
   
   // Use images array if provided, otherwise fallback to single image wrapped in array
   const imageList = images && images.length > 0 ? images : (image ? [image] : []);
@@ -21,11 +22,31 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
     setCurrentImageIndex((prev) => (prev === 0 ? imageList.length - 1 : prev - 1));
   };
 
+  const handleCardClick = () => {
+    if (clickable && link) {
+      navigate(link);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (!clickable || !link) return;
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      navigate(link);
+    }
+  };
+
   return (
-    <div className="card">
+    <div
+      className={`card ${clickable ? 'clickable' : ''}`}
+      onClick={handleCardClick}
+      role={clickable ? 'button' : undefined}
+      tabIndex={clickable ? 0 : undefined}
+      onKeyDown={handleKeyDown}
+    >
       {imageList.length > 0 && (
         <div className="card-img-wrapper">
-          <img src={imageList[currentImageIndex]} alt={title} className="card-img" />
+          <img src={imageList[currentImageIndex]} alt={title} className="card-img" loading="lazy" />
           
           {hasMultipleImages && (
             <>
@@ -50,9 +71,22 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
       <div className="card-content">
         {title && <h3 className="card-title">{title}</h3>}
         {description && <p className="card-text">{description}</p>}
+        {link && (!clickable || alwaysShowLink) && linkPosition === 'before' && (
+          <Link
+            to={link}
+            className={linkVariant === 'button' ? `btn btn-primary ${linkSize} ${linkClassName}` : `card-link ${linkClassName}`}
+            onClick={(e) => { if (clickable) e.stopPropagation(); }}
+          >
+            {linkText}
+          </Link>
+        )}
         {children}
-        {link && (
-          <Link to={link} className="card-link">
+        {link && (!clickable || alwaysShowLink) && linkPosition !== 'before' && (
+          <Link
+            to={link}
+            className={linkVariant === 'button' ? `btn btn-primary ${linkSize} ${linkClassName}` : `card-link ${linkClassName}`}
+            onClick={(e) => { if (clickable) e.stopPropagation(); }}
+          >
             {linkText}
           </Link>
         )}
@@ -152,6 +186,10 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
           transform: scale(1.2);
         }
 
+        .card.clickable {
+          cursor: pointer;
+        }
+
         .card-link {
           display: inline-block;
           color: var(--color-primary);
@@ -163,6 +201,18 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
         .card-link:hover {
           color: var(--color-primary-dark);
           transform: translateX(5px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .card-img-wrapper {
+            height: 220px;
+          }
+        }
+        @media (max-width: 480px) {
+          .card-img-wrapper {
+            height: 200px;
+          }
         }
       `}</style>
     </div>

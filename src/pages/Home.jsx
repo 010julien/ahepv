@@ -7,14 +7,12 @@ import Button from '../components/Button';
 import { useTranslation } from '../i18n/useTranslation';
 import { causes } from '../data/causes';
 import { events } from '../data/events';
-import { blogPosts } from '../data/blog';
-import { style } from 'framer-motion/client';
+ 
 
 const Home = () => {
   const { t } = useTranslation();
   const featuredCauses = causes.slice(0, 3);
   const upcomingEvents = events.filter(e => e.status === 'upcoming').slice(0, 3);
-  const latestPosts = blogPosts.slice(0, 3);
 
   return (
     <div className="home">
@@ -63,7 +61,7 @@ const Home = () => {
       </section>
 
       {/* Statistics Section */}
-      <section className="stats-section">
+      {/* <section className="stats-section">
         <div className="container">
           <div className="stats-grid">
             <div className="stat-item">
@@ -96,7 +94,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Featured Causes */}
       <section className="section section-bg">
@@ -105,20 +103,32 @@ const Home = () => {
             <h2>{t('home.featuredCauses')}</h2>
             <p>{t('home.featuredCausesDesc')}</p>
           </div>
+          <div className="featured-causes">
           <div className="grid grid-3">
             {featuredCauses.map((cause) => {
               const percentage = Math.floor((cause.raised / cause.goal) * 100);
               return (
-                <Card key={cause.id} image={cause.image} title={cause.title} description={cause.description}>
+                <Card
+                  key={cause.id}
+                  image={cause.image}
+                  title={cause.title}
+                  description={cause.description}
+                  clickable
+                  link={`/causes/${cause.id}`}
+                >
                   <ProgressBar
                     percentage={percentage}
                     raised={cause.raised}
                     goal={cause.goal}
                   />
-                  <Link to="/donate" className="btn btn-primary">{t('home.donateNow')}</Link>
+                  <div className="button-row">
+                    <Link to="/donate" className="btn btn-primary" onClick={(e) => e.stopPropagation()}>{t('home.donateNow')}</Link>
+                    <Link to={`/causes/${cause.id}`} className="btn btn-primary" onClick={(e) => e.stopPropagation()}>{t('home.readMore')}</Link>
+                  </div>
                 </Card>
               );
             })}
+          </div>
           </div>
           <div className="text-center" style={{ marginTop: 'var(--spacing-2xl)' }}>
             <Link to="/causes" className="btn btn-outline">
@@ -137,12 +147,22 @@ const Home = () => {
           </div>
           <div className="grid grid-3">
             {upcomingEvents.map((event) => (
-              <Card key={event.id} image={event.image} title={event.title} description={event.description}>
+              <Card
+                key={event.id}
+                image={event.image}
+                title={event.title}
+                description={event.description}
+                clickable
+                link={`/events/${event.id}`}
+                linkText={t('home.readMore')}
+                linkVariant="button"
+                alwaysShowLink
+              >
                 <div className="event-meta">
                   <span className="event-date">{new Date(event.date).toLocaleDateString()}</span>
                   <span className="event-location">{event.location}</span>
                 </div>
-                <Link to="/events" className="btn btn-secondary">{t('home.joinEvent')}</Link>
+                <Link to={`/events/${event.id}`} className="btn btn-secondary" onClick={(e) => e.stopPropagation()}>{t('home.joinEvent')}</Link>
               </Card>
             ))}
           </div>
@@ -336,6 +356,14 @@ const Home = () => {
           background: var(--bg-secondary);
         }
 
+        /* Clamp featured causes description to 3 lines */
+        .featured-causes .card-text {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          overflow: hidden;
+        }
+
         .event-meta,
         .blog-meta {
           display: flex;
@@ -344,6 +372,13 @@ const Home = () => {
           color: var(--text-light);
           margin-top: var(--spacing-md);
           margin-bottom: var(--spacing-md);
+        }
+
+        .button-row {
+          display: flex;
+          gap: var(--spacing-sm);
+          margin-top: var(--spacing-md);
+          flex-wrap: wrap;
         }
 
         .cta-section {

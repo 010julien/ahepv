@@ -8,12 +8,13 @@ import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Causes from './pages/Causes';
 import Events from './pages/Events';
-import Blog from './pages/Blog';
 import FAQ from './pages/FAQ';
 import Donate from './pages/Donate';
 import Contact from './pages/Contact';
 import Volunteer from './pages/Volunteer';
 import EventDetails from './pages/EventDetails';
+import CauseDetails from './pages/CauseDetails';
+import ScrollReveal from './components/ScrollReveal';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import ScrollToTop from './components/ScrollToTop';
@@ -24,6 +25,7 @@ function App() {
   return (
     <LanguageProvider>
       <Router>
+        <ScrollReveal />
         <ScrollToTop />
         <div className="app">
           <Header />
@@ -33,11 +35,14 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/causes" element={<Causes />} />
+              <Route path="/causes/:id" element={<CauseDetails />} />
               <Route path="/donate" element={<Donate />} />
               <Route path="/events" element={<Events />} />
               <Route path="/events/:id" element={<EventDetails />} />
+              {/* Activities alias */}
+              <Route path="/activities" element={<Events />} />
+              <Route path="/activities/:id" element={<EventDetails />} />
               <Route path="/volunteer" element={<Volunteer />} />
-              <Route path="/blog" element={<Blog />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy" element={<Privacy />} />

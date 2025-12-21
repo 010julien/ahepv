@@ -1,68 +1,68 @@
 export const events = [
   {
     id: 1,
-    title: "Gala de Charité Annuel",
-    date: "2024-01-15",
+    title: "Don de Velo à Vogan",
+    date: "2025-12-21",
     time: "18:00",
-    location: "Salle de Bal du Grand Hôtel",
+    location: "Koutimé, Vogan-Togo",
     description: "Rejoignez-nous pour une soirée élégante avec dîner, divertissement et collecte de fonds pour soutenir nos causes.",
-    image: "/images/evenement_don2.jpeg",
+    image: "/images/avenir-don.jpg",
+    video: "/images/avenir-don.mp4",
     category: "collecte de fonds",
     status: "upcoming"
   },
   {
     id: 2,
-    title: "Collecte Alimentaire Communautaire",
-    date: "2024-01-22",
+    title: "Don de Livre à Vogan",
+    date: "2025-12-22",
     time: "09:00",
-    location: "Centre Communautaire de la Ville",
+    location: "Koutimé, Vogan-Togo",
     description: "Aidez-nous à collecter et distribuer des colis alimentaires aux familles dans le besoin de notre communauté.",
-    image: "/images/evenement_don2.jpeg",
+    image: "/images/avenir-don1.jpg",
+    video: "/images/avenir-don1.mp4",
     category: "bénévolat",
     status: "upcoming"
   },
   {
     id: 3,
-    title: "Atelier Éducatif pour Enfants",
+    title: "Arrivée à Cinkassé et sortie des kits de don",
     date: "2024-02-05",
     time: "14:00",
-    location: "École Élémentaire Locale",
-    description: "Sessions d'apprentissage interactives et activités éducatives pour les enfants issus de milieux défavorisés.",
-    image: "/images/education.jpg",
-    category: "éducation",
+    location: "Cinkassé, Vogan-Togo",
+    description: "Arrivée à Cinkassé et distribution des kits de don, cela marquant le début des actions solidaires au profit des bénéficiaires locaux.",
+    image: "/images/resize-conkasse4.jpg",
+    video: "/images/resize-conkasse4.mp4",
+    category: "don",
     status: "past"
   },
-  // {
-  //   id: 4,
-  //   title: "Medical Camp",
-  //   date: "2023-12-10",
-  //   time: "08:00",
-  //   location: "Rural Health Center",
-  //   description: "Free medical checkups and consultations provided by volunteer doctors and healthcare professionals.",
-  //   image: "/images/about-preview.jpg",
-  //   category: "healthcare",
-  //   status: "past"
-  // },
-  // {
-  //   id: 5,
-  //   title: "Marathon for a Cause",
-  //   date: "2023-11-20",
-  //   time: "06:00",
-  //   location: "City Central Park",
-  //   description: "Run for charity! All proceeds from this marathon event go towards supporting our education programs.",
-  //   image: "/images/about-preview.jpg",
-  //   category: "fundraiser",
-  //   status: "past"
-  // },
-  // {
-  //   id: 6,
-  //   title: "Holiday Gift Drive",
-  //   date: "2024-01-30",
-  //   time: "10:00",
-  //   location: "Main Office",
-  //   description: "Collect and distribute holiday gifts to children and families in need during the festive season.",
-  //   image: "/images/about-preview.jpg",
-  //   category: "volunteer",
-  //   status: "upcoming"
-  // }
+  {
+    id: 4,
+    title: "Dons de kits et de lits médicaux à tandjouaré",
+    date: "2023-12-10",
+    time: "08:00",
+    location: "Tandjouaré, Vogan-Togo",
+    description: "Arrivée à Tandjouaré et distribution des kits de don, cela marquant le début des actions solidaires au profit des bénéficiaires locaux.",
+    image: "/images/resize-tandouare1.jpg",
+    video: "/images/resize-tandouare1.mp4",
+    category: "don",
+    status: "past"
+  },
+  {
+    id: 5,
+    title: "Dons de kits en carton à Agou",
+    date: "2023-11-20",
+    time: "06:00",
+    location: "Agou, Vogan-Togo",
+    description: "Arrivée à Agou et distribution des kits de don, cela marquant le début des actions solidaires au profit des bénéficiaires locaux.",
+    image: "/images/resize-agou7.jpg",
+    video: "/images/resize-agou7.mp4",
+    category: "fundraiser",
+    status: "past"
+  },
+
+
+  
+
+
+
 ];

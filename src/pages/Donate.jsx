@@ -39,7 +39,7 @@ const Donate = () => {
   const handleDonate = (e) => {
     e.preventDefault();
     const amount = customAmount || selectedAmount;
-    alert(`Merci ${personalInfo.firstName} ${personalInfo.lastName} pour votre don de ${amount}€ !`);
+    alert(`Merci ${personalInfo.firstName} ${personalInfo.lastName} pour votre don de $${amount} !`);
   };
 
   return (
@@ -48,7 +48,7 @@ const Donate = () => {
         title="Faire un Don" 
         subtitle="Votre générosité change des vies. Chaque don compte et fait une vraie différence."
         breadcrumb="Don"
-        backgroundImage="/images/hero-causes.jpg"
+        backgroundImage="/images/hero-donate.jpg"
       />
 
       {/* Impact Stats Section */}
@@ -57,17 +57,17 @@ const Donate = () => {
           <div className="impact-stats">
             <div className="impact-item">
               <FaHeart className="impact-icon" />
-              <h3>1 500+</h3>
+              <h3>1 50+</h3>
               <p>Vies changées</p>
             </div>
             <div className="impact-item">
               <FaUsers className="impact-icon" />
-              <h3>500+</h3>
+              <h3>50+</h3>
               <p>Bénévoles actifs</p>
             </div>
             <div className="impact-item">
               <FaHandHoldingHeart className="impact-icon" />
-              <h3>50+</h3>
+              <h3>5+</h3>
               <p>Projets en cours</p>
             </div>
           </div>
@@ -116,7 +116,7 @@ const Donate = () => {
                           setCustomAmount('');
                         }}
                       >
-                        {amount}€
+                        ${amount}
                       </button>
                     ))}
                   </div>
@@ -130,7 +130,7 @@ const Donate = () => {
                         onChange={(e) => setCustomAmount(e.target.value)}
                         min="1"
                       />
-                      <span className="currency">€</span>
+                      <span className="currency">$</span>
                     </div>
                   </div>
                 </div>
@@ -218,7 +218,7 @@ const Donate = () => {
                         name="phone"
                         value={personalInfo.phone}
                         onChange={handleInfoChange}
-                        placeholder="+33 6 12 34 56 78" 
+                        placeholder="+228 12 34 56 78" 
                       />
                     </div>
                   </div>
@@ -242,7 +242,7 @@ const Donate = () => {
 
                 {/* Submit Button */}
                 <Button variant="primary" type="submit" style={{ width: '100%', padding: '1rem 2rem', fontSize: '1.125rem' }}>
-                  Faire un don de {customAmount || selectedAmount}€
+                  Faire un don de ${customAmount || selectedAmount}
                 </Button>
 
                 {/* Security Note */}
@@ -280,15 +280,15 @@ const Donate = () => {
               <div className="sidebar-card impact-card">
                 <h3>Votre impact</h3>
                 <div className="impact-example">
-                  <strong>25€</strong>
+                  <strong>$25</strong>
                   <p>Fournit des fournitures scolaires pour 5 enfants</p>
                 </div>
                 <div className="impact-example">
-                  <strong>50€</strong>
+                  <strong>$50</strong>
                   <p>Finance un mois de repas pour une famille</p>
                 </div>
                 <div className="impact-example">
-                  <strong>100€</strong>
+                  <strong>$100</strong>
                   <p>Permet l'accès à l'eau potable pour 20 personnes</p>
                 </div>
               </div>

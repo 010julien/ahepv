@@ -4,6 +4,8 @@ import Button from '../components/Button';
 import { useTranslation } from '../i18n/useTranslation';
 import { FaPhone, FaEnvelope, FaLocationDot, FaClock } from 'react-icons/fa6';
 import SocialLink from '../components/SocialLink';
+import { CONTACT } from '../config/site';
+import { sendEmail } from '../utils/email';
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -34,9 +36,26 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Merci ${formData.firstName} ! Votre message a été envoyé.`);
+    const payload = {
+      to_email: CONTACT.email,
+      from_email: formData.email,
+      from_name: `${formData.firstName} ${formData.lastName}`.trim(),
+      phone: formData.phone,
+      subject: formData.subject,
+      message: formData.message,
+      reply_to: formData.email,
+    };
+    try {
+      await sendEmail(import.meta?.env?.VITE_EMAILJS_TEMPLATE_CONTACT || 'contact_template', payload);
+      alert(`Merci ${formData.firstName} ! Votre message a été envoyé.`);
+    } catch (err) {
+      const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+        `De: ${formData.firstName} ${formData.lastName} <${formData.email}>\nTéléphone: ${formData.phone}\n\n${formData.message}`
+      )}`;
+      window.location.href = mailto;
+    }
     setFormData({
       firstName: '',
       lastName: '',
@@ -53,7 +72,7 @@ const Contact = () => {
         title={t('contactPage.title')}
         subtitle={t('contactPage.subtitle')}
         breadcrumb={t('contactPage.breadcrumb')}
-        backgroundImage="/images/hero-faq.jpg"
+        backgroundImage="/images/hero-contact.jpg"
       />
 
       <section className="section">
@@ -161,7 +180,7 @@ const Contact = () => {
                   </div>
                   <div className="info-content">
                     <h4>{t('contactPage.addressTitle')}</h4>
-                    <p>123 Avenue de la Charité<br />75001 Paris, France</p>
+                    <p>Bruno-körnerstr<br />67059 Allemagne</p>
                   </div>
                 </div>
 
@@ -171,7 +190,9 @@ const Contact = () => {
                   </div>
                   <div className="info-content">
                     <h4>{t('contactPage.phoneTitle')}</h4>
-                    <p>+33 1 23 45 67 89</p>
+                    <p>
+                      <a href={`tel:${CONTACT.phone.replace(/\s+/g, '')}`}>{CONTACT.phone}</a>
+                    </p>
                   </div>
                 </div>
 
@@ -181,7 +202,9 @@ const Contact = () => {
                   </div>
                   <div className="info-content">
                     <h4>{t('contactPage.emailTitle')}</h4>
-                    <p>contact@ah2pv.org<br />info@ah2pv.org</p>
+                    <p>
+                      <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+                    </p>
                   </div>
                 </div>
 
@@ -214,7 +237,7 @@ const Contact = () => {
       <section className="map-section">
         <div className="map-container">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916256937595!2d2.3412!3d48.8566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDUxJzIzLjgiTiAywrAyMCcyOC4zIkU!5e0!3m2!1sen!2sfr!4v1234567890"
+            src="https://www.google.com/maps?q=Bruno-k%C3%B6rnerstr%2067059%20Allemagne&output=embed"
             width="100%"
             height="450"
             style={{ border: 0 }}

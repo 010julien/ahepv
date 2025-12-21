@@ -6,7 +6,7 @@ export const translations = {
       about: 'À Propos',
       gallery: 'Galerie',
       causes: 'Nos Causes',
-      events: 'Événements',
+      events: 'Nos Activités',
       blog: 'Blog',
       faq: 'FAQ',
       donate: 'Faire un Don'
@@ -32,12 +32,12 @@ export const translations = {
     
     // Home Page
     home: {
-      heroTitle: 'Ensemble, Nous Pouvons Faire la Différence',
-      heroSubtitle: 'Rejoignez-nous dans notre mission d\'apporter espoir, soutien et changement positif aux communautés dans le besoin à travers le monde.',
+      heroTitle: 'ONG-Association Humanitaire Plus Proche de Vous',
+      heroSubtitle: 'Rejoignez-nous dans notre mission d\'apporter espoir, soutien et changement positif au Togo dans communautés à travers le monde.',
       ourCauses: 'Nos Causes',
       learnMore: 'En Savoir Plus',
-      welcome: 'Bienvenue chez AH2PV',
-      welcomeText1: 'Nous sommes une organisation à but non lucratif dédiée à avoir un impact positif dans la vie de ceux qui en ont le plus besoin. Grâce à des dons généreux et des programmes durables, nous œuvrons pour créer des changements durables dans les communautés du monde entier.',
+      welcome: 'Bienvenue chez AH2PV (ONG-Association Humanitaire Plus Proche de Vous)',
+      welcomeText1: 'L’ONG Association Humanitaire Plus Proche de Vous (AH2PV) est une organisation humanitaire engagée, fondée en 2011 et dirigée par Madame Esther Ayawoavi Trédé, Togolaise de la diaspora. Elle œuvre principalement au Togo, avec une approche centrée sur la proximité communautaire, la collaboration et la transparence. Sa mission est d’améliorer durablement les conditions de vie des populations les plus vulnérables à travers des actions concrètes, notamment dans les domaines de la santé, de l’éducation, du développement durable et de l’urgence humanitaire. ',
       welcomeText2: 'Notre mission est de fournir des services essentiels, un soutien et des ressources aux populations vulnérables, en les aidant à construire un meilleur avenir pour eux-mêmes et leurs familles.',
       discoverStory: 'Découvrir Notre Histoire',
       stats: {
@@ -48,13 +48,13 @@ export const translations = {
       },
       featuredCauses: 'Causes en Vedette',
       featuredCausesDesc: 'Soutenez les causes qui comptent le plus et faites une réelle différence dans la vie des gens',
-      upcomingEvents: 'Événements à Venir',
-      upcomingEventsDesc: 'Rejoignez-nous lors de nos prochains événements et participez à quelque chose de significatif',
+      upcomingEvents: 'Activités à Venir',
+      upcomingEventsDesc: 'Rejoignez-nous lors de nos prochaines activités et participez à quelque chose de significatif',
       latestNews: 'Dernières Actualités',
       latestNewsDesc: 'Découvrez notre impact et les vies que nous touchons chaque jour',
       viewAll: 'Voir Tout',
       donateNow: 'Faire un Don',
-      joinEvent: 'Rejoindre l\'Événement',
+      joinEvent: 'Rejoindre l\'activité',
       readMore: 'Lire Plus',
       ctaTitle: 'Prêt à Faire la Différence ?',
       ctaText: 'Votre soutien peut changer des vies. Rejoignez-nous aujourd\'hui et faites partie de la solution.',
@@ -82,7 +82,34 @@ export const translations = {
       integrity: 'Intégrité',
       integrityText: 'Nous maintenons les plus hauts standards d\'honnêteté et de transparence',
       team: 'Notre Équipe',
-      teamDesc: 'Des professionnels dévoués travaillant ensemble pour créer un changement positif'
+      teamDesc: 'Des professionnels dévoués travaillant ensemble pour créer un changement positif',
+      roadmapTitle: 'Notre feuille de route',
+      objectivesTitle: 'Nos Objectifs',
+      introTitle: 'Notre Équipe Dynamique et Engagée',
+      introSubtitle: "Des Passionnés de l'Action Humanitaire",
+      introText: "Notre équipe est composée de professionnels dévoués, chacun apportant son expertise unique pour créer un impact positif. De la logistique à la collecte de fonds, en passant par l'éducation et les soins de santé, nos membres partagent une passion commune pour la philanthropie et le bien-être des populations les plus vulnérables.",
+      highlights: {
+        presenceTitle: 'Une Présence Proche de Vous',
+        presenceText: "Ce qui distingue AH2PV, c'est notre engagement à être réellement « Plus Proche de Vous ». Nous croyons en une approche centrée sur la communauté, travaillant directement avec les résidents pour identifier les besoins les plus pressants et développer des solutions durables. Notre équipe est sur le terrain, dans les villages et les quartiers, à l'écoute et à l'action.",
+        focusTitle: 'Un Focus sur le Togo',
+        focusText: "Au cœur de notre mission se trouve le Togo, une nation où notre équipe consacre son énergie à soutenir des initiatives humanitaires significatives. Éducation, développement durable, interventions d'urgence — nous répondons avec sérieux aux besoins des communautés togolaises.",
+        collabTitle: 'Collaboration et Transparence',
+        collabText: "La force de notre équipe réside dans la collaboration et la transparence. Nous travaillons en partenariat avec des organisations locales, des bénévoles dévoués et des entreprises solidaires pour maximiser notre impact. La transparence est au cœur de notre démarche, assurant à nos donateurs et partenaires que chaque contribution compte."
+      },
+      ong: {
+        title: 'Présentation de ONG-Association Humanitaire Plus Proche de vous (AH2PV)',
+        p1: "Dans le Togo profond... Nombreuses sont les personnes qui souffrent de diverses pathologies, et les districts sanitaires qui manquent d’infrastructures, sont légion. Afin d’appuyer le gouvernement dans ses efforts dans le cadre de son vaste programme de Santé Communautaire, l’Ong humanitaire Plus Proche de Vous (AH2PV) vole depuis 2011 au secours des populations les plus vulnérables en œuvrant pour l’accès aux soins médicaux pour tous. Fondée et dirigée par Madame Esther ayawoavi TREDE, une Togolaise de la diaspora, l’ONG AH2PV a relevé des défis majeurs et tenu un pari exceptionnel, celui d’offrir un brin de sourire à ceux qui en manquent.",
+        p2: "Améliorer les conditions d’hospitalisation des populations, demeure une priorité du gouvernement, une vision traduite par l’ONG AH2PV sur le terrain. Dans la réalisation de ses activités au cours de ces cinq dernières années, elle a offert des lits d’hôpitaux, des lots de médicaments à des districts sanitaires dans plusieurs localités du pays. Des vivres et des non vivres ont également été distribués aux populations dans la région des Plateaux et des Savanes.",
+        p3: "Dans l’exécution de son plan d’action quinquennal, l’ONG AH2PV a eu à mener des actions de sensibilisation sur la non-violence et la citoyenneté. A cet effet, elle a organisé une tournée nationale de sensibilisation notamment lors des récentes échéances électorales au Togo. Divers messages ont donc été délivrés à l’endroit des populations en vue des élections apaisées, gage d’une paix civile pour un développement intégral. Des rencontres d’échanges ont eu lieu avec les jeunes dans diverses localités dans le but de développer une relation de proximité avec les leaders de demain."
+      },
+      togo: {
+        title: 'À la Découverte du Togo :',
+        subtitle: "Un Terroir de Solidarité et d'Espoir",
+        p1: "Le Togo, encore appelé la République togolaise, est un pays d’Afrique de l'Ouest, dont la population est estimée en 2022 à environ 8,095 millions d’habitants pour une densité de 152 hab./km². Le Togo tire son nom de l'actuel Togoville.",
+        p2: "Faisant partie des plus petits États africains continentaux, le Togo couvre une superficie de 56 600 km² et s’étire sur environ 700 km du nord au sud avec une largeur n’excédant pas 150 km. Limité au nord par le Burkina Faso, au sud par le golfe de Guinée, à l'est par le Bénin et à l'ouest par le Ghana, le Togo présente une grande diversité de paysages : une côte de sable bordée de cocotiers au sud, des collines, des vallées verdoyantes, de petites montagnes dans le centre du pays, des plaines arides et de grandes savanes au nord du pays."
+      },
+      calloutTitle: 'Agir Ensemble, Proche de Vous',
+      calloutText: "Au cœur de notre démarche, il y a la conviction que l'action humanitaire est plus qu'une simple intervention. C'est une collaboration entre communautés, organisations, et individus partageant une vision commune d'un avenir meilleur. En agissant ensemble, nous sommes plus proches de réaliser nos objectifs, créant des impacts qui transcendent les frontières géographiques."
     },
     
     // Gallery Page
@@ -110,12 +137,19 @@ export const translations = {
     
     // Events Page
     events: {
-      title: 'Nos Événements',
-      subtitle: 'Rejoignez-nous lors de nos prochains événements et participez à quelque chose de significatif',
-      breadcrumb: 'Événements',
-      upcoming: 'Événements à Venir',
-      past: 'Événements Passés',
-      noEvents: 'Aucun événement pour le moment.'
+      title: 'Nos Activités',
+      subtitle: 'Rejoignez-nous lors de nos prochaines activités et participez à quelque chose de significatif',
+      breadcrumb: 'Activités',
+      upcoming: 'Activités à Venir',
+      past: 'Activités Passées',
+      noEvents: 'Aucune activité pour le moment.',
+      aboutTitle: "À propos de l'activité",
+      videoTitle: "Vidéo de l'activité",
+      registerTitle: 'Inscription',
+      registerConfirm: "Confirmer l'inscription",
+      dateTitle: 'Date',
+      timeTitle: 'Heure',
+      placeTitle: 'Lieu'
     },
     
     // Blog Page
