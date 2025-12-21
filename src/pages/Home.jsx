@@ -240,7 +240,7 @@ const Home = () => {
           left: 0;
           right: 0;
           bottom: 0;
-          background: #0000007b;
+          background:rgba(0, 0, 0, 0.37);
           opacity: 0.9;
         }
 
