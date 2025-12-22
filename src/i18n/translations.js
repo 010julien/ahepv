@@ -9,7 +9,15 @@ export const translations = {
       events: 'Nos Activités',
       blog: 'Blog',
       faq: 'FAQ',
-      donate: 'Faire un Don'
+      donate: 'Faire un Don',
+      contact: 'Contact',
+      volunteer: 'Bénévolat'
+    },
+    common: {
+      close: 'Fermer',
+      scrollDown: 'Faire défiler',
+      loading: 'Chargement...',
+      videoNotSupported: 'Votre navigateur ne supporte pas la lecture de vidéos.'
     },
     
     // Footer
@@ -18,11 +26,13 @@ export const translations = {
       description: 'Nous sommes dédiés à avoir un impact positif dans les communautés du monde entier grâce à des dons généreux et des programmes durables.',
       quickLinks: 'Liens Rapides',
       contactInfo: 'Contact',
+      support: 'Support',
       address: '123 Rue de la Charité, Paris, 75001',
       phone: '+33 1 23 45 67 89',
       email: 'info@ah2pv.org',
       newsletter: 'Newsletter',
       newsletterText: 'Abonnez-vous pour recevoir nos dernières actualités et projets.',
+      newsletterThanks: 'Merci de vous être inscrit à notre newsletter !',
       subscribe: 'S\'abonner',
       emailPlaceholder: 'Votre adresse email',
       rights: 'Tous droits réservés',
@@ -96,6 +106,14 @@ export const translations = {
         collabTitle: 'Collaboration et Transparence',
         collabText: "La force de notre équipe réside dans la collaboration et la transparence. Nous travaillons en partenariat avec des organisations locales, des bénévoles dévoués et des entreprises solidaires pour maximiser notre impact. La transparence est au cœur de notre démarche, assurant à nos donateurs et partenaires que chaque contribution compte."
       },
+      objectives: {
+        proximityTitle: 'Proximité Significative',
+        proximityText: 'Nous nous engageons à être au plus près des communautés que nous servons. En nous imprégnant de la réalité togolaise, nous œuvrons pour comprendre les besoins locaux de manière approfondie et agir de manière adaptée.',
+        healthcareTitle: 'Soins de Santé Accessibles',
+        healthcareText: 'Nous visons à éliminer les barrières à l\'accès aux soins de santé de qualité. Des cliniques mobiles aux initiatives de sensibilisation, nous œuvrons pour améliorer la santé et le bien-être des populations les plus vulnérables.',
+        sustainableTitle: 'Développement Durable',
+        sustainableText: 'Notre engagement envers le développement durable se manifeste par des projets visant à renforcer les capacités locales, à promouvoir des pratiques respectueuses de l\'environnement et à favoriser l\'autosuffisance.'
+      },
       ong: {
         title: 'Présentation de ONG-Association Humanitaire Plus Proche de vous (AH2PV)',
         p1: "Dans le Togo profond... Nombreuses sont les personnes qui souffrent de diverses pathologies, et les districts sanitaires qui manquent d’infrastructures, sont légion. Afin d’appuyer le gouvernement dans ses efforts dans le cadre de son vaste programme de Santé Communautaire, l’Ong humanitaire Plus Proche de Vous (AH2PV) vole depuis 2011 au secours des populations les plus vulnérables en œuvrant pour l’accès aux soins médicaux pour tous. Fondée et dirigée par Madame Esther ayawoavi TREDE, une Togolaise de la diaspora, l’ONG AH2PV a relevé des défis majeurs et tenu un pari exceptionnel, celui d’offrir un brin de sourire à ceux qui en manquent.",
@@ -132,7 +150,14 @@ export const translations = {
       breadcrumb: 'Causes',
       raised: 'collectés',
       goal: 'Objectif',
-      donors: 'Donateurs'
+      donors: 'Donateurs',
+      imageGallery: "Galerie d'images",
+      aboutThisCause: 'À propos de cette cause',
+      category: 'Catégorie',
+      progress: 'Progression',
+      otherCauses: 'Autres causes',
+      otherCausesDesc: "Découvrez d'autres projets que vous pouvez soutenir.",
+      backToList: 'Retour à la liste'
     },
     
     // Events Page
@@ -149,7 +174,17 @@ export const translations = {
       registerConfirm: "Confirmer l'inscription",
       dateTitle: 'Date',
       timeTitle: 'Heure',
-      placeTitle: 'Lieu'
+      placeTitle: 'Lieu',
+      nameLabel: 'Nom complet',
+      emailLabel: 'Email',
+      phoneLabel: 'Téléphone',
+      ticketsLabel: 'Nombre de places',
+      registerSuccess: 'Inscription confirmée !',
+      categories: {
+        fundraising: 'Collecte de fonds',
+        volunteering: 'Bénévolat',
+        donation: 'Don'
+      }
     },
     
     // Blog Page
@@ -160,6 +195,15 @@ export const translations = {
       searchPlaceholder: 'Rechercher des articles...',
       categories: 'Catégories',
       recentPosts: 'Articles Récents',
+      categoryLabels: {
+        all: 'Tout',
+        impact: "Histoires d'impact",
+        community: 'Communauté',
+        success: 'Histoires de réussite',
+        projects: 'Projets',
+        volunteers: 'Bénévoles',
+        giving: 'Dons'
+      },
       by: 'Par',
       noArticles: 'Aucun article trouvé correspondant à vos critères.'
     },
@@ -216,9 +260,35 @@ export const translations = {
       formTitle: 'Rejoignez notre équipe',
       formIntro: 'Remplissez ce formulaire pour postuler en tant que bénévole.',
       interests: 'Centres d\'intérêt',
-      availability: 'Disponibilité',
+      availability: 'Disponibilités',
+      nameLabel: 'Nom complet',
+      emailLabel: 'Email',
+      phoneLabel: 'Téléphone',
+      messageLabel: 'Message (motiver votre candidature)',
+      availabilityOptions: {
+        weekdays: 'En semaine',
+        weekends: 'Le week-end',
+        flexible: 'Flexible'
+      },
+      interestOptions: {
+        events: 'Événements',
+        fundraising: 'Collecte de fonds',
+        logistics: 'Logistique',
+        education: 'Éducation',
+        communication: 'Communication'
+      },
       submit: 'Soumettre ma candidature',
-      success: 'Merci ! Votre candidature a été reçue.'
+      success: 'Merci ! Votre candidature a été reçue.',
+      subject: 'Candidature bénévole',
+      whyTitle: 'Pourquoi nous rejoindre ?',
+      whyText: 'En devenant bénévole, vous contribuez directement à nos actions sur le terrain. Que vous ayez quelques heures par mois ou plusieurs jours par semaine, votre aide est précieuse.',
+      placeholders: {
+        name: 'Votre nom complet',
+        email: 'votre.email@example.com',
+        phone: '+33 6 12 34 56 78',
+        availability: 'Sélectionnez votre disponibilité',
+        message: 'Dites-nous pourquoi vous souhaitez nous rejoindre...'
+      }
     }
   },
   
@@ -232,7 +302,15 @@ export const translations = {
       events: 'Events',
       blog: 'Blog',
       faq: 'FAQ',
-      donate: 'Donate Now'
+      donate: 'Donate Now',
+      contact: 'Contact',
+      volunteer: 'Volunteer'
+    },
+    common: {
+      close: 'Close',
+      scrollDown: 'Scroll down',
+      loading: 'Loading...',
+      videoNotSupported: 'Your browser does not support video playback.'
     },
     
     // Footer
@@ -241,11 +319,13 @@ export const translations = {
       description: 'We are dedicated to making a positive impact in communities worldwide through compassionate giving and sustainable programs.',
       quickLinks: 'Quick Links',
       contactInfo: 'Contact',
+      support: 'Support',
       address: '123 Charity Street, New York, NY 10001',
       phone: '+1 (555) 123-4567',
       email: 'info@ah2pv.org',
       newsletter: 'Newsletter',
       newsletterText: 'Subscribe to receive updates about our latest projects and impact.',
+      newsletterThanks: 'Thank you for subscribing to our newsletter!',
       subscribe: 'Subscribe',
       emailPlaceholder: 'Your email address',
       rights: 'All rights reserved',
@@ -305,7 +385,42 @@ export const translations = {
       integrity: 'Integrity',
       integrityText: 'We maintain the highest standards of honesty and transparency',
       team: 'Our Team',
-      teamDesc: 'Dedicated professionals working together to create positive change'
+      teamDesc: 'Dedicated professionals working together to create positive change',
+      roadmapTitle: 'Our Roadmap',
+      objectivesTitle: 'Our Objectives',
+      introTitle: 'Our Dynamic and Engaged Team',
+      introSubtitle: 'Passionate Humanitarian Action',
+      introText: 'Our team is composed of dedicated professionals, each bringing unique expertise to create positive impact. From logistics to fundraising, and from education to healthcare, our members share a common passion for philanthropy and the well-being of the most vulnerable.',
+      highlights: {
+        presenceTitle: 'A Presence Close to You',
+        presenceText: 'What sets AH2PV apart is our commitment to truly being "Closer to You". We believe in a community-centered approach, working directly with residents to identify pressing needs and develop sustainable solutions. Our team is on the ground, listening and acting.',
+        focusTitle: 'A Focus on Togo',
+        focusText: 'At the heart of our mission is Togo, where our team dedicates its energy to meaningful humanitarian initiatives. Education, sustainable development, emergency interventions — we respond earnestly to the needs of Togolese communities.',
+        collabTitle: 'Collaboration and Transparency',
+        collabText: 'The strength of our team lies in collaboration and transparency. We partner with local organizations, dedicated volunteers, and supportive businesses to maximize our impact. Transparency is central to our approach, assuring donors and partners that every contribution counts.'
+      },
+      objectives: {
+        proximityTitle: 'Meaningful Proximity',
+        proximityText: 'We are committed to being as close as possible to the communities we serve. Immersed in the Togolese reality, we strive to deeply understand local needs and act appropriately.',
+        healthcareTitle: 'Accessible Healthcare',
+        healthcareText: 'We aim to remove barriers to quality healthcare. From mobile clinics to awareness initiatives, we work to improve the health and well-being of the most vulnerable.',
+        sustainableTitle: 'Sustainable Development',
+        sustainableText: 'Our commitment to sustainable development is reflected in projects that strengthen local capacity, promote environmentally friendly practices, and foster self-sufficiency.'
+      },
+      ong: {
+        title: 'Presentation of the NGO-Association Humanitaire Plus Proche de Vous (AH2PV)',
+        p1: 'In the heart of Togo... Many people suffer from various pathologies, and numerous health districts lack infrastructure. To support the government in its broad Community Health program, the humanitarian NGO Closer to You (AH2PV) has, since 2011, assisted the most vulnerable populations by working to ensure access to medical care for all. Founded and led by Ms. Esther Ayawoavi Trede, a Togolese from the diaspora, AH2PV has taken on major challenges and achieved something exceptional: bringing a smile to those who lack it.',
+        p2: 'Improving hospitalization conditions remains a government priority, a vision that AH2PV puts into practice on the ground. Over the last five years, it has donated hospital beds and medicines to health districts in several localities. Food and non-food items have also been distributed to people in the Plateaux and Savanes regions.',
+        p3: 'As part of its five-year action plan, AH2PV has conducted awareness campaigns on non-violence and citizenship. It organized a nationwide awareness tour, especially during recent elections in Togo. Various messages were delivered to encourage peaceful elections for civil peace and holistic development. Meetings with youth took place in several localities to build a close relationship with tomorrow\'s leaders.'
+      },
+      togo: {
+        title: 'Discover Togo:',
+        subtitle: 'A Land of Solidarity and Hope',
+        p1: 'Togo, officially the Togolese Republic, is a West African country with an estimated 2022 population of around 8.095 million and a density of 152 inhabitants/km². Togo takes its name from present-day Togoville.',
+        p2: 'One of the smallest continental states in Africa, Togo covers 56,600 km² and stretches about 700 km from north to south, with a width not exceeding 150 km. Bordered by Burkina Faso to the north, the Gulf of Guinea to the south, Benin to the east, and Ghana to the west, Togo features diverse landscapes: sandy southern coasts lined with coconut trees, hills, green valleys, small mountains in the center, and arid plains and savannas in the north.'
+      },
+      calloutTitle: 'Acting Together, Close to You',
+      calloutText: 'At the heart of our approach is the belief that humanitarian action is more than a simple intervention. It is a collaboration between communities, organizations, and individuals sharing a common vision of a better future. By acting together, we get closer to our objectives, creating impacts that transcend geographic borders.'
     },
     
     // Gallery Page
@@ -328,7 +443,14 @@ export const translations = {
       breadcrumb: 'Causes',
       raised: 'raised',
       goal: 'Goal',
-      donors: 'Donors'
+      donors: 'Donors',
+      imageGallery: 'Image Gallery',
+      aboutThisCause: 'About this cause',
+      category: 'Category',
+      progress: 'Progress',
+      otherCauses: 'Other causes',
+      otherCausesDesc: 'Discover other projects you can support.',
+      backToList: 'Back to list'
     },
     
     // Events Page
@@ -338,7 +460,24 @@ export const translations = {
       breadcrumb: 'Events',
       upcoming: 'Upcoming Events',
       past: 'Past Events',
-      noEvents: 'No events at the moment.'
+      noEvents: 'No events at the moment.',
+      aboutTitle: 'About the event',
+      videoTitle: 'Event video',
+      registerTitle: 'Registration',
+      registerConfirm: 'Confirm registration',
+      dateTitle: 'Date',
+      timeTitle: 'Time',
+      placeTitle: 'Place',
+      nameLabel: 'Full Name',
+      emailLabel: 'Email',
+      phoneLabel: 'Phone',
+      ticketsLabel: 'Number of tickets',
+      registerSuccess: 'Registration confirmed!',
+      categories: {
+        fundraising: 'Fundraising',
+        volunteering: 'Volunteering',
+        donation: 'Donation'
+      }
     },
     
     // Blog Page
@@ -349,6 +488,15 @@ export const translations = {
       searchPlaceholder: 'Search articles...',
       categories: 'Categories',
       recentPosts: 'Recent Posts',
+      categoryLabels: {
+        all: 'All',
+        impact: 'Impact stories',
+        community: 'Community',
+        success: 'Success stories',
+        projects: 'Projects',
+        volunteers: 'Volunteers',
+        giving: 'Giving'
+      },
       by: 'By',
       noArticles: 'No articles found matching your criteria.'
     },
@@ -406,8 +554,34 @@ export const translations = {
       formIntro: 'Fill out this form to apply as a volunteer.',
       interests: 'Interests',
       availability: 'Availability',
+      nameLabel: 'Full Name',
+      emailLabel: 'Email',
+      phoneLabel: 'Phone',
+      messageLabel: 'Message (motivation)',
+      availabilityOptions: {
+        weekdays: 'Weekdays',
+        weekends: 'Weekends',
+        flexible: 'Flexible'
+      },
+      interestOptions: {
+        events: 'Events',
+        fundraising: 'Fundraising',
+        logistics: 'Logistics',
+        education: 'Education',
+        communication: 'Communication'
+      },
       submit: 'Submit Application',
-      success: 'Thank you! Your application has been received.'
+      success: 'Thank you! Your application has been received.',
+      subject: 'Volunteer application',
+      whyTitle: 'Why join us?',
+      whyText: 'By becoming a volunteer, you directly contribute to our on-the-ground actions. Whether you have a few hours a month or several days a week, your help is invaluable.',
+      placeholders: {
+        name: 'Your full name',
+        email: 'your.email@example.com',
+        phone: '+1 234 567 890',
+        availability: 'Select your availability',
+        message: 'Tell us why you want to join...'
+      }
     }
   },
   
@@ -421,7 +595,15 @@ export const translations = {
       events: 'Veranstaltungen',
       blog: 'Blog',
       faq: 'FAQ',
-      donate: 'Jetzt Spenden'
+      donate: 'Jetzt Spenden',
+      contact: 'Kontakt',
+      volunteer: 'Freiwillige'
+    },
+    common: {
+      close: 'Schließen',
+      scrollDown: 'Nach unten scrollen',
+      loading: 'Wird geladen...',
+      videoNotSupported: 'Ihr Browser unterstützt die Videowiedergabe nicht.'
     },
     
     // Footer
@@ -430,11 +612,13 @@ export const translations = {
       description: 'Wir setzen uns dafür ein, durch mitfühlendes Geben und nachhaltige Programme einen positiven Einfluss auf Gemeinden weltweit zu haben.',
       quickLinks: 'Schnelllinks',
       contactInfo: 'Kontakt',
+      support: 'Support',
       address: '123 Wohltätigkeitsstraße, Berlin, 10117',
       phone: '+49 30 1234 5678',
       email: 'info@ah2pv.org',
       newsletter: 'Newsletter',
       newsletterText: 'Abonnieren Sie, um Updates über unsere neuesten Projekte und Auswirkungen zu erhalten.',
+      newsletterThanks: 'Danke für Ihr Newsletter-Abonnement!',
       subscribe: 'Abonnieren',
       emailPlaceholder: 'Ihre E-Mail-Adresse',
       rights: 'Alle Rechte vorbehalten',
@@ -494,7 +678,42 @@ export const translations = {
       integrity: 'Integrität',
       integrityText: 'Wir halten die höchsten Standards der Ehrlichkeit und Transparenz ein',
       team: 'Unser Team',
-      teamDesc: 'Engagierte Fachleute, die zusammenarbeiten, um positive Veränderungen zu schaffen'
+      teamDesc: 'Engagierte Fachleute, die zusammenarbeiten, um positive Veränderungen zu schaffen',
+      roadmapTitle: 'Unsere Roadmap',
+      objectivesTitle: 'Unsere Ziele',
+      introTitle: 'Unser Dynamisches und Engagiertes Team',
+      introSubtitle: 'Leidenschaftliche humanitäre Arbeit',
+      introText: 'Unser Team besteht aus engagierten Fachleuten, die jeweils ihr einzigartiges Fachwissen einbringen, um positive Auswirkungen zu erzielen. Von Logistik bis Fundraising und von Bildung bis Gesundheit teilen unsere Mitglieder eine gemeinsame Leidenschaft für Philanthropie und das Wohlergehen der Schwächsten.',
+      highlights: {
+        presenceTitle: 'Eine Nähe zu Ihnen',
+        presenceText: 'Was AH2PV auszeichnet, ist unser Engagement, wirklich „Näher an Ihnen“ zu sein. Wir glauben an einen gemeinschaftszentrierten Ansatz und arbeiten direkt mit den Bewohnern zusammen, um die dringendsten Bedürfnisse zu erkennen und nachhaltige Lösungen zu entwickeln. Unser Team ist vor Ort, hört zu und handelt.',
+        focusTitle: 'Ein Fokus auf Togo',
+        focusText: 'Im Mittelpunkt unserer Mission steht Togo, wo unser Team seine Energie bedeutenden humanitären Initiativen widmet. Bildung, nachhaltige Entwicklung, Nothilfe – wir reagieren gewissenhaft auf die Bedürfnisse der togolesischen Gemeinden.',
+        collabTitle: 'Zusammenarbeit und Transparenz',
+        collabText: 'Die Stärke unseres Teams liegt in Zusammenarbeit und Transparenz. Wir arbeiten mit lokalen Organisationen, engagierten Freiwilligen und unterstützenden Unternehmen zusammen, um unsere Wirkung zu maximieren. Transparenz steht im Mittelpunkt unseres Handelns und versichert Spendern und Partnern, dass jeder Beitrag zählt.'
+      },
+      objectives: {
+        proximityTitle: 'Bedeutsame Nähe',
+        proximityText: 'Wir verpflichten uns, den Gemeinschaften, denen wir dienen, so nah wie möglich zu sein. In der togolesischen Realität verwurzelt, bemühen wir uns, lokale Bedürfnisse tiefgehend zu verstehen und angemessen zu handeln.',
+        healthcareTitle: 'Zugängliche Gesundheitsversorgung',
+        healthcareText: 'Wir wollen Barrieren für eine qualitativ hochwertige Gesundheitsversorgung abbauen. Von mobilen Kliniken bis hin zu Sensibilisierungsinitiativen arbeiten wir daran, die Gesundheit und das Wohlbefinden der Schwächsten zu verbessern.',
+        sustainableTitle: 'Nachhaltige Entwicklung',
+        sustainableText: 'Unser Engagement für nachhaltige Entwicklung zeigt sich in Projekten, die lokale Kapazitäten stärken, umweltfreundliche Praktiken fördern und Selbstständigkeit begünstigen.'
+      },
+      ong: {
+        title: 'Vorstellung der NGO-Association Humanitaire Plus Proche de Vous (AH2PV)',
+        p1: 'Im Herzen Togos... Viele Menschen leiden an verschiedenen Krankheiten, und zahlreiche Gesundheitsdistrikte verfügen über unzureichende Infrastruktur. Zur Unterstützung des Regierungsprogramms für Gemeinschaftsgesundheit hilft die humanitäre NGO Näher an Ihnen (AH2PV) seit 2011 den verletzlichsten Bevölkerungsgruppen, um den Zugang zu medizinischer Versorgung für alle zu fördern. Gegründet und geleitet von Frau Esther Ayawoavi Trede, einer Togolesin aus der Diaspora, hat AH2PV große Herausforderungen gemeistert und Außergewöhnliches erreicht: ein Lächeln zu schenken, wo es fehlt.',
+        p2: 'Die Verbesserung der Krankenhausbedingungen bleibt eine Priorität der Regierung – eine Vision, die AH2PV vor Ort umsetzt. In den vergangenen fünf Jahren hat sie Krankenhausbetten und Medikamente an Gesundheitsdistrikte in mehreren Regionen gespendet. Zudem wurden in den Regionen Plateaux und Savanes Nahrungs- und Sachgüter verteilt.',
+        p3: 'Im Rahmen ihres Fünfjahresplans hat AH2PV Kampagnen zur Sensibilisierung für Gewaltfreiheit und Bürgersinn durchgeführt. Insbesondere während der jüngsten Wahlen in Togo organisierte sie eine landesweite Aufklärungstour. Verschiedene Botschaften wurden übermittelt, um friedliche Wahlen zu fördern – Grundlage für zivilen Frieden und ganzheitliche Entwicklung. Treffen mit Jugendlichen fanden in mehreren Orten statt, um eine enge Beziehung zu den Führungskräften von morgen aufzubauen.'
+      },
+      togo: {
+        title: 'Togo entdecken:',
+        subtitle: 'Ein Land der Solidarität und Hoffnung',
+        p1: 'Togo, offiziell die Togolesische Republik, ist ein westafrikanisches Land mit einer geschätzten Bevölkerung von etwa 8,095 Millionen im Jahr 2022 und einer Dichte von 152 Einwohnern/km². Togo hat seinen Namen von der heutigen Stadt Togoville.',
+        p2: 'Als einer der kleinsten Flächenstaaten Afrikas umfasst Togo 56.600 km² und erstreckt sich etwa 700 km von Norden nach Süden bei einer Breite von höchstens 150 km. Im Norden grenzt es an Burkina Faso, im Süden an den Golf von Guinea, im Osten an Benin und im Westen an Ghana. Togo bietet vielfältige Landschaften: sandige Küste mit Kokospalmen im Süden, Hügel, grüne Täler, kleine Berge im Zentrum sowie trockene Ebenen und Savannen im Norden.'
+      },
+      calloutTitle: 'Gemeinsam Handeln – Nah bei Ihnen',
+      calloutText: 'Im Zentrum unseres Handelns steht die Überzeugung, dass humanitäres Engagement mehr ist als eine einfache Intervention. Es ist eine Zusammenarbeit zwischen Gemeinschaften, Organisationen und Einzelpersonen mit einer gemeinsamen Vision einer besseren Zukunft. Gemeinsam kommen wir unseren Zielen näher und schaffen Wirkungen, die geografische Grenzen überschreiten.'
     },
     
     // Gallery Page
@@ -517,7 +736,14 @@ export const translations = {
       breadcrumb: 'Anliegen',
       raised: 'gesammelt',
       goal: 'Ziel',
-      donors: 'Spender'
+      donors: 'Spender',
+      imageGallery: 'Bildergalerie',
+      aboutThisCause: 'Über dieses Anliegen',
+      category: 'Kategorie',
+      progress: 'Fortschritt',
+      otherCauses: 'Weitere Anliegen',
+      otherCausesDesc: 'Entdecken Sie weitere Projekte, die Sie unterstützen können.',
+      backToList: 'Zurück zur Liste'
     },
     
     // Events Page
@@ -527,7 +753,24 @@ export const translations = {
       breadcrumb: 'Veranstaltungen',
       upcoming: 'Kommende Veranstaltungen',
       past: 'Vergangene Veranstaltungen',
-      noEvents: 'Derzeit keine Veranstaltungen.'
+      noEvents: 'Derzeit keine Veranstaltungen.',
+      aboutTitle: 'Über die Veranstaltung',
+      videoTitle: 'Veranstaltungsvideo',
+      registerTitle: 'Anmeldung',
+      registerConfirm: 'Anmeldung bestätigen',
+      dateTitle: 'Datum',
+      timeTitle: 'Uhrzeit',
+      placeTitle: 'Ort',
+      nameLabel: 'Vollständiger Name',
+      emailLabel: 'E-Mail',
+      phoneLabel: 'Telefon',
+      ticketsLabel: 'Anzahl der Plätze',
+      registerSuccess: 'Anmeldung bestätigt!',
+      categories: {
+        fundraising: 'Spendenaktion',
+        volunteering: 'Freiwilligenarbeit',
+        donation: 'Spende'
+      }
     },
     
     // Blog Page
@@ -538,6 +781,15 @@ export const translations = {
       searchPlaceholder: 'Artikel suchen...',
       categories: 'Kategorien',
       recentPosts: 'Neueste Beiträge',
+      categoryLabels: {
+        all: 'Alle',
+        impact: 'Wirkungsgeschichten',
+        community: 'Gemeinschaft',
+        success: 'Erfolgsgeschichten',
+        projects: 'Projekte',
+        volunteers: 'Freiwillige',
+        giving: 'Spenden'
+      },
       by: 'Von',
       noArticles: 'Keine Artikel gefunden, die Ihren Kriterien entsprechen.'
     },
@@ -595,19 +847,49 @@ export const translations = {
       formIntro: 'Füllen Sie dieses Formular aus, um sich als Freiwilliger zu bewerben.',
       interests: 'Interessen',
       availability: 'Verfügbarkeit',
+      nameLabel: 'Vollständiger Name',
+      emailLabel: 'E-Mail',
+      phoneLabel: 'Telefon',
+      messageLabel: 'Nachricht (Motivation)',
+      availabilityOptions: {
+        weekdays: 'Unter der Woche',
+        weekends: 'Am Wochenende',
+        flexible: 'Flexibel'
+      },
+      interestOptions: {
+        events: 'Veranstaltungen',
+        fundraising: 'Spendenaktionen',
+        logistics: 'Logistik',
+        education: 'Bildung',
+        communication: 'Kommunikation'
+      },
       submit: 'Bewerbung absenden',
-      success: 'Danke! Ihre Bewerbung ist eingegangen.'
+      success: 'Danke! Ihre Bewerbung ist eingegangen.',
+      subject: 'Freiwilligenbewerbung',
+      whyTitle: 'Warum bei uns mitmachen?',
+      whyText: 'Als Freiwilliger tragen Sie direkt zu unseren Aktivitäten vor Ort bei. Ob einige Stunden im Monat oder mehrere Tage pro Woche – Ihre Hilfe ist wertvoll.',
+      placeholders: {
+        name: 'Ihr vollständiger Name',
+        email: 'ihre.email@beispiel.com',
+        phone: '+49 123 456 789',
+        availability: 'Wählen Sie Ihre Verfügbarkeit',
+        message: 'Erzählen Sie uns, warum Sie mitmachen möchten...'
+      }
     }
   }
 };
 
 export const getTranslation = (lang, key) => {
   const keys = key.split('.');
-  let value = translations[lang];
-  
-  for (const k of keys) {
-    value = value?.[k];
-  }
-  
-  return value || key;
+  const resolve = (l) => {
+    let v = translations[l];
+    for (const k of keys) v = v?.[k];
+    return v;
+  };
+
+  const primary = resolve(lang);
+  if (primary !== undefined && primary !== null) return primary;
+
+  const fallback = resolve('fr');
+  return fallback !== undefined && fallback !== null ? fallback : key;
 };

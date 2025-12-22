@@ -8,7 +8,7 @@ import { CONTACT } from '../config/site';
 import { sendEmail } from '../utils/email';
 
 const Contact = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -49,10 +49,10 @@ const Contact = () => {
     };
     try {
       await sendEmail(import.meta?.env?.VITE_EMAILJS_TEMPLATE_CONTACT || 'contact_template', payload);
-      alert(`Merci ${formData.firstName} ! Votre message a été envoyé.`);
+      alert(t('contactPage.success'));
     } catch (err) {
       const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-        `De: ${formData.firstName} ${formData.lastName} <${formData.email}>\nTéléphone: ${formData.phone}\n\n${formData.message}`
+        `${t('contactPage.firstName')}: ${formData.firstName}\n${t('contactPage.lastName')}: ${formData.lastName}\n${t('contactPage.email')}: ${formData.email}\n${t('contactPage.phone')}: ${formData.phone}\n\n${formData.message}`
       )}`;
       window.location.href = mailto;
     }
@@ -180,7 +180,7 @@ const Contact = () => {
                   </div>
                   <div className="info-content">
                     <h4>{t('contactPage.addressTitle')}</h4>
-                    <p>Bruno-körnerstr<br />67059 Allemagne</p>
+                    <p style={{ whiteSpace: 'pre-line' }}>{CONTACT.address?.[language] || ''}</p>
                   </div>
                 </div>
 

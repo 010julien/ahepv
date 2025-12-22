@@ -3,6 +3,7 @@ import Hero from '../components/Hero';
 import Accordion from '../components/Accordion';
 import { useTranslation } from '../i18n/useTranslation';
 import { faqData, faqCategories } from '../data/faq';
+import { CONTACT } from '../config/site';
 import { FaSearch } from 'react-icons/fa';
 
 const FAQ = () => {
@@ -65,10 +66,10 @@ const FAQ = () => {
 
           {/* Contact CTA */}
           <div className="faq-cta">
-            <h3>Still have questions?</h3>
-            <p>Can't find the answer you're looking for? Feel free to reach out to our team.</p>
-            <a href="mailto:info@charity.org" className="btn btn-primary">
-              Contact Us
+            <h3>{t('faq.stillQuestions')}</h3>
+            <p>{t('faq.stillQuestionsText')}</p>
+            <a href={`mailto:${CONTACT.email}`} className="btn btn-primary">
+              {t('faq.contactUs')}
             </a>
           </div>
         </div>

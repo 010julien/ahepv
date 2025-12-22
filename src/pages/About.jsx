@@ -5,7 +5,7 @@ import { FaEye, FaBullseye, FaHeart, FaUsers, FaHandshake, FaMapMarkerAlt, FaSte
 import SocialLink from '../components/SocialLink';
 
 const About = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   return (
     <div className="about">
       <Hero 
@@ -81,8 +81,8 @@ const About = () => {
                 </div>
                 <div className="team-info">
                   <h4>{member.name}</h4>
-                  <p className="team-role">{member.role}</p>
-                  <p className="team-bio">{member.bio}</p>
+                  <p className="team-role">{(member.role && typeof member.role === 'object') ? (member.role[language] || member.role.fr || member.role.en || member.role.de) : member.role}</p>
+                  <p className="team-bio">{(member.bio && typeof member.bio === 'object') ? (member.bio[language] || member.bio.fr || member.bio.en || member.bio.de) : member.bio}</p>
                 </div>
               </div>
             ))}
@@ -114,27 +114,18 @@ const About = () => {
             <div className="values-grid">
               <div className="value-item">
                 <FaMapMarkerAlt className="value-icon" />
-                <h4>Proximité Significative</h4>
-                <p>
-                  Nous nous engageons à être au plus près des communautés que nous servons. En nous imprégnant de la réalité togolaise, nous œuvrons pour comprendre les besoins locaux
-                  de manière approfondie et agir de manière adaptée.
-                </p>
+                <h4>{t('about.objectives.proximityTitle')}</h4>
+                <p>{t('about.objectives.proximityText')}</p>
               </div>
               <div className="value-item">
                 <FaStethoscope className="value-icon" />
-                <h4>Soins de Santé Accessibles</h4>
-                <p>
-                  Nous visons à éliminer les barrières à l'accès aux soins de santé de qualité. Des cliniques mobiles aux initiatives de sensibilisation, nous œuvrons pour améliorer la santé
-                  et le bien-être des populations les plus vulnérables.
-                </p>
+                <h4>{t('about.objectives.healthcareTitle')}</h4>
+                <p>{t('about.objectives.healthcareText')}</p>
               </div>
               <div className="value-item">
                 <FaLeaf className="value-icon" />
-                <h4>Développement Durable</h4>
-                <p>
-                  Notre engagement envers le développement durable se manifeste par des projets visant à renforcer les capacités locales, à promouvoir des pratiques respectueuses de l'environnement
-                  et à favoriser l'autosuffisance.
-                </p>
+                <h4>{t('about.objectives.sustainableTitle')}</h4>
+                <p>{t('about.objectives.sustainableText')}</p>
               </div>
             </div>
           </div>

@@ -3,28 +3,28 @@ import { FaHeart, FaEnvelope, FaPhone, FaLocationDot } from 'react-icons/fa6';
 import { useTranslation } from '../i18n/useTranslation';
 import logoARR from '/images/LogoARR.png';
 import SocialLink from './SocialLink';
-import { CONTACT } from '../config/site';
+import { CONTACT, SITE } from '../config/site';
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const quickLinks = [
     { path: '/', label: t('nav.home') },
     { path: '/about', label: t('nav.about') },
     { path: '/causes', label: t('nav.causes') },
-    { path: '/activities', label: t('nav.events') },
-    { path: '/donate', label: 'Faire un don' }
+    { path: '/events', label: t('nav.events') },
+    { path: '/donate', label: t('nav.donate') }
   ];
 
   const supportLinks = [
     { path: '/gallery', label: t('nav.gallery') },
     { path: '/faq', label: t('nav.faq') },
-    { path: '/contact', label: 'Contact' },
-    { path: '/volunteer', label: 'Devenir bénévole' }
+    { path: '/contact', label: t('nav.contact') },
+    { path: '/volunteer', label: t('nav.volunteer') }
   ];
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
-    alert('Merci de vous être inscrit à notre newsletter !');
+    alert(t('footer.newsletterThanks'));
   };
 
   return (
@@ -67,7 +67,7 @@ const Footer = () => {
 
             {/* Column 3: Support */}
             <div className="footer-col">
-              <h4>Support</h4>
+              <h4>{t('footer.support')}</h4>
               <ul className="footer-links">
                 {supportLinks.map((link) => (
                   <li key={link.path}>
@@ -83,10 +83,7 @@ const Footer = () => {
               <div className="contact-info">
                 <div className="contact-item">
                   <FaLocationDot />
-                  <span>Adresse 
-Bruno-körnerstr 
-67059
-Allemagne</span>
+                  <span style={{ whiteSpace: 'pre-line' }}>{CONTACT.address?.[language] || ''}</span>
                 </div>
                 <div className="contact-item">
                   <FaPhone />
@@ -99,16 +96,16 @@ Allemagne</span>
               </div>
               
               <div className="newsletter-section">
-                <h5>Newsletter</h5>
-                <p>Restez informé de nos actions</p>
+                <h5>{t('footer.newsletter')}</h5>
+                <p>{t('footer.newsletterText')}</p>
                 <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
                   <input
                     type="email"
-                    placeholder="Votre email"
+                    placeholder={t('footer.emailPlaceholder')}
                     required
                   />
                   <button type="submit" className="btn-subscribe">
-                    S'inscrire
+                    {t('footer.subscribe')}
                   </button>
                 </form>
               </div>
@@ -121,13 +118,13 @@ Allemagne</span>
       <div className="footer-bottom">
         <div className="container">
           <div className="footer-bottom-content">
-            <p>&copy; 2024 AH2PV. Tous droits réservés.</p>
+            <p>&copy; {new Date().getFullYear()} {SITE.name}. {t('footer.rights')}.</p>
             <div className="footer-bottom-links">
-              <Link to="/privacy">Politique de confidentialité</Link>
+              <Link to="/privacy">{t('footer.privacy')}</Link>
               <span className="separator">|</span>
-              <Link to="/terms">Conditions d'utilisation</Link>
+              <Link to="/terms">{t('footer.terms')}</Link>
               <span className="separator">|</span>
-              <Link to="/contact">Nous contacter</Link>
+              <Link to="/contact">{t('nav.contact')}</Link>
             </div>
           </div>
         </div>

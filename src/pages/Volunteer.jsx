@@ -54,33 +54,34 @@ const Volunteer = () => {
       interests: Array.isArray(formData.interests) ? formData.interests.join(', ') : '',
       availability: formData.availability,
       message: formData.message,
-      subject: 'Candidature bénévole',
+      subject: t('volunteer.subject'),
       reply_to: formData.email,
     };
     try {
       await sendEmail(import.meta?.env?.VITE_EMAILJS_TEMPLATE_VOLUNTEER || 'volunteer_template', payload);
-      alert(`Merci ${formData.name} ! Votre candidature a été envoyée.`);
+      alert(t('volunteer.success'));
     } catch (err) {
-      const body = `Nom: ${formData.name}\nEmail: ${formData.email}\nTéléphone: ${formData.phone}\nIntérêts: ${payload.interests}\nDisponibilités: ${formData.availability}\n\n${formData.message}`;
-      const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent('Candidature bénévole')}&body=${encodeURIComponent(body)}`;
+      const availabilityLabel = formData.availability ? t(`volunteer.availabilityOptions.${formData.availability}`) : '';
+      const body = `${t('volunteer.nameLabel')}: ${formData.name}\n${t('volunteer.emailLabel')}: ${formData.email}\n${t('volunteer.phoneLabel')}: ${formData.phone}\n${t('volunteer.interests')}: ${payload.interests}\n${t('volunteer.availability')}: ${availabilityLabel}\n\n${formData.message}`;
+      const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(t('volunteer.subject'))}&body=${encodeURIComponent(body)}`;
       window.location.href = mailto;
     }
   };
 
   const interestOptions = [
-    { value: 'events', label: 'Événements' },
-    { value: 'fundraising', label: 'Collecte de fonds' },
-    { value: 'logistics', label: 'Logistique' },
-    { value: 'education', label: 'Éducation' },
-    { value: 'communication', label: 'Communication' }
+    { value: 'events', label: t('volunteer.interestOptions.events') },
+    { value: 'fundraising', label: t('volunteer.interestOptions.fundraising') },
+    { value: 'logistics', label: t('volunteer.interestOptions.logistics') },
+    { value: 'education', label: t('volunteer.interestOptions.education') },
+    { value: 'communication', label: t('volunteer.interestOptions.communication') }
   ];
 
   return (
     <div className="volunteer-page">
       <Hero 
-        title="Devenir Bénévole" 
-        subtitle="Rejoignez notre équipe et faites une différence concrète."
-        breadcrumb="Bénévolat"
+        title={t('volunteer.title')} 
+        subtitle={t('volunteer.subtitle')}
+        breadcrumb={t('volunteer.breadcrumb')}
         backgroundImage="/images/hero-volunteer.jpg" 
       />
 
@@ -88,10 +89,9 @@ const Volunteer = () => {
         <div className="container">
           <div className="volunteer-content">
             <div className="mb-xl flex flex-col w-full justify-content-center align-items-center text-center">
-              <h2>Pourquoi nous rejoindre ?</h2>
+              <h2>{t('volunteer.whyTitle')}</h2>
               <p className=" justify-content-center align-items-center text-center">
-                En devenant bénévole, vous contribuez directement à nos actions sur le terrain.
-                Que vous ayez quelques heures par mois ou plusieurs jours par semaine, votre aide est précieuse.
+                {t('volunteer.whyText')}
               </p>
             </div>
 
@@ -99,7 +99,7 @@ const Volunteer = () => {
               <form className="volunteer-form" onSubmit={handleSubmit}>
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="name">Nom complet *</label>
+                    <label htmlFor="name">{t('volunteer.nameLabel')} *</label>
                     <input
                       type="text"
                       id="name"
@@ -107,11 +107,11 @@ const Volunteer = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      placeholder="Votre nom"
+                      placeholder={t('volunteer.placeholders.name')}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email">Email *</label>
+                    <label htmlFor="email">{t('volunteer.emailLabel')} *</label>
                     <input
                       type="email"
                       id="email"
@@ -119,25 +119,25 @@ const Volunteer = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      placeholder="votre.email@example.com"
+                      placeholder={t('volunteer.placeholders.email')}
                     />
                   </div>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="phone">Téléphone</label>
+                  <label htmlFor="phone">{t('volunteer.phoneLabel')}</label>
                   <input
                     type="tel"
                     id="phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="+33 6 12 34 56 78"
+                    placeholder={t('volunteer.placeholders.phone')}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label>Centres d'intérêt</label>
+                  <label>{t('volunteer.interests')}</label>
                   <div className="checkbox-group">
                     {interestOptions.map(option => (
                       <label key={option.value} className="checkbox-label">
@@ -155,7 +155,7 @@ const Volunteer = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="availability">Disponibilités</label>
+                  <label htmlFor="availability">{t('volunteer.availability')}</label>
                   <select
                     id="availability"
                     name="availability"
@@ -163,27 +163,27 @@ const Volunteer = () => {
                     onChange={handleChange}
                     required
                   >
-                    <option value="">Sélectionnez votre disponibilité</option>
-                    <option value="weekdays">En semaine</option>
-                    <option value="weekends">Le week-end</option>
-                    <option value="flexible">Flexible</option>
+                    <option value="">{t('volunteer.placeholders.availability')}</option>
+                    <option value="weekdays">{t('volunteer.availabilityOptions.weekdays')}</option>
+                    <option value="weekends">{t('volunteer.availabilityOptions.weekends')}</option>
+                    <option value="flexible">{t('volunteer.availabilityOptions.flexible')}</option>
                   </select>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">Message (motiver votre candidature)</label>
+                  <label htmlFor="message">{t('volunteer.messageLabel')}</label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     rows="5"
-                    placeholder="Dites-nous pourquoi vous souhaitez nous rejoindre..."
+                    placeholder={t('volunteer.placeholders.message')}
                   ></textarea>
                 </div>
 
                 <Button variant="primary" type="submit" style={{ width: '100%', padding: '1rem' }}>
-                  Envoyer ma candidature
+                  {t('volunteer.submit')}
                 </Button>
               </form>
             </div>

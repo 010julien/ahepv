@@ -3,6 +3,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import LanguageSwitcher from './components/LanguageSwitcher';
+import TopAnnouncement from './components/TopAnnouncement';
 import Home from './pages/Home';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
@@ -28,6 +29,7 @@ function App() {
         <ScrollReveal />
         <ScrollToTop />
         <div className="app">
+          <TopAnnouncement />
           <Header />
           <main>
             <Routes>

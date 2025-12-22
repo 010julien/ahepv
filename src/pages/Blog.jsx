@@ -2,18 +2,21 @@ import { useState } from 'react';
 import Hero from '../components/Hero';
 import Card from '../components/Card';
 import { useTranslation } from '../i18n/useTranslation';
+import { getLocalized, localeFromLang } from '../i18n/utils';
 import { blogPosts, categories } from '../data/blog';
 import { FaUser, FaClock, FaSearch } from 'react-icons/fa';
 
 const Blog = () => {
-  const { t } = useTranslation();
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const { t, language } = useTranslation();
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredPosts = blogPosts.filter(post => {
-    const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
+    const title = getLocalized(post.title, language).toLowerCase();
+    const excerpt = getLocalized(post.excerpt, language).toLowerCase();
+    const q = searchQuery.toLowerCase();
+    const matchesSearch = title.includes(q) || excerpt.includes(q);
     return matchesCategory && matchesSearch;
   });
 
@@ -47,7 +50,7 @@ const Blog = () => {
               {/* Blog Posts */}
               <div className="blog-posts">
                 {filteredPosts.map((post) => (
-                  <Card key={post.id} image={post.image} title={post.title} description={post.excerpt}>
+                  <Card key={post.id} image={post.image} title={getLocalized(post.title, language)} description={getLocalized(post.excerpt, language)}>
                     <div className="blog-meta">
                       <div className="blog-meta-item">
                         <FaUser />
@@ -55,12 +58,12 @@ const Blog = () => {
                       </div>
                       <div className="blog-meta-item">
                         <FaClock />
-                        <span>{post.readTime}</span>
+                        <span>{getLocalized(post.readTime, language)}</span>
                       </div>
                     </div>
                     <div className="blog-footer">
-                      <span className="blog-category">{post.category}</span>
-                      <span className="blog-date">{new Date(post.date).toLocaleDateString()}</span>
+                      <span className="blog-category">{t(`blog.categoryLabels.${post.category}`)}</span>
+                      <span className="blog-date">{new Date(post.date).toLocaleDateString(localeFromLang(language))}</span>
                     </div>
                   </Card>
                 ))}
@@ -85,7 +88,7 @@ const Blog = () => {
                       className={`category-btn ${selectedCategory === category ? 'active' : ''}`}
                       onClick={() => setSelectedCategory(category)}
                     >
-                      {category}
+                      {t(`blog.categoryLabels.${category}`)}
                     </button>
                   ))}
                 </div>
@@ -97,10 +100,10 @@ const Blog = () => {
                 <div className="recent-posts">
                   {recentPosts.map((post) => (
                     <div key={post.id} className="recent-post-item">
-                      <img src={post.image} alt={post.title} />
+                      <img src={post.image} alt={getLocalized(post.title, language)} />
                       <div className="recent-post-info">
-                        <h5>{post.title}</h5>
-                        <span>{new Date(post.date).toLocaleDateString()}</span>
+                        <h5>{getLocalized(post.title, language)}</h5>
+                        <span>{new Date(post.date).toLocaleDateString(localeFromLang(language))}</span>
                       </div>
                     </div>
                   ))}

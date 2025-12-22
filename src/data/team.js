@@ -2,9 +2,17 @@ export const teamMembers = [
   {
     id: 1,
     name: "Madame Esther Ayawoavi Trédé",
-    role: "Fondateuse et Directrice Exécutive de l'Association Humanitaire Plus Proche de Vous (AH2PV)",
+    role: {
+      fr: "Fondateuse et Directrice Exécutive de l'Association Humanitaire Plus Proche de Vous (AH2PV)",
+      en: "Founder and Executive Director of the NGO 'Association Humanitaire Plus Proche de Vous (AH2PV)'",
+      de: "Gründerin und Geschäftsführerin der NGO 'Association Humanitaire Plus Proche de Vous (AH2PV)'"
+    },
     image: "/images/about-preview.jpg",
-    bio: "Elle œuvre principalement au Togo, avec une approche centrée sur la proximité communautaire, la collaboration et la transparence. ",
+    bio: {
+      fr: "Elle œuvre principalement au Togo, avec une approche centrée sur la proximité communautaire, la collaboration et la transparence.",
+      en: "She works mainly in Togo with a community-centered approach, collaboration and transparency.",
+      de: "Sie arbeitet hauptsächlich in Togo mit einem gemeinschaftsorientierten Ansatz, Zusammenarbeit und Transparenz."
+    },
     social: {
       facebook: "#",
       twitter: "#",
@@ -14,9 +22,17 @@ export const teamMembers = [
   {
     id: 2,
     name: "Michael Brown",
-    role: "Directeur de Programme",
+    role: {
+      fr: "Directeur de Programme",
+      en: "Program Director",
+      de: "Programmleiter"
+    },
     image: "/images/about-preview.jpg",
-    bio: "Supervise tous les programmes caritatifs et assure un impact maximal pour les bénéficiaires.",
+    bio: {
+      fr: "Supervise tous les programmes caritatifs et assure un impact maximal pour les bénéficiaires.",
+      en: "Oversees all charity programs and ensures maximum impact for beneficiaries.",
+      de: "Überwacht alle Hilfsprogramme und sorgt für maximale Wirkung für die Begünstigten."
+    },
     social: {
       facebook: "#",
       twitter: "#",

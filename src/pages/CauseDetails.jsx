@@ -5,10 +5,13 @@ import ProgressBar from '../components/ProgressBar';
 import Button from '../components/Button';
 import { causes } from '../data/causes';
 import { FaUsers } from 'react-icons/fa';
+import { useTranslation } from '../i18n/useTranslation';
+import { getLocalized } from '../i18n/utils';
 
 const CauseDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t, language } = useTranslation();
   const cause = useMemo(() => causes.find(c => c.id === parseInt(id, 10)), [id]);
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -41,9 +44,9 @@ const CauseDetails = () => {
   return (
     <div className="cause-details-page">
       <Hero
-        title={cause.title}
-        subtitle={cause.category}
-        breadcrumb="Cause"
+        title={getLocalized(cause.title, language)}
+        subtitle={t(`gallery.${cause.category}`) || cause.category}
+        breadcrumb={t('causes.breadcrumb')}
         backgroundImage={cause.image}
       />
 
@@ -52,8 +55,8 @@ const CauseDetails = () => {
           <div className="cause-layout">
             <div className="cause-main">
               <div className="cause-info-card">
-                <h2 className="mb-md">{cause.title}</h2>
-                <p className="cause-description">{cause.description}</p>
+                <h2 className="mb-md">{getLocalized(cause.title, language)}</h2>
+                <p className="cause-description">{getLocalized(cause.description, language)}</p>
 
                 <ProgressBar percentage={percentage} raised={cause.raised} goal={cause.goal} />
 
@@ -61,22 +64,22 @@ const CauseDetails = () => {
                   <div className="meta-item">
                     <FaUsers />
                     <span>
-                      {cause.donors} donateurs
+                      {cause.donors} {t('causes.donors')}
                     </span>
                   </div>
                 </div>
 
                 <div className="mt-lg">
-                  <Link to="/donate" className="btn btn-primary">Faire un don</Link>
+                  <Link to="/donate" className="btn btn-primary">{t('home.donateNow')}</Link>
                 </div>
               </div>
 
               <div className="gallery-section">
-                <h3>Galerie d'images</h3>
+                <h3>{t('causes.imageGallery')}</h3>
                 <div className="gallery-grid">
                   {cause.images && cause.images.length > 0 && cause.images.map((src, idx) => (
-                    <div key={idx} className="gallery-item" onClick={() => openLightbox(src, cause.title)}>
-                      <img src={src} alt={`${cause.title} ${idx + 1}`} loading="lazy" />
+                    <div key={idx} className="gallery-item" onClick={() => openLightbox(src, getLocalized(cause.title, language))}>
+                      <img src={src} alt={`${getLocalized(cause.title, language)} ${idx + 1}`} loading="lazy" />
                     </div>
                   ))}
                 </div>
@@ -85,26 +88,26 @@ const CauseDetails = () => {
 
             <aside className="cause-sidebar">
               <div className="sidebar-card">
-                <h3>À propos de cette cause</h3>
+                <h3>{t('causes.aboutThisCause')}</h3>
                 <ul className="sidebar-list">
-                  <li><strong>Catégorie:</strong> {cause.category}</li>
-                  <li><strong>Objectif:</strong> {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(cause.goal)}</li>
-                  <li><strong>Collecté:</strong> {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(cause.raised)}</li>
-                  <li><strong>Progression:</strong> {percentage}%</li>
+                  <li><strong>{t('causes.category')}:</strong> {cause.category}</li>
+                  <li><strong>{t('causes.goal')}:</strong> {new Intl.NumberFormat(language === 'fr' ? 'fr-FR' : language === 'de' ? 'de-DE' : 'en-US', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(cause.goal)}</li>
+                  <li><strong>{t('causes.raised')}:</strong> {new Intl.NumberFormat(language === 'fr' ? 'fr-FR' : language === 'de' ? 'de-DE' : 'en-US', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(cause.raised)}</li>
+                  <li><strong>{t('causes.progress')}:</strong> {percentage}%</li>
                 </ul>
-                <Button variant="secondary" style={{ width: '100%' }} onClick={() => navigate('/causes')}>Retour à la liste</Button>
+                <Button variant="secondary" style={{ width: '100%' }} onClick={() => navigate('/causes')}>{t('causes.backToList')}</Button>
               </div>
             </aside>
           </div>
         </div>
       </section>
 
-      {/* Autres causes */}
+      {/* Other causes */}
       <section className="section section-bg">
         <div className="container">
           <div className="section-title">
-            <h2>Autres causes</h2>
-            <p>Découvrez d'autres projets que vous pouvez soutenir.</p>
+            <h2>{t('causes.otherCauses')}</h2>
+            <p>{t('causes.otherCausesDesc')}</p>
           </div>
           <div className="other-causes-grid">
             {otherCauses.map((c) => (
@@ -113,8 +116,8 @@ const CauseDetails = () => {
                   <img src={c.image} alt={c.title} loading="lazy" />
                 </div>
                 <div className="other-cause-content">
-                  <h4>{c.title}</h4>
-                  <p>{c.description}</p>
+                  <h4>{getLocalized(c.title, language)}</h4>
+                  <p>{getLocalized(c.description, language)}</p>
                 </div>
               </Link>
             ))}
@@ -126,7 +129,7 @@ const CauseDetails = () => {
       {lightboxOpen && currentImage && (
         <div className="lightbox" onClick={closeLightbox} role="dialog" aria-modal="true">
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <button className="lightbox-close" onClick={closeLightbox} aria-label="Fermer">&times;</button>
+            <button className="lightbox-close" onClick={closeLightbox} aria-label={t('common.close')}>&times;</button>
             <img src={currentImage.src} alt={currentImage.title} />
             <h3>{currentImage.title}</h3>
           </div>

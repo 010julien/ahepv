@@ -4,11 +4,12 @@ import Hero from '../components/Hero';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import { useTranslation } from '../i18n/useTranslation';
+import { getLocalized, localeFromLang } from '../i18n/utils';
 import { events } from '../data/events';
 import { FaCalendar, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Events = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [activeTab, setActiveTab] = useState('upcoming');
 
   const filteredEvents = events.filter(event => event.status === activeTab);
@@ -46,8 +47,8 @@ const Events = () => {
               <Card
                 key={event.id}
                 image={event.image}
-                title={event.title}
-                description={event.description}
+                title={getLocalized(event.title, language)}
+                description={getLocalized(event.description, language)}
                 clickable
                 link={`/events/${event.id}`}
                 linkText={t('home.readMore')}
@@ -57,7 +58,7 @@ const Events = () => {
                 <div className="event-details">
                   <div className="event-detail-item">
                     <FaCalendar />
-                    <span>{new Date(event.date).toLocaleDateString('fr-FR', { 
+                    <span>{new Date(event.date).toLocaleDateString(localeFromLang(language), { 
                       weekday: 'long', 
                       year: 'numeric', 
                       month: 'long', 
@@ -70,7 +71,7 @@ const Events = () => {
                   </div>
                   <div className="event-detail-item">
                     <FaMapMarkerAlt />
-                    <span>{event.location}</span>
+                    <span>{getLocalized(event.location, language)}</span>
                   </div>
                 </div>
                 {activeTab === 'upcoming' && (

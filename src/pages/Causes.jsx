@@ -4,11 +4,12 @@ import Card from '../components/Card';
 import ProgressBar from '../components/ProgressBar';
 import Button from '../components/Button';
 import { useTranslation } from '../i18n/useTranslation';
+import { getLocalized } from '../i18n/utils';
 import { causes } from '../data/causes';
 import { FaUsers } from 'react-icons/fa';
 
 const Causes = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   return (
     <div className="causes-page">
       <Hero 
@@ -28,8 +29,8 @@ const Causes = () => {
                   key={cause.id}
                   image={cause.image}
                   images={cause.images}
-                  title={cause.title}
-                  description={cause.description}
+                  title={getLocalized(cause.title, language)}
+                  description={getLocalized(cause.description, language)}
                   clickable
                   link={`/causes/${cause.id}`}
                 >

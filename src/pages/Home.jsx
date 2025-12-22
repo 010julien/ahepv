@@ -5,12 +5,13 @@ import ProgressBar from '../components/ProgressBar';
 import Counter from '../components/Counter';
 import Button from '../components/Button';
 import { useTranslation } from '../i18n/useTranslation';
+import { getLocalized, localeFromLang } from '../i18n/utils';
 import { causes } from '../data/causes';
 import { events } from '../data/events';
  
 
 const Home = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const featuredCauses = causes.slice(0, 3);
   const upcomingEvents = events.filter(e => e.status === 'upcoming').slice(0, 3);
 
@@ -25,7 +26,7 @@ const Home = () => {
             <p className="home-hero-subtitle">
               {t('home.heroSubtitle')}
             </p>
-            <div className="home-hero-buttons">
+            <div className="home-hero-buttons" style={{ marginBottom: '3rem' }}>
               <Link to="/causes" className="btn btn-primary btn-lg">
                 {t('home.ourCauses')}
               </Link>
@@ -111,8 +112,8 @@ const Home = () => {
                 <Card
                   key={cause.id}
                   image={cause.image}
-                  title={cause.title}
-                  description={cause.description}
+                  title={getLocalized(cause.title, language)}
+                  description={getLocalized(cause.description, language)}
                   clickable
                   link={`/causes/${cause.id}`}
                 >
@@ -150,8 +151,8 @@ const Home = () => {
               <Card
                 key={event.id}
                 image={event.image}
-                title={event.title}
-                description={event.description}
+                title={getLocalized(event.title, language)}
+                description={getLocalized(event.description, language)}
                 clickable
                 link={`/events/${event.id}`}
                 linkText={t('home.readMore')}
@@ -159,8 +160,8 @@ const Home = () => {
                 alwaysShowLink
               >
                 <div className="event-meta">
-                  <span className="event-date">{new Date(event.date).toLocaleDateString()}</span>
-                  <span className="event-location">{event.location}</span>
+                  <span className="event-date">{new Date(event.date).toLocaleDateString(localeFromLang(language))}</span>
+                  <span className="event-location">{getLocalized(event.location, language)}</span>
                 </div>
                 <Link to={`/events/${event.id}`} className="btn btn-secondary" onClick={(e) => e.stopPropagation()}>{t('home.joinEvent')}</Link>
               </Card>
@@ -223,7 +224,7 @@ const Home = () => {
       <style>{`
         .home-hero {
           position: relative;
-          min-height: 720px;
+          min-height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -240,8 +241,8 @@ const Home = () => {
           left: 0;
           right: 0;
           bottom: 0;
-          background:rgba(0, 0, 0, 0.37);
-          opacity: 0.9;
+          background: rgba(0, 0, 0, 0.37);
+          opacity: 0.6;
         }
 
         .home-hero-content {
@@ -268,6 +269,7 @@ const Home = () => {
           color: var(--color-white);
           margin-bottom: var(--spacing-2xl);
           line-height: 1.8;
+          text-align: center;
         }
 
         .home-hero-buttons {

@@ -7,11 +7,12 @@ import { FaCalendar, FaClock, FaMapMarkerAlt, FaTicketAlt } from 'react-icons/fa
 import { useTranslation } from '../i18n/useTranslation';
 import { CONTACT } from '../config/site';
 import { sendEmail } from '../utils/email';
+import { getLocalized, localeFromLang, mapEventCategoryKey } from '../i18n/utils';
 
 const EventDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [event, setEvent] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -54,27 +55,27 @@ const EventDetails = () => {
       from_name: formData.name,
       phone: formData.phone,
       tickets: formData.tickets,
-      event_title: event?.title || '',
-      subject: `Inscription activité: ${event?.title || ''}`,
+      event_title: getLocalized(event?.title, language) || '',
+      subject: `${t('events.registerTitle')}: ${getLocalized(event?.title, language) || ''}`,
       reply_to: formData.email,
     };
     try {
       await sendEmail(import.meta?.env?.VITE_EMAILJS_TEMPLATE_EVENT || 'event_registration_template', payload);
-      alert(`Merci ${formData.name} ! Votre inscription pour "${event.title}" a été confirmée.`);
+      alert(`${t('events.registerSuccess')}${event?.title ? `: ${getLocalized(event.title, language)}` : ''}`);
       navigate('/events');
     } catch (err) {
-      const body = `Nom: ${formData.name}\nEmail: ${formData.email}\nTéléphone: ${formData.phone}\nPlaces: ${formData.tickets}\n\nActivité: ${event?.title || ''}`;
-      const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(`Inscription activité: ${event?.title || ''}`)}&body=${encodeURIComponent(body)}`;
+      const body = `${t('events.nameLabel')}: ${formData.name}\n${t('events.emailLabel')}: ${formData.email}\n${t('events.phoneLabel')}: ${formData.phone}\n${t('events.ticketsLabel')}: ${formData.tickets}\n\n${t('events.aboutTitle')}: ${getLocalized(event?.title, language) || ''}`;
+      const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(`${t('events.registerTitle')}: ${getLocalized(event?.title, language) || ''}`)}&body=${encodeURIComponent(body)}`;
       window.location.href = mailto;
     }
   };
 
-  if (!event) return <div className="loading">Chargement...</div>;
+  if (!event) return <div className="loading">{t('common.loading')}</div>;
 
   return (
     <div className="event-details-page">
       <Hero 
-        title={event.title} 
+        title={getLocalized(event.title, language)} 
         breadcrumb={t('events.breadcrumb')}
         backgroundImage="/images/hero-events.jpg"
       />
@@ -84,20 +85,20 @@ const EventDetails = () => {
           <div className="event-layout">
             <div className="event-main">
               <div className="event-image-container">
-                <img src={event.image} alt={event.title} className="event-image" />
-                <span className={`event-category ${event.category}`}>{event.category}</span>
+                <img src={event.image} alt={getLocalized(event.title, language)} className="event-image" />
+                <span className={`event-category ${event.category}`}>{t(`events.categories.${mapEventCategoryKey(event.category)}`)}</span>
               </div>
               
               <div className="event-info-card">
                 <h3>{t('events.aboutTitle')}</h3>
-                <p className="event-description">{event.description}</p>
+                <p className="event-description">{getLocalized(event.description, language)}</p>
                 
                 <div className="event-meta">
                   <div className="meta-item">
                     <div className="meta-icon"><FaCalendar /></div>
                     <div>
                       <span className="label">{t('events.dateTitle')}</span>
-                      <span className="value">{new Date(event.date).toLocaleDateString('fr-FR', { 
+                      <span className="value">{new Date(event.date).toLocaleDateString(localeFromLang(language), { 
                         weekday: 'long', 
                         year: 'numeric', 
                         month: 'long', 
@@ -116,7 +117,7 @@ const EventDetails = () => {
                     <div className="meta-icon"><FaMapMarkerAlt /></div>
                     <div>
                       <span className="label">{t('events.placeTitle')}</span>
-                      <span className="value">{event.location}</span>
+                      <span className="value">{getLocalized(event.location, language)}</span>
                     </div>
                   </div>
                 </div>
@@ -129,7 +130,7 @@ const EventDetails = () => {
                 <div className="video-wrapper">
                   <video controls preload="metadata" poster={event.image}>
                     <source src={event.video} type="video/mp4" />
-                    Votre navigateur ne supporte pas la lecture de vidéos.
+                    {t('common.videoNotSupported')}
                   </video>
                 </div>
               </div>
@@ -140,7 +141,7 @@ const EventDetails = () => {
                 <h3>{t('events.registerTitle')}</h3>
                 <form className="registration-form" onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="name">Nom complet</label>
+                    <label htmlFor="name">{t('events.nameLabel')}</label>
                     <input
                       type="text"
                       id="name"
@@ -151,7 +152,7 @@ const EventDetails = () => {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">{t('events.emailLabel')}</label>
                     <input
                       type="email"
                       id="email"
@@ -162,7 +163,7 @@ const EventDetails = () => {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="phone">Téléphone</label>
+                    <label htmlFor="phone">{t('events.phoneLabel')}</label>
                     <input
                       type="tel"
                       id="phone"
@@ -172,7 +173,7 @@ const EventDetails = () => {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="tickets">Nombre de places</label>
+                    <label htmlFor="tickets">{t('events.ticketsLabel')}</label>
                     <div className="ticket-input">
                       <FaTicketAlt className="ticket-icon" />
                       <input

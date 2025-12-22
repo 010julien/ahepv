@@ -27,13 +27,13 @@ const Header = () => {
     { path: '/', label: t('nav.home') },
     { path: '/about', label: t('nav.about') },
     { path: '/causes', label: t('nav.causes') },
-    { path: '/activities', label: t('nav.events') },
+    { path: '/events', label: t('nav.events') },
     { path: '/gallery', label: t('nav.gallery') }
   ];
 
   const contactSubmenu = [
-    { path: '/contact', label: 'Contact' },
-    { path: '/volunteer', label: 'Devenir bénévole' },
+    { path: '/contact', label: t('nav.contact') },
+    { path: '/volunteer', label: t('nav.volunteer') },
     // { path: '/blog', label: t('nav.blog') },
     { path: '/faq', label: t('nav.faq') }
   ];
@@ -79,7 +79,7 @@ const Header = () => {
               onMouseLeave={() => setContactDropdownOpen(false)}
             >
               <button className="nav-link dropdown-toggle">
-                Contact <FaChevronDown className="dropdown-icon" />
+                {t('nav.contact')} <FaChevronDown className="dropdown-icon" />
               </button>
               <div className={`dropdown-menu ${contactDropdownOpen ? 'show' : ''}`}>
                 {contactSubmenu.map((link) => (
@@ -143,7 +143,7 @@ const Header = () => {
           display: flex;
           justify-content: center;
           align-items: center;
-          top: 0;
+          top: var(--announcement-offset, 0);
           left: 0;
           right: 0;
           z-index: var(--z-sticky);
