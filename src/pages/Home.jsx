@@ -112,6 +112,7 @@ const Home = () => {
                 <Card
                   key={cause.id}
                   image={cause.image}
+                  images={cause.images}  // Pass all images for the slider
                   title={getLocalized(cause.title, language)}
                   description={getLocalized(cause.description, language)}
                   clickable

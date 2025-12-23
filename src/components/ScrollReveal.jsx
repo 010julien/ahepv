@@ -6,7 +6,13 @@ const ScrollReveal = () => {
 
   useEffect(() => {
     const selectors = [
-      // Avoid generic 'section' to prevent full-page invisibility on desktop
+      // Global typography and elements
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+      'p',
+      'img',
+      'button',
+      '.btn',
+      // Components
       '.section-title',
       '.card',
       '.team-card',
@@ -47,11 +53,13 @@ const ScrollReveal = () => {
           if (entry.isIntersecting) {
             entry.target.classList.add('reveal-visible');
             revealedAny = true;
-            observer.unobserve(entry.target);
+          } else {
+            // Remove class when out of view to re-trigger animation next time
+            entry.target.classList.remove('reveal-visible');
           }
         });
       },
-      { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
     elements.forEach((el) => {

@@ -9,9 +9,9 @@ export const events = [
     date: "2025-12-21",
     time: "18:00",
     location: {
-      fr: "Koutimé, Vogan-Togo",
-      en: "Koutimé, Vogan-Togo",
-      de: "Koutimé, Vogan-Togo"
+      fr: "Koutimé, Togo",
+      en: "Koutimé, Togo",
+      de: "Koutimé, Togo"
     },
     description: {
       fr: "Rejoignez-nous pour une soirée élégante avec dîner, divertissement et collecte de fonds pour soutenir nos causes.",
@@ -33,9 +33,9 @@ export const events = [
     date: "2025-12-22",
     time: "09:00",
     location: {
-      fr: "Koutimé, Vogan-Togo",
-      en: "Koutimé, Vogan-Togo",
-      de: "Koutimé, Vogan-Togo"
+      fr: "Koutimé, Togo",
+      en: "Koutimé, Togo",
+      de: "Koutimé, Togo"
     },
     description: {
       fr: "Aidez-nous à collecter et distribuer des colis alimentaires aux familles dans le besoin de notre communauté.",
@@ -57,9 +57,9 @@ export const events = [
     date: "2024-02-05",
     time: "14:00",
     location: {
-      fr: "Cinkassé, Vogan-Togo",
-      en: "Cinkassé, Vogan-Togo",
-      de: "Cinkassé, Vogan-Togo"
+      fr: "Cinkassé, Togo",
+      en: "Cinkassé, Togo",
+      de: "Cinkassé, Togo"
     },
     description: {
       fr: "Arrivée à Cinkassé et distribution des kits de don, cela marquant le début des actions solidaires au profit des bénéficiaires locaux.",
@@ -81,9 +81,9 @@ export const events = [
     date: "2023-12-10",
     time: "08:00",
     location: {
-      fr: "Tandjouaré, Vogan-Togo",
-      en: "Tandjouaré, Vogan-Togo",
-      de: "Tandjouaré, Vogan-Togo"
+      fr: "Tandjouaré, Togo",
+      en: "Tandjouaré, Togo",
+      de: "Tandjouaré, Togo"
     },
     description: {
       fr: "Arrivée à Tandjouaré et distribution des kits de don, cela marquant le début des actions solidaires au profit des bénéficiaires locaux.",
@@ -105,9 +105,9 @@ export const events = [
     date: "2023-11-20",
     time: "06:00",
     location: {
-      fr: "Agou, Vogan-Togo",
-      en: "Agou, Vogan-Togo",
-      de: "Agou, Vogan-Togo"
+      fr: "Agou, Togo",
+      en: "Agou, Togo",
+      de: "Agou, Togo"
     },
     description: {
       fr: "Arrivée à Agou et distribution des kits de don, cela marquant le début des actions solidaires au profit des bénéficiaires locaux.",

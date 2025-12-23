@@ -1,14 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const Card = ({ image, images, title, description, link, linkText = 'Learn More', linkVariant = 'text', linkClassName = '', linkSize = '', clickable = false, alwaysShowLink = false, linkPosition = 'after', children }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   
   // Use images array if provided, otherwise fallback to single image wrapped in array
   const imageList = images && images.length > 0 ? images : (image ? [image] : []);
   const hasMultipleImages = imageList.length > 1;
+  useEffect(() => {
+    if (!hasMultipleImages || isHovered) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev === imageList.length - 1 ? 0 : prev + 1));
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [hasMultipleImages, isHovered, imageList.length]);
 
   const nextImage = (e) => {
     e.preventDefault();
@@ -40,6 +50,8 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
     <div
       className={`card ${clickable ? 'clickable' : ''}`}
       onClick={handleCardClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       role={clickable ? 'button' : undefined}
       tabIndex={clickable ? 0 : undefined}
       onKeyDown={handleKeyDown}

@@ -614,8 +614,8 @@ input, textarea, select {
 /* Reveal on scroll utility */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity var(--transition-base), transform var(--transition-base);
+  transform: translateY(40px); /* Increased distance for better effect */
+  transition: opacity 1s cubic-bezier(0.5, 0, 0, 1), transform 1s cubic-bezier(0.5, 0, 0, 1); /* Slower, fluid easing */
   will-change: opacity, transform;
 }
 
