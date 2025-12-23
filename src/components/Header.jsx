@@ -98,6 +98,15 @@ const Header = () => {
               </div>
             </div>
 
+            {/* Mobile Donate Button */}
+            <Link 
+              to="/donate" 
+              className="btn btn-primary mobile-donate-btn"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {t('nav.donate')}
+            </Link>
+
             {/* Mobile Social Icons */}
             <div className="mobile-social-header">
               {socialLinks.map((social) => (
@@ -397,6 +406,10 @@ const Header = () => {
           z-index: var(--z-sticky);
         }
 
+        .mobile-donate-btn {
+          display: none;
+        }
+
         @media (max-width: 1024px) {
           .mobile-menu-toggle {
             display: block;
@@ -493,21 +506,28 @@ const Header = () => {
              text-shadow: none;
            }
 
-
-          .donate-btn {
+          .mobile-donate-btn {
+            display: flex;
+            width: 100%;
+            margin-top: auto;
+            margin-bottom: var(--spacing-md);
+          }
+          
+          .header-actions .donate-btn {
             display: none;
           }
-          @media (max-width: 768px) {
-            .header {
-              padding: 0;
-              height: 130px !important;
-              justify-content: space-between;
-              
-            }
-            .logo-img {
-              width: 100px !important;
-              height: 100px !important;
-            }
+        }
+
+        @media (max-width: 768px) {
+          .header {
+            padding: 0;
+            height: 130px !important;
+            justify-content: space-between;
+            
+          }
+          .logo-img {
+            width: 100px !important;
+            height: 100px !important;
           }
         }
       `}</style>

@@ -71,9 +71,11 @@ const TopAnnouncement = () => {
   return (
     <div ref={barRef} className="top-announcement" role="region" aria-label="Announcement">
       <div className="ta-inner container">
-        <div className="ta-content">
-          {cfg.title && <strong className="ta-title">{cfg.title}</strong>}
-          {cfg.message && <span className="ta-text">{cfg.message}</span>}
+        <div className="ta-content-wrapper">
+          <div className="ta-content">
+            {cfg.title && <strong className="ta-title">{cfg.title}: </strong>}
+            {cfg.message && <span className="ta-text">{cfg.message}</span>}
+          </div>
         </div>
         <div className="ta-actions">
           {cfg.ctaText && cfg.ctaLink && (
@@ -103,22 +105,32 @@ const TopAnnouncement = () => {
           background-size: cover;
           background-position: center;
           box-shadow: var(--shadow-md);
+          overflow: hidden;
         }
 
         .ta-inner {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: var(--spacing-lg);
-          padding: var(--spacing-sm) var(--spacing-lg);
-          min-height: 56px;
+          gap: var(--spacing-md);
+          padding: 8px var(--spacing-lg);
+          min-height: 48px; 
+          max-width: 100%;
+        }
+
+        .ta-content-wrapper {
+          flex: 1;
+          overflow: hidden;
+          position: relative;
+          mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
         }
 
         .ta-content {
           display: flex;
           align-items: center;
-          gap: var(--spacing-md);
-          flex-wrap: wrap;
+          gap: var(--spacing-sm);
+          white-space: nowrap;
         }
 
         .ta-title {
@@ -136,32 +148,65 @@ const TopAnnouncement = () => {
           display: flex;
           align-items: center;
           gap: var(--spacing-sm);
+          flex-shrink: 0; /* Never shrink buttons */
+          z-index: 2;
+          background: transparent; /* No background needed if layout is robust */
         }
 
         .ta-cta {
-          border-color: var(--color-white);
+          border-color: rgba(255,255,255,0.4);
           color: var(--color-white) !important;
-          padding: 8px 14px;
+          padding: 4px 12px;
+          font-size: 0.85rem;
+          border-radius: 99px;
+          white-space: nowrap;
         }
 
         .ta-cta:hover {
           background: var(--color-white);
           color: var(--color-primary) !important;
+          border-color: var(--color-white);
         }
 
         .ta-close {
           background: transparent;
           color: var(--color-white);
-          font-size: 22px;
+          font-size: 20px;
           line-height: 1;
-          opacity: 0.9;
+          opacity: 0.8;
+          padding: 4px;
+          display: flex; 
+          align-items: center;
         }
 
         .ta-close:hover { opacity: 1; }
 
-        @media (max-width: 768px) {
-          .ta-inner { padding: var(--spacing-sm) var(--spacing-md); gap: var(--spacing-md); }
-          .ta-cta { padding: 6px 12px; }
+        /* Animation for Mobile/Tablet */
+        @media (max-width: 992px) {
+          .ta-inner {
+            padding: 6px var(--spacing-sm); 
+            gap: var(--spacing-sm);
+          }
+
+          .ta-content {
+            display: inline-block;
+            padding-left: 100%; 
+            animation: marquee 15s linear infinite;
+          }
+          
+          /* Pause on hover if possible (optional, maybe not for touch) */
+        }
+        
+        @keyframes marquee {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        @media (max-width: 480px) {
+           .ta-cta {
+             padding: 3px 10px;
+             font-size: 0.75rem;
+           }
         }
       `}</style>
     </div>
