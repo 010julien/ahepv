@@ -260,7 +260,7 @@ const Home = () => {
           font-size: var(--font-size-6xl);
           font-weight: var(--font-weight-extrabold);
           color: var(--color-white);
-          margin-top: 10rem;
+          margin-top: 18rem;
           margin-bottom: var(--spacing-lg);
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
