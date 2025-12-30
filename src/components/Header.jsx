@@ -1,0 +1,538 @@
+import { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { FaBars, FaTimes, FaHeart, FaChevronDown } from 'react-icons/fa';
+import { useTranslation } from '../i18n/useTranslation';
+import SocialLink from './SocialLink';
+// import logo from '/images/Logo.png';
+import logoARR from '/images/LogoARR.png';
+
+const Header = () => {
+  const { t } = useTranslation();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [contactDropdownOpen, setContactDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+
+
+  const navLinks = [
+    { path: '/', label: t('nav.home') },
+    { path: '/about', label: t('nav.about') },
+    { path: '/causes', label: t('nav.causes') },
+    { path: '/events', label: t('nav.events') },
+    { path: '/gallery', label: t('nav.gallery') }
+  ];
+
+  const contactSubmenu = [
+    { path: '/contact', label: t('nav.contact') },
+    { path: '/volunteer', label: t('nav.volunteer') },
+    // { path: '/blog', label: t('nav.blog') },
+    { path: '/faq', label: t('nav.faq') }
+  ];
+
+  const socialLinks = [
+    { url: '#', name: 'facebook' },
+    { url: '#', name: 'linkedin' },
+    { url: '#', name: 'instagram' },
+    { url: '#', name: 'tiktok' }
+  ];
+
+  return (
+    <header className={`header ${isScrolled ? 'header-scrolled' : ''}`}>
+      <div className="container">
+        <div className="header-content">
+          <Link to="/" className="logo">
+            <img src={logoARR} alt="Logo" className="logo-img" />
+          </Link>
+
+          {/* Mobile Overlay */}
+          <div 
+            className={`mobile-nav-overlay ${mobileMenuOpen ? 'active' : ''}`} 
+            onClick={() => setMobileMenuOpen(false)}
+          />
+
+          <nav className={`nav ${mobileMenuOpen ? 'nav-open' : ''}`}>
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+                onClick={() => setMobileMenuOpen(false)}
+                
+              >
+                {link.label}
+              </NavLink>
+            ))}
+            
+            {/* Contact Dropdown */}
+            <div 
+              className="nav-dropdown"
+              onMouseEnter={() => setContactDropdownOpen(true)}
+              onMouseLeave={() => setContactDropdownOpen(false)}
+            >
+              <button className="nav-link dropdown-toggle">
+                {t('nav.contact')} <FaChevronDown className="dropdown-icon" />
+              </button>
+              <div className={`dropdown-menu ${contactDropdownOpen ? 'show' : ''}`}>
+                {contactSubmenu.map((link) => (
+                  <NavLink
+                    key={link.path}
+                    to={link.path}
+                    className="dropdown-item"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setContactDropdownOpen(false);
+                    }}
+                  >
+                    {link.label}
+                  </NavLink>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile Donate Button */}
+            <Link 
+              to="/donate" 
+              className="btn btn-primary mobile-donate-btn"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {t('nav.donate')}
+            </Link>
+
+            {/* Mobile Social Icons */}
+            <div className="mobile-social-header">
+              {socialLinks.map((social) => (
+                <SocialLink 
+                  key={social.name}
+                  platform={social.name}
+                  url={social.url}
+                  style={{ color: 'var(--text-primary)' }}
+                />
+              ))}
+            </div>
+          </nav>
+
+          <div className="header-actions">
+            <div className="social-header">
+              {socialLinks.map((social) => (
+                <SocialLink 
+                  key={social.name}
+                  platform={social.name}
+                  url={social.url}
+                />
+              ))}
+            </div>
+
+            <Link to="/donate" className="btn btn-primary donate-btn">
+              {t('nav.donate')}
+            </Link>
+
+            <button
+              className="mobile-menu-toggle"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        .header {
+          position: fixed;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          top: var(--announcement-offset, 0);
+          left: 0;
+          right: 0;
+          z-index: var(--z-sticky);
+          background-color: transparent;
+          box-shadow: none;
+          transition: all 0.4s ease; /* Smooth transition */
+        }
+
+        .header-scrolled {
+          background: var(--color-white);
+          box-shadow: var(--shadow-md);
+          padding: var(--spacing-md) 0; /* Slightly compact on scroll */
+        }
+
+        .header-content {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          padding: var(--spacing-lg) 0;
+          transition: padding 0.4s ease;
+        }
+        
+        .header-scrolled .header-content {
+          padding: var(--spacing-sm) 0;
+        }
+
+        /* Default Text Colors (Transparent Header) */
+        .header .nav-link,
+        .header .dropdown-icon,
+        .mobile-menu-toggle,
+        .social-link-item {
+          color: var(--color-white);
+          text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Legibility on images */
+        }
+
+        /* Scrolled Text Colors */
+        .header-scrolled .nav-link,
+        .header-scrolled .dropdown-icon,
+        .header-scrolled .mobile-menu-toggle,
+        .header-scrolled .social-link-item {
+          color: var(--text-primary);
+          text-shadow: none;
+        }
+
+        .header .logo-img {
+          filter: brightness(0) invert(1); /* Make logo white if it's black initially */
+          transition: filter 0.4s ease;
+        }
+
+        .header-scrolled .logo-img {
+          filter: none; /* Restore original colored logo */
+        }
+
+        .header-actions {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-lg);
+        }
+
+        /* Social Icons Styles */
+        .social-header {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-sm);
+          color: var(--color-white);
+        }
+
+        /* Mobile Social Icons Styles - Hidden on Desktop */
+        .mobile-social-header {
+          display: none;
+        }
+
+        /* Special handling for Donate button */
+        .header .donate-btn {
+          background: var(--gradient-primary);
+          border: 2px solid transparent;
+          color: var(--color-white) !important;
+          box-shadow: 0 4px 15px rgba(52, 149, 67, 0.3);
+        }
+        
+        .header .donate-btn:hover {
+          background: var(--gradient-secondary);
+          color: var(--color-white) !important;
+          box-shadow: 0 6px 20px rgba(52, 149, 67, 0.4);
+        }
+
+        .header-scrolled .donate-btn {
+          background: var(--gradient-primary);
+          border: 2px solid transparent;
+          color: var(--color-white) !important;
+          box-shadow: 0 4px 15px rgba(52, 149, 67, 0.3);
+        }
+
+        .header-scrolled .donate-btn:hover {
+          background: var(--gradient-secondary);
+          box-shadow: 0 6px 20px rgba(52, 149, 67, 0.4);
+        }
+
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-sm);
+          font-family: var(--font-primary);
+          font-size: var(--font-size-2xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--text-primary);
+          transition: color var(--transition-fast);
+        }
+
+        .logo:hover {
+          color: var(--color-primary);
+        }
+
+        .logo-img {
+          width: 130px;
+          height: 80px;
+          object-fit: contain;
+          transition: all 0.4s ease;
+        }
+
+        .header-scrolled .logo-img {
+             width: 110px; /* Slight resize on scroll */
+        }
+
+        .logo-icon {
+          font-size: var(--font-size-3xl);
+          color: var(--color-primary);
+        }
+
+        .nav {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-xl);
+        }
+
+        .nav-link {
+          font-family: var(--font-primary);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
+          color: var(--text-primary);
+          position: relative;
+          transition: color var(--transition-fast);
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+          color: var(--color-primary);
+        }
+
+        .nav-link.active::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: var(--color-primary);
+        }
+
+        /* Dropdown Styles */
+        .nav-dropdown {
+          position: relative;
+        }
+
+        .dropdown-toggle {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-xs);
+        }
+
+        .dropdown-icon {
+          font-size: var(--font-size-xs);
+          transition: transform var(--transition-fast);
+        }
+
+        .nav-dropdown:hover .dropdown-icon {
+          transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          margin-top: var(--spacing-md);
+          background: var(--color-white);
+          border-radius: var(--radius-md);
+          box-shadow: var(--shadow-xl);
+          min-width: 200px;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-10px);
+          transition: all var(--transition-base);
+          padding: var(--spacing-sm) 0;
+        }
+
+        .dropdown-menu.show {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .dropdown-item {
+          display: block;
+          padding: var(--spacing-md) var(--spacing-lg);
+          color: var(--text-primary);
+          font-family: var(--font-primary);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
+          transition: all var(--transition-fast);
+          white-space: nowrap;
+        }
+
+        .dropdown-item:hover {
+          background: var(--bg-secondary);
+          color: var(--color-primary);
+          padding-left: calc(var(--spacing-lg) + 5px);
+        }
+
+        /* Mobile Overlay */
+        .mobile-nav-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: calc(var(--z-sticky) - 1); /* Just behind the nav drawer */
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(2px);
+        }
+        
+        .mobile-nav-overlay.active {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .mobile-menu-toggle {
+          display: none;
+          background: transparent;
+          font-size: var(--font-size-2xl);
+          color: var(--color-white);
+          font-size: 1.7rem !important;
+          margin-right: 2.5rem !important;
+          z-index: var(--z-sticky);
+        }
+
+        .mobile-donate-btn {
+          display: none;
+        }
+
+        @media (max-width: 1024px) {
+          .mobile-menu-toggle {
+            display: block;
+          }
+
+          .nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: var(--color-white);
+            flex-direction: column;
+            align-items: flex-start;
+            padding: var(--spacing-4xl) var(--spacing-xl);
+            gap: var(--spacing-lg);
+            box-shadow: var(--shadow-xl);
+            transition: right var(--transition-base);
+            z-index: var(--z-sticky);
+          }
+
+          .nav-open {
+            right: 0;
+          }
+
+          .header .nav-link {
+            color: var(--text-primary);
+            width: 100%;
+            padding: var(--spacing-sm) 0;
+            text-shadow: none;
+          }
+          
+          .nav .dropdown-icon {
+            color: var(--text-primary);
+            text-shadow: none;
+          }
+
+          .nav-dropdown {
+            width: 100%;
+          }
+
+          .dropdown-toggle {
+            width: 100%;
+            justify-content: space-between;
+          }
+
+          .dropdown-menu {
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            box-shadow: none;
+            margin-top: var(--spacing-sm);
+            margin-left: var(--spacing-md);
+            padding-left: var(--spacing-md);
+            border-left: 2px solid var(--color-primary);
+          }
+
+          .dropdown-menu.show {
+            display: block;
+          }
+
+          .dropdown-menu:not(.show) {
+            display: none;
+          }
+
+          .dropdown-item {
+            padding: var(--spacing-sm) var(--spacing-md);
+          }
+
+          .header-actions {
+             gap: var(--spacing-sm);
+          }
+          
+          .social-header {
+             display: none; 
+          }
+          
+          /* Show Mobile Social Icons */
+          .mobile-social-header {
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             gap: var(--spacing-md);
+             width: 100%;
+             margin-top: auto; /* Push to bottom */
+             padding-top: var(--spacing-lg);
+             border-top: 1px solid var(--color-gray-200);
+          }
+           
+           /* Force dark theme icons on mobile drawer */
+           .mobile-social-header .social-link-item {
+             color: var(--text-primary); 
+             text-shadow: none;
+           }
+
+          .mobile-donate-btn {
+            display: flex;
+            width: 100%;
+            margin-top: auto;
+            margin-bottom: var(--spacing-md);
+          }
+          
+          .header-actions .donate-btn {
+            display: none;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .header {
+            padding: 0;
+            height: 130px !important;
+            justify-content: space-between;
+            
+          }
+          .logo-img {
+            width: 100px !important;
+            height: 100px !important;
+          }
+        }
+      `}</style>
+    </header>
+  );
+};
+
+export default Header;

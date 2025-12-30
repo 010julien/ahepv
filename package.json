@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "togo-school-mobile",
   "version": "1.0.0",
   "main": "index.js",
@@ -32,4 +33,29 @@
     "react-native-worklets": "0.5.1"
   },
   "private": true
+=======
+  "name": "ah2pv",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "framer-motion": "^11.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.2.1",
+    "react-router-dom": "^6.26.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.21"
+  }
+>>>>>>> 12eaadb0dc376b3eacb4e6c81806e2d88c581598
 }

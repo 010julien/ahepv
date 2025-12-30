@@ -1,0 +1,128 @@
+export const events = [
+  {
+    id: 1,
+    title: {
+      fr: "Don de Velo à Vogan",
+      en: "Bicycle Donation in Vogan",
+      de: "Fahrradspende in Vogan"
+    },
+    date: "2025-12-21",
+    time: "18:00",
+    location: {
+      fr: "Koutimé, Togo",
+      en: "Koutimé, Togo",
+      de: "Koutimé, Togo"
+    },
+    description: {
+      fr: "Rejoignez-nous pour une soirée élégante avec dîner, divertissement et collecte de fonds pour soutenir nos causes.",
+      en: "Join us for an elegant evening with dinner, entertainment, and fundraising to support our causes.",
+      de: "Begleiten Sie uns zu einem eleganten Abend mit Abendessen, Unterhaltung und Spendenaktion zur Unterstützung unserer Anliegen."
+    },
+    image: "/images/avenir-don.jpg",
+    video: "/images/avenir-don.mp4",
+    category: "collecte de fonds",
+    status: "upcoming"
+  },
+  {
+    id: 2,
+    title: {
+      fr: "Don de Livre à Vogan",
+      en: "Book Donation in Vogan",
+      de: "Bücherspende in Vogan"
+    },
+    date: "2025-12-22",
+    time: "09:00",
+    location: {
+      fr: "Koutimé, Togo",
+      en: "Koutimé, Togo",
+      de: "Koutimé, Togo"
+    },
+    description: {
+      fr: "Aidez-nous à collecter et distribuer des colis alimentaires aux familles dans le besoin de notre communauté.",
+      en: "Help us collect and distribute food parcels to families in need across our community.",
+      de: "Helfen Sie uns, Lebensmittelpakete für bedürftige Familien in unserer Gemeinschaft zu sammeln und zu verteilen."
+    },
+    image: "/images/avenir-don1.jpg",
+    video: "/images/avenir-don1.mp4",
+    category: "bénévolat",
+    status: "upcoming"
+  },
+  {
+    id: 3,
+    title: {
+      fr: "Arrivée à Cinkassé et sortie des kits de don",
+      en: "Arrival in Cinkassé and distribution of donation kits",
+      de: "Ankunft in Cinkassé und Ausgabe von Spendensets"
+    },
+    date: "2024-02-05",
+    time: "14:00",
+    location: {
+      fr: "Cinkassé, Togo",
+      en: "Cinkassé, Togo",
+      de: "Cinkassé, Togo"
+    },
+    description: {
+      fr: "Arrivée à Cinkassé et distribution des kits de don, cela marquant le début des actions solidaires au profit des bénéficiaires locaux.",
+      en: "Arrival in Cinkassé and distribution of donation kits, marking the start of solidarity actions for local beneficiaries.",
+      de: "Ankunft in Cinkassé und Verteilung von Spendensets – der Beginn solidarischer Aktionen für die lokalen Begünstigten."
+    },
+    image: "/images/resize-conkasse4.jpg",
+    video: "/images/resize-conkasse4.mp4",
+    category: "don",
+    status: "past"
+  },
+  {
+    id: 4,
+    title: {
+      fr: "Dons de kits et de lits médicaux à tandjouaré",
+      en: "Donations of kits and medical beds in Tandjouaré",
+      de: "Spenden von Sets und Krankenhausbetten in Tandjouaré"
+    },
+    date: "2023-12-10",
+    time: "08:00",
+    location: {
+      fr: "Tandjouaré, Togo",
+      en: "Tandjouaré, Togo",
+      de: "Tandjouaré, Togo"
+    },
+    description: {
+      fr: "Arrivée à Tandjouaré et distribution des kits de don, cela marquant le début des actions solidaires au profit des bénéficiaires locaux.",
+      en: "Arrival in Tandjouaré and distribution of donation kits, marking the beginning of solidarity actions for local beneficiaries.",
+      de: "Ankunft in Tandjouaré und Verteilung von Spendensets – der Beginn solidarischer Aktionen für die lokalen Begünstigten."
+    },
+    image: "/images/resize-tandouare1.jpg",
+    video: "/images/resize-tandouare1.mp4",
+    category: "don",
+    status: "past"
+  },
+  {
+    id: 5,
+    title: {
+      fr: "Dons de kits en carton à Agou",
+      en: "Donations of cardboard kits in Agou",
+      de: "Spenden von Kartonsets in Agou"
+    },
+    date: "2023-11-20",
+    time: "06:00",
+    location: {
+      fr: "Agou, Togo",
+      en: "Agou, Togo",
+      de: "Agou, Togo"
+    },
+    description: {
+      fr: "Arrivée à Agou et distribution des kits de don, cela marquant le début des actions solidaires au profit des bénéficiaires locaux.",
+      en: "Arrival in Agou and distribution of donation kits, marking the start of solidarity actions for local beneficiaries.",
+      de: "Ankunft in Agou und Verteilung von Spendensets – der Beginn solidarischer Aktionen für die lokalen Begünstigten."
+    },
+    image: "/images/resize-agou7.jpg",
+    video: "/images/resize-agou7.mp4",
+    category: "fundraiser",
+    status: "past"
+  },
+
+
+  
+
+
+
+];
