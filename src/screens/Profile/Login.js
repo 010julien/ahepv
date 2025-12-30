@@ -105,7 +105,7 @@ const Login = () => {
           {/* Forgot Password */}
           <TouchableOpacity style={styles.forgotPasswordContainer}>
             <Text style={[styles.forgotPassword, isDark && styles.forgotPasswordDark]}>
-              Mot de passe oublié?
+              Mot de passe oublié ?
             </Text>
           </TouchableOpacity>
 

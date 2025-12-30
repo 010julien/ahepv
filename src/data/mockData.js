@@ -756,7 +756,7 @@ export const messages = [
 export const badges = [
   {
     id: 'b1',
-    name: 'Early Bird',
+    name: 'Lève-tôt',
     description: 'Connecté avant 7h du matin pendant 7 jours consécutifs',
     icon: 'sunny-outline',
     color: '#f59e0b',
@@ -766,7 +766,7 @@ export const badges = [
   },
   {
     id: 'b2',
-    name: 'Top Student',
+    name: 'Meilleur Élève',
     description: 'Classé dans le top 10 pendant 3 semaines',
     icon: 'trophy-outline',
     color: '#FF6905',
@@ -776,7 +776,7 @@ export const badges = [
   },
   {
     id: 'b3',
-    name: 'Helping Hand',
+    name: 'Main Secourable',
     description: 'Aidé 10 camarades sur le forum',
     icon: 'hand-left-outline',
     color: '#10b981',
@@ -786,7 +786,7 @@ export const badges = [
   },
   {
     id: 'b4',
-    name: 'Bookworm',
+    name: 'Rat de Bibliothèque',
     description: 'Lu 20 ressources de la bibliothèque',
     icon: 'book-outline',
     color: '#8b5cf6',
@@ -797,7 +797,7 @@ export const badges = [
   },
   {
     id: 'b5',
-    name: 'Perfect Score',
+    name: 'Score Parfait',
     description: 'Obtenu 20/20 à un devoir',
     icon: 'star-outline',
     color: '#3b82f6',
