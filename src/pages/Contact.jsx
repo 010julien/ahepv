@@ -14,6 +14,7 @@ const Contact = () => {
     lastName: '',
     email: '',
     phone: '',
+    profession: '',
     subject: '',
     message: ''
   });
@@ -43,6 +44,7 @@ const Contact = () => {
       from_email: formData.email,
       from_name: `${formData.firstName} ${formData.lastName}`.trim(),
       phone: formData.phone,
+      profession: formData.profession,
       subject: formData.subject,
       message: formData.message,
       reply_to: formData.email,
@@ -52,7 +54,7 @@ const Contact = () => {
       alert(t('contactPage.success'));
     } catch (err) {
       const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-        `${t('contactPage.firstName')}: ${formData.firstName}\n${t('contactPage.lastName')}: ${formData.lastName}\n${t('contactPage.email')}: ${formData.email}\n${t('contactPage.phone')}: ${formData.phone}\n\n${formData.message}`
+        `${t('contactPage.firstName')}: ${formData.firstName}\n${t('contactPage.lastName')}: ${formData.lastName}\n${t('contactPage.email')}: ${formData.email}\n${t('contactPage.phone')}: ${formData.phone}\n${t('contactPage.profession')}: ${formData.profession}\n\n${formData.message}`
       )}`;
       window.location.href = mailto;
     }
@@ -135,6 +137,18 @@ const Contact = () => {
                       placeholder={t('contactPage.placeholders.phone')}
                     />
                   </div>
+                </div>
+
+                <div className="form-group full-width">
+                  <label htmlFor="profession">{t('contactPage.profession')}</label>
+                  <input
+                    type="text"
+                    id="profession"
+                    name="profession"
+                    value={formData.profession}
+                    onChange={handleChange}
+                    placeholder={t('contactPage.placeholders.profession')}
+                  />
                 </div>
 
                 <div className="form-group full-width">

@@ -66,6 +66,8 @@ export const translations = {
       donateNow: 'Faire un Don',
       joinEvent: 'Rejoindre l\'activité',
       readMore: 'Lire Plus',
+      quotes: 'Nos Valeurs',
+      quotesDesc: 'Découvrez les citations inspirantes qui guident notre mission humanitaire',
       ctaTitle: 'Prêt à Faire la Différence ?',
       ctaText: 'Votre soutien peut changer des vies. Rejoignez-nous aujourd\'hui et faites partie de la solution.',
       becomeVolunteer: 'Devenir Bénévole'
@@ -178,6 +180,7 @@ export const translations = {
       nameLabel: 'Nom complet',
       emailLabel: 'Email',
       phoneLabel: 'Téléphone',
+      professionLabel: 'Profession',
       ticketsLabel: 'Nombre de places',
       registerSuccess: 'Inscription confirmée !',
       categories: {
@@ -231,6 +234,7 @@ export const translations = {
       lastName: 'Nom',
       email: 'Email',
       phone: 'Téléphone',
+      profession: 'Profession',
       subject: 'Sujet',
       message: 'Message',
       send: 'Envoyer le message',
@@ -240,6 +244,7 @@ export const translations = {
         lastName: 'Votre nom',
         email: 'votre.email@example.com',
         phone: '+33 6 12 34 56 78',
+        profession: 'Votre profession',
         subject: 'Sujet de votre message',
         message: 'Écrivez votre message ici...'
       },
@@ -264,6 +269,7 @@ export const translations = {
       nameLabel: 'Nom complet',
       emailLabel: 'Email',
       phoneLabel: 'Téléphone',
+      professionLabel: 'Profession',
       messageLabel: 'Message (motiver votre candidature)',
       availabilityOptions: {
         weekdays: 'En semaine',
@@ -286,6 +292,7 @@ export const translations = {
         name: 'Votre nom complet',
         email: 'votre.email@example.com',
         phone: '+33 6 12 34 56 78',
+        profession: 'Votre profession',
         availability: 'Sélectionnez votre disponibilité',
         message: 'Dites-nous pourquoi vous souhaitez nous rejoindre...'
       }
@@ -359,6 +366,8 @@ export const translations = {
       donateNow: 'Donate Now',
       joinEvent: 'Join Event',
       readMore: 'Read More',
+      quotes: 'Our Values',
+      quotesDesc: 'Discover the inspiring quotes that guide our humanitarian mission',
       ctaTitle: 'Ready to Make a Difference?',
       ctaText: 'Your support can change lives. Join us today and be part of the solution.',
       becomeVolunteer: 'Become a Volunteer'
@@ -471,6 +480,7 @@ export const translations = {
       nameLabel: 'Full Name',
       emailLabel: 'Email',
       phoneLabel: 'Phone',
+      professionLabel: 'Profession',
       ticketsLabel: 'Number of tickets',
       registerSuccess: 'Registration confirmed!',
       categories: {
@@ -524,6 +534,7 @@ export const translations = {
       lastName: 'Last Name',
       email: 'Email',
       phone: 'Phone',
+      profession: 'Profession',
       subject: 'Subject',
       message: 'Message',
       send: 'Send Message',
@@ -533,6 +544,7 @@ export const translations = {
         lastName: 'Your last name',
         email: 'your.email@example.com',
         phone: '+1 234 567 890',
+        profession: 'Your profession',
         subject: 'Subject of your message',
         message: 'Write your message here...'
       },
@@ -557,6 +569,7 @@ export const translations = {
       nameLabel: 'Full Name',
       emailLabel: 'Email',
       phoneLabel: 'Phone',
+      professionLabel: 'Profession',
       messageLabel: 'Message (motivation)',
       availabilityOptions: {
         weekdays: 'Weekdays',
@@ -579,6 +592,7 @@ export const translations = {
         name: 'Your full name',
         email: 'your.email@example.com',
         phone: '+1 234 567 890',
+        profession: 'Your profession',
         availability: 'Select your availability',
         message: 'Tell us why you want to join...'
       }
@@ -764,6 +778,7 @@ export const translations = {
       nameLabel: 'Vollständiger Name',
       emailLabel: 'E-Mail',
       phoneLabel: 'Telefon',
+      professionLabel: 'Beruf',
       ticketsLabel: 'Anzahl der Plätze',
       registerSuccess: 'Anmeldung bestätigt!',
       categories: {
@@ -817,6 +832,7 @@ export const translations = {
       lastName: 'Nachname',
       email: 'E-Mail',
       phone: 'Telefon',
+      profession: 'Beruf',
       subject: 'Betreff',
       message: 'Nachricht',
       send: 'Nachricht Senden',
@@ -850,6 +866,7 @@ export const translations = {
       nameLabel: 'Vollständiger Name',
       emailLabel: 'E-Mail',
       phoneLabel: 'Telefon',
+      professionLabel: 'Beruf',
       messageLabel: 'Nachricht (Motivation)',
       availabilityOptions: {
         weekdays: 'Unter der Woche',

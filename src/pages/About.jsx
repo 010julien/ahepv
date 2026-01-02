@@ -6,6 +6,8 @@ import SocialLink from '../components/SocialLink';
 
 const About = () => {
   const { t, language } = useTranslation();
+  const founder = teamMembers[0];
+  const otherMembers = teamMembers.slice(1);
   return (
     <div className="about">
       <Hero 
@@ -66,8 +68,35 @@ const About = () => {
             <h2>{t('about.team')}</h2>
             <p>{t('about.teamDesc')}</p>
           </div>
+
+          {founder && (
+            <div className="founder-feature">
+              <div className="founder-photo">
+                <img src={founder.image} alt={founder.name} loading="lazy" />
+              </div>
+              <div className="founder-content">
+                <h3 className="founder-name">{founder.name}</h3>
+                <p className="founder-role">
+                  {(founder.role && typeof founder.role === 'object')
+                    ? (founder.role[language] || founder.role.fr || founder.role.en || founder.role.de)
+                    : founder.role}
+                </p>
+                <p className="founder-bio">
+                  {(founder.bio && typeof founder.bio === 'object')
+                    ? (founder.bio[language] || founder.bio.fr || founder.bio.en || founder.bio.de)
+                    : founder.bio}
+                </p>
+                <div className="founder-social">
+                  <SocialLink platform="facebook" url={founder.social.facebook} />
+                  <SocialLink platform="twitter" url={founder.social.twitter} />
+                  <SocialLink platform="linkedin" url={founder.social.linkedin} />
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="team-grid">
-            {teamMembers.map((member) => (
+            {otherMembers.map((member) => (
               <div key={member.id} className="team-card">
                 <div className="team-image">
                   <img src={member.image} alt={member.name} />
@@ -368,6 +397,56 @@ const About = () => {
           gap: var(--spacing-xl);
         }
 
+        .founder-feature {
+          display: grid;
+          grid-template-columns: 320px 1fr;
+          gap: var(--spacing-2xl);
+          align-items: center;
+          background: var(--color-white);
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-lg);
+          overflow: hidden;
+          margin-bottom: var(--spacing-3xl);
+        }
+
+        .founder-photo {
+          height: 100%;
+          min-height: 280px;
+          background: var(--bg-secondary);
+        }
+
+        .founder-photo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .founder-content {
+          padding: var(--spacing-2xl);
+        }
+
+        .founder-name {
+          margin-bottom: var(--spacing-xs);
+        }
+
+        .founder-role {
+          color: var(--color-primary);
+          font-weight: var(--font-weight-semibold);
+          margin-bottom: var(--spacing-md);
+        }
+
+        .founder-bio {
+          color: var(--text-secondary);
+          line-height: 1.8;
+          margin-bottom: var(--spacing-lg);
+        }
+
+        .founder-social {
+          display: flex;
+          gap: var(--spacing-md);
+        }
+
         .team-card {
           background: var(--color-white);
           border-radius: var(--radius-lg);
@@ -476,6 +555,10 @@ const About = () => {
 
           .values-grid,
           .team-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .founder-feature {
             grid-template-columns: 1fr;
           }
         }

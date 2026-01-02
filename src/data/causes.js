@@ -40,9 +40,9 @@ export const causes = [
   {
     id: 3,
     title: {
-      fr: "Don de lits médicaux et d'une ambulance médicalisée à l'hôpital préfectoral de Mandouri",
-      en: "Donation of medical beds and an ambulance to Mandouri Prefectural Hospital",
-      de: "Spende von Krankenhausbetten und eines Krankenwagens an das Präfekturkrankenhaus Mandouri"
+      fr: "Don de lits médicaux à l'hôpital préfectoral de Mandouri",
+      en: "Donation of medical beds to Mandouri Prefectural Hospital",
+      de: "Spende von Krankenhausbetten an das Präfekturkrankenhaus Mandouri"
     },
     category: "medical",
     description: {
@@ -51,7 +51,7 @@ export const causes = [
       de: "Am 14. Februar 2016 spendete die Delegation von AH2PV dem Präfekturkrankenhaus Mandouri 25 moderne Krankenhausbetten – in Anwesenheit traditioneller Autoritäten, der Krankenhausleitung und der lokalen Bevölkerung."
     },
     image: "/images/lits-mandouri4.jpg",
-    images: ["/images/lits-mandouri4.jpg", "/images/lits-mandouri1.jpg", "/images/lits-mandouri2.jpg", "/images/lits-mandouri3.jpg", "/images/lits-mandouri4.jpg"],
+    images: ["/images/lits-mandouri4.jpg", "/images/lits-mandouri3.jpg", "/images/lits-mandouri4.jpg"],
     raised: 18500,
     goal: 20000,
     donors: 2
@@ -148,14 +148,21 @@ export const causes = [
     goal: 15000,
     donors: 73
   },
-  // {
-  //   id: 8,
-  //   title: "Don de 03 lits médicaux, de médicaments et de Ballots de friperie à Agou Kebokpeta",
-  //   category: "medical",
-  //   description: "Autonomisez les femmes grâce à la formation professionnelle, l'éducation et les opportunités d'entrepreneuriat.",
-  //   image: "/images/about-preview.jpg",
-  //   raised: 9500,
-  //   goal: 15000,
-  //   donors: 73
-  // }
+  
+  {
+    id: 10,
+    title: {
+      fr: "Don de fouteille roullante pour les enfants handicapés à Boubouaka",
+      en: "Don of wheelchairs for disabled children",
+      de: "Don von Rollstühlen für Behinderten Kinder"
+    },
+    category: "medical",
+    description: "Animés par un profond élan de solidarité et de compassion, les membres de l’ONG, fidèles à leur engagement humanitaire, ont une fois de plus posé un acte fort en faveur des plus vulnérables. En effet, une importante action de don de fauteuils roulants a été organisée au profit des enfants handicapés de Boubouaka, afin d’améliorer leur mobilité et leur qualité de vie. Cette initiative salutaire s’inscrit dans la vision de l’organisation qui œuvre sans relâche pour le bien-être des enfants vivant avec un handicap, particulièrement dans les localités de l’intérieur du TOGO. La cérémonie de remise s’est déroulée dans une atmosphère empreinte d’émotion et d’espoir, en présence des autorités locales, des responsables sanitaires, des parents des bénéficiaires ainsi que de nombreux habitants de la localité. À travers ce geste hautement symbolique, les donateurs ont réaffirmé leur amour, leur soutien et leur solidarité envers ces enfants, leur redonnant le sourire et l’espoir d’un avenir plus inclusif. Cette action humanitaire vient une fois de plus témoigner de la détermination de l’ONG à œuvrer pour une société plus juste et plus solidaire.",
+    image: "/images/boubouaka.jpg",
+    images: ["/images/boubouaka.jpg", "/images/boubouaka1.jpeg", "/images/boubouaka2.jpeg", "/images/boubouaka3.jpeg", "/images/boubouaka4.jpeg", "/images/boubouaka5.jpeg"],
+    raised: 9500,
+    goal: 15000,
+    
+    donors: 73
+  },
 ];

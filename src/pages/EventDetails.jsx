@@ -18,6 +18,7 @@ const EventDetails = () => {
     name: '',
     email: '',
     phone: '',
+    profession: '',
     tickets: 1
   });
 
@@ -54,6 +55,7 @@ const EventDetails = () => {
       from_email: formData.email,
       from_name: formData.name,
       phone: formData.phone,
+      profession: formData.profession,
       tickets: formData.tickets,
       event_title: getLocalized(event?.title, language) || '',
       subject: `${t('events.registerTitle')}: ${getLocalized(event?.title, language) || ''}`,
@@ -64,7 +66,7 @@ const EventDetails = () => {
       alert(`${t('events.registerSuccess')}${event?.title ? `: ${getLocalized(event.title, language)}` : ''}`);
       navigate('/events');
     } catch (err) {
-      const body = `${t('events.nameLabel')}: ${formData.name}\n${t('events.emailLabel')}: ${formData.email}\n${t('events.phoneLabel')}: ${formData.phone}\n${t('events.ticketsLabel')}: ${formData.tickets}\n\n${t('events.aboutTitle')}: ${getLocalized(event?.title, language) || ''}`;
+      const body = `${t('events.nameLabel')}: ${formData.name}\n${t('events.emailLabel')}: ${formData.email}\n${t('events.phoneLabel')}: ${formData.phone}\n${t('events.professionLabel')}: ${formData.profession}\n${t('events.ticketsLabel')}: ${formData.tickets}\n\n${t('events.aboutTitle')}: ${getLocalized(event?.title, language) || ''}`;
       const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(`${t('events.registerTitle')}: ${getLocalized(event?.title, language) || ''}`)}&body=${encodeURIComponent(body)}`;
       window.location.href = mailto;
     }
@@ -169,6 +171,16 @@ const EventDetails = () => {
                       id="phone"
                       name="phone"
                       value={formData.phone}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="profession">{t('events.professionLabel')}</label>
+                    <input
+                      type="text"
+                      id="profession"
+                      name="profession"
+                      value={formData.profession}
                       onChange={handleChange}
                     />
                   </div>

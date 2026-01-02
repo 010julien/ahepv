@@ -11,6 +11,7 @@ const Volunteer = () => {
     name: '',
     email: '',
     phone: '',
+    profession: '',
     interests: [],
     availability: '',
     message: ''
@@ -51,6 +52,7 @@ const Volunteer = () => {
       from_email: formData.email,
       from_name: formData.name,
       phone: formData.phone,
+      profession: formData.profession,
       interests: Array.isArray(formData.interests) ? formData.interests.join(', ') : '',
       availability: formData.availability,
       message: formData.message,
@@ -62,7 +64,7 @@ const Volunteer = () => {
       alert(t('volunteer.success'));
     } catch (err) {
       const availabilityLabel = formData.availability ? t(`volunteer.availabilityOptions.${formData.availability}`) : '';
-      const body = `${t('volunteer.nameLabel')}: ${formData.name}\n${t('volunteer.emailLabel')}: ${formData.email}\n${t('volunteer.phoneLabel')}: ${formData.phone}\n${t('volunteer.interests')}: ${payload.interests}\n${t('volunteer.availability')}: ${availabilityLabel}\n\n${formData.message}`;
+      const body = `${t('volunteer.nameLabel')}: ${formData.name}\n${t('volunteer.emailLabel')}: ${formData.email}\n${t('volunteer.phoneLabel')}: ${formData.phone}\n${t('volunteer.professionLabel')}: ${formData.profession}\n${t('volunteer.interests')}: ${payload.interests}\n${t('volunteer.availability')}: ${availabilityLabel}\n\n${formData.message}`;
       const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(t('volunteer.subject'))}&body=${encodeURIComponent(body)}`;
       window.location.href = mailto;
     }
@@ -133,6 +135,18 @@ const Volunteer = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder={t('volunteer.placeholders.phone')}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="profession">{t('volunteer.professionLabel')}</label>
+                  <input
+                    type="text"
+                    id="profession"
+                    name="profession"
+                    value={formData.profession}
+                    onChange={handleChange}
+                    placeholder={t('volunteer.placeholders.profession')}
                   />
                 </div>
 
