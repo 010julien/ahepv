@@ -407,6 +407,27 @@ const EventDetails = () => {
             grid-template-columns: 1fr;
             gap: var(--spacing-md);
           }
+
+          .event-sidebar {
+            position: static;
+            top: auto;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .event-info-card {
+            padding: var(--spacing-xl);
+          }
+
+          .event-video {
+            padding: var(--spacing-xl);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .event-image-container {
+            height: 240px;
+          }
         }
       `}</style>
     </div>

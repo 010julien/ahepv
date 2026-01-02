@@ -299,7 +299,45 @@ const CauseDetails = () => {
 
         @media (max-width: 1024px) {
           .cause-layout { grid-template-columns: 1fr; }
+          .cause-sidebar {
+            position: static;
+            top: auto;
+          }
           .other-cause-image { height: 160px; }
+        }
+
+        @media (max-width: 768px) {
+          .cause-info-card {
+            padding: var(--spacing-xl);
+          }
+
+          .gallery-grid {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: var(--spacing-md);
+          }
+
+          .gallery-item {
+            height: 150px;
+          }
+
+          .lightbox {
+            padding: var(--spacing-md);
+          }
+
+          .lightbox-close {
+            top: -28px;
+            font-size: var(--font-size-4xl);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .gallery-item {
+            height: 130px;
+          }
+
+          .other-cause-image {
+            height: 140px;
+          }
         }
       `}</style>
     </div>

@@ -220,10 +220,33 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
           .card-img-wrapper {
             height: 220px;
           }
+
+          .slider-btn {
+            opacity: 1;
+            width: 38px;
+            height: 38px;
+          }
+
+          .slider-dots {
+            bottom: 8px;
+          }
+
+          .slider-dot {
+            width: 10px;
+            height: 10px;
+          }
         }
         @media (max-width: 480px) {
           .card-img-wrapper {
             height: 200px;
+          }
+
+          .slider-prev {
+            left: 8px;
+          }
+
+          .slider-next {
+            right: 8px;
           }
         }
       `}</style>

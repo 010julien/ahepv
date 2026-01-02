@@ -49,8 +49,10 @@ const About = () => {
 
       {/* ONG Presentation */}
       <section className="section">
-        <div className="container ">
-          <div className="w-1/2 h-full"> <img src="images/ong.jpg" alt="ONG-Association Humanitaire Plus Proche de vous (AH2PV)" className="w-full h-full object-cover" /></div>
+        <div className="container about-ong-grid">
+          <div className="about-ong-media">
+            <img src="images/ong.jpg" alt="ONG-Association Humanitaire Plus Proche de vous (AH2PV)" />
+          </div>
 
           <div className="about-block">
             <h2>{t('about.ong.title')}</h2>
@@ -276,6 +278,28 @@ const About = () => {
           padding: var(--spacing-2xl);
           border-radius: var(--radius-lg);
           box-shadow: var(--shadow-md);
+        }
+
+        .about-ong-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.2fr;
+          gap: var(--spacing-3xl);
+          align-items: stretch;
+        }
+
+        .about-ong-media {
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          box-shadow: var(--shadow-md);
+          background: var(--color-white);
+          min-height: 320px;
+        }
+
+        .about-ong-media img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
         }
 
         .callout {
@@ -542,6 +566,10 @@ const About = () => {
         }
 
         @media (max-width: 1024px) {
+          .about-ong-grid {
+            grid-template-columns: 1fr;
+          }
+
           .team-grid {
             grid-template-columns: repeat(2, 1fr);
           }
@@ -560,6 +588,18 @@ const About = () => {
 
           .founder-feature {
             grid-template-columns: 1fr;
+          }
+
+          .founder-content {
+            padding: var(--spacing-xl);
+          }
+
+          .about-ong-media {
+            min-height: 240px;
+          }
+
+          .about-block {
+            padding: var(--spacing-xl);
           }
         }
       `}</style>

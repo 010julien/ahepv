@@ -844,12 +844,42 @@ const Home = () => {
 
         /* Responsive Design */
         @media (max-width: 1024px) {
+          .home-hero {
+            background-attachment: scroll;
+          }
+
+          .home-hero-title {
+            margin-top: 10rem;
+          }
+
           .home-objective-slide {
             grid-template-columns: 1fr;
           }
 
+          .home-objective-slide {
+            min-height: auto;
+          }
+
+          .home-objective-image {
+            height: 260px;
+          }
+
           .home-stats-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-lg);
+          }
+
+          .home-split {
+            gap: var(--spacing-xl);
+          }
+          .cta-section-enhanced {
+            margin-bottom: 6rem;
+          }
+
+          .event-meta,
+          .blog-meta {
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
           }
         }
 
@@ -869,6 +899,58 @@ const Home = () => {
 
           .home-hero-title {
             font-size: var(--font-size-4xl);
+            margin-top: 0;
+          }
+
+          .home-hero-content {
+            padding-top: 140px; /* Account for 130px header height */
+          }
+          .home-hero-subtitle {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-xl);
+          }
+
+          .home-stats-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .home-stat {
+            padding: var(--spacing-lg);
+          }
+
+          .home-objective-content {
+            padding: var(--spacing-lg);
+          }
+
+          .cta-section-enhanced {
+            padding: var(--spacing-3xl) 0;
+            margin-bottom: 4rem;
+          }
+
+          .cta-content h2 {
+            font-size: var(--font-size-3xl);
+          }
+
+          .cta-content p {
+            font-size: var(--font-size-lg);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .home-hero-title {
+            margin-top: 0;
+          }
+
+          .home-hero-content {
+            padding-top: 140px;
+          }
+          .home-objective-image {
+            height: 220px;
+          }
+
+          .cta-section-enhanced {
+            padding: var(--spacing-2xl) 0;
+            margin-bottom: 3rem;
           }
         }
 
