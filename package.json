@@ -1,4 +1,39 @@
 {
+<<<<<<< HEAD
+  "name": "togo-school-mobile",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@react-navigation/bottom-tabs": "^7.8.8",
+    "@react-navigation/native": "^7.1.22",
+    "@react-navigation/stack": "^7.6.8",
+    "babel-preset-expo": "~54.0.0",
+    "expo": "~54.0.25",
+    "expo-build-properties": "~1.0.9",
+    "expo-dev-client": "~6.0.19",
+    "expo-linear-gradient": "^15.0.7",
+    "expo-status-bar": "~3.0.8",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-mmkv": "^4.1.0",
+    "react-native-reanimated": "^4.1.5",
+    "react-native-safe-area-context": "^5.6.2",
+    "react-native-screens": "~4.16.0",
+    "react-native-svg": "15.12.1",
+    "react-native-web": "^0.21.0",
+    "react-native-worklets": "0.5.1"
+  },
+  "private": true
+=======
   "name": "ah2pv",
   "private": true,
   "version": "1.0.0",
@@ -22,4 +57,5 @@
     "@vitejs/plugin-react": "^4.3.1",
     "vite": "^5.4.21"
   }
+>>>>>>> 12eaadb0dc376b3eacb4e6c81806e2d88c581598
 }
