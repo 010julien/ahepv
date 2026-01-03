@@ -16,7 +16,8 @@ export const teamMembers = [
     social: {
       facebook: "#",
       twitter: "#",
-      linkedin: "#"
+      linkedin: "#",
+      tiktok: "https://www.tiktok.com/@jeannettetonye"     
     }
   },
   {

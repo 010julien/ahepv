@@ -240,6 +240,7 @@ const Contact = () => {
                   <SocialLink platform="twitter" url="#" style={{ color: 'var(--color-primary)' }} />
                   <SocialLink platform="linkedin" url="#" style={{ color: 'var(--color-primary)' }} />
                   <SocialLink platform="instagram" url="#" style={{ color: 'var(--color-primary)' }} />
+                  <SocialLink platform="tiktok" url="https://www.tiktok.com/@jeannettetonye" style={{ color: 'var(--color-primary)' }} />
                 </div>
               </div>
             </aside>

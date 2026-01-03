@@ -144,7 +144,13 @@ const Donate = () => {
                       className={`payment-btn ${paymentMethod === 'card' ? 'active' : ''}`}
                       onClick={() => setPaymentMethod('card')}
                     >
-                      <FaCreditCard />
+                      <div className="icon-wrapper">
+                        <FaCreditCard className="default-icon" />
+                        <div className="hover-logos">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="payment-logo" />
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="payment-logo" />
+                        </div>
+                      </div>
                       <span>Carte bancaire</span>
                     </button>
                     <button
@@ -152,7 +158,10 @@ const Donate = () => {
                       className={`payment-btn ${paymentMethod === 'paypal' ? 'active' : ''}`}
                       onClick={() => setPaymentMethod('paypal')}
                     >
-                      <FaPaypal />
+                      <div className="icon-wrapper">
+                         <FaPaypal className="default-icon" />
+                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="payment-logo large hover-logo" />
+                      </div>
                       <span>PayPal</span>
                     </button>
                     <button
@@ -160,7 +169,10 @@ const Donate = () => {
                       className={`payment-btn ${paymentMethod === 'bank' ? 'active' : ''}`}
                       onClick={() => setPaymentMethod('bank')}
                     >
-                      <FaUniversity />
+                      <div className="icon-wrapper">
+                        <FaUniversity className="default-icon" />
+                        <img src="/images/payment/bank.png" alt="Virement" className="payment-logo hover-logo" />
+                      </div>
                       <span>Virement</span>
                     </button>
                     <button
@@ -168,7 +180,13 @@ const Donate = () => {
                       className={`payment-btn ${paymentMethod === 'mobile' ? 'active' : ''}`}
                       onClick={() => setPaymentMethod('mobile')}
                     >
-                      <FaMobileAlt />
+                      <div className="icon-wrapper">
+                        <FaMobileAlt className="default-icon" />
+                        <div className="hover-logos">
+                          <img src="/images/payment/tmoney.jpg" alt="T-Money" className="payment-logo" />
+                          <img src="/images/payment/flooz.png" alt="Flooz" className="payment-logo" />
+                        </div>
+                      </div>
                       <span>Mobile Money</span>
                     </button>
                   </div>
@@ -476,27 +494,77 @@ const Donate = () => {
           transition: all var(--transition-base);
         }
 
-        .payment-btn svg {
-          font-size: var(--font-size-2xl);
+        .payment-btn .icon-wrapper {
+           height: 40px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           margin-bottom: var(--spacing-xs);
+        }
+
+        .payment-btn .default-icon {
+          font-size: 2rem;
           color: var(--text-secondary);
+          display: block;
+          transition: all var(--transition-base);
+        }
+        
+        /* Show generic icon by default for Virement (always visible) */
+        .payment-btn .default-icon.always-visible {
+           display: block !important;
+        }
+
+        .hover-logos, .hover-logo {
+          display: none;
+          align-items: center;
+          justify-content: center;
+          gap: var(--spacing-sm);
+          height: 100%;
+          width: 100%;
+        }
+
+        .payment-logo {
+          height: 100%;
+          width: auto;
+          object-fit: contain;
+          max-width: 60px;
+        }
+
+        .payment-logo.large {
+          max-height: 28px;
+        }
+
+        /* Hover & Active States */
+        /* Hide default icon on hover/active (except Virement) */
+        .payment-btn:hover .default-icon:not(.always-visible),
+        .payment-btn.active .default-icon:not(.always-visible) {
+          display: none;
+        }
+
+        /* Show logos on hover/active */
+        .payment-btn:hover .hover-logos,
+        .payment-btn.active .hover-logos,
+        .payment-btn:hover .hover-logo,
+        .payment-btn.active .hover-logo {
+          display: flex;
         }
 
         .payment-btn:hover,
         .payment-btn.active {
-          background: var(--color-primary);
+          background: var(--color-white);
           border-color: var(--color-primary);
-          color: var(--color-white);
+          color: var(--color-primary);
+          box-shadow: 0 0 0 1px var(--color-primary);
         }
-
-        .payment-btn:hover svg,
-        .payment-btn.active svg {
-          color: var(--color-white);
+        
+        .payment-btn:hover .default-icon.always-visible,
+        .payment-btn.active .default-icon.always-visible {
+           color: var(--color-primary);
         }
 
         .form-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: var(--spacing-md);
         }
 
         .form-group {

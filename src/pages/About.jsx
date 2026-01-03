@@ -92,6 +92,7 @@ const About = () => {
                   <SocialLink platform="facebook" url={founder.social.facebook} />
                   <SocialLink platform="twitter" url={founder.social.twitter} />
                   <SocialLink platform="linkedin" url={founder.social.linkedin} />
+                  <SocialLink platform="tiktok" url={founder.social.tiktok} />
                 </div>
               </div>
             </div>

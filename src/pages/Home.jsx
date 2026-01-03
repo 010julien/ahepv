@@ -20,6 +20,15 @@ const Home = () => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
   const [objectiveIndex, setObjectiveIndex] = useState(0);
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  const heroImages = [
+    '/images/hero1.jpeg',
+    '/images/hero2.jpeg',
+    '/images/hero3.jpeg',
+    '/images/hero4.jpg',
+    '/images/hero-image.jpg'
+  ];
 
   const objectives = [
     {
@@ -46,6 +55,13 @@ const Home = () => {
     return () => window.clearInterval(id);
   }, [objectives.length]);
 
+  useEffect(() => {
+    const heroId = window.setInterval(() => {
+      setHeroIndex((i) => (i + 1) % heroImages.length);
+    }, 6000); // Slow transition every 8 seconds
+    return () => window.clearInterval(heroId);
+  }, [heroImages.length]);
+
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
     if (!newsletterEmail.trim()) return;
@@ -57,14 +73,23 @@ const Home = () => {
     <div className="home">
       {/* Hero Section - UNCHANGED */}
       <section className="home-hero">
+        <div className="home-hero-bg-container">
+          {heroImages.map((img, index) => (
+             <div 
+               key={index}
+               className={`home-hero-bg ${index === heroIndex ? 'active' : ''}`}
+               style={{ backgroundImage: `url(${img})` }}
+             />
+          ))}
+        </div>
         <div className="home-hero-overlay"></div>
         <div className="container">
           <div className="home-hero-content">
-            <h1 className="home-hero-title">{t('home.heroTitle')}</h1>
+            {/* <h1 className="home-hero-title">{t('home.heroTitle')}</h1>
             <p className="home-hero-subtitle">
               {t('home.heroSubtitle')}
-            </p>
-            <div className="home-hero-buttons" style={{ marginBottom: '3rem' }}>
+            </p> */}
+            <div className="home-hero-buttons" style={{ marginTop: '28rem' }}>
               <Link to="/causes" className="btn btn-primary btn-lg">
                 {t('home.ourCauses')}
               </Link>
@@ -409,10 +434,36 @@ const Home = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          background-image: url('/images/hero-image.jpg');
+          overflow: hidden;
+        }
+
+        .home-hero-bg-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+        }
+
+        .home-hero-bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
           background-size: cover;
           background-position: center;
-          background-attachment: fixed;
+          opacity: 0;
+          transition: opacity 1.5s ease-in-out, transform 6s ease-out;
+          transform: scale(1.1); /* Start zoomed in */
+          z-index: 0;
+        }
+        
+        .home-hero-bg.active {
+          opacity: 1;
+          transform: scale(1); /* Zoom out slowly */
+          z-index: 1;
         }
 
         .home-hero-overlay {
@@ -421,7 +472,7 @@ const Home = () => {
           left: 0;
           right: 0;
           bottom: 0;
-          background: rgba(0, 0, 0, 0.37);
+          background: rgba(0, 0, 0, 0);
           opacity: 0.6;
         }
 

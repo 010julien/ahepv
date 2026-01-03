@@ -50,6 +50,7 @@ const Footer = () => {
                 <SocialLink platform="twitter" url="#" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
                 <SocialLink platform="instagram" url="#" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
                 <SocialLink platform="linkedin" url="#" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
+                <SocialLink platform="tiktok" url="https://www.tiktok.com/@jeannettetonye" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
               </div>
             </div>
 

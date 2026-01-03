@@ -42,7 +42,7 @@ const Header = () => {
     { url: '#', name: 'facebook' },
     { url: '#', name: 'linkedin' },
     { url: '#', name: 'instagram' },
-    { url: '#', name: 'tiktok' }
+    { url: 'https://www.tiktok.com/@jeannettetonye', name: 'tiktok' }
   ];
 
   return (
