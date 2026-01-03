@@ -157,6 +157,9 @@ const Header = () => {
           right: 0;
           z-index: var(--z-sticky);
           background-color: transparent;
+          backdrop-filter: blur(2px);
+          border-radius: 100px;
+          margin-top: 20px;
           box-shadow: none;
           transition: all 0.4s ease; /* Smooth transition */
         }
@@ -165,6 +168,9 @@ const Header = () => {
           background: var(--color-white);
           box-shadow: var(--shadow-md);
           padding: var(--spacing-md) 0; /* Slightly compact on scroll */
+          backdrop-filter: blur(0px);
+          border-radius: 0px;
+          margin-top: 0px;
         }
 
         .header-content {
