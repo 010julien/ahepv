@@ -19,47 +19,47 @@ const Gallery = () => {
   // Build galleries
   const gallery1 = [1,2,3,4,5,6,7].map(n => ({
     src: `${base}images/gall1.${n}.jpg`,
-    title: `Action Terrain ${n}`,
-    paragraph: 'Soutien aux communautés locales'
+    title: t('gallery.items.actionTerrain', { n }),
+    paragraph: t('gallery.items.supportLocal')
   }));
 
   const gallery2 = [1,2,3,4,5,6,7,8].map(n => ({
     src: `${base}images/gall2.${n}.jpg`,
-    title: `Santé & Soins ${n}`,
-    paragraph: 'Campagnes médicales'
+    title: t('gallery.items.healthCare', { n }),
+    paragraph: t('gallery.items.medicalCampaigns')
   }));
 
   const gallery3 = [1,2,3,4,5,6,7,8].map(n => ({
     src: `${base}images/gall3.${n}.jpg`,
-    title: `Éducation ${n}`,
-    paragraph: 'Distribution de kits scolaires'
+    title: t('gallery.items.educationTitle', { n }),
+    paragraph: t('gallery.items.schoolKits')
   }));
 
   const gallery4 = [1,2,3,4,5,6,7,8,9,10,11,12].map(n => ({
     src: `${base}images/gall4.${n}.jpg`,
-    title: `Solidarité ${n}`,
-    paragraph: 'Aide alimentaire et sociale'
+    title: t('gallery.items.solidarityTitle', { n }),
+    paragraph: t('gallery.items.foodHelp')
   }));
 
   const gallery5 = [1,2,3,4,5,6,7,8,9,10,11].map(n => ({
     src: `${base}images/gall5.${n}.jpg`,
-    title: `Environnement ${n}`,
-    paragraph: 'Actions écologiques'
+    title: t('gallery.items.environmentTitle', { n }),
+    paragraph: t('gallery.items.ecoActions')
   }));
 
   const gallery6 = [1,2,3,4,5,6,7,8,9,10,11].map(n => ({
     src: `${base}images/gall6.${n}.jpg`,
-    title: `Événements ${n}`,
-    paragraph: 'Nos moments forts'
+    title: t('gallery.items.eventsTitle', { n }),
+    paragraph: t('gallery.items.highlights')
   }));
 
   const galleries = [
-    { title: 'Nos Actions Récentes', images: gallery1 },
-    { title: 'Campagnes Médicales', images: gallery2 },
-    { title: 'Soutien Scolaire', images: gallery3 },
-    { title: 'Solidarité & Partage', images: gallery4 },
-    { title: 'Protection de l\'Environnement', images: gallery5 },
-    { title: 'Vie de l\'Association', images: gallery6 },
+    { title: t('gallery.categories.recent'), images: gallery1 },
+    { title: t('gallery.categories.medical'), images: gallery2 },
+    { title: t('gallery.categories.school'), images: gallery3 },
+    { title: t('gallery.categories.solidarity'), images: gallery4 },
+    { title: t('gallery.categories.environment'), images: gallery5 },
+    { title: t('gallery.categories.association'), images: gallery6 },
   ];
 
   const categories = Object.keys(galleries);
@@ -133,8 +133,8 @@ const Gallery = () => {
   return (
     <div className="gallery-page">
       <Hero 
-        title="Notre Impact en Images" 
-        subtitle="Chaque photo raconte une histoire de résilience et d'espoir."
+        title={t('gallery.title')}
+        subtitle={t('gallery.subtitle')}
         breadcrumb={t('gallery.breadcrumb')}
         images={['/images/gall3.jpg', '/images/gall1.5.jpg', '/images/gall4.2.jpg']}
         overlayOpacity={0.6}
@@ -149,7 +149,7 @@ const Gallery = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
              <h2 className="section-title text-center" style={{ marginBottom: "var(--spacing-xl)" }}>
-                Vivez nos actions en direct
+                {t('gallery.autoSliderTitle')}
              </h2>
              <AutoSlider images={featuredImages} height="500px" />
           </motion.div>

@@ -25,8 +25,8 @@ const Blog = () => {
   return (
     <div className="blog-page">
       <Hero 
-        title="Actualités & Histoires" 
-        subtitle="Les dernières nouvelles du terrain et témoignages de bénéficiaires."
+        title={t('blog.hero.title')} 
+        subtitle={t('blog.hero.subtitle')}
         breadcrumb={t('blog.breadcrumb')}
         images={['/images/hero-blog.jpg', '/images/story.jpg']}
         overlayOpacity={0.6}

@@ -36,8 +36,8 @@ const Events = () => {
   return (
     <div className="events-page">
       <Hero 
-        title="Nos Événements" 
-        subtitle="Participez à nos actions terrain et nos rencontres caritatives."
+        title={t('events.hero.title')} 
+        subtitle={t('events.hero.subtitle')}
         breadcrumb={t('events.breadcrumb')}
         images={['/images/hero-events.jpg', '/images/actitehero1.jpg', '/images/actitehero2.jpg']}
         overlayOpacity={0.6}

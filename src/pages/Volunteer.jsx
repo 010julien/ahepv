@@ -81,8 +81,8 @@ const Volunteer = () => {
   return (
     <div className="volunteer-page">
       <Hero 
-        title="Rejoignez le Mouvement" 
-        subtitle="Donnez de votre temps et de vos compétences pour construire un monde meilleur."
+        title={t('volunteer.hero.title')} 
+        subtitle={t('volunteer.hero.subtitle')}
         breadcrumb={t('volunteer.breadcrumb')}
         images={['/images/hero-volunteer.jpg', '/images/kante4.jpg', '/images/lits-mandouri4.jpg']}
         overlayOpacity={0.65}

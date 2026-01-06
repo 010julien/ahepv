@@ -71,8 +71,8 @@ const Contact = () => {
   return (
     <div className="contact-page">
       <Hero 
-        title="Restons Connectés" 
-        subtitle="Une question ? Un partenariat ? Notre équipe est à votre écoute pour construire ensemble."
+        title={t('contactPage.hero.title')} 
+        subtitle={t('contactPage.hero.subtitle')}
         breadcrumb={t('contact.breadcrumb')}
         images={['/images/contact-hero.jpg', '/images/boubouaka2.jpeg']}
         overlayOpacity={0.65}

@@ -122,9 +122,9 @@ const Home = () => {
             {/* Text Side */}
             <div className="about-text-content">
               <h1 className="about-slide-title">
-                Avec AH2PV sois le  <span className="highlight-text">changement</span><br />
-                <span className="highlight-text">que tu veux</span> voir<br />
-                Dans le <span className="highlight-text">monde et au Togo</span>
+                {t('home.hero.line1')} <span className="highlight-text">{t('home.hero.highlight1')}</span><br />
+                <span className="highlight-text">{t('home.hero.line2')}</span>{t('home.hero.line2suffix')}<br />
+                {t('home.hero.line3')} <span className="highlight-text">{t('home.hero.highlight3')}</span>
               </h1>
             </div>
 

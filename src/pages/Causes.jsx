@@ -29,8 +29,8 @@ const Causes = () => {
   return (
     <div className="causes-page">
       <Hero 
-        title="Nos Causes Prioritaires" 
-        subtitle="Santé, Éducation, Urgences. Choisissez où votre impact sera le plus fort."
+        title={t('causes.hero.title')} 
+        subtitle={t('causes.hero.subtitle')}
         breadcrumb={t('causes.breadcrumb')}
         images={['/images/causes1.jpg', '/images/medical.jpg', '/images/education1.jpg']}
         overlayOpacity={0.65}

@@ -70,7 +70,15 @@ export const translations = {
       quotesDesc: 'Découvrez les citations inspirantes qui guident notre mission humanitaire',
       ctaTitle: 'Prêt à Faire la Différence ?',
       ctaText: 'Votre soutien peut changer des vies. Rejoignez-nous aujourd\'hui et faites partie de la solution.',
-      becomeVolunteer: 'Devenir Bénévole'
+      becomeVolunteer: 'Devenir Bénévole',
+      hero: {
+         line1: "Avec AH2PV sois le ",
+         highlight1: "changement",
+         line2: "que tu veux",
+         line2suffix: " voir",
+         line3: "Dans le ",
+         highlight3: "monde et au Togo"
+      }
     },
     
     // About Page
@@ -129,7 +137,11 @@ export const translations = {
         p2: "Faisant partie des plus petits États africains continentaux, le Togo couvre une superficie de 56 600 km² et s’étire sur environ 700 km du nord au sud avec une largeur n’excédant pas 150 km. Limité au nord par le Burkina Faso, au sud par le golfe de Guinée, à l'est par le Bénin et à l'ouest par le Ghana, le Togo présente une grande diversité de paysages : une côte de sable bordée de cocotiers au sud, des collines, des vallées verdoyantes, de petites montagnes dans le centre du pays, des plaines arides et de grandes savanes au nord du pays."
       },
       calloutTitle: 'Agir Ensemble, Proche de Vous',
-      calloutText: "Au cœur de notre démarche, il y a la conviction que l'action humanitaire est plus qu'une simple intervention. C'est une collaboration entre communautés, organisations, et individus partageant une vision commune d'un avenir meilleur. En agissant ensemble, nous sommes plus proches de réaliser nos objectifs, créant des impacts qui transcendent les frontières géographiques."
+      calloutText: "Au cœur de notre démarche, il y a la conviction que l'action humanitaire est plus qu'une simple intervention. C'est une collaboration entre communautés, organisations, et individus partageant une vision commune d'un avenir meilleur. En agissant ensemble, nous sommes plus proches de réaliser nos objectifs, créant des impacts qui transcendent les frontières géographiques.",
+      hero: {
+        title: "Notre Histoire & Mission",
+        subtitle: "Découvrez les visages et les valeurs qui animent nos actions au quotidien."
+      }
     },
     
     // Gallery Page
@@ -142,7 +154,30 @@ export const translations = {
       medical: 'Médical',
       food: 'Alimentation',
       water: 'Eau',
-      events: 'Événements'
+      events: 'Événements',
+      autoSliderTitle: 'Vivez nos actions en direct',
+      categories: {
+        recent: 'Nos Actions Récentes',
+        medical: 'Campagnes Médicales',
+        school: 'Soutien Scolaire',
+        solidarity: 'Solidarité & Partage',
+        environment: 'Protection de l\'Environnement',
+        association: 'Vie de l\'Association'
+      },
+      items: {
+        actionTerrain: 'Action Terrain {{n}}',
+        supportLocal: 'Soutien aux communautés locales',
+        healthCare: 'Santé & Soins {{n}}',
+        medicalCampaigns: 'Campagnes médicales',
+        educationTitle: 'Éducation {{n}}',
+        schoolKits: 'Distribution de kits scolaires',
+        solidarityTitle: 'Solidarité {{n}}',
+        foodHelp: 'Aide alimentaire et sociale',
+        environmentTitle: 'Environnement {{n}}',
+        ecoActions: 'Actions écologiques',
+        eventsTitle: 'Événements {{n}}',
+        highlights: 'Nos moments forts'
+      }
     },
     
     // Causes Page
@@ -159,7 +194,11 @@ export const translations = {
       progress: 'Progression',
       otherCauses: 'Autres causes',
       otherCausesDesc: "Découvrez d'autres projets que vous pouvez soutenir.",
-      backToList: 'Retour à la liste'
+      backToList: 'Retour à la liste',
+      hero: {
+         title: "Nos Causes Prioritaires",
+         subtitle: "Santé, Éducation, Urgences. Choisissez où votre impact sera le plus fort."
+      }
     },
     
     // Events Page
@@ -187,6 +226,10 @@ export const translations = {
         fundraising: 'Collecte de fonds',
         volunteering: 'Bénévolat',
         donation: 'Don'
+      },
+      hero: {
+         title: "Nos Événements",
+         subtitle: "Participez à nos actions terrain et nos rencontres caritatives."
       }
     },
     
@@ -208,7 +251,11 @@ export const translations = {
         giving: 'Dons'
       },
       by: 'Par',
-      noArticles: 'Aucun article trouvé correspondant à vos critères.'
+      noArticles: 'Aucun article trouvé correspondant à vos critères.',
+      hero: {
+         title: "Actualités & Histoires",
+         subtitle: "Les dernières nouvelles du terrain et témoignages de bénéficiaires."
+      }
     },
     
     // FAQ Page
@@ -254,7 +301,11 @@ export const translations = {
       emailTitle: 'Email',
       hoursTitle: 'Horaires d\'ouverture',
       hoursText: 'Lundi - Vendredi: 9h00 - 18h00\nSamedi: 10h00 - 16h00\nDimanche: Fermé',
-      followUs: 'Suivez-nous'
+      followUs: 'Suivez-nous',
+      hero: {
+         title: "Restons Connectés",
+         subtitle: "Une question ? Un partenariat ? Notre équipe est à votre écoute pour construire ensemble."
+      }
     },
 
     // Volunteer Page
@@ -294,7 +345,10 @@ export const translations = {
         phone: '+33 6 12 34 56 78',
         profession: 'Votre profession',
         availability: 'Sélectionnez votre disponibilité',
-        message: 'Dites-nous pourquoi vous souhaitez nous rejoindre...'
+      },
+      hero: {
+         title: "Rejoignez le Mouvement",
+         subtitle: "Donnez de votre temps et de vos compétences pour construire un monde meilleur."
       }
     }
   },
@@ -370,7 +424,15 @@ export const translations = {
       quotesDesc: 'Discover the inspiring quotes that guide our humanitarian mission',
       ctaTitle: 'Ready to Make a Difference?',
       ctaText: 'Your support can change lives. Join us today and be part of the solution.',
-      becomeVolunteer: 'Become a Volunteer'
+      becomeVolunteer: 'Become a Volunteer',
+      hero: {
+         line1: "With AH2PV be the ",
+         highlight1: "change",
+         line2: "you want to",
+         line2suffix: " see",
+         line3: "In the ",
+         highlight3: "world and in Togo"
+      }
     },
     
     // About Page
@@ -429,7 +491,11 @@ export const translations = {
         p2: 'One of the smallest continental states in Africa, Togo covers 56,600 km² and stretches about 700 km from north to south, with a width not exceeding 150 km. Bordered by Burkina Faso to the north, the Gulf of Guinea to the south, Benin to the east, and Ghana to the west, Togo features diverse landscapes: sandy southern coasts lined with coconut trees, hills, green valleys, small mountains in the center, and arid plains and savannas in the north.'
       },
       calloutTitle: 'Acting Together, Close to You',
-      calloutText: 'At the heart of our approach is the belief that humanitarian action is more than a simple intervention. It is a collaboration between communities, organizations, and individuals sharing a common vision of a better future. By acting together, we get closer to our objectives, creating impacts that transcend geographic borders.'
+      calloutText: 'At the heart of our approach is the belief that humanitarian action is more than a simple intervention. It is a collaboration between communities, organizations, and individuals sharing a common vision of a better future. By acting together, we get closer to our objectives, creating impacts that transcend geographic borders.',
+      hero: {
+        title: "Our History & Mission",
+        subtitle: "Discover the faces and values that drive our daily actions."
+      }
     },
     
     // Gallery Page
@@ -442,7 +508,30 @@ export const translations = {
       medical: 'Medical',
       food: 'Food',
       water: 'Water',
-      events: 'Events'
+      events: 'Events',
+      autoSliderTitle: 'Experience our actions live',
+      categories: {
+        recent: 'Our Recent Actions',
+        medical: 'Medical Campaigns',
+        school: 'School Support',
+        solidarity: 'Solidarity & Sharing',
+        environment: 'Environmental Protection',
+        association: 'Association Life'
+      },
+      items: {
+        actionTerrain: 'Field Action {{n}}',
+        supportLocal: 'Support to local communities',
+        healthCare: 'Health & Care {{n}}',
+        medicalCampaigns: 'Medical campaigns',
+        educationTitle: 'Education {{n}}',
+        schoolKits: 'Distribution of school kits',
+        solidarityTitle: 'Solidarity {{n}}',
+        foodHelp: 'Food and social aid',
+        environmentTitle: 'Environment {{n}}',
+        ecoActions: 'Ecological actions',
+        eventsTitle: 'Events {{n}}',
+        highlights: 'Our highlights'
+      }
     },
     
     // Causes Page
@@ -459,7 +548,11 @@ export const translations = {
       progress: 'Progress',
       otherCauses: 'Other causes',
       otherCausesDesc: 'Discover other projects you can support.',
-      backToList: 'Back to list'
+      backToList: 'Back to list',
+      hero: {
+         title: "Our Priority Causes",
+         subtitle: "Health, Education, Emergencies. Choose where your impact will be strongest."
+      }
     },
     
     // Events Page
@@ -487,6 +580,10 @@ export const translations = {
         fundraising: 'Fundraising',
         volunteering: 'Volunteering',
         donation: 'Donation'
+      },
+      hero: {
+         title: "Our Events",
+         subtitle: "Participate in our field actions and charitable gatherings."
       }
     },
     
@@ -508,7 +605,11 @@ export const translations = {
         giving: 'Giving'
       },
       by: 'By',
-      noArticles: 'No articles found matching your criteria.'
+      noArticles: 'No articles found matching your criteria.',
+      hero: {
+         title: "News & Stories",
+         subtitle: "The latest news from the field and beneficiary testimonials."
+      }
     },
     
     // FAQ Page
@@ -554,7 +655,11 @@ export const translations = {
       emailTitle: 'Email',
       hoursTitle: 'Opening Hours',
       hoursText: 'Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed',
-      followUs: 'Follow Us'
+      followUs: 'Follow Us',
+      hero: {
+         title: "Let's Stay Connected",
+         subtitle: "A question? A partnership? Our team is listening to build together."
+      }
     },
 
     // Volunteer Page
@@ -594,7 +699,10 @@ export const translations = {
         phone: '+1 234 567 890',
         profession: 'Your profession',
         availability: 'Select your availability',
-        message: 'Tell us why you want to join...'
+      },
+      hero: {
+         title: "Join the Movement",
+         subtitle: "Give your time and skills to build a better world."
       }
     }
   },
@@ -668,7 +776,15 @@ export const translations = {
       readMore: 'Mehr Lesen',
       ctaTitle: 'Bereit, Einen Unterschied zu Machen?',
       ctaText: 'Ihre Unterstützung kann Leben verändern. Treten Sie uns heute bei und seien Sie Teil der Lösung.',
-      becomeVolunteer: 'Freiwilliger Werden'
+      becomeVolunteer: 'Freiwilliger Werden',
+      hero: {
+         line1: "Mit AH2PV sei der ",
+         highlight1: "Wandel",
+         line2: "den du",
+         line2suffix: " sehen willst",
+         line3: "In der ",
+         highlight3: "Welt und in Togo"
+      }
     },
     
     // About Page
@@ -727,7 +843,11 @@ export const translations = {
         p2: 'Als einer der kleinsten Flächenstaaten Afrikas umfasst Togo 56.600 km² und erstreckt sich etwa 700 km von Norden nach Süden bei einer Breite von höchstens 150 km. Im Norden grenzt es an Burkina Faso, im Süden an den Golf von Guinea, im Osten an Benin und im Westen an Ghana. Togo bietet vielfältige Landschaften: sandige Küste mit Kokospalmen im Süden, Hügel, grüne Täler, kleine Berge im Zentrum sowie trockene Ebenen und Savannen im Norden.'
       },
       calloutTitle: 'Gemeinsam Handeln – Nah bei Ihnen',
-      calloutText: 'Im Zentrum unseres Handelns steht die Überzeugung, dass humanitäres Engagement mehr ist als eine einfache Intervention. Es ist eine Zusammenarbeit zwischen Gemeinschaften, Organisationen und Einzelpersonen mit einer gemeinsamen Vision einer besseren Zukunft. Gemeinsam kommen wir unseren Zielen näher und schaffen Wirkungen, die geografische Grenzen überschreiten.'
+      calloutText: 'Im Zentrum unseres Handelns steht die Überzeugung, dass humanitäres Engagement mehr ist als eine einfache Intervention. Es ist eine Zusammenarbeit zwischen Gemeinschaften, Organisationen und Einzelpersonen mit einer gemeinsamen Vision einer besseren Zukunft. Gemeinsam kommen wir unseren Zielen näher und schaffen Wirkungen, die geografische Grenzen überschreiten.',
+      hero: {
+        title: "Unsere Geschichte & Mission",
+        subtitle: "Entdecken Sie die Gesichter und Werte, die unsere täglichen Handlungen antreiben."
+      }
     },
     
     // Gallery Page
@@ -740,7 +860,30 @@ export const translations = {
       medical: 'Medizin',
       food: 'Nahrung',
       water: 'Wasser',
-      events: 'Veranstaltungen'
+      events: 'Veranstaltungen',
+      autoSliderTitle: 'Erleben Sie unsere Aktionen live',
+      categories: {
+        recent: 'Unsere Jüngsten Aktionen',
+        medical: 'Medizinische Kampagnen',
+        school: 'Schulunterstützung',
+        solidarity: 'Solidarität & Teilen',
+        environment: 'Umweltschutz',
+        association: 'Vereinsleben'
+      },
+      items: {
+        actionTerrain: 'Feldaktion {{n}}',
+        supportLocal: 'Unterstützung lokaler Gemeinschaften',
+        healthCare: 'Gesundheit & Pflege {{n}}',
+        medicalCampaigns: 'Medizinische Kampagnen',
+        educationTitle: 'Bildung {{n}}',
+        schoolKits: 'Verteilung von Schulsets',
+        solidarityTitle: 'Solidarität {{n}}',
+        foodHelp: 'Nahrungsmittel- und Sozialhilfe',
+        environmentTitle: 'Umwelt {{n}}',
+        ecoActions: 'Ökologische Aktionen',
+        eventsTitle: 'Veranstaltungen {{n}}',
+        highlights: 'Unsere Highlights'
+      }
     },
     
     // Causes Page
@@ -757,7 +900,11 @@ export const translations = {
       progress: 'Fortschritt',
       otherCauses: 'Weitere Anliegen',
       otherCausesDesc: 'Entdecken Sie weitere Projekte, die Sie unterstützen können.',
-      backToList: 'Zurück zur Liste'
+      backToList: 'Zurück zur Liste',
+      hero: {
+         title: "Unsere Vorrangigen Anliegen",
+         subtitle: "Gesundheit, Bildung, Notfälle. Wählen Sie, wo Ihre Wirkung am größten sein wird."
+      }
     },
     
     // Events Page
@@ -785,6 +932,10 @@ export const translations = {
         fundraising: 'Spendenaktion',
         volunteering: 'Freiwilligenarbeit',
         donation: 'Spende'
+      },
+      hero: {
+         title: "Unsere Veranstaltungen",
+         subtitle: "Nehmen Sie an unseren Feldaktionen und Wohltätigkeitsveranstaltungen teil."
       }
     },
     
@@ -806,7 +957,11 @@ export const translations = {
         giving: 'Spenden'
       },
       by: 'Von',
-      noArticles: 'Keine Artikel gefunden, die Ihren Kriterien entsprechen.'
+      noArticles: 'Keine Artikel gefunden, die Ihren Kriterien entsprechen.',
+      hero: {
+         title: "Neuigkeiten & Geschichten",
+         subtitle: "Die neuesten Nachrichten aus dem Feld und Erfahrungsberichte von Begünstigten."
+      }
     },
     
     // FAQ Page
@@ -851,7 +1006,11 @@ export const translations = {
       emailTitle: 'E-Mail',
       hoursTitle: 'Öffnungszeiten',
       hoursText: 'Montag - Freitag: 9:00 - 18:00\nSamstag: 10:00 - 16:00\nSonntag: Geschlossen',
-      followUs: 'Folgen Sie uns'
+      followUs: 'Folgen Sie uns',
+      hero: {
+         title: "Bleiben wir in Verbindung",
+         subtitle: "Eine Frage? Eine Partnerschaft? Unser Team hört Ihnen zu, um gemeinsam aufzubauen."
+      }
     },
 
     // Volunteer Page
@@ -891,22 +1050,34 @@ export const translations = {
         phone: '+49 123 456 789',
         availability: 'Wählen Sie Ihre Verfügbarkeit',
         message: 'Erzählen Sie uns, warum Sie mitmachen möchten...'
+      },
+      hero: {
+         title: "Schließen Sie sich der Bewegung an",
+         subtitle: "Geben Sie Ihre Zeit und Fähigkeiten, um eine bessere Welt zu bauen."
       }
     }
   }
 };
 
-export const getTranslation = (lang, key) => {
+export const getTranslation = (lang, key, params = {}) => {
   const keys = key.split('.');
-  const resolve = (l) => {
-    let v = translations[l];
-    for (const k of keys) v = v?.[k];
-    return v;
-  };
+  let value = translations[lang];
+  
+  for (const k of keys) {
+    if (value && value[k]) {
+      value = value[k];
+    } else {
+      console.warn(`Missing translation for key: ${key} in language: ${lang}`);
+      return key;
+    }
+  }
+  
+  // Interpolation support
+  if (typeof value === 'string' && Object.keys(params).length > 0) {
+    return value.replace(/\{\{(\w+)\}\}/g, (_, k) => {
+        return params[k] !== undefined ? params[k] : `{{${k}}}`;
+    });
+  }
 
-  const primary = resolve(lang);
-  if (primary !== undefined && primary !== null) return primary;
-
-  const fallback = resolve('fr');
-  return fallback !== undefined && fallback !== null ? fallback : key;
+  return value;
 };
