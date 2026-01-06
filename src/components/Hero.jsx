@@ -195,6 +195,7 @@ const Hero = ({
           line-height: 1.1;
           letter-spacing: -0.02em;
           text-align: left;
+          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .hero-divider {
@@ -203,16 +204,18 @@ const Hero = ({
           background: var(--color-primary);
           margin-bottom: 2rem;
           border-radius: 3px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero-subtitle {
           font-size: clamp(1.25rem, 2vw, 1.5rem);
           font-weight: 300;
-          color: rgba(255, 255, 255, 0.9);
+          color: rgba(255, 255, 255, 0.95);
           margin-bottom: 2.5rem;
           line-height: 1.6;
           text-align: left;
           max-width: 650px;
+          text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
         }
 
         .hero-actions {

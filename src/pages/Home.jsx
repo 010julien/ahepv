@@ -564,6 +564,7 @@ const Home = () => {
           color: var(--color-white);
           /* margin-bottom: var(--spacing-3xl); */
           margin-bottom: var(--spacing-3xl);
+          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .highlight-text {
