@@ -29,7 +29,7 @@ const Blog = () => {
         subtitle={t('blog.hero.subtitle')}
         breadcrumb={t('blog.breadcrumb')}
         images={['/images/hero-blog.jpg', '/images/story.jpg']}
-        overlayOpacity={0.6}
+        overlayOpacity={0.2}
       />
 
       <section className="section">

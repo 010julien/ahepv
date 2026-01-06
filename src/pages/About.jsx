@@ -15,7 +15,7 @@ const About = () => {
         subtitle={t('about.hero.subtitle')}
         breadcrumb={t('about.breadcrumb')}
         images={['/images/apropos.jpg', '/images/apropos1.jpg', '/images/kante5.jpg']}
-        overlayOpacity={0.7}
+        overlayOpacity={0.2}
       />
       
       {/* Intro + Highlights */}

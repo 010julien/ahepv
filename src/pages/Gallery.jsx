@@ -137,7 +137,7 @@ const Gallery = () => {
         subtitle={t('gallery.subtitle')}
         breadcrumb={t('gallery.breadcrumb')}
         images={['/images/gall3.jpg', '/images/gall1.5.jpg', '/images/gall4.2.jpg']}
-        overlayOpacity={0.6}
+        overlayOpacity={0.2}
       />
 
       <section className="section bg-gray-50">

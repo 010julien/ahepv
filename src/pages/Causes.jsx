@@ -33,7 +33,7 @@ const Causes = () => {
         subtitle={t('causes.hero.subtitle')}
         breadcrumb={t('causes.breadcrumb')}
         images={['/images/causes1.jpg', '/images/medical.jpg', '/images/education1.jpg']}
-        overlayOpacity={0.65}
+        overlayOpacity={0.2}
       >
         <Button 
           variant="primary" 

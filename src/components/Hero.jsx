@@ -10,7 +10,7 @@ const Hero = ({
   backgroundImage = '/images/hero-bg.jpg', 
   images = [], 
   bottomGap = 48,
-  overlayOpacity = 0.6,
+  overlayOpacity = 0.4,
   children 
 }) => {
   const heroRef = useRef(null);
@@ -151,7 +151,7 @@ const Hero = ({
           left: 0;
           right: 0;
           bottom: 0;
-          background: linear-gradient(105deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.3) 100%);
+          background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.1) 80%, rgba(0,0,0,0) 100%);
           z-index: 2;
         }
 
@@ -188,7 +188,7 @@ const Hero = ({
         }
 
         .hero-title {
-          font-size: clamp(3rem, 6vw, 5.5rem);
+          font-size: clamp(2.5rem, 5vw, 4rem);
           font-weight: 800;
           color: var(--color-white);
           margin-bottom: 1.5rem;

@@ -40,7 +40,7 @@ const Events = () => {
         subtitle={t('events.hero.subtitle')}
         breadcrumb={t('events.breadcrumb')}
         images={['/images/hero-events.jpg', '/images/actitehero1.jpg', '/images/actitehero2.jpg']}
-        overlayOpacity={0.6}
+        overlayOpacity={0.2}
       >
         <Button 
           variant="primary" 

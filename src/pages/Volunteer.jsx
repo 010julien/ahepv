@@ -85,7 +85,7 @@ const Volunteer = () => {
         subtitle={t('volunteer.hero.subtitle')}
         breadcrumb={t('volunteer.breadcrumb')}
         images={['/images/hero-volunteer.jpg', '/images/kante4.jpg', '/images/lits-mandouri4.jpg']}
-        overlayOpacity={0.65}
+        overlayOpacity={0.2}
       >
         <Button 
           variant="primary" 

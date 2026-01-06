@@ -75,7 +75,7 @@ const Contact = () => {
         subtitle={t('contactPage.hero.subtitle')}
         breadcrumb={t('contact.breadcrumb')}
         images={['/images/contact-hero.jpg', '/images/boubouaka2.jpeg']}
-        overlayOpacity={0.65}
+        overlayOpacity={0.2}
       />
 
       <section className="section">
