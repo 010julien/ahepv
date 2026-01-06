@@ -1,11 +1,34 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaHome, FaChevronRight, FaChevronDown } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../i18n/useTranslation';
 
-const Hero = ({ title, subtitle, breadcrumb, backgroundImage = '/images/hero-bg.jpg', bottomGap = 48 }) => {
+const Hero = ({ 
+  title, 
+  subtitle,
+  breadcrumb, 
+  backgroundImage = '/images/hero-bg.jpg', 
+  images = [], 
+  bottomGap = 48,
+  overlayOpacity = 0.6,
+  children 
+}) => {
   const heroRef = useRef(null);
   const { t } = useTranslation();
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  // Use provided images array, or fallback to single backgroundImage
+  const slides = images.length > 0 ? images : [backgroundImage];
+
+  useEffect(() => {
+    if (slides.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setHeroIndex((prev) => (prev + 1) % slides.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
 
   useEffect(() => {
     const setOffsets = () => {
@@ -40,12 +63,22 @@ const Hero = ({ title, subtitle, breadcrumb, backgroundImage = '/images/hero-bg.
   };
 
   return (
-    <section ref={heroRef} className="hero" style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="hero-overlay"></div>
+    <section ref={heroRef} className="hero">
+      {/* Background Slideshow */}
+      <div className="hero-bg-container">
+        {slides.map((img, index) => (
+          <div 
+            key={index} 
+            className={`hero-bg-slide ${index === heroIndex ? 'active' : ''}`}
+            style={{ backgroundImage: `url(${img})` }}
+          />
+        ))}
+      </div>
+
+      <div className="hero-overlay" style={{ opacity: overlayOpacity }}></div>
+      
       <div className="container">
         <div className="hero-content">
-          <h1 className="hero-title">{title}</h1>
-          {subtitle && <p className="hero-subtitle">{subtitle}</p>}
           {breadcrumb && (
             <div className="breadcrumb">
               <Link to="/">
@@ -56,6 +89,14 @@ const Hero = ({ title, subtitle, breadcrumb, backgroundImage = '/images/hero-bg.
               <span>{breadcrumb}</span>
             </div>
           )}
+          
+          <h1 className="hero-title">{title}</h1>
+          
+          <div className="hero-divider"></div>
+          
+          {subtitle && <p className="hero-subtitle">{subtitle}</p>}
+          
+          {children && <div className="hero-actions">{children}</div>}
         </div>
       </div>
 
@@ -68,15 +109,40 @@ const Hero = ({ title, subtitle, breadcrumb, backgroundImage = '/images/hero-bg.
       <style>{`
         .hero {
           position: relative;
-          /* Fullscreen height */
-          min-height: 100svh;
+          min-height: 85vh;
           display: flex;
           align-items: center;
-          justify-content: center;
+          padding-top: var(--hero-top-offset, 80px);
+          overflow: hidden;
+        }
+
+        /* Slideshow Styles */
+        .hero-bg-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+        }
+
+        .hero-bg-slide {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
           background-size: cover;
           background-position: center;
-          background-attachment: fixed;
-          padding-top: var(--hero-top-offset, 80px); /* Compensate for fixed header + announcement */
+          opacity: 0;
+          transition: opacity 1.5s ease-in-out, transform 6s ease;
+          transform: scale(1.1);
+        }
+
+        .hero-bg-slide.active {
+          opacity: 1;
+          transform: scale(1);
+          z-index: 1;
         }
 
         .hero-overlay {
@@ -85,116 +151,172 @@ const Hero = ({ title, subtitle, breadcrumb, backgroundImage = '/images/hero-bg.
           left: 0;
           right: 0;
           bottom: 0;
-          background: rgba(0, 0, 0, 0.37);
-          opacity: 0.6;
-          z-index: 1;
+          background: linear-gradient(105deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.3) 100%);
+          z-index: 2;
         }
 
         .hero-content {
           position: relative;
-          z-index: 2;
-          text-align: center;
+          z-index: 3;
           color: var(--color-white);
-          animation: fadeInUp 0.8s ease-out;
           width: 100%;
+          max-width: 850px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 2rem 0;
+        }
+
+        /* Entry Animations */
+        .breadcrumb { animation: slideInLeft 0.8s ease-out forwards; opacity: 0; }
+        .hero-title { animation: slideInLeft 0.8s ease-out 0.2s forwards; opacity: 0; }
+        .hero-divider { animation: scaleXIn 0.8s ease-out 0.4s forwards; opacity: 0; transform-origin: left; }
+        .hero-subtitle { animation: slideInUp 0.8s ease-out 0.6s forwards; opacity: 0; }
+        .hero-actions { animation: slideInUp 0.8s ease-out 0.8s forwards; opacity: 0; }
+
+        @keyframes slideInLeft {
+          from { transform: translateX(-30px); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideInUp {
+          from { transform: translateY(30px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes scaleXIn {
+          from { transform: scaleX(0); opacity: 0; }
+          to { transform: scaleX(1); opacity: 1; }
+        }
+
+        .hero-title {
+          font-size: clamp(3rem, 6vw, 5.5rem);
+          font-weight: 800;
+          color: var(--color-white);
+          margin-bottom: 1.5rem;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+          text-align: left;
+        }
+
+        .hero-divider {
+          width: 100px;
+          height: 6px;
+          background: var(--color-primary);
+          margin-bottom: 2rem;
+          border-radius: 3px;
+        }
+
+        .hero-subtitle {
+          font-size: clamp(1.25rem, 2vw, 1.5rem);
+          font-weight: 300;
+          color: rgba(255, 255, 255, 0.9);
+          margin-bottom: 2.5rem;
+          line-height: 1.6;
+          text-align: left;
+          max-width: 650px;
+        }
+
+        .hero-actions {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+        }
+
+        .breadcrumb {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: var(--color-primary);
+          margin-bottom: 1rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          background: transparent;
+          padding: 0;
+          backdrop-filter: none;
+          border: none;
+        }
+
+        .breadcrumb a {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: rgba(255,255,255,0.8);
+          transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+          color: var(--color-white);
+        }
+
+        .breadcrumb svg {
+          font-size: 0.9rem;
         }
 
         .hero-scroll-indicator {
           position: absolute;
           left: 50%;
           transform: translateX(-50%);
-          bottom: calc(var(--hero-bottom-gap, 48px) / 2);
-          z-index: 2;
+          bottom: 2rem;
+          z-index: 3;
         }
 
         .scroll-btn {
-          width: 44px;
-          height: 44px;
-          border-radius: var(--radius-full);
-          border: 2px solid rgba(255,255,255,0.9);
-          background: rgba(0,0,0,0.15);
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          border: 1px solid rgba(255,255,255,0.3);
+          background: rgba(255,255,255,0.1);
           color: var(--color-white);
-          display: grid;
-          place-items: center;
-          animation: bounceY 1.8s infinite ease-in-out;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-        }
-
-        .scroll-btn:hover {
-          background: rgba(255,255,255,0.15);
-        }
-
-        @keyframes bounceY {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(6px); }
-        }
-
-        .hero-title {
-          font-size: var(--font-size-5xl);
-          font-weight: var(--font-weight-extrabold);
-          color: var(--color-white);
-          margin-bottom: var(--spacing-md);
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-subtitle {
-          font-size: var(--font-size-xl);
-          color: var(--color-white);
-          margin-bottom: var(--spacing-xl);
-          max-width: 700px;
-          margin-left: auto;
-          margin-right: auto;
-          line-height: 1.6;
-          text-align: center;
-        }
-
-        .breadcrumb {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: var(--spacing-md);
-          font-size: var(--font-size-base);
-          background: rgba(255, 255, 255, 0.1);
-          padding: var(--spacing-sm) var(--spacing-lg);
-          border-radius: var(--radius-full);
-          display: inline-flex;
+          transition: all 0.3s ease;
           backdrop-filter: blur(5px);
+          animation: bounceY 2s infinite;
+          cursor: pointer;
         }
 
-        .breadcrumb a {
-          display: flex;
-          align-items: center;
-          gap: var(--spacing-sm);
-          color: var(--color-white);
-          transition: color var(--transition-fast);
+        .scroll-btn:hover {
+          background: var(--color-primary);
+          border-color: var(--color-primary);
+          transform: translateY(5px);
         }
 
-        .breadcrumb a:hover {
-          color: var(--color-primary-light);
-        }
-
-        .breadcrumb svg {
-          font-size: var(--font-size-sm);
+        @keyframes bounceY {
+          0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+          40% {transform: translateY(-10px);}
+          60% {transform: translateY(-5px);}
         }
 
         @media (max-width: 1024px) {
           .hero {
             /* Disable fixed background on mobile/tablets for smoother scroll */
             background-attachment: scroll;
+            min-height: 60vh;
           }
-        }
-
-        @media (max-width: 768px) {
-          .hero {
-            min-height: calc(100svh - var(--hero-top-offset, 70px) - var(--hero-bottom-gap, 32px));
-          }
-
-          .hero-title {
-            font-size: var(--font-size-4xl);
+          
+          .hero-content {
+             align-items: center;
+             text-align: center;
+             margin: 0 auto;
+             padding: 2rem;
           }
 
-          .hero-subtitle {
-            font-size: var(--font-size-lg);
+          .hero-title, .hero-subtitle {
+             text-align: center;
+          }
+
+          .breadcrumb {
+             justify-content: center;
+          }
+
+          .hero-divider {
+             display: none; /* Hide divider on smaller screens for cleaner look */
+          }
+           
+          .hero-actions {
+             justify-content: center;
           }
         }
       `}</style>

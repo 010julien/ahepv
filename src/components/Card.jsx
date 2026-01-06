@@ -140,7 +140,7 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
           transition: transform var(--transition-slow);
         }
 
-        .slider-btn {
+        .card-img-wrapper .slider-btn {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
@@ -159,23 +159,23 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
           z-index: 10;
         }
 
-        .slider-btn:hover {
+        .card-img-wrapper .slider-btn:hover {
           background: var(--color-primary);
         }
 
-        .card:hover .slider-btn {
+        .card:hover .card-img-wrapper .slider-btn {
           opacity: 1;
         }
 
-        .slider-prev {
+        .card-img-wrapper .slider-prev {
           left: 10px;
         }
 
-        .slider-next {
+        .card-img-wrapper .slider-next {
           right: 10px;
         }
 
-        .slider-dots {
+        .card-img-wrapper .slider-dots {
           position: absolute;
           bottom: 10px;
           left: 50%;
@@ -185,7 +185,7 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
           z-index: 10;
         }
 
-        .slider-dot {
+        .card-img-wrapper .slider-dot {
           width: 8px;
           height: 8px;
           background: rgba(255, 255, 255, 0.5);
@@ -193,7 +193,7 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
           transition: all 0.3s ease;
         }
 
-        .slider-dot.active {
+        .card-img-wrapper .slider-dot.active {
           background: var(--color-primary);
           transform: scale(1.2);
         }
@@ -221,17 +221,17 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
             height: 220px;
           }
 
-          .slider-btn {
+          .card-img-wrapper .slider-btn {
             opacity: 1;
             width: 38px;
             height: 38px;
           }
 
-          .slider-dots {
+          .card-img-wrapper .slider-dots {
             bottom: 8px;
           }
 
-          .slider-dot {
+          .card-img-wrapper .slider-dot {
             width: 10px;
             height: 10px;
           }
@@ -241,11 +241,11 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
             height: 200px;
           }
 
-          .slider-prev {
+          .card-img-wrapper .slider-prev {
             left: 8px;
           }
 
-          .slider-next {
+          .card-img-wrapper .slider-next {
             right: 8px;
           }
         }

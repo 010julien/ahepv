@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Hero from '../components/Hero';
-import Button from '../components/Button';
+import Button from '../components/Button.jsx';
 import { events } from '../data/events';
 import { FaCalendar, FaClock, FaMapMarkerAlt, FaTicketAlt } from 'react-icons/fa';
 import { useTranslation } from '../i18n/useTranslation';

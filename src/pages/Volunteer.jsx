@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Hero from '../components/Hero';
-import Button from '../components/Button';
+import Button from '../components/Button.jsx';
 import { useTranslation } from '../i18n/useTranslation';
 import { CONTACT } from '../config/site';
 import { sendEmail } from '../utils/email';
@@ -81,11 +81,20 @@ const Volunteer = () => {
   return (
     <div className="volunteer-page">
       <Hero 
-        title={t('volunteer.title')} 
-        subtitle={t('volunteer.subtitle')}
+        title="Rejoignez le Mouvement" 
+        subtitle="Donnez de votre temps et de vos compétences pour construire un monde meilleur."
         breadcrumb={t('volunteer.breadcrumb')}
-        backgroundImage="/images/hero-volunteer.jpg" 
-      />
+        images={['/images/hero-volunteer.jpg', '/images/kante4.jpg', '/images/lits-mandouri4.jpg']}
+        overlayOpacity={0.65}
+      >
+        <Button 
+          variant="primary" 
+          size="lg" 
+          onClick={() => document.querySelector('.volunteer-form').scrollIntoView({ behavior: 'smooth' })}
+        >
+          Je deviens bénévole
+        </Button>
+      </Hero>
 
       <section className="section">
         <div className="container">

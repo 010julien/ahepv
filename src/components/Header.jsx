@@ -157,20 +157,19 @@ const Header = () => {
           right: 0;
           z-index: var(--z-sticky);
           background-color: transparent;
-          backdrop-filter: blur(2px);
-          border-radius: 100px;
-          margin-top: 20px;
+          border-radius: 0;
+          margin-top: 0;
+          padding: 15px 20px;
           box-shadow: none;
           transition: all 0.4s ease; /* Smooth transition */
         }
 
         .header-scrolled {
-          background: var(--color-white);
+          background: rgba(255, 255, 255, 1);
           box-shadow: var(--shadow-md);
-          padding: var(--spacing-md) 0; /* Slightly compact on scroll */
-          backdrop-filter: blur(0px);
-          border-radius: 0px;
-          margin-top: 0px;
+          padding: 25px;
+          border-radius: 0;
+          margin-top: 0;
         }
 
         .header-content {
@@ -178,21 +177,22 @@ const Header = () => {
           align-items: center;
           justify-content: space-between;
           width: 100%;
-          padding: var(--spacing-lg) 0;
+          gap: var(--spacing-xl);
+          padding: 0.9rem 0;
           transition: padding 0.4s ease;
         }
         
         .header-scrolled .header-content {
-          padding: var(--spacing-sm) 0;
+          padding: var(--spacing-md) 0;
         }
 
-        /* Default Text Colors (Transparent Header) */
+        /* Default Text Colors */
         .header .nav-link,
         .header .dropdown-icon,
         .mobile-menu-toggle,
         .social-link-item {
           color: var(--color-white);
-          text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Legibility on images */
+          text-shadow: none;
         }
 
         /* Scrolled Text Colors */
@@ -203,20 +203,21 @@ const Header = () => {
           color: var(--text-primary);
           text-shadow: none;
         }
-
+        
         .header .logo-img {
-          filter: brightness(0) invert(1); /* Make logo white if it's black initially */
+          filter: none;
           transition: filter 0.4s ease;
         }
 
         .header-scrolled .logo-img {
-          filter: none; /* Restore original colored logo */
+          filter: none;
         }
 
         .header-actions {
           display: flex;
           align-items: center;
-          gap: var(--spacing-lg);
+          gap: clamp(var(--spacing-sm), 1.5vw, var(--spacing-lg));
+          flex-shrink: 0;
         }
 
         /* Social Icons Styles */
@@ -227,6 +228,13 @@ const Header = () => {
           color: var(--color-white);
         }
 
+        .header .social-link-item {
+          width: 28px;
+          height: 28px;
+          border-radius: 0;
+          background: transparent;
+        }
+
         /* Mobile Social Icons Styles - Hidden on Desktop */
         .mobile-social-header {
           display: none;
@@ -234,34 +242,40 @@ const Header = () => {
 
         /* Special handling for Donate button */
         .header .donate-btn {
-          background: var(--gradient-primary);
-          border: 2px solid transparent;
-          color: var(--color-white) !important;
-          box-shadow: 0 4px 15px rgba(52, 149, 67, 0.3);
+          background: #2b8238;
+          border: 1px solid transparent;
+          color: #ffffffff !important;
+          box-shadow: none;
+          border-radius: var(--radius-full);
+          padding: 0.7rem 1.25rem;
+          font-weight: var(--font-weight-semibold);
+          letter-spacing: 0.02em;
         }
         
         .header .donate-btn:hover {
-          background: var(--gradient-secondary);
-          color: var(--color-white) !important;
-          box-shadow: 0 6px 20px rgba(52, 149, 67, 0.4);
+          background: #fff;
+          color: #1f1f1f !important;
+          box-shadow: none;
         }
 
         .header-scrolled .donate-btn {
-          background: var(--gradient-primary);
-          border: 2px solid transparent;
-          color: var(--color-white) !important;
-          box-shadow: 0 4px 15px rgba(52, 149, 67, 0.3);
+          background: #2b8238;
+          border: 1px solid transparent;
+          color: #fdfdfdff !important;
+          box-shadow: none;
         }
 
         .header-scrolled .donate-btn:hover {
-          background: var(--gradient-secondary);
-          box-shadow: 0 6px 20px rgba(52, 149, 67, 0.4);
+          background: #2b8238;
+          color: #fdfdfdff !important;
+          box-shadow: none;
         }
 
         .logo {
           display: flex;
           align-items: center;
           gap: var(--spacing-sm);
+          flex-shrink: 0;
           font-family: var(--font-primary);
           font-size: var(--font-size-2xl);
           font-weight: var(--font-weight-bold);
@@ -275,13 +289,9 @@ const Header = () => {
 
         .logo-img {
           width: 130px;
-          height: 80px;
+          height: 56px;
           object-fit: contain;
           transition: all 0.4s ease;
-        }
-
-        .header-scrolled .logo-img {
-             width: 110px; /* Slight resize on scroll */
         }
 
         .logo-icon {
@@ -292,25 +302,29 @@ const Header = () => {
         .nav {
           display: flex;
           align-items: center;
-          gap: var(--spacing-xl);
+          justify-content: center;
+          gap: clamp(var(--spacing-md), 2vw, var(--spacing-xl));
+          flex: 1;
+          min-width: 0;
         }
 
         .nav-link {
           font-family: var(--font-primary);
-          font-size: var(--font-size-base);
+          font-size: 0.95rem;
           font-weight: var(--font-weight-medium);
-          color: var(--text-primary);
+          color: var(--color-white);
           position: relative;
           transition: color var(--transition-fast);
           background: none;
           border: none;
           cursor: pointer;
-          padding: 0;
+          padding: 0.35rem 0;
+          white-space: nowrap;
         }
 
         .nav-link:hover,
         .nav-link.active {
-          color: var(--color-primary);
+          color: #2b8238;
         }
 
         .nav-link.active::after {
@@ -319,8 +333,20 @@ const Header = () => {
           bottom: -5px;
           left: 0;
           right: 0;
-          height: 2px;
-          background: var(--color-primary);
+          height: 5px;
+          background: #2b8238;
+          border-radius: 5px;
+        }
+
+        
+
+        .header-scrolled .nav-link {
+          color: var(--text-primary) !important;
+        }
+
+        .header-scrolled .nav-link:hover,
+        .header-scrolled .nav-link.active {
+          color: #2b8238 !important;
         }
 
         /* Dropdown Styles */
@@ -408,8 +434,8 @@ const Header = () => {
           font-size: var(--font-size-2xl);
           color: var(--color-white);
           font-size: 1.7rem !important;
-          margin-right: 2.5rem !important;
-          z-index: var(--z-sticky);
+          z-index: 1100; /* Ensure it's above everything */
+          filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); /* Add contrast visibility */
         }
 
         .mobile-donate-btn {
@@ -525,15 +551,15 @@ const Header = () => {
         }
 
         @media (max-width: 768px) {
+          .mobile-menu-toggle {
+            margin-right: var(--spacing-md);
+          }
           .header {
             padding: 0;
-            height: 130px !important;
-            justify-content: space-between;
-            
           }
           .logo-img {
-            width: 100px !important;
-            height: 100px !important;
+            width: 100px;
+            height: 48px;
           }
         }
       `}</style>

@@ -4,11 +4,19 @@ const AnimatedSection = ({
   children, 
   animation = 'fade-up', 
   delay = 0,
-  threshold = 0.2,
+  threshold = 0.1, // Lower threshold for earlier mobile triggering
   once = true 
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+
+  // Safety timeout to ensure content is eventually visible even if observer fails
+  useEffect(() => {
+    const timer = setTimeout(() => {
+        if (!isVisible) setIsVisible(true);
+    }, 4000); // Force visible after 4 seconds
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

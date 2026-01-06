@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Hero from '../components/Hero';
-import Button from '../components/Button';
+import Button from '../components/Button.jsx';
 import { useTranslation } from '../i18n/useTranslation';
 import { FaPhone, FaEnvelope, FaLocationDot, FaClock } from 'react-icons/fa6';
 import SocialLink from '../components/SocialLink';
@@ -71,10 +71,11 @@ const Contact = () => {
   return (
     <div className="contact-page">
       <Hero 
-        title={t('contactPage.title')}
-        subtitle={t('contactPage.subtitle')}
-        breadcrumb={t('contactPage.breadcrumb')}
-        backgroundImage="/images/hero-contact.jpg"
+        title="Restons Connectés" 
+        subtitle="Une question ? Un partenariat ? Notre équipe est à votre écoute pour construire ensemble."
+        breadcrumb={t('contact.breadcrumb')}
+        images={['/images/contact-hero.jpg', '/images/boubouaka2.jpeg']}
+        overlayOpacity={0.65}
       />
 
       <section className="section">

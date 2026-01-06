@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
-import Card from '../components/Card';
-import Button from '../components/Button';
+import Card from '../components/Card.jsx';
+import Button from '../components/Button.jsx';
+import Pagination from '../components/Pagination';
 import { useTranslation } from '../i18n/useTranslation';
 import { getLocalized, localeFromLang } from '../i18n/utils';
 import { events } from '../data/events';
@@ -11,17 +12,44 @@ import { FaCalendar, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
 const Events = () => {
   const { t, language } = useTranslation();
   const [activeTab, setActiveTab] = useState('upcoming');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   const filteredEvents = events.filter(event => event.status === activeTab);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredEvents.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredEvents.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 400, behavior: 'smooth' }); // Scroll past hero
+  };
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setCurrentPage(1); // Reset to first page on tab change
+  };
 
   return (
     <div className="events-page">
       <Hero 
-        title={t('events.title')} 
-        subtitle={t('events.subtitle')}
+        title="Nos Événements" 
+        subtitle="Participez à nos actions terrain et nos rencontres caritatives."
         breadcrumb={t('events.breadcrumb')}
-        backgroundImage="/images/hero-events.jpg"
-      />
+        images={['/images/hero-events.jpg', '/images/actitehero1.jpg', '/images/actitehero2.jpg']}
+        overlayOpacity={0.6}
+      >
+        <Button 
+          variant="primary" 
+          size="lg" 
+          onClick={() => document.querySelector('.events-grid').scrollIntoView({ behavior: 'smooth' })}
+        >
+          Prochain événement
+        </Button>
+      </Hero>
 
       <section className="section">
         <div className="container">
@@ -29,13 +57,13 @@ const Events = () => {
           <div className="event-tabs">
             <button
               className={`tab-btn ${activeTab === 'upcoming' ? 'active' : ''}`}
-              onClick={() => setActiveTab('upcoming')}
+              onClick={() => handleTabChange('upcoming')}
             >
               {t('events.upcoming')}
             </button>
             <button
               className={`tab-btn ${activeTab === 'past' ? 'active' : ''}`}
-              onClick={() => setActiveTab('past')}
+              onClick={() => handleTabChange('past')}
             >
               {t('events.past')}
             </button>
@@ -43,7 +71,7 @@ const Events = () => {
 
           {/* Events Grid */}
           <div className="events-grid">
-            {filteredEvents.map((event) => (
+            {currentItems.map((event) => (
               <Card
                 key={event.id}
                 image={event.image}
@@ -82,6 +110,12 @@ const Events = () => {
               </Card>
             ))}
           </div>
+
+          <Pagination 
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
 
           {filteredEvents.length === 0 && (
             <div className="no-events">

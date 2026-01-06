@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Hero from '../components/Hero';
-import Card from '../components/Card';
+import Card from '../components/Card.jsx';
 import { useTranslation } from '../i18n/useTranslation';
 import { getLocalized, localeFromLang } from '../i18n/utils';
 import { blogPosts, categories } from '../data/blog';
@@ -25,10 +25,11 @@ const Blog = () => {
   return (
     <div className="blog-page">
       <Hero 
-        title={t('blog.title')} 
-        subtitle={t('blog.subtitle')}
+        title="Actualités & Histoires" 
+        subtitle="Les dernières nouvelles du terrain et témoignages de bénéficiaires."
         breadcrumb={t('blog.breadcrumb')}
-        backgroundImage="/images/hero-blog.jpg"
+        images={['/images/hero-blog.jpg', '/images/story.jpg']}
+        overlayOpacity={0.6}
       />
 
       <section className="section">

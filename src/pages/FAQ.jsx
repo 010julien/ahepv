@@ -21,10 +21,11 @@ const FAQ = () => {
   return (
     <div className="faq-page">
       <Hero 
-        title={t('faq.title')} 
-        subtitle={t('faq.subtitle')}
+        title="Questions Fréquentes" 
+        subtitle="Tout ce que vous devez savoir sur nos actions et vos dons."
         breadcrumb={t('faq.breadcrumb')}
-        backgroundImage="/images/hero-faq.jpg"
+        images={['/images/hero-faq.jpg', '/images/hero3.jpeg']}
+        overlayOpacity={0.7}
       />
 
       <section className="section">

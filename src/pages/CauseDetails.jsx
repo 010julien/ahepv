@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import Hero from '../components/Hero';
-import ProgressBar from '../components/ProgressBar';
-import Button from '../components/Button';
+import ProgressBar from '../components/ProgressBar.jsx';
+import Button from '../components/Button.jsx';
 import { causes } from '../data/causes';
 import { FaUsers } from 'react-icons/fa';
 import { useTranslation } from '../i18n/useTranslation';

@@ -11,11 +11,11 @@ const About = () => {
   return (
     <div className="about">
       <Hero 
-        title={t('about.title')} 
-        subtitle={t('about.subtitle')}
+        title="Notre Histoire & Mission"
+        subtitle="Découvrez les visages et les valeurs qui animent nos actions au quotidien."
         breadcrumb={t('about.breadcrumb')}
-        backgroundImage="/images/apropos.jpg"
-        
+        images={['/images/apropos.jpg', '/images/apropos1.jpg', '/images/kante5.jpg']}
+        overlayOpacity={0.7}
       />
       
       {/* Intro + Highlights */}

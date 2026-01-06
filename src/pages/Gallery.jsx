@@ -1,75 +1,87 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaExpand, FaTimes } from 'react-icons/fa';
 import Hero from '../components/Hero';
+import AutoSlider from '../components/AutoSlider.jsx';
 import { useTranslation } from '../i18n/useTranslation';
+import Pagination from '../components/Pagination';
 
 const Gallery = () => {
   const { t } = useTranslation();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
+  const itemsPerPage = 2; // Galleries per page
   const base = (import.meta?.env?.BASE_URL || '/');
+  const [currentPageState, setCurrentPage] = useState(1);
 
-  // Force reveal visibility in case old reveal classes linger
-  useEffect(() => {
-    const els = document.querySelectorAll('.gallery-page .reveal');
-    els.forEach((el) => {
-      el.classList.remove('reveal');
-      el.classList.add('reveal-visible');
-    });
-  }, []);
 
-  // Build galleries (ensure existing images only)
+
+  // Build galleries
   const gallery1 = [1,2,3,4,5,6,7].map(n => ({
     src: `${base}images/gall1.${n}.jpg`,
-    title: `Galerie 1 - Photo ${n}`,
-    paragraph: 'Cliquez pour agrandir'
+    title: `Action Terrain ${n}`,
+    paragraph: 'Soutien aux communautés locales'
   }));
 
   const gallery2 = [1,2,3,4,5,6,7,8].map(n => ({
     src: `${base}images/gall2.${n}.jpg`,
-    title: `Galerie 2 - Photo ${n}`,
-    paragraph: 'Nos actions sur le terrain'
+    title: `Santé & Soins ${n}`,
+    paragraph: 'Campagnes médicales'
   }));
 
   const gallery3 = [1,2,3,4,5,6,7,8].map(n => ({
     src: `${base}images/gall3.${n}.jpg`,
-    title: `Galerie 3 - Photo ${n}`,
-    paragraph: 'Moments de solidarité'
+    title: `Éducation ${n}`,
+    paragraph: 'Distribution de kits scolaires'
   }));
 
   const gallery4 = [1,2,3,4,5,6,7,8,9,10,11,12].map(n => ({
     src: `${base}images/gall4.${n}.jpg`,
-    title: `Galerie 4 - Photo ${n}`,
-    paragraph: 'Moments de solidarité'
+    title: `Solidarité ${n}`,
+    paragraph: 'Aide alimentaire et sociale'
   }));
 
   const gallery5 = [1,2,3,4,5,6,7,8,9,10,11].map(n => ({
     src: `${base}images/gall5.${n}.jpg`,
-    title: `Galerie 5 - Photo ${n}`,
-    paragraph: 'Moments de solidarité'
+    title: `Environnement ${n}`,
+    paragraph: 'Actions écologiques'
   }));
 
   const gallery6 = [1,2,3,4,5,6,7,8,9,10,11].map(n => ({
     src: `${base}images/gall6.${n}.jpg`,
-    title: `Galerie 6 - Photo ${n}`,
-    paragraph: 'Moments de solidarité'
+    title: `Événements ${n}`,
+    paragraph: 'Nos moments forts'
   }));
 
-  // const gallery7 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map(n => ({
-  //   src: `/images/gall7.${n}.jpg`,
-  //   title: `Galerie 7 - Photo ${n}`,
-  //   paragraph: 'Moments de solidarité'
-  // }));
-  
-
   const galleries = [
-    { title: 'Galerie 1', images: gallery1 },
-    { title: 'Galerie 2', images: gallery2 },
-    { title: 'Galerie 3', images: gallery3 },
-    { title: 'Galerie 4', images: gallery4 },
-    { title: 'Galerie 5', images: gallery5 },
-    { title: 'Galerie 6', images: gallery6 },
-    // { title: 'Galerie 7', images: gallery7 },
+    { title: 'Nos Actions Récentes', images: gallery1 },
+    { title: 'Campagnes Médicales', images: gallery2 },
+    { title: 'Soutien Scolaire', images: gallery3 },
+    { title: 'Solidarité & Partage', images: gallery4 },
+    { title: 'Protection de l\'Environnement', images: gallery5 },
+    { title: 'Vie de l\'Association', images: gallery6 },
   ];
+
+  const categories = Object.keys(galleries);
+  // Flatten all images for the featured slider (take first 5)
+  const featuredImages = [
+    ...gallery1.slice(0, 1),
+    ...gallery2.slice(0, 1),
+    ...gallery3.slice(0, 1),
+    ...gallery4.slice(0, 1),
+    ...gallery5.slice(0, 1)
+  ];
+
+  // Pagination logic
+  const totalPages = Math.ceil(galleries.length / itemsPerPage);
+  const indexOfLastItem = currentPageState * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentGalleries = galleries.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 400, behavior: 'smooth' });
+  };
 
   const openLightbox = (image) => {
     setCurrentImage(image);
@@ -83,201 +95,363 @@ const Gallery = () => {
     document.body.style.overflow = 'auto';
   };
 
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15, // Stagger effect for children
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      y: 80, 
+      x: -40,
+      opacity: 0, 
+      scale: 0.9,
+      rotateX: -15 
+    },
+    visible: {
+      y: 0,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        type: "spring",
+        stiffness: 50,
+        damping: 12,
+        mass: 1.2
+      }
+    }
+  };
+
   return (
     <div className="gallery-page">
       <Hero 
-        title={t('gallery.title')} 
-        subtitle={t('gallery.subtitle')}
+        title="Notre Impact en Images" 
+        subtitle="Chaque photo raconte une histoire de résilience et d'espoir."
         breadcrumb={t('gallery.breadcrumb')}
-        backgroundImage={`${base}images/gall3.jpg`}
+        images={['/images/gall3.jpg', '/images/gall1.5.jpg', '/images/gall4.2.jpg']}
+        overlayOpacity={0.6}
       />
 
-      <section className="section">
+      <section className="section bg-gray-50">
         <div className="container">
-          {galleries.map((gal) => (
+          {/* Featured Auto Slider */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+             <h2 className="section-title text-center" style={{ marginBottom: "var(--spacing-xl)" }}>
+                Vivez nos actions en direct
+             </h2>
+             <AutoSlider images={featuredImages} height="500px" />
+          </motion.div>
+
+          {currentGalleries.map((gal) => (
             <div key={gal.title} className="gallery-section">
-              <h3 className="gallery-year-title">{gal.title}</h3>
-              <div className="gallery-grid">
-                {gal.images.map((image) => (
-                  <div
+              <motion.div 
+                 className="gallery-header"
+                 initial={{ opacity: 0, x: -50 }}
+                 whileInView={{ opacity: 1, x: 0 }}
+                 viewport={{ once: true, margin: "-100px" }}
+                 transition={{ duration: 0.7, ease: "easeOut" }}
+              >
+                  <h3 className="gallery-section-title">{gal.title}</h3>
+                  <div className="gallery-divider"></div>
+              </motion.div>
+              
+              <motion.div 
+                className="gallery-grid"
+              >
+                {gal.images.map((image, index) => (
+                  <motion.div
                     key={image.src}
-                    className="gallery-item"
+                    className="gallery-item group"
                     onClick={() => openLightbox(image)}
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    whileHover={{ 
+                        y: -12, 
+                        scale: 1.02,
+                        transition: { type: "spring", stiffness: 300 }
+                    }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    <img
-                      src={image.src}
-                      alt={image.title}
-                      loading="lazy"
-                      onError={(e) => {
-                        if (e.currentTarget.dataset.fallback !== '1') {
-                          e.currentTarget.dataset.fallback = '1';
-                          e.currentTarget.src = `${base}images/5ans.jpg`;
-                          try { console.warn('Gallery image missing, using fallback:', image.src); } catch(_) {}
-                        }
-                      }}
-                    />
-                    <div className="gallery-overlay">
-                      <h4>{image.title}</h4>
-                      {image.paragraph && <p className="text-sm text-white mt-2">{image.paragraph}</p>}
+                    <div className="gallery-img-wrapper">
+                      <motion.img
+                        src={image.src}
+                        alt={image.title}
+                        loading="lazy"
+                        className="gallery-img"
+                        onError={(e) => {
+                          if (e.currentTarget.dataset.fallback !== '1') {
+                            e.currentTarget.dataset.fallback = '1';
+                            e.currentTarget.src = `${base}images/5ans.jpg`;
+                          }
+                        }}
+                      />
+                      <div className="gallery-overlay">
+                        <motion.div
+                            initial={{ scale: 0, rotate: -180 }}
+                            whileInView={{ scale: 1, rotate: 0 }}
+                            transition={{ type: "spring" }}
+                        >
+                             <FaExpand className="expand-icon" />
+                        </motion.div>
+                      </div>
                     </div>
-                  </div>
+                    
+                    <motion.div 
+                        className="gallery-content"
+                        initial={{ opacity: 0.8 }}
+                        whileHover={{ opacity: 1, x: 5 }} // Slight translation on text
+                    >
+                       <h4>{image.title}</h4>
+                       <p>{image.paragraph}</p>
+                    </motion.div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           ))}
+
+          <Pagination 
+            currentPage={currentPageState}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </div>
       </section>
 
       {/* Lightbox */}
-      {lightboxOpen && (
-        <div className="lightbox" onClick={closeLightbox}>
-          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <button className="lightbox-close" onClick={closeLightbox}>&times;</button>
-            <img src={currentImage.src} alt={currentImage.title} />
-            <h3>{currentImage.title}</h3>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <motion.div 
+            className="lightbox" 
+            onClick={closeLightbox}
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(10px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div 
+                className="lightbox-content" 
+                onClick={(e) => e.stopPropagation()}
+                initial={{ scale: 0.5, opacity: 0, y: 100 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.5, opacity: 0, y: 100 }}
+                transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            >
+              <button className="lightbox-close" onClick={closeLightbox}>
+                 <FaTimes />
+              </button>
+              <img src={currentImage.src} alt={currentImage.title} />
+              <motion.div 
+                  className="lightbox-caption"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+              >
+                  <h3>{currentImage.title}</h3>
+                  <p>{currentImage.paragraph}</p>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <style>{`
+        .bg-gray-50 {
+            background-color: var(--color-gray-50);
+        }
+
         .gallery-section {
-          margin-bottom: var(--spacing-3xl);
+          margin-bottom: var(--spacing-4xl);
         }
 
-        .gallery-year-title {
-          font-size: var(--font-size-2xl);
+        .gallery-header {
+            margin-bottom: var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .gallery-section-title {
+          font-size: var(--font-size-3xl);
           color: var(--color-primary);
-          margin-bottom: var(--spacing-lg);
-          padding-bottom: var(--spacing-sm);
-          border-bottom: 2px solid var(--color-gray-200);
+          margin: 0;
         }
-
-        /* Safety: if any stale .reveal classes remain in the gallery, make them visible */
-        .gallery-page .reveal {
-          opacity: 1 !important;
-          transform: none !important;
+        
+        .gallery-divider {
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--color-gray-300), transparent);
         }
 
         .gallery-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: var(--spacing-lg);
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: var(--spacing-xl);
+          perspective: 1000px; /* Added perspective for 3D rotation visibility */
         }
 
         .gallery-item {
-          position: relative;
-          height: 250px;
+          background: var(--color-white);
           border-radius: var(--radius-lg);
           overflow: hidden;
           cursor: pointer;
-          box-shadow: var(--shadow-md);
-          transition: all var(--transition-base);
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* Soft shadow */
+          border: 1px solid var(--color-gray-100);
+          /* Transform/Transition handled by framer-motion interactions */
         }
 
         .gallery-item:hover {
-          transform: translateY(-5px);
-          box-shadow: var(--shadow-xl);
+          box-shadow: 0 25px 50px -12px rgba(52, 149, 67, 0.2); /* Colored shadow on hover */
         }
 
-        .gallery-item img {
+        .gallery-img-wrapper {
+          position: relative;
+          height: 220px;
+          overflow: hidden;
+        }
+
+        .gallery-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform var(--transition-slow);
+          transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .gallery-item:hover img {
-          transform: scale(1.1);
+        .gallery-item:hover .gallery-img {
+          transform: scale(1.15); /* Slightly more zoom */
         }
 
         .gallery-overlay {
           position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.3);
           display: flex;
-          flex-direction: column;
-          justify-content: center;
           align-items: center;
-          
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: var(--gradient-overlay);
+          justify-content: center;
           opacity: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: opacity var(--transition-base);
+          transition: opacity 0.3s ease;
         }
 
         .gallery-item:hover .gallery-overlay {
           opacity: 1;
         }
 
-        .gallery-overlay h4 {
-          color: var(--color-white);
-          font-size: var(--font-size-xl);
-          text-align: center;
-          
+        .expand-icon {
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .gallery-content {
+            padding: var(--spacing-lg);
         }
 
+        .gallery-content h4 {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .gallery-content p {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Lightbox */
         .lightbox {
           position: fixed;
           top: 0;
           left: 0;
           right: 0;
           bottom: 0;
-          background: rgba(0, 0, 0, 0.95);
+          background: rgba(0, 0, 0, 0.9);
           z-index: var(--z-modal);
           display: flex;
           align-items: center;
           justify-content: center;
           padding: var(--spacing-xl);
-          animation: fadeIn 0.3s ease-out;
+          /* backdrop-filter handled by motion */
         }
 
         .lightbox-content {
           position: relative;
-          max-width: 90%;
-          max-height: 90%;
-          text-align: center;
-          animation: scaleIn 0.3s ease-out;
+          max-width: 95%;
+          max-height: 95vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .lightbox-content img {
           max-width: 100%;
           max-height: 80vh;
-          border-radius: var(--radius-lg);
+          border-radius: var(--radius-md);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-
-        .lightbox-content h3 {
-          color: var(--color-white);
-          margin-top: var(--spacing-lg);
+        
+        .lightbox-caption {
+            margin-top: var(--spacing-lg);
+            text-align: center;
+            color: white;
+        }
+        
+        .lightbox-caption h3 {
+             color: white;
+             font-size: var(--font-size-xl);
+             margin-bottom: var(--spacing-xs);
         }
 
         .lightbox-close {
           position: absolute;
-          top: -40px;
-          right: 0;
-          background: transparent;
+          top: -10px;
+          right: -45px;
+          background: rgba(255,255,255,0.1);
           border: none;
           color: var(--color-white);
-          font-size: var(--font-size-5xl);
+          font-size: 1.5rem;
           cursor: pointer;
-          line-height: 1;
-          transition: color var(--transition-fast);
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.3s;
         }
 
         .lightbox-close:hover {
-          color: var(--color-primary);
+          background: rgba(255,255,255,0.25);
+          transform: rotate(90deg);
+          transition: all 0.3s;
         }
 
         @media (max-width: 768px) {
+           .lightbox-close {
+               top: -50px;
+               right: 0;
+           }
+           
           .gallery-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: var(--spacing-md);
           }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 580px) {
           .gallery-grid {
             grid-template-columns: 1fr;
           }

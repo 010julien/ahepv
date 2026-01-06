@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaHeart, FaHandHoldingHeart, FaArrowRight } from 'react-icons/fa';
-import Card from '../components/Card';
-import ProgressBar from '../components/ProgressBar';
+import { FaHeart, FaHandHoldingHeart, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import Card from '../components/Card.jsx';
+import ProgressBar from '../components/ProgressBar.jsx';
 import Counter from '../components/Counter';
 import QuoteCarousel from '../components/QuoteCarousel';
 import AnimatedSection from '../components/AnimatedSection';
@@ -11,7 +11,45 @@ import { getLocalized, localeFromLang } from '../i18n/utils';
 import { causes } from '../data/causes';
 import { events } from '../data/events';
 import { quotes } from '../data/quotes';
- 
+
+// Background Bubbles Component
+const BackgroundBubbles = () => (
+    <div className="bubbles-container">
+      {[...Array(5)].map((_, i) => (
+        <div key={i} className={`bubble bubble-${i + 1}`}></div>
+      ))}
+      <style>{`
+        .bubbles-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          z-index: 0;
+          pointer-events: none;
+        }
+        .bubble {
+          position: absolute;
+          background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+          border-radius: 50%;
+          animation: float 20s infinite ease-in-out;
+        }
+        .bubble-1 { width: 120px; height: 120px; top: 10%; left: 10%; animation-duration: 25s; animation-delay: 0s; }
+        .bubble-2 { width: 80px; height: 80px; top: 60%; left: 80%; animation-duration: 22s; animation-delay: -2s; }
+        .bubble-3 { width: 150px; height: 150px; top: 40%; left: 40%; animation-duration: 28s; animation-delay: -5s; opacity: 0.08; }
+        .bubble-4 { width: 60px; height: 60px; top: 80%; left: 20%; animation-duration: 18s; animation-delay: -8s; }
+        .bubble-5 { width: 100px; height: 100px; top: 20%; left: 90%; animation-duration: 30s; animation-delay: -12s; }
+        
+        @keyframes float {
+          0%, 100% { transform: translate(0, 0); }
+          33% { transform: translate(30px, -50px); }
+          66% { transform: translate(-20px, 20px); }
+        }
+      `}</style>
+    </div>
+);
+
 
 const Home = () => {
   const { t, language } = useTranslation();
@@ -72,31 +110,70 @@ const Home = () => {
   return (
     <div className="home">
       {/* Hero Section - UNCHANGED */}
-      <section className="home-hero">
-        <div className="home-hero-bg-container">
-          {heroImages.map((img, index) => (
-             <div 
-               key={index}
-               className={`home-hero-bg ${index === heroIndex ? 'active' : ''}`}
-               style={{ backgroundImage: `url(${img})` }}
-             />
-          ))}
+      {/* Hero Section - Redesigned Split Layout */}
+      <section className="about-slider-section">
+        <div className="split-background-top">
+           <BackgroundBubbles />
         </div>
-        <div className="home-hero-overlay"></div>
-        <div className="container">
-          <div className="home-hero-content">
-            {/* <h1 className="home-hero-title">{t('home.heroTitle')}</h1>
-            <p className="home-hero-subtitle">
-              {t('home.heroSubtitle')}
-            </p> */}
-            <div className="home-hero-buttons" style={{ marginTop: '28rem' }}>
-              <Link to="/causes" className="btn btn-primary btn-lg">
-                {t('home.ourCauses')}
-              </Link>
-              <Link to="/about" className="btn btn-outline-hero btn-lg">
-                {t('home.learnMore')}
-              </Link>
+        <div className="split-background-bottom"></div>
+        
+        <div className="container about-slider-container">
+          <div className="about-slider-grid">
+            {/* Text Side */}
+            <div className="about-text-content">
+              <h1 className="about-slide-title">
+                Avec AH2PV sois le  <span className="highlight-text">changement</span><br />
+                <span className="highlight-text">que tu veux</span> voir<br />
+                Dans le <span className="highlight-text">monde et au Togo</span>
+              </h1>
             </div>
+
+            {/* Image Side */}
+            <div className="about-image-wrapper">
+              {heroImages.map((img, index) => (
+                <div 
+                  key={index}
+                  className={`home-hero-bg ${index === heroIndex ? 'active' : ''}`}
+                  style={{ 
+                    backgroundImage: `url(${img})`,
+                    borderRadius: 'var(--radius-lg)',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+           {/* Scroll Down Indicator */}
+           <div className="hero-scroll-btn-wrapper">
+              <button 
+                className="hero-scroll-btn"
+                onClick={() => {
+                  const nextSection = document.querySelector('.home-about');
+                  if(nextSection) nextSection.scrollIntoView({ behavior: 'smooth' });
+                }}
+                aria-label="Découvrir plus"
+              >
+                <FaArrowLeft style={{ transform: 'rotate(-90deg)' }} />
+              </button>
+           </div>
+
+          {/* Slider Controls - Positioned at bottom left of section */}
+          <div className="slider-controls">
+            <button 
+              className="slider-btn" 
+              onClick={() => setHeroIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length)}
+              aria-label="Previous Slide"
+            >
+              <FaArrowLeft />
+            </button>
+            <button 
+              className="slider-btn" 
+              onClick={() => setHeroIndex((prev) => (prev + 1) % heroImages.length)}
+              aria-label="Next Slide"
+            >
+              <FaArrowRight />
+            </button>
           </div>
         </div>
       </section>
@@ -427,6 +504,124 @@ const Home = () => {
       </section>
 
       <style>{`
+        /* About Slider Design */
+        .about-slider-section {
+          position: relative;
+          width: 100%;
+          min-height: 700px;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          padding-bottom: 0;
+        }
+
+        .split-background-top {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 75%;
+          background-color: #33312e; /* Dark brown/black from reference */
+          z-index: 0;
+        }
+
+        .split-background-bottom {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 25%;
+          background-color: #c5ddc95b; /* Creamy white */
+          z-index: 0;
+        }
+
+        .about-slider-container {
+          position: relative;
+          z-index: 1;
+          width: 100%;
+          height: 100%;
+        }
+
+        .about-slider-grid {
+          display: grid;
+          grid-template-columns: 0.9fr 1.3fr;
+          gap: var(--spacing-3xl);
+          align-items: center;
+          padding: var(--spacing-3xl) 0;
+        }
+
+        .about-text-content {
+          color: var(--color-white);
+          /* Padding mainly to align slightly right */
+          padding-right: var(--spacing-xl);
+        }
+
+        .about-slide-title {
+          font-family: var(--font-primary);
+          font-size: 3.1rem; /* Large text */
+          font-weight: 300; /* Thin by default */
+          line-height: 1.2;
+          color: var(--color-white);
+          /* margin-bottom: var(--spacing-3xl); */
+          margin-bottom: var(--spacing-3xl);
+        }
+
+        .highlight-text {
+          font-weight: 800; /* Bold for specific words */
+        }
+
+        .about-image-wrapper {
+          position: relative;
+          height: 650px;
+          width: 110%;
+          margin-top: -60px;
+          margin-left: -5%;
+          z-index: 2;
+        }
+
+        .about-slide-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: var(--radius-sm);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .slider-controls {
+          position: absolute;
+          bottom: 10%;
+          left: clamp(16px, 5vw, 56px);
+          display: flex;
+          gap: var(--spacing-md);
+          z-index: 100;
+        }
+
+        .slider-btn {
+          width: 50px;
+          height: 50px;
+          background-color: #2b8238; /* Beige color from reference */
+          border: 2px solid transparent;
+          border-radius: 10%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: background 0.3s ease;
+          color: #fbf7f7ff;
+          z-index: 100;
+        }
+
+        .slider-btn:hover {
+          background-color: #f9f9f8ff;
+          border: 2px solid #2b8238;
+          color: #2b8238;
+        }
+
+        .slider-btn:focus-visible {
+          outline: 3px solid rgba(43, 130, 56, 0.45);
+          outline-offset: 2px;
+        }
+
         /* Hero Section - UNCHANGED */
         .home-hero {
           position: relative;
@@ -452,11 +647,13 @@ const Home = () => {
           left: 0;
           width: 100%;
           height: 100%;
+          margin-top: 195px;
           background-size: cover;
           background-position: center;
           opacity: 0;
-          transition: opacity 1.5s ease-in-out, transform 6s ease-out;
-          transform: scale(1.1); /* Start zoomed in */
+          transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1), transform 8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          transform: scale(1.15); /* Start zoomed in slightly more */
+          will-change: opacity, transform;
           z-index: 0;
         }
         
@@ -474,11 +671,12 @@ const Home = () => {
           bottom: 0;
           background: rgba(0, 0, 0, 0);
           opacity: 0.6;
+          z-index: 2;
         }
 
         .home-hero-content {
           position: relative;
-          z-index: 2;
+          z-index: 3;
           text-align: center;
           color: var(--color-white);
           max-width: 800px;
@@ -520,6 +718,62 @@ const Home = () => {
           background: var(--color-white);
           color: var(--color-primary);
         }
+
+        @media (max-width: 900px) {
+           .about-slider-grid {
+             grid-template-columns: 1fr;
+             gap: var(--spacing-xl);
+           }
+           .about-slide-title {
+             font-size: 2.5rem;
+           }
+           .split-background-top {
+             height: 100%;
+           }
+           .split-background-bottom {
+             display: none;
+           }
+           .about-text-content {
+             padding-right: 0;
+             text-align: center;
+           }
+           .slider-controls {
+             left: 50%;
+             transform: translateX(-50%);
+             justify-content: center;
+             bottom: 5%;
+           }
+           .about-image-wrapper {
+             height: 400px;
+             width: 100%;
+             margin-top: 0;
+             margin-left: 0;
+             overflow: hidden;
+           }
+           .about-slider-section {
+             min-height: auto;
+             padding: var(--spacing-2xl) 0;
+           }
+        }
+
+        @media (max-width: 600px) {
+          .about-slide-title {
+            font-size: 1.8rem;
+            line-height: 1.2;
+          }
+          .slider-btn {
+            width: 40px;
+            height: 40px;
+          }
+          .about-image-wrapper {
+            height: 55vh; /* Increased from 300px for better immersion */
+            min-height: 400px;
+          }
+           .about-slider-section {
+            padding-bottom: 80px; /* Space for controls */
+          }
+        }
+
 
         /* Enhanced About Section */
         .home-about {
@@ -950,7 +1204,7 @@ const Home = () => {
 
           .home-hero-title {
             font-size: var(--font-size-4xl);
-            margin-top: 0;
+            margin-top: 2rem;
           }
 
           .home-hero-content {
@@ -988,8 +1242,15 @@ const Home = () => {
         }
 
         @media (max-width: 480px) {
+
+        .about-text-content {
+        margin-top: 4rem;
+        }
           .home-hero-title {
-            margin-top: 0;
+            margin-top: 9rem;
+          }
+          .home-hero-bg {
+          margin-top: 2rem;
           }
 
           .home-hero-content {
@@ -1011,6 +1272,56 @@ const Home = () => {
           .pulse-btn {
             animation: none;
           }
+        }
+        /* Scroll Button Styles */
+        .hero-scroll-btn-wrapper {
+            position: absolute;
+            left: clamp(20px, 8vw, 120px); 
+            bottom: 30px; 
+            z-index: 10;
+        }
+
+        /* Adjust position to be distinct from slider controls */
+        @media (min-width: 901px) {
+           .hero-scroll-btn-wrapper {
+              left: 50%;
+              transform: translateX(-50%);
+              bottom: 40px;
+           }
+        }
+        
+        .hero-scroll-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.9);
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            animation: bounce 2s infinite;
+        }
+        
+        .hero-scroll-btn:hover {
+            border-color: var(--color-white);
+            color: var(--color-white);
+            background: var(--color-primary);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @media (max-width: 900px) {
+           .hero-scroll-btn-wrapper {
+              display: none; 
+           }
         }
       `}</style>
     </div>

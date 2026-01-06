@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
-import Card from '../components/Card';
-import ProgressBar from '../components/ProgressBar';
-import Button from '../components/Button';
+import Card from '../components/Card.jsx';
+import ProgressBar from '../components/ProgressBar.jsx';
+import Button from '../components/Button.jsx';
+import Pagination from '../components/Pagination';
 import { useTranslation } from '../i18n/useTranslation';
 import { getLocalized } from '../i18n/utils';
 import { causes } from '../data/causes';
@@ -10,19 +12,42 @@ import { FaUsers } from 'react-icons/fa';
 
 const Causes = () => {
   const { t, language } = useTranslation();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+
+  // Pagination logic
+  const totalPages = Math.ceil(causes.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = causes.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    document.getElementById('causes-list').scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="causes-page">
       <Hero 
-        title={t('causes.title')} 
-        subtitle={t('causes.subtitle')}
+        title="Nos Causes Prioritaires" 
+        subtitle="Santé, Éducation, Urgences. Choisissez où votre impact sera le plus fort."
         breadcrumb={t('causes.breadcrumb')}
-        backgroundImage="/images/causes1.jpg"
-      />
+        images={['/images/causes1.jpg', '/images/medical.jpg', '/images/education1.jpg']}
+        overlayOpacity={0.65}
+      >
+        <Button 
+          variant="primary" 
+          size="lg" 
+          onClick={() => document.getElementById('causes-list').scrollIntoView({ behavior: 'smooth' })}
+        >
+          Voir les urgences
+        </Button>
+      </Hero>
 
-      <section className="section">
+      <section id="causes-list" className="section">
         <div className="container">
           <div className="causes-grid">
-            {causes.map((cause) => {
+            {currentItems.map((cause) => {
               const percentage = Math.floor((cause.raised / cause.goal) * 100);
               return (
                 <Card
@@ -63,6 +88,12 @@ const Causes = () => {
               );
             })}
           </div>
+
+          <Pagination 
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </div>
       </section>
 
