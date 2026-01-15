@@ -968,6 +968,12 @@ const Home = () => {
 
         .home-quotes {
           background: var(--bg-primary);
+          padding-top: var(--spacing-xl);
+          padding-bottom: var(--spacing-xl);
+        }
+
+        .home-quotes .section-title {
+          margin-bottom: var(--spacing-lg);
         }
 
         .home-mission {
@@ -1070,7 +1076,7 @@ const Home = () => {
           background: var(--color-primary);
         
           text-align: center;
-          margin-bottom: 10rem;
+          margin-bottom: 0;
           overflow: hidden;
         }
 
@@ -1179,7 +1185,7 @@ const Home = () => {
             gap: var(--spacing-xl);
           }
           .cta-section-enhanced {
-            margin-bottom: 6rem;
+            margin-bottom: 0;
           }
 
           .event-meta,
@@ -1230,7 +1236,7 @@ const Home = () => {
 
           .cta-section-enhanced {
             padding: var(--spacing-3xl) 0;
-            margin-bottom: 4rem;
+            margin-bottom: 0;
           }
 
           .cta-content h2 {
@@ -1263,7 +1269,7 @@ const Home = () => {
 
           .cta-section-enhanced {
             padding: var(--spacing-2xl) 0;
-            margin-bottom: 3rem;
+            margin-bottom: 0;
           }
         }
 

@@ -141,6 +141,10 @@ export const translations = {
       hero: {
         title: "Notre Histoire & Mission",
         subtitle: "Découvrez les visages et les valeurs qui animent nos actions au quotidien."
+      },
+      videoSection: {
+        title: "Notre Impact en Action",
+        description: "Regardez comment nous travaillons sur le terrain pour apporter de l'espoir et des changements concrets aux communautés. Chaque action compte et ensemble, nous construisons un avenir meilleur."
       }
     },
     
@@ -495,6 +499,10 @@ export const translations = {
       hero: {
         title: "Our History & Mission",
         subtitle: "Discover the faces and values that drive our daily actions."
+      },
+      videoSection: {
+        title: "Our Impact in Action",
+        description: "Watch how we work on the ground to bring hope and concrete changes to communities. Every action counts, and together, we are building a better future."
       }
     },
     
@@ -846,10 +854,14 @@ export const translations = {
       calloutText: 'Im Zentrum unseres Handelns steht die Überzeugung, dass humanitäres Engagement mehr ist als eine einfache Intervention. Es ist eine Zusammenarbeit zwischen Gemeinschaften, Organisationen und Einzelpersonen mit einer gemeinsamen Vision einer besseren Zukunft. Gemeinsam kommen wir unseren Zielen näher und schaffen Wirkungen, die geografische Grenzen überschreiten.',
       hero: {
         title: "Unsere Geschichte & Mission",
-        subtitle: "Entdecken Sie die Gesichter und Werte, die unsere täglichen Handlungen antreiben."
+        subtitle: "Entdecken Sie die Gesichter und Werte, die unser tägliches Handeln antreiben."
+      },
+      videoSection: {
+        title: "Unser Einfluss in Aktion",
+        description: "Sehen Sie, wie wir vor Ort arbeiten, um Hoffnung und konkrete Veränderungen in die Gemeinschaften zu bringen. Jede Handlung zählt, und gemeinsam bauen wir eine bessere Zukunft."
       }
     },
-    
+
     // Gallery Page
     gallery: {
       title: 'Unsere Galerie',

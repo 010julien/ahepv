@@ -50,8 +50,42 @@ const About = () => {
       {/* ONG Presentation */}
       <section className="section">
         <div className="container about-ong-grid">
-          <div className="about-ong-media">
-            <img src="images/ong.jpg" alt="ONG-Association Humanitaire Plus Proche de vous (AH2PV)" />
+          <div className="about-media-stack">
+            <div className="about-ong-media video-wrapper">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="ONG AH2PV Presentation 1"
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            <div className="about-ong-media video-wrapper">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="ONG AH2PV Presentation 2"
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            <div className="about-ong-media video-wrapper">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="ONG AH2PV Presentation 3"
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
 
           <div className="about-block">
@@ -118,6 +152,29 @@ const About = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="section bg-video-section">
+        <div className="container">
+          <div className="video-section-grid">
+            <div className="video-wrapper">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" // Placeholder link
+                title="AH2PV Impact Video"
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div className="video-content">
+              <h3>{t('about.videoSection.title')}</h3>
+              <p>{t('about.videoSection.description')}</p>
+            </div>
           </div>
         </div>
       </section>
@@ -281,20 +338,26 @@ const About = () => {
           box-shadow: var(--shadow-md);
         }
 
-        .about-ong-grid {
-          display: grid;
-          grid-template-columns: 1fr 1.2fr;
-          gap: var(--spacing-3xl);
-          align-items: stretch;
-        }
+          .about-ong-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: var(--spacing-3xl);
+            align-items: start;
+          }
 
-        .about-ong-media {
-          border-radius: var(--radius-lg);
-          overflow: hidden;
-          box-shadow: var(--shadow-md);
-          background: var(--color-white);
-          min-height: 320px;
-        }
+          .about-media-stack {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+          }
+
+          .about-ong-media {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            background: var(--color-white);
+            /* min-height removed because video-wrapper handles height */
+          }
 
         .about-ong-media img {
           width: 100%;
@@ -602,6 +665,54 @@ const About = () => {
           .about-block {
             padding: var(--spacing-xl);
           }
+
+          .video-section-grid {
+             grid-template-columns: 1fr;
+          }
+          .video-wrapper {
+             height: 250px;
+          }
+        }
+        
+        /* Video Section Styles */
+        .bg-video-section {
+          background-color: var(--bg-primary); 
+        }
+
+        .video-section-grid {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: var(--spacing-3xl);
+          align-items: center;
+        }
+
+        .video-wrapper {
+          position: relative;
+          padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+          height: 0;
+          overflow: hidden;
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-lg);
+        }
+
+        .video-wrapper iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .video-content h3 {
+          color: var(--color-primary);
+          margin-bottom: var(--spacing-md);
+          font-size: var(--font-size-3xl);
+        }
+
+        .video-content p {
+           font-size: var(--font-size-lg);
+           line-height: 1.8;
+           color: var(--text-secondary);
         }
       `}</style>
     </div>

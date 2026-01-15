@@ -95,7 +95,7 @@ const QuoteCarousel = ({ quotes, language, autoPlayInterval = 5000 }) => {
       <style>{`
         .quote-carousel {
           position: relative;
-          padding: var(--spacing-4xl) 0;
+          padding: var(--spacing-lg) 0;
           background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.05) 0%, rgba(var(--color-secondary-rgb), 0.05) 100%);
           overflow: hidden;
         }

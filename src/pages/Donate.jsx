@@ -7,7 +7,7 @@ import { FaHeart, FaUsers, FaHandHoldingHeart, FaCreditCard, FaPaypal, FaUnivers
 const Donate = () => {
   const { t } = useTranslation();
   const [donationType, setDonationType] = useState('once');
-  const [selectedAmount, setSelectedAmount] = useState(50);
+  // const [selectedAmount, setSelectedAmount] = useState(50); // Removed
   const [customAmount, setCustomAmount] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -36,10 +36,14 @@ const Donate = () => {
     });
   };
 
-  const predefinedAmounts = [25, 50, 100, 250, 500, 1000];
+  // const predefinedAmounts = [25, 50, 100, 250, 500, 1000]; // Removed
 
   const handleDonate = (e) => {
     e.preventDefault();
+    if (!customAmount || parseFloat(customAmount) <= 0) {
+        alert("Veuillez entrer un montant valide.");
+        return;
+    }
     setShowPaymentModal(true);
   };
 
@@ -116,23 +120,9 @@ const Donate = () => {
                 {/* Amount Selection */}
                 <div className="form-section">
                   <h3>Montant du don</h3>
-                  <div className="amount-grid">
-                    {predefinedAmounts.map((amount) => (
-                      <button
-                        key={amount}
-                        type="button"
-                        className={`amount-btn ${selectedAmount === amount && !customAmount ? 'active' : ''}`}
-                        onClick={() => {
-                          setSelectedAmount(amount);
-                          setCustomAmount('');
-                        }}
-                      >
-                        ${amount}
-                      </button>
-                    ))}
-                  </div>
+                  {/* Removed predefined Amount Grid */}
                   <div className="custom-amount">
-                    <label>Ou entrez un montant personnalisé</label>
+                    <label>Entrez le montant de votre don</label>
                     <div className="input-wrapper">
                       <input
                         type="number"
@@ -140,6 +130,8 @@ const Donate = () => {
                         value={customAmount}
                         onChange={(e) => setCustomAmount(e.target.value)}
                         min="1"
+                        required
+                        className="large-amount-input"
                       />
                       <span className="currency">$</span>
                     </div>
@@ -271,7 +263,7 @@ const Donate = () => {
 
                 {/* Submit Button */}
                 <Button variant="primary" type="submit" style={{ width: '100%', padding: '1rem 2rem', fontSize: '1.125rem' }}>
-                  Faire un don de ${customAmount || selectedAmount}
+                  Faire un don de ${customAmount}
                 </Button>
 
                 {/* Security Note */}
@@ -296,7 +288,7 @@ const Donate = () => {
                     {paymentMethod === 'bank' && <h3>Virement Bancaire</h3>}
                     {paymentMethod === 'mobile' && <h3>Paiement Mobile Money</h3>}
                     <div className="modal-amount">
-                      Montant à payer: <span className="highlight">${customAmount || selectedAmount}</span>
+                      Montant à payer: <span className="highlight">${customAmount}</span>
                     </div>
                   </div>
 
@@ -328,7 +320,7 @@ const Donate = () => {
                           </div>
                         </div>
                         <Button variant="primary" type="submit" style={{ width: '100%', marginTop: '1rem' }}>
-                          <FaLock style={{ marginRight: '8px' }} /> Payer ${customAmount || selectedAmount}
+                          <FaLock style={{ marginRight: '8px' }} /> Payer ${customAmount}
                         </Button>
                       </form>
                     )}

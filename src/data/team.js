@@ -20,26 +20,26 @@ export const teamMembers = [
       tiktok: "https://www.tiktok.com/@jeannettetonye"     
     }
   },
-  {
-    id: 2,
-    name: "Michael Brown",
-    role: {
-      fr: "Directeur de Programme",
-      en: "Program Director",
-      de: "Programmleiter"
-    },
-    image: "/images/about-preview.jpg",
-    bio: {
-      fr: "Supervise tous les programmes caritatifs et assure un impact maximal pour les bénéficiaires.",
-      en: "Oversees all charity programs and ensures maximum impact for beneficiaries.",
-      de: "Überwacht alle Hilfsprogramme und sorgt für maximale Wirkung für die Begünstigten."
-    },
-    social: {
-      facebook: "#",
-      twitter: "#",
-      linkedin: "#"
-    }
-  },
+  // {
+  //   id: 2,
+  //   name: "Michael Brown",
+  //   role: {
+  //     fr: "Directeur de Programme",
+  //     en: "Program Director",
+  //     de: "Programmleiter"
+  //   },
+  //   image: "/images/about-preview.jpg",
+  //   bio: {
+  //     fr: "Supervise tous les programmes caritatifs et assure un impact maximal pour les bénéficiaires.",
+  //     en: "Oversees all charity programs and ensures maximum impact for beneficiaries.",
+  //     de: "Überwacht alle Hilfsprogramme und sorgt für maximale Wirkung für die Begünstigten."
+  //   },
+  //   social: {
+  //     facebook: "#",
+  //     twitter: "#",
+  //     linkedin: "#"
+  //   }
+  // },
   // {
   //   id: 3,
   //   name: "Sarah Williams",

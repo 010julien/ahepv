@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaExpand, FaTimes } from 'react-icons/fa';
-import Hero from '../components/Hero';
 import AutoSlider from '../components/AutoSlider.jsx';
 import { useTranslation } from '../i18n/useTranslation';
 import Pagination from '../components/Pagination';
@@ -80,7 +79,7 @@ const Gallery = () => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 400, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const openLightbox = (image) => {
@@ -132,15 +131,9 @@ const Gallery = () => {
 
   return (
     <div className="gallery-page">
-      <Hero 
-        title={t('gallery.title')}
-        subtitle={t('gallery.subtitle')}
-        breadcrumb={t('gallery.breadcrumb')}
-        images={['/images/gall3.jpg', '/images/gall1.5.jpg', '/images/gall4.2.jpg']}
-        overlayOpacity={0.2}
-      />
 
-      <section className="section bg-gray-50">
+      
+      <section className="section bg-gray-50 gallery-content-wrapper">
         <div className="container">
           {/* Featured Auto Slider */}
           <motion.div
@@ -148,7 +141,7 @@ const Gallery = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-             <h2 className="section-title text-center" style={{ marginBottom: "var(--spacing-xl)" }}>
+             <h2 className="section-title text-center mt-[12rem] " style={{ marginBottom: "var(--spacing-xl)" }}>
                 {t('gallery.autoSliderTitle')}
              </h2>
              <AutoSlider images={featuredImages} height="500px" />
@@ -272,6 +265,10 @@ const Gallery = () => {
       <style>{`
         .bg-gray-50 {
             background-color: var(--color-gray-50);
+        }
+
+        .gallery-content-wrapper {
+          padding-top: 140px;
         }
 
         .gallery-section {

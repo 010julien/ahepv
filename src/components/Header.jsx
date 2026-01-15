@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaHeart, FaChevronDown } from 'react-icons/fa';
 import { useTranslation } from '../i18n/useTranslation';
 import SocialLink from './SocialLink';
@@ -8,6 +8,7 @@ import logoARR from '/images/LogoARR.png';
 
 const Header = () => {
   const { t } = useTranslation();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [contactDropdownOpen, setContactDropdownOpen] = useState(false);
@@ -21,7 +22,9 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
+  // Force scrolled style on Gallery page since it has no Hero
+  const isGallery = location.pathname === '/gallery';
+  const headerClass = `header ${isScrolled || isGallery ? 'header-scrolled' : ''}`;
 
   const navLinks = [
     { path: '/', label: t('nav.home') },
@@ -46,7 +49,7 @@ const Header = () => {
   ];
 
   return (
-    <header className={`header ${isScrolled ? 'header-scrolled' : ''}`}>
+    <header className={headerClass}>
       <div className="container">
         <div className="header-content">
           <Link to="/" className="logo">
