@@ -52,39 +52,42 @@ const About = () => {
         <div className="container about-ong-grid">
           <div className="about-media-stack">
             <div className="about-ong-media video-wrapper">
-              <iframe 
+              <video 
                 width="100%" 
                 height="100%" 
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                controls
+                src="/images/Video1.mp4" 
                 title="ONG AH2PV Presentation 1"
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
+                style={{ objectFit: 'cover' }}
+              >
+                Your browser does not support the video tag.
+              </video>
             </div>
 
             <div className="about-ong-media video-wrapper">
-              <iframe 
+              <video 
                 width="100%" 
                 height="100%" 
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                controls
+                src="/images/Video2.mp4" 
                 title="ONG AH2PV Presentation 2"
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
+                style={{ objectFit: 'cover' }}
+              >
+                Your browser does not support the video tag.
+              </video>
             </div>
 
             <div className="about-ong-media video-wrapper">
-              <iframe 
+              <video 
                 width="100%" 
                 height="100%" 
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                controls
+                src="/images/Video3.mp4" 
                 title="ONG AH2PV Presentation 3"
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
+                style={{ objectFit: 'cover' }}
+              >
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
 
@@ -106,7 +109,7 @@ const About = () => {
           </div>
 
           {founder && (
-            <div className="founder-feature">
+            <div className="founder-feature" style={{ marginBottom: otherMembers.length > 0 ? undefined : 0 }}>
               <div className="founder-photo">
                 <img src={founder.image} alt={founder.name} loading="lazy" />
               </div>
@@ -132,27 +135,29 @@ const About = () => {
             </div>
           )}
 
-          <div className="team-grid">
-            {otherMembers.map((member) => (
-              <div key={member.id} className="team-card">
-                <div className="team-image">
-                  <img src={member.image} alt={member.name} />
-                  <div className="team-overlay">
-                    <div className="team-social">
-                      <SocialLink platform="facebook" url={member.social.facebook} />
-                      <SocialLink platform="twitter" url={member.social.twitter} />
-                      <SocialLink platform="linkedin" url={member.social.linkedin} />
+          {otherMembers.length > 0 && (
+            <div className="team-grid">
+              {otherMembers.map((member) => (
+                <div key={member.id} className="team-card">
+                  <div className="team-image">
+                    <img src={member.image} alt={member.name} />
+                    <div className="team-overlay">
+                      <div className="team-social">
+                        <SocialLink platform="facebook" url={member.social.facebook} />
+                        <SocialLink platform="twitter" url={member.social.twitter} />
+                        <SocialLink platform="linkedin" url={member.social.linkedin} />
+                      </div>
                     </div>
                   </div>
+                  <div className="team-info">
+                    <h4>{member.name}</h4>
+                    <p className="team-role">{(member.role && typeof member.role === 'object') ? (member.role[language] || member.role.fr || member.role.en || member.role.de) : member.role}</p>
+                    <p className="team-bio">{(member.bio && typeof member.bio === 'object') ? (member.bio[language] || member.bio.fr || member.bio.en || member.bio.de) : member.bio}</p>
+                  </div>
                 </div>
-                <div className="team-info">
-                  <h4>{member.name}</h4>
-                  <p className="team-role">{(member.role && typeof member.role === 'object') ? (member.role[language] || member.role.fr || member.role.en || member.role.de) : member.role}</p>
-                  <p className="team-bio">{(member.bio && typeof member.bio === 'object') ? (member.bio[language] || member.bio.fr || member.bio.en || member.bio.de) : member.bio}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -161,15 +166,16 @@ const About = () => {
         <div className="container">
           <div className="video-section-grid">
             <div className="video-wrapper">
-              <iframe 
+              <video 
                 width="100%" 
                 height="100%" 
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ" // Placeholder link
+                controls
+                src="/images/Video4.mp4" 
                 title="AH2PV Impact Video"
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
+                style={{ objectFit: 'cover' }}
+              >
+                Your browser does not support the video tag.
+              </video>
             </div>
             <div className="video-content">
               <h3>{t('about.videoSection.title')}</h3>
@@ -695,7 +701,8 @@ const About = () => {
           box-shadow: var(--shadow-lg);
         }
 
-        .video-wrapper iframe {
+        .video-wrapper iframe,
+        .video-wrapper video {
           position: absolute;
           top: 0;
           left: 0;

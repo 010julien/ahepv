@@ -7,7 +7,7 @@ export const teamMembers = [
       en: "Founder and Executive Director of the NGO 'Association Humanitaire Plus Proche de Vous (AH2PV)'",
       de: "Gründerin und Geschäftsführerin der NGO 'Association Humanitaire Plus Proche de Vous (AH2PV)'"
     },
-    image: "/images/about-preview.jpg",
+    image: "/images/fondatrice.jpg",
     bio: {
       fr: "Elle œuvre principalement au Togo, avec une approche centrée sur la proximité communautaire, la collaboration et la transparence.",
       en: "She works mainly in Togo with a community-centered approach, collaboration and transparency.",
