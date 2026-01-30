@@ -2,17 +2,26 @@ import { useState } from 'react';
 import Hero from '../components/Hero';
 import Accordion from '../components/Accordion';
 import { useTranslation } from '../i18n/useTranslation';
-import { faqData, faqCategories } from '../data/faq';
 import { CONTACT } from '../config/site';
 import { FaSearch } from 'react-icons/fa';
 
 const FAQ = () => {
   const { t } = useTranslation();
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredFAQs = faqData.filter(faq => {
-    const matchesCategory = selectedCategory === 'All' || faq.category === selectedCategory;
+  // Get FAQ data from translations
+  const faqQuestions = t('faq.questions') || [];
+  const categories = [
+    { key: 'all', label: t('faq.categories.all') },
+    { key: 'donations', label: t('faq.categories.donations') },
+    { key: 'volunteering', label: t('faq.categories.volunteering') },
+    { key: 'general', label: t('faq.categories.general') },
+    { key: 'programs', label: t('faq.categories.programs') }
+  ];
+
+  const filteredFAQs = faqQuestions.filter(faq => {
+    const matchesCategory = selectedCategory === 'all' || faq.category === selectedCategory;
     const matchesSearch = faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -21,8 +30,8 @@ const FAQ = () => {
   return (
     <div className="faq-page">
       <Hero 
-        title="Questions Fréquentes" 
-        subtitle="Tout ce que vous devez savoir sur nos actions et vos dons."
+        title={t('faq.breadcrumb')}
+        subtitle={t('faq.searchPlaceholder')}
         breadcrumb={t('faq.breadcrumb')}
         images={['/images/hero-faq.jpg', '/images/hero3.jpeg']}
         overlayOpacity={0.7}
@@ -43,13 +52,13 @@ const FAQ = () => {
 
           {/* Category Filters */}
           <div className="faq-categories">
-            {faqCategories.map((category) => (
+            {categories.map((category) => (
               <button
-                key={category}
-                className={`faq-category-btn ${selectedCategory === category ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(category)}
+                key={category.key}
+                className={`faq-category-btn ${selectedCategory === category.key ? 'active' : ''}`}
+                onClick={() => setSelectedCategory(category.key)}
               >
-                {category}
+                {category.label}
               </button>
             ))}
           </div>

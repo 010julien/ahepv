@@ -2,12 +2,12 @@ import { useState } from 'react';
 import Hero from '../components/Hero';
 import Button from '../components/Button.jsx';
 import { useTranslation } from '../i18n/useTranslation';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaHeart, FaUsers, FaHandHoldingHeart, FaCreditCard, FaPaypal, FaUniversity, FaMobileAlt, FaShieldAlt, FaCheck, FaTimes, FaLock, FaCopy } from 'react-icons/fa';
 
 const Donate = () => {
   const { t } = useTranslation();
   const [donationType, setDonationType] = useState('once');
-  // const [selectedAmount, setSelectedAmount] = useState(50); // Removed
   const [customAmount, setCustomAmount] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -21,22 +21,12 @@ const Donate = () => {
 
   const handleInfoChange = (e) => {
     const { name, value } = e.target;
-    
-    // Restrict Name fields to alphabetic characters only
     if (name === 'firstName' || name === 'lastName') {
       const regex = /^[a-zA-ZÀ-ÿ\s'-]*$/;
-      if (!regex.test(value)) {
-        return;
-      }
+      if (!regex.test(value)) return;
     }
-
-    setPersonalInfo({
-      ...personalInfo,
-      [name]: value
-    });
+    setPersonalInfo({ ...personalInfo, [name]: value });
   };
-
-  // const predefinedAmounts = [25, 50, 100, 250, 500, 1000]; // Removed
 
   const handleDonate = (e) => {
     e.preventDefault();
@@ -48,1040 +38,708 @@ const Donate = () => {
   };
 
   return (
-    <div className="donate-page">
+    <div className="donate-wrapper">
       <Hero 
-        title="Changez une Vie Aujourd'hui" 
-        subtitle="Votre générosité est le moteur de nos actions. 100% sécurisé et transparent."
+        title={t('donate.hero.title')} 
+        subtitle={t('donate.hero.subtitle')}
         breadcrumb={t('donate.breadcrumb')}
-        images={['/images/hero-donate.jpg', '/images/education2.jpg', '/images/medical4.jpg']}
-        overlayOpacity={0.6}
+        backgroundImage="/images/hero-donate.2.jpg"
       >
-        <Button 
-          variant="primary" 
-          size="lg" 
-          onClick={() => document.getElementById('donate-form').scrollIntoView({ behavior: 'smooth' })}
-        >
-          <FaHeart style={{ marginRight: '8px' }} />
-          Je donne maintenant
-        </Button>
+        <div style={{ marginTop: '20px' }}>
+          <Button 
+            variant="primary" 
+            size="lg"
+            onClick={() => document.getElementById('donate-anchor').scrollIntoView({ behavior: 'smooth' })}
+          >
+            <FaHeart style={{ marginRight: '10px' }} />
+            {t('donate.hero.cta')}
+          </Button>
+        </div>
       </Hero>
 
-      {/* Impact Stats Section */}
-      <section className="section section-bg">
+      <section className="impact-overview">
         <div className="container">
-          <div className="impact-stats">
-            <div className="impact-item">
-              <FaHeart className="impact-icon" />
-              <h3>1 50+</h3>
-              <p>Vies changées</p>
+          <div className="impact-grid">
+            <div className="impact-card-stat">
+              <div className="stat-icon-bg"><FaHeart /></div>
+              <h3>150+</h3>
+              <p>{t('donate.impact.lives')}</p>
             </div>
-            <div className="impact-item">
-              <FaUsers className="impact-icon" />
+            <div className="impact-card-stat">
+              <div className="stat-icon-bg"><FaUsers /></div>
               <h3>50+</h3>
-              <p>Bénévoles actifs</p>
+              <p>{t('donate.impact.volunteers')}</p>
             </div>
-            <div className="impact-item">
-              <FaHandHoldingHeart className="impact-icon" />
+            <div className="impact-card-stat">
+              <div className="stat-icon-bg"><FaHandHoldingHeart /></div>
               <h3>5+</h3>
-              <p>Projets en cours</p>
+              <p>{t('donate.impact.projects')}</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Donation Form Section */}
-      <section id="donate-form" className="section">
+      <div id="donate-anchor"></div>
+      
+      <section className="donation-main-section">
         <div className="container">
-          <div className="donate-layout">
-            {/* Main Form */}
-            <div className="donate-form-container">
-              <form className="donate-form" onSubmit={handleDonate}>
-                {/* Donation Type */}
-                <div className="form-section">
-                  <h3>Type de don</h3>
-                  <div className="donation-type-buttons">
-                    <button
-                      type="button"
-                      className={`type-btn ${donationType === 'once' ? 'active' : ''}`}
-                      onClick={() => setDonationType('once')}
-                    >
-                      Don unique
-                    </button>
-                    <button
-                      type="button"
-                      className={`type-btn ${donationType === 'monthly' ? 'active' : ''}`}
-                      onClick={() => setDonationType('monthly')}
-                    >
-                      Don mensuel
-                    </button>
-                  </div>
+          <div className="donate-page-layout">
+            
+            <div className="donate-form-column">
+              <div className="elegant-form-card">
+                <div className="form-header">
+                   <h2>{t('donate.form.title')}</h2>
+                   <p>{t('donate.form.subtitle')}</p>
                 </div>
-
-                {/* Amount Selection */}
-                <div className="form-section">
-                  <h3>Montant du don</h3>
-                  {/* Removed predefined Amount Grid */}
-                  <div className="custom-amount">
-                    <label>Entrez le montant de votre don</label>
-                    <div className="input-wrapper">
-                      <input
-                        type="number"
-                        placeholder="Montant"
-                        value={customAmount}
-                        onChange={(e) => setCustomAmount(e.target.value)}
-                        min="1"
-                        required
-                        className="large-amount-input"
-                      />
-                      <span className="currency">$</span>
+                
+                <form onSubmit={handleDonate}>
+                  <div className="form-section-wrapper">
+                    <h3 className="section-subtitle">{t('donate.form.section1')}</h3>
+                    <div className="type-toggle">
+                      <button
+                        type="button"
+                        className={donationType === 'once' ? 'active' : ''}
+                        onClick={() => setDonationType('once')}
+                      >
+                        {t('donate.form.once')}
+                      </button>
+                      <button
+                        type="button"
+                        className={donationType === 'monthly' ? 'active' : ''}
+                        onClick={() => setDonationType('monthly')}
+                      >
+                        {t('donate.form.monthly')}
+                      </button>
                     </div>
                   </div>
-                </div>
 
-                {/* Payment Method */}
-                <div className="form-section">
-                  <h3>Méthode de paiement</h3>
-                  <div className="payment-methods">
-                    <button
-                      type="button"
-                      className={`payment-btn ${paymentMethod === 'card' ? 'active' : ''}`}
-                      onClick={() => setPaymentMethod('card')}
-                    >
-                      <div className="icon-wrapper">
-                        <FaCreditCard className="default-icon" />
-                        <div className="hover-logos">
-                          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="payment-logo" />
-                          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="payment-logo" />
+                  <div className="form-section-wrapper">
+                    <h3 className="section-subtitle">{t('donate.form.section2')}</h3>
+                    <div className="amount-input-box">
+                      <div className="input-group-premium">
+                        <input
+                          type="number"
+                          
+                          value={customAmount}
+                          onChange={(e) => setCustomAmount(e.target.value)}
+                          min="1"
+                          required
+                        />
+                        <span className="unit-symbol">€/CFA</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="form-section-wrapper">
+                    <h3 className="section-subtitle">{t('donate.form.section3')}</h3>
+                    <div className="payment-grid-selection">
+                      <button
+                        type="button"
+                        className={`payment-choice-btn ${paymentMethod === 'card' ? 'active' : ''}`}
+                        onClick={() => setPaymentMethod('card')}
+                      >
+                        <div className="choice-icon-wrapper">
+                          <FaCreditCard className="default-icon" />
+                          <div className="hover-logos">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="pay-logo" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="pay-logo" />
+                          </div>
                         </div>
-                      </div>
-                      <span>Carte bancaire</span>
-                    </button>
-                    <button
-                      type="button"
-                      className={`payment-btn ${paymentMethod === 'paypal' ? 'active' : ''}`}
-                      onClick={() => setPaymentMethod('paypal')}
-                    >
-                      <div className="icon-wrapper">
-                         <FaPaypal className="default-icon" />
-                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="payment-logo large hover-logo" />
-                      </div>
-                      <span>PayPal</span>
-                    </button>
-                    <button
-                      type="button"
-                      className={`payment-btn ${paymentMethod === 'bank' ? 'active' : ''}`}
-                      onClick={() => setPaymentMethod('bank')}
-                    >
-                      <div className="icon-wrapper">
-                        <FaUniversity className="default-icon" />
-                        <img src="/images/payment/bank.png" alt="Virement" className="payment-logo hover-logo" />
-                      </div>
-                      <span>Virement</span>
-                    </button>
-                    <button
-                      type="button"
-                      className={`payment-btn ${paymentMethod === 'mobile' ? 'active' : ''}`}
-                      onClick={() => setPaymentMethod('mobile')}
-                    >
-                      <div className="icon-wrapper">
-                        <FaMobileAlt className="default-icon" />
-                        <div className="hover-logos">
-                          <img src="/images/payment/tmoney.jpg" alt="T-Money" className="payment-logo" />
-                          <img src="/images/payment/flooz.png" alt="Flooz" className="payment-logo" />
+                        <span className="choice-label">{t('donate.modal.methods.card')}</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        className={`payment-choice-btn ${paymentMethod === 'paypal' ? 'active' : ''}`}
+                        onClick={() => setPaymentMethod('paypal')}
+                      >
+                        <div className="choice-icon-wrapper">
+                          <FaPaypal className="default-icon" />
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="pay-logo hover-logo" />
                         </div>
+                        <span className="choice-label">{t('donate.modal.methods.paypal')}</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        className={`payment-choice-btn ${paymentMethod === 'bank' ? 'active' : ''}`}
+                        onClick={() => setPaymentMethod('bank')}
+                      >
+                        <div className="choice-icon-wrapper">
+                          <FaUniversity className="default-icon" />
+                          <img src="/images/payment/bank.png" alt="Virement" className="pay-logo hover-logo" />
+                        </div>
+                        <span className="choice-label">{t('donate.modal.methods.bank')}</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        className={`payment-choice-btn ${paymentMethod === 'mobile' ? 'active' : ''}`}
+                        onClick={() => setPaymentMethod('mobile')}
+                      >
+                        <div className="choice-icon-wrapper">
+                          <FaMobileAlt className="default-icon" />
+                          <div className="hover-logos">
+                            <img src="/images/payment/tmoney.jpg" alt="T-Money" className="pay-logo" />
+                            <img src="/images/payment/flooz.png" alt="Flooz" className="pay-logo" />
+                          </div>
+                        </div>
+                        <span className="choice-label">{t('donate.modal.methods.mobile')}</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="form-section-wrapper">
+                    <h3 className="section-subtitle">{t('donate.form.section4')}</h3>
+                    <div className="input-grid-2">
+                      <div className="premium-input-field">
+                        <label>{t('donate.form.firstName')}</label>
+                        <input type="text" name="firstName" value={personalInfo.firstName} onChange={handleInfoChange} required  />
                       </div>
-                      <span>Mobile Money</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Personal Info */}
-                <div className="form-section">
-                  <h3>Vos informations</h3>
-                  <div className="form-grid">
-                    <div className="form-group">
-                      <label>Prénom *</label>
-                      <input 
-                        type="text" 
-                        name="firstName"
-                        value={personalInfo.firstName}
-                        onChange={handleInfoChange}
-                        required 
-                        placeholder="Votre prénom" 
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Nom *</label>
-                      <input 
-                        type="text" 
-                        name="lastName"
-                        value={personalInfo.lastName}
-                        onChange={handleInfoChange}
-                        required 
-                        placeholder="Votre nom" 
-                      />
-                    </div>
-                    <div className="form-group full-width">
-                      <label>Email *</label>
-                      <input 
-                        type="email" 
-                        name="email"
-                        value={personalInfo.email}
-                        onChange={handleInfoChange}
-                        required 
-                        placeholder="votre.email@example.com" 
-                      />
-                    </div>
-                    <div className="form-group full-width">
-                      <label>Téléphone</label>
-                      <input 
-                        type="tel" 
-                        name="phone"
-                        value={personalInfo.phone}
-                        onChange={handleInfoChange}
-                        placeholder="+228 12 34 56 78" 
-                      />
+                      <div className="premium-input-field">
+                        <label>{t('donate.form.lastName')}</label>
+                        <input type="text" name="lastName" value={personalInfo.lastName} onChange={handleInfoChange} required  />
+                      </div>
+                      <div className="premium-input-field full-row">
+                        <label>{t('donate.form.email')}</label>
+                        <input type="email" name="email" value={personalInfo.email} onChange={handleInfoChange} required  />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Tax Receipt */}
-                <div className="form-section">
-                  <div className="checkbox-group">
-                    <input type="checkbox" id="receipt" defaultChecked />
-                    <label htmlFor="receipt">
-                      Je souhaite recevoir un reçu fiscal (66% de déduction d'impôts)
+                  <div className="form-agreement">
+                    <label className="checkbox-item">
+                      <input type="checkbox" defaultChecked />
+                      <span>{t('donate.form.agreement')}</span>
                     </label>
                   </div>
-                  <div className="checkbox-group">
-                    <input type="checkbox" id="newsletter" />
-                    <label htmlFor="newsletter">
-                      Je souhaite recevoir les actualités de l'association
-                    </label>
+
+                  <button type="submit" className="btn-submit-donate">
+                     {t('donate.form.submit', { amount: customAmount ? `de ${customAmount}` : '' })}
+                  </button>
+
+                  <div className="security-footer">
+                     <FaShieldAlt />
+                     <span>{t('donate.form.security')}</span>
                   </div>
-                </div>
-
-                {/* Submit Button */}
-                <Button variant="primary" type="submit" style={{ width: '100%', padding: '1rem 2rem', fontSize: '1.125rem' }}>
-                  Faire un don de ${customAmount}
-                </Button>
-
-                {/* Security Note */}
-                <div className="security-note">
-                  <FaShieldAlt />
-                  <p>Paiement 100% sécurisé et crypté SSL</p>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
 
-            {/* Payment Modal */}
-            {showPaymentModal && (
-              <div className="modal-overlay" onClick={() => setShowPaymentModal(false)}>
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                  <button className="modal-close" onClick={() => setShowPaymentModal(false)}>
-                    <FaTimes />
-                  </button>
-                  
-                  <div className="modal-header">
-                    {paymentMethod === 'card' && <h3>Paiement par Carte</h3>}
-                    {paymentMethod === 'paypal' && <h3>Paiement via PayPal</h3>}
-                    {paymentMethod === 'bank' && <h3>Virement Bancaire</h3>}
-                    {paymentMethod === 'mobile' && <h3>Paiement Mobile Money</h3>}
-                    <div className="modal-amount">
-                      Montant à payer: <span className="highlight">${customAmount}</span>
-                    </div>
-                  </div>
-
-                  <div className="modal-body">
-                    {paymentMethod === 'card' && (
-                      <form className="modal-form" onSubmit={(e) => { e.preventDefault(); alert('Paiement par carte simulé avec succès !'); setShowPaymentModal(false); }}>
-                        <div className="form-group full-width">
-                          <label>Nom sur la carte</label>
-                          <input type="text" placeholder="John Doe" required />
-                        </div>
-                        <div className="form-group full-width">
-                          <label>Numéro de carte</label>
-                          <div className="input-with-icon">
-                            <FaCreditCard className="field-icon" />
-                            <input type="text" placeholder="0000 0000 0000 0000" required />
-                          </div>
-                        </div>
-                        <div className="form-row">
-                          <div className="form-group">
-                            <label>Expiration</label>
-                            <input type="text" placeholder="MM/AA" required />
-                          </div>
-                          <div className="form-group">
-                            <label>CVC</label>
-                            <div className="input-with-icon">
-                              <FaLock className="field-icon" />
-                              <input type="text" placeholder="123" required />
-                            </div>
-                          </div>
-                        </div>
-                        <Button variant="primary" type="submit" style={{ width: '100%', marginTop: '1rem' }}>
-                          <FaLock style={{ marginRight: '8px' }} /> Payer ${customAmount}
-                        </Button>
-                      </form>
-                    )}
-
-                    {paymentMethod === 'paypal' && (
-                      <div className="payment-instructions">
-                          <p>Vous allez être redirigé vers PayPal pour sécuriser votre paiement.</p>
-                          <Button variant="primary" onClick={() => { alert('Redirection vers PayPal...'); setShowPaymentModal(false); }} style={{ width: '100%', marginTop: '1rem' }}>
-                            Continuer vers PayPal
-                          </Button>
-                      </div>
-                    )}
-
-                    {paymentMethod === 'bank' && (
-                      <div className="bank-details">
-                        <p className="instruction-text">Veuillez effectuer votre virement vers le compte suivant :</p>
-                        <div className="bank-card">
-                          <div className="bank-row">
-                            <span>Banque :</span>
-                            <strong>Ecobank Togo</strong>
-                          </div>
-                          <div className="bank-row">
-                            <span>Titulaire :</span>
-                            <strong>Dons Humanitaires</strong>
-                          </div>
-                          <div className="bank-row copy-row">
-                            <span>IBAN :</span>
-                            <strong>TG00 0000 0000 0000 0000 00</strong>
-                            <button type="button" className="copy-btn" onClick={() => alert('IBAN copié !')}><FaCopy /></button>
-                          </div>
-                          <div className="bank-row copy-row">
-                            <span>BIC / SWIFT :</span>
-                            <strong>ECOBTGTG</strong>
-                            <button type="button" className="copy-btn" onClick={() => alert('BIC copié !')}><FaCopy /></button>
-                          </div>
-                        </div>
-                        <div className="reference-note">
-                          <p>Communication / Motif : <strong>DON-{personalInfo.lastName ? personalInfo.lastName.toUpperCase() : 'ANONYME'}</strong></p>
-                        </div>
-                        <Button variant="outline" onClick={() => setShowPaymentModal(false)} style={{ width: '100%', marginTop: '1rem' }}>
-                          J'ai effectué le virement
-                        </Button>
-                      </div>
-                    )}
-
-                    {paymentMethod === 'mobile' && (
-                      <form className="modal-form" onSubmit={(e) => { e.preventDefault(); alert('Demande de paiement envoyée sur votre mobile !'); setShowPaymentModal(false); }}>
-                        <div className="provider-selection">
-                          <label className={`provider-option ${mobileProvider === 'tmoney' ? 'selected' : ''}`}>
-                              <input type="radio" name="provider" value="tmoney" checked={mobileProvider === 'tmoney'} onChange={() => setMobileProvider('tmoney')} />
-                              <img src="/images/payment/tmoney.png" alt="T-Money" />
-                              <span>T-Money</span>
-                          </label>
-                          <label className={`provider-option ${mobileProvider === 'flooz' ? 'selected' : ''}`}>
-                              <input type="radio" name="provider" value="flooz" checked={mobileProvider === 'flooz'} onChange={() => setMobileProvider('flooz')} />
-                              <img src="/images/payment/flooz.png" alt="Flooz" />
-                              <span>Flooz</span>
-                          </label>
-                        </div>
-                        <div className="form-group full-width">
-                          <label>Numéro de téléphone</label>
-                          <div className="input-with-icon">
-                            <FaMobileAlt className="field-icon" />
-                            <input type="tel" placeholder="90 00 00 00" required />
-                          </div>
-                        </div>
-                        <Button variant="primary" type="submit" style={{ width: '100%', marginTop: '1rem' }}>
-                          Confirmer le paiement
-                        </Button>
-                      </form>
-                    )}
-                  </div>
-                  
-                  <div className="modal-footer">
-                    <div className="secure-badge">
-                      <FaShieldAlt /> Paiement Sécurisé SSL
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-            
-            {/* Sidebar Info */}
-            <aside className="donate-sidebar">
-              <div className="sidebar-card">
-                <h3>Pourquoi donner ?</h3>
-                <ul className="benefits-list">
-                  <li>
-                    <FaCheck />
-                    <span>Impact direct sur le terrain</span>
-                  </li>
-                  <li>
-                    <FaCheck />
-                    <span>Transparence totale</span>
-                  </li>
-                  <li>
-                    <FaCheck />
-                    <span>Déduction fiscale 66%</span>
-                  </li>
-                  <li>
-                    <FaCheck />
-                    <span>Suivi de vos dons</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="sidebar-card impact-card">
-                <h3>Votre impact</h3>
-                <div className="impact-example">
-                  <strong>$25</strong>
-                  <p>Fournit des fournitures scolaires pour 5 enfants</p>
-                </div>
-                <div className="impact-example">
-                  <strong>$50</strong>
-                  <p>Finance un mois de repas pour une famille</p>
-                </div>
-                <div className="impact-example">
-                  <strong>$100</strong>
-                  <p>Permet l'accès à l'eau potable pour 20 personnes</p>
+            <aside className="donate-info-column">
+              <div className="sidebar-elegant-card highlight-border">
+                <h3>{t('donate.sidebar.impactTitle')}</h3>
+                <div className="impact-steps">
+                   <div className="impact-step">
+                      <span className="step-val">25€</span>
+                      <p>{t('donate.sidebar.step1')}</p>
+                   </div>
+                   <div className="impact-step">
+                      <span className="step-val">50€</span>
+                      <p>{t('donate.sidebar.step2')}</p>
+                   </div>
+                   <div className="impact-step">
+                      <span className="step-val">100€</span>
+                      <p>{t('donate.sidebar.step3')}</p>
+                   </div>
                 </div>
               </div>
 
-              <div className="sidebar-card other-ways">
-                <h3>Autres façons d'aider</h3>
-                <p>Vous pouvez également nous soutenir en :</p>
-                <ul>
-                  <li>Devenant bénévole</li>
-                  <li>Partageant notre mission</li>
-                  <li>Organisant une collecte</li>
-                </ul>
+              <div className="sidebar-elegant-card bg-primary-gradient text-white">
+                <h3 className="text-white">{t('donate.sidebar.transparencyTitle')}</h3>
+                <p className="card-desc-white">{t('donate.sidebar.transparencyText')}</p>
+                <div className="trust-badges">
+                   <FaShieldAlt /> <FaLock /> <FaCheck />
+                </div>
               </div>
             </aside>
+
           </div>
         </div>
       </section>
 
+      {/* Payment Modal Refined */}
+      <AnimatePresence>
+        {showPaymentModal && (
+          <motion.div className="donate-modal-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowPaymentModal(false)}>
+            <motion.div className="donate-modal-box" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} onClick={e => e.stopPropagation()}>
+               <div className="modal-header-refined">
+                  <h3>{t('donate.modal.confirmTitle')}</h3>
+                  <button className="close-x" onClick={() => setShowPaymentModal(false)}><FaTimes /></button>
+               </div>
+               
+               <div className="modal-body-refined">
+                  <div className="amount-display-pill">
+                     {t('donate.modal.amount')} <span>{customAmount} €/CFA</span>
+                  </div>
+
+                  {paymentMethod === 'card' && (
+                    <div className="card-payment-form">
+                       <div className="form-group-p">
+                          <label>{t('donate.modal.cardHolder')}</label>
+                          <input type="text"  />
+                       </div>
+                       <div className="form-group-p">
+                          <label>{t('donate.modal.cardNumber')}</label>
+                          <div className="icon-input">
+                             <FaCreditCard />
+                             <input type="text"  />
+                          </div>
+                       </div>
+                       <div className="form-row-p">
+                          <div className="form-group-p">
+                             <label>{t('donate.modal.expiration')}</label>
+                             <input type="text" placeholder="MM/AA" />
+                          </div>
+                          <div className="form-group-p">
+                             <label>{t('donate.modal.cvv')}</label>
+                             <input type="text" placeholder="123" />
+                          </div>
+                       </div>
+                       <button className="confirm-btn-p">{t('donate.form.submit', { amount: '' })}</button>
+                    </div>
+                  )}
+
+                  {paymentMethod === 'mobile' && (
+                    <div className="mobile-payment-selection">
+                       <div className="mobile-providers">
+                          <div className={`provider-box ${mobileProvider === 'tmoney' ? 'active' : ''}`} onClick={() => setMobileProvider('tmoney')}>
+                             <img src="/images/payment/tmoney.jpg" alt="TMoney" />
+                             <span>T-Money</span>
+                          </div>
+                          <div className={`provider-box ${mobileProvider === 'flooz' ? 'selected' : ''}`} onClick={() => setMobileProvider('flooz')}>
+                             <img src="/images/payment/flooz.png" alt="Flooz" />
+                             <span>Flooz</span>
+                          </div>
+                       </div>
+                       <div className="form-group-p">
+                          <label>{t('donate.modal.phone')}</label>
+                          <input type="tel" placeholder="Ex: 90123456" />
+                       </div>
+                       <button className="confirm-btn-p">{t('donate.modal.mobile.confirm')}</button>
+                    </div>
+                  )}
+
+                  {paymentMethod === 'bank' && (
+                    <div className="bank-details-premium">
+                       <p>{t('donate.modal.mobile.title')}</p>
+                       <div className="bank-info-table">
+                          <div className="info-r"><span>{t('donate.modal.bank.bankName')}</span> <strong>ECOBANK TOGO</strong></div>
+                          <div className="info-r"><span>{t('donate.modal.bank.accountName')}</span> <strong>ASSO AHP2V</strong></div>
+                          <div className="info-r"><span>{t('donate.modal.bank.iban')}</span> <strong>TG25 1020 3040 5060 7080 9001</strong></div>
+                       </div>
+                       <button className="confirm-btn-p" onClick={() => setShowPaymentModal(false)}>{t('donate.modal.bank.confirm')}</button>
+                    </div>
+                  )}
+
+                  {paymentMethod === 'paypal' && (
+                    <div className="paypal-center">
+                       <FaPaypal size={60} color="#003087" />
+                       <p>{t('donate.modal.paypal.text')}</p>
+                       <button className="confirm-btn-p">{t('donate.modal.paypal.confirm')}</button>
+                    </div>
+                  )}
+               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <style>{`
-        /* Modal Styles */
-        .modal-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.6);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 9999;
-          backdrop-filter: blur(4px);
-          animation: fadeIn 0.3s ease;
+        .donate-wrapper {
+          min-height: 100vh;
+          background-color: var(--color-gray-50);
         }
 
-        .modal-content {
-          background: var(--color-white);
-          border-radius: var(--radius-lg);
-          width: 90%;
-          max-width: 500px;
-          position: relative;
-          box-shadow: var(--shadow-2xl);
-          animation: slideUp 0.3s ease;
-          overflow: hidden;
-          max-height: 90vh;
-          overflow-y: auto;
-        }
-        
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        .modal-close {
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          background: none;
-          border: none;
-          font-size: 1.25rem;
-          color: var(--text-secondary);
-          cursor: pointer;
-          padding: 0.5rem;
-          transition: color 0.2s;
-          z-index: 10;
+        .impact-overview {
+          padding: var(--spacing-4xl) 0;
+          background: white;
+          border-bottom: 2px solid var(--color-gray-100);
         }
 
-        .modal-close:hover {
-          color: var(--color-danger);
-        }
-
-        .modal-header {
-          padding: 1.5rem;
-          border-bottom: 1px solid var(--color-gray-200);
-          text-align: center;
-          background: var(--bg-secondary);
-        }
-
-        .modal-header h3 {
-          margin: 0;
-          font-size: 1.5rem;
-          color: var(--text-primary);
-        }
-        
-        .modal-amount {
-          margin-top: 0.5rem;
-          font-size: 1.1rem;
-          color: var(--text-secondary);
-        }
-        
-        .highlight {
-          color: var(--color-primary);
-          font-weight: bold;
-          font-size: 1.3rem;
-        }
-
-        .modal-body {
-          padding: 2rem 1.5rem;
-        }
-
-        .modal-footer {
-          padding: 1rem;
-          background: var(--bg-secondary);
-          text-align: center;
-          border-top: 1px solid var(--color-gray-200);
-        }
-
-        .secure-badge {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.5rem;
-          color: #10B981; /* Success green */
-          font-weight: 500;
-          font-size: 0.9rem;
-        }
-        
-        /* Modal Form Elements */
-        .modal-form {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-        
-        .form-row {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1rem;
-        }
-        
-        .input-with-icon {
-          position: relative;
-        }
-        
-        .field-icon {
-          position: absolute;
-          left: 1rem;
-          top: 50%;
-          transform: translateY(-50%);
-          color: var(--text-secondary);
-        }
-        
-        .input-with-icon input {
-          padding-left: 2.8rem;
-          width: 100%;
-          padding-top: 0.8rem;
-          padding-bottom: 0.8rem;
-          border: 1px solid var(--color-gray-300);
-          border-radius: var(--radius-md);
-        }
-
-        /* Bank Details */
-        .instruction-text {
-           text-align: center;
-           margin-bottom: 1rem;
-           color: var(--text-secondary);
-        }
-
-        .bank-card {
-           background: var(--bg-secondary);
-           padding: 1rem;
-           border-radius: var(--radius-md);
-           border: 1px solid var(--color-gray-300);
-        }
-        
-        .bank-row {
-           display: flex;
-           justify-content: space-between;
-           align-items: center;
-           padding: 0.5rem 0;
-           border-bottom: 1px dashed var(--color-gray-300);
-        }
-        
-        .bank-row:last-child {
-           border-bottom: none;
-        }
-        
-        .copy-btn {
-           background: none;
-           border: none;
-           color: var(--color-primary);
-           cursor: pointer;
-           padding: 0.2rem;
-        }
-        
-        .reference-note {
-           margin-top: 1rem;
-           padding: 0.8rem;
-           background: #FFF3CD;
-           border: 1px solid #FFEEC0;
-           border-radius: var(--radius-md);
-           text-align: center;
-           font-size: 0.9rem;
-           color: #856404;
-        }
-
-        /* Mobile Provider Selection */
-        .provider-selection {
-           display: grid;
-           grid-template-columns: 1fr 1fr;
-           gap: 1rem;
-           margin-bottom: 1rem;
-        }
-        
-        .provider-option {
-           display: flex;
-           flex-direction: column;
-           align-items: center;
-           gap: 0.5rem;
-           padding: 1rem;
-           border: 2px solid var(--color-gray-200);
-           border-radius: var(--radius-md);
-           cursor: pointer;
-           transition: all 0.2s;
-        }
-        
-        .provider-option.selected {
-           border-color: var(--color-primary);
-           background: rgba(220, 200, 172, 0.2); /* Using primary color hint */
-        }
-        
-        .provider-option input {
-           display: none;
-        }
-        
-        .provider-option img {
-           height: 30px;
-           object-fit: contain;
-        }
-        
-        .section-bg {
-          background: var(--bg-secondary);
-        }
-
-        .impact-stats {
+        .impact-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: var(--spacing-2xl);
+          gap: 30px;
+        }
+
+        .impact-card-stat {
           text-align: center;
-        }
-
-        .impact-item {
-          padding: var(--spacing-2xl);
-          background: var(--color-white);
+          padding: 40px;
           border-radius: var(--radius-lg);
-          box-shadow: var(--shadow-md);
+          background: var(--color-gray-50);
+          border: 2px solid var(--color-gray-100);
+          transition: transform 0.3s;
         }
 
-        .impact-icon {
-          font-size: var(--font-size-5xl);
-          color: var(--color-primary);
-          margin-bottom: var(--spacing-md);
+        .impact-card-stat:hover { transform: translateY(-5px); }
+
+        .stat-icon-bg {
+          width: 70px;
+          height: 70px;
+          background: var(--gradient-primary);
+          color: white;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 20px;
+          font-size: 1.5rem;
+          box-shadow: 0 8px 15px rgba(52, 149, 67, 0.2);
         }
 
-        .impact-item h3 {
-          font-size: var(--font-size-3xl);
-          font-weight: var(--font-weight-extrabold);
-          color: var(--text-primary);
-          margin-bottom: var(--spacing-sm);
+        .impact-card-stat h3 {
+          font-size: 2.2rem;
+          color: var(--color-gray-900);
+          margin-bottom: 10px;
         }
 
-        .impact-item p {
-          color: var(--text-secondary);
-          font-size: var(--font-size-lg);
+        .donation-main-section {
+          padding: var(--spacing-4xl) 0;
         }
 
-        .donate-layout {
+        .donate-page-layout {
           display: grid;
           grid-template-columns: 2fr 1fr;
-          gap: var(--spacing-3xl);
+          gap: 40px;
           align-items: start;
         }
 
-        .donate-form-container {
-          background: var(--color-white);
-          padding: var(--spacing-3xl);
+        @media (max-width: 992px) {
+          .donate-page-layout { grid-template-columns: 1fr; }
+          .impact-grid { grid-template-columns: 1fr; }
+        }
+
+        .elegant-form-card {
+          background: white;
+          padding: 50px;
+          border-radius: var(--radius-xl);
+          border: 2px solid var(--color-gray-200);
+          box-shadow: var(--shadow-xl);
+        }
+
+        .form-header {
+          margin-bottom: 40px;
+          text-align: center;
+        }
+
+        .form-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .form-header p { color: var(--text-secondary); }
+
+        .form-section-wrapper {
+          margin-bottom: 35px;
+        }
+
+        .section-subtitle {
+          font-size: 1rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--color-primary);
+          margin-bottom: 20px;
+          font-weight: 700;
+        }
+
+        .type-toggle {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 15px;
+        }
+
+        .type-toggle button {
+          padding: 15px;
+          border-radius: var(--radius-md);
+          border: 2px solid var(--color-gray-200);
+          background: white;
+          font-weight: 700;
+          transition: all 0.3s;
+        }
+
+        .type-toggle button.active {
+          border-color: var(--color-primary);
+          background: rgba(52, 149, 67, 0.05);
+          color: var(--color-primary);
+          box-shadow: 0 4px 10px rgba(52, 149, 67, 0.1);
+        }
+
+        .amount-input-box {
+          border: 2px solid var(--color-gray-200);
+          border-radius: var(--radius-md);
+          padding: 10px 20px;
+          background: var(--color-gray-50);
+        }
+
+        .input-group-premium {
+          display: flex;
+          align-items: center;
+        }
+
+        .input-group-premium input {
+          flex: 1;
+          background: transparent;
+          border: none;
+          font-size: 2rem;
+          font-weight: 800;
+          padding: 10px;
+          color: var(--color-gray-900);
+        }
+
+        .unit-symbol {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: var(--color-gray-400);
+        }
+
+        .payment-grid-selection {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 15px;
+        }
+
+        @media (max-width: 500px) {
+          .payment-grid-selection { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .payment-choice-btn {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 15px;
+          border: 2px solid var(--color-gray-200);
+          border-radius: var(--radius-md);
+          background: white;
+          transition: all 0.3s;
+        }
+
+        .payment-choice-btn:hover { border-color: var(--color-primary-light); }
+
+        .payment-choice-btn.active {
+          border-color: var(--color-primary);
+          background: var(--gradient-primary);
+          color: white;
+        }
+
+        .choice-icon-wrapper {
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 5px;
+          position: relative;
+          width: 100%;
+        }
+
+        .default-icon { font-size: 1.8rem; transition: opacity 0.3s; }
+        
+        .hover-logos, .hover-logo {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: none;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          width: 100%;
+          height: 100%;
+        }
+
+        .pay-logo {
+          height: 25px;
+          width: auto;
+          object-fit: contain;
+        }
+
+        .payment-choice-btn:hover .default-icon,
+        .payment-choice-btn.active .default-icon { 
+          opacity: 0; 
+        }
+
+        .payment-choice-btn:hover .hover-logos,
+        .payment-choice-btn.active .hover-logos,
+        .payment-choice-btn:hover .hover-logo,
+        .payment-choice-btn.active .hover-logo {
+          display: flex;
+        }
+
+        .choice-label { font-size: 0.8rem; font-weight: 700; }
+
+        .card-desc-white {
+          color: white !important;
+          opacity: 0.95;
+        }
+
+        .input-grid-2 {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+        }
+
+        .full-row { grid-column: span 2; }
+
+        .premium-input-field label {
+          display: block;
+          font-size: 0.85rem;
+          font-weight: 700;
+          margin-bottom: 8px;
+          color: var(--color-gray-700);
+        }
+
+        .premium-input-field input {
+          width: 100%;
+          padding: 14px;
+          border-radius: var(--radius-md);
+          border: 2px solid var(--color-gray-200);
+          background: white;
+          transition: border-color 0.3s;
+        }
+
+        .premium-input-field input:focus { border-color: var(--color-primary); }
+
+        .btn-submit-donate {
+          width: 100%;
+          background: var(--gradient-primary);
+          color: white;
+          padding: 20px;
+          border-radius: var(--radius-full);
+          font-size: 1.1rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-top: 30px;
+          box-shadow: 0 10px 25px rgba(52, 149, 67, 0.3);
+          transition: all 0.3s;
+        }
+
+        .btn-submit-donate:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 15px 35px rgba(52, 149, 67, 0.4);
+        }
+
+        .security-footer {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          margin-top: 25px;
+          color: var(--color-gray-400);
+          font-size: 0.8rem;
+        }
+
+        /* Sidebar Styles */
+        .sidebar-elegant-card {
+          background: white;
+          padding: 30px;
           border-radius: var(--radius-lg);
+          border: 2px solid var(--color-gray-200);
+          margin-bottom: 30px;
           box-shadow: var(--shadow-lg);
         }
 
-        .form-section {
-          margin-bottom: var(--spacing-2xl);
+        .highlight-border { border-left: 8px solid var(--color-primary); }
+
+        .bg-primary-gradient { background: var(--gradient-primary); color: white; border: none; }
+
+        .sidebar-elegant-card h3 { margin-bottom: 20px; font-size: 1.4rem; }
+
+        .impact-step { margin-bottom: 25px; }
+        .step-val { font-size: 1.5rem; font-weight: 800; color: var(--color-primary); display: block; }
+        .text-white .step-val { color: white; }
+
+        .trust-badges { display: flex; gap: 15px; margin-top: 20px; font-size: 1.5rem; opacity: 0.8; }
+
+        /* Modal Styles Refined */
+        .donate-modal-overlay {
+          position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: var(--z-modal); display: flex; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px);
         }
 
-        .form-section h3 {
-          font-size: var(--font-size-xl);
-          margin-bottom: var(--spacing-lg);
-          color: var(--text-primary);
+        .donate-modal-box {
+          background: white; width: 100%; max-width: 480px; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-2xl);
         }
 
-        .donation-type-buttons {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: var(--spacing-md);
-        }
-
-        .type-btn {
-          padding: var(--spacing-lg) var(--spacing-xl);
-          background: var(--color-white);
-          border: 2px solid var(--color-gray-300);
-          border-radius: var(--radius-md);
-          font-family: var(--font-primary);
-          font-size: var(--font-size-lg);
-          font-weight: var(--font-weight-semibold);
-          cursor: pointer;
-          transition: all var(--transition-base);
-        }
-
-        .type-btn:hover,
-        .type-btn.active {
-          background: var(--color-primary);
-          border-color: var(--color-primary);
-          color: var(--color-white);
-        }
-
-        .amount-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: var(--spacing-md);
-          margin-bottom: var(--spacing-lg);
-        }
-
-        .amount-btn {
-          padding: var(--spacing-lg);
-          background: var(--color-white);
-          border: 2px solid var(--color-gray-300);
-          border-radius: var(--radius-md);
-          font-family: var(--font-primary);
-          font-size: var(--font-size-xl);
-          font-weight: var(--font-weight-bold);
-          cursor: pointer;
-          transition: all var(--transition-base);
-        }
-
-        .amount-btn:hover,
-        .amount-btn.active {
-          background: var(--color-primary);
-          border-color: var(--color-primary);
-          color: var(--color-white);
-          transform: translateY(-2px);
-          box-shadow: var(--shadow-md);
-        }
-
-        .custom-amount label {
-          display: block;
-          margin-bottom: var(--spacing-sm);
-          color: var(--text-secondary);
-          font-weight: var(--font-weight-medium);
-        }
-
-        .input-wrapper {
-          position: relative;
-        }
-
-        .input-wrapper input {
-          width: 100%;
-          padding: var(--spacing-md) var(--spacing-xl);
-          padding-right: 3rem;
-          border: 2px solid var(--color-gray-300);
-          border-radius: var(--radius-md);
-          font-size: var(--font-size-lg);
-          font-family: var(--font-primary);
-        }
-
-        .input-wrapper input:focus {
-          outline: none;
-          border-color: var(--color-primary);
-        }
-
-        .currency {
-          position: absolute;
-          right: var(--spacing-lg);
-          top: 50%;
-          transform: translateY(-50%);
-          font-size: var(--font-size-lg);
-          font-weight: var(--font-weight-bold);
-          color: var(--text-secondary);
-        }
-
-        .payment-methods {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: var(--spacing-md);
-        }
-
-        .payment-btn {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: var(--spacing-sm);
-          padding: var(--spacing-lg);
-          background: var(--color-white);
-          border: 2px solid var(--color-gray-300);
-          border-radius: var(--radius-md);
-          cursor: pointer;
-          transition: all var(--transition-base);
-        }
-
-        .payment-btn .icon-wrapper {
-           height: 40px;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           margin-bottom: var(--spacing-xs);
-        }
-
-        .payment-btn .default-icon {
-          font-size: 2rem;
-          color: var(--text-secondary);
-          display: block;
-          transition: all var(--transition-base);
+        .modal-header-refined {
+          padding: 20px 30px; border-bottom: 2px solid var(--color-gray-100); display: flex; justify-content: space-between; align-items: center; background: var(--color-gray-50);
         }
         
-        /* Show generic icon by default for Virement (always visible) */
-        .payment-btn .default-icon.always-visible {
-           display: block !important;
+        .modal-header-refined h3 { margin: 0; font-size: 1.2rem; font-weight: 800; }
+        .close-x { background: transparent; font-size: 1.2rem; color: var(--color-gray-400); transition: color 0.3s; }
+        .close-x:hover { color: var(--color-black); }
+
+        .modal-body-refined { padding: 30px; }
+
+        .amount-display-pill {
+          background: var(--color-gray-100); padding: 12px 20px; border-radius: 50px; text-align: center; margin-bottom: 30px; font-weight: 700; border: 1px solid var(--color-primary-light);
         }
 
-        .hover-logos, .hover-logo {
-          display: none;
-          align-items: center;
-          justify-content: center;
-          gap: var(--spacing-sm);
-          height: 100%;
-          width: 100%;
-        }
+        .amount-display-pill span { color: var(--color-primary); font-size: 1.6rem; font-weight: 900; }
 
-        .payment-logo {
-          height: 100%;
-          width: auto;
-          object-fit: contain;
-          max-width: 60px;
-        }
+        .form-group-p { margin-bottom: 20px; }
+        .form-group-p label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; color: var(--color-gray-600); letter-spacing: 0.05em; }
+        
+        .icon-input-wrapper { position: relative; display: flex; align-items: center; }
+        .input-icon { position: absolute; left: 15px; color: var(--color-primary); font-size: 1.1rem; }
+        .icon-input-wrapper input { padding-left: 45px !important; }
+        
+        .form-group-p input { width: 100%; padding: 14px; border: 2px solid var(--color-gray-200); border-radius: 10px; transition: all 0.3s; font-size: 0.95rem; }
+        .form-group-p input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 4px rgba(52, 149, 67, 0.1); outline: none; }
 
-        .payment-logo.large {
-          max-height: 28px;
-        }
+        .form-row-p { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
-        /* Hover & Active States */
-        /* Hide default icon on hover/active (except Virement) */
-        .payment-btn:hover .default-icon:not(.always-visible),
-        .payment-btn.active .default-icon:not(.always-visible) {
-          display: none;
-        }
-
-        /* Show logos on hover/active */
-        .payment-btn:hover .hover-logos,
-        .payment-btn.active .hover-logos,
-        .payment-btn:hover .hover-logo,
-        .payment-btn.active .hover-logo {
-          display: flex;
-        }
-
-        .payment-btn:hover,
-        .payment-btn.active {
-          background: var(--color-white);
-          border-color: var(--color-primary);
-          color: var(--color-primary);
-          box-shadow: 0 0 0 1px var(--color-primary);
+        .confirm-btn-p { 
+           width: 100%; padding: 16px; border-radius: 12px; font-weight: 800; font-size: 1rem; border: none; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
         }
         
-        .payment-btn:hover .default-icon.always-visible,
-        .payment-btn.active .default-icon.always-visible {
-           color: var(--color-primary);
+        .bg-dark { background: #1a1a1a; color: white; }
+        .bg-dark:hover { background: #000; transform: translateY(-2px); }
+        
+        .bg-primary { background: var(--gradient-primary); color: white; }
+        .bg-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(52, 149, 67, 0.3); }
+
+        /* Mobile Provider Grid */
+        .payment-hint { font-size: 0.85rem; font-weight: 700; margin-bottom: 15px; color: var(--color-gray-600); }
+        .mobile-providers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        
+        .provider-card {
+           padding: 20px; border: 2px solid var(--color-gray-200); border-radius: 15px; text-align: center; cursor: pointer; transition: all 0.3s; position: relative;
         }
-
-        .form-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
+        
+        .provider-card.active { border-color: var(--color-primary); background: rgba(52, 149, 67, 0.05); }
+        
+        .provider-logo-bg { 
+           width: 60px; height: 60px; border-radius: 50%; background: white; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--color-gray-100);
         }
+        .provider-logo-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .provider-card span { font-size: 0.9rem; font-weight: 800; display: block; }
+        
+        .selected-dot { position: absolute; top: 10px; right: 10px; background: var(--color-primary); color: white; width: 22px; height: 22px; border-radius: 50%; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; }
 
-        .form-group {
-          display: flex;
-          flex-direction: column;
+        /* Bank Details Refined */
+        .bank-alert { display: flex; align-items: center; gap: 12px; background: rgba(52, 149, 67, 0.08); padding: 15px; border-radius: 10px; margin-bottom: 25px; border-left: 4px solid var(--color-primary); }
+        .bank-alert svg { color: var(--color-primary); font-size: 1.2rem; }
+        .bank-alert p { margin: 0; font-size: 0.85rem; font-weight: 600; color: var(--color-primary-dark); line-height: 1.4; }
+        
+        .bank-info-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
+        
+        .bank-info-row { 
+           display: flex; align-items: center; justify-content: space-between; background: var(--color-gray-50); padding: 15px; border-radius: 12px; border: 1px solid var(--color-gray-200);
         }
+        
+        .info-label-group { display: flex; flex-direction: column; gap: 4px; }
+        .label-text { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--color-gray-400); letter-spacing: 0.05em; }
+        .value-text { font-size: 0.95rem; font-weight: 700; color: var(--color-gray-900); }
+        
+        .copy-small-btn { background: white; width: 35px; height: 35px; border-radius: 8px; border: 1px solid var(--color-gray-200); display: flex; align-items: center; justify-content: center; color: var(--color-gray-500); transition: all 0.3s; }
+        .copy-small-btn:hover { background: var(--color-primary); color: white; border-color: var(--color-primary); }
 
-        .form-group.full-width {
-          grid-column: 1 / -1;
-        }
+        .outline-dark { background: transparent; border: 2px solid #1a1a1a; color: #1a1a1a; }
+        .outline-dark:hover { background: #1a1a1a; color: white; }
 
-        .form-group label {
-          margin-bottom: var(--spacing-sm);
-          color: var(--text-primary);
-          font-weight: var(--font-weight-medium);
-        }
-
-        .form-group input {
-          padding: var(--spacing-md) var(--spacing-lg);
-          border: 2px solid var(--color-gray-300);
-          border-radius: var(--radius-md);
-          font-size: var(--font-size-base);
-          font-family: var(--font-primary);
-        }
-
-        .form-group input:focus {
-          outline: none;
-          border-color: var(--color-primary);
-        }
-
-        .checkbox-group {
-          display: flex;
-          align-items: center;
-          gap: var(--spacing-md);
-          margin-bottom: var(--spacing-md);
-        }
-
-        .checkbox-group input[type="checkbox"] {
-          width: 20px;
-          height: 20px;
-          cursor: pointer;
-        }
-
-        .checkbox-group label {
-          cursor: pointer;
-          color: var(--text-secondary);
-        }
-
-        .security-note {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: var(--spacing-md);
-          margin-top: var(--spacing-lg);
-          padding: var(--spacing-md);
-          background: var(--bg-secondary);
-          border-radius: var(--radius-md);
-          color: var(--text-secondary);
-        }
-
-        .security-note svg {
-          color: var(--color-primary);
-          font-size: var(--font-size-xl);
-        }
-
-        .donate-sidebar {
-          display: flex;
-          flex-direction: column;
-          gap: var(--spacing-xl);
-          position: sticky;
-          top: 100px;
-        }
-
-        .sidebar-card {
-          background: var(--color-white);
-          padding: var(--spacing-xl);
-          border-radius: var(--radius-lg);
-          box-shadow: var(--shadow-md);
-        }
-
-        .sidebar-card h3 {
-          font-size: var(--font-size-xl);
-          margin-bottom: var(--spacing-lg);
-          color: var(--text-primary);
-          padding-bottom: var(--spacing-sm);
-          border-bottom: 2px solid var(--color-primary);
-        }
-
-        .benefits-list {
-          list-style: none;
-          padding: 0;
-        }
-
-        .benefits-list li {
-          display: flex;
-          align-items: center;
-          gap: var(--spacing-md);
-          margin-bottom: var(--spacing-md);
-          color: var(--text-secondary);
-        }
-
-        .benefits-list svg {
-          color: var(--color-primary);
-          flex-shrink: 0;
-        }
-
-        .impact-example {
-          margin-bottom: var(--spacing-lg);
-          padding: var(--spacing-md);
-          background: var(--bg-secondary);
-          border-radius: var(--radius-md);
-          border-left: 4px solid var(--color-primary);
-        }
-
-        .impact-example strong {
-          display: block;
-          font-size: var(--font-size-xl);
-          color: var(--color-primary);
-          margin-bottom: var(--spacing-sm);
-        }
-
-        .impact-example:last-child {
-          margin-bottom: 0;
-        }
-
-        .other-ways p {
-          margin-bottom: var(--spacing-md);
-          color: var(--text-secondary);
-        }
-
-        .other-ways ul {
-          list-style: none;
-          padding: 0;
-        }
-
-        .other-ways li {
-          padding: var(--spacing-sm) 0;
-          color: var(--text-secondary);
-          border-bottom: 1px solid var(--color-gray-200);
-        }
-
-        .other-ways li:last-child {
-          border-bottom: none;
-        }
-
-        @media (max-width: 1024px) {
-          .donate-layout {
-            grid-template-columns: 1fr;
-          }
-
-          .donate-sidebar {
-            position: static;
-          }
-
-          .impact-stats {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .amount-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-
-          .payment-methods {
-            grid-template-columns: 1fr;
-          }
-
-          .form-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .donation-type-buttons {
-            grid-template-columns: 1fr;
-          }
-        }
+        /* PayPal Refined */
+        .paypal-center-refined { text-align: center; padding: 20px 0; }
+        .paypal-logo-big { font-size: 4rem; color: #003087; margin-bottom: 20px; }
+        .paypal-center-refined h4 { font-size: 1.4rem; margin-bottom: 10px; }
+        .paypal-center-refined p { font-size: 0.9rem; color: var(--color-gray-500); margin-bottom: 30px; }
+        .bg-paypal { background: #0070ba; color: white; }
+        .bg-paypal:hover { background: #005ea6; transform: translateY(-2px); }
       `}</style>
     </div>
   );

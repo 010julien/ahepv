@@ -112,7 +112,8 @@ const Hero = ({
           min-height: 85vh;
           display: flex;
           align-items: center;
-          padding-top: var(--hero-top-offset, 80px);
+          margin-top: var(--hero-top-offset, 80px);
+          padding-top: 0;
           overflow: hidden;
         }
 

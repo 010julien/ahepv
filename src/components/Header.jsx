@@ -30,7 +30,7 @@ const Header = () => {
     { path: '/', label: t('nav.home') },
     { path: '/about', label: t('nav.about') },
     { path: '/causes', label: t('nav.causes') },
-    { path: '/events', label: t('nav.events') },
+    { path: '/divertissement', label: t('nav.events') },
     { path: '/gallery', label: t('nav.gallery') }
   ];
 
@@ -159,7 +159,7 @@ const Header = () => {
           left: 0;
           right: 0;
           z-index: var(--z-sticky);
-          background-color: transparent;
+          background-color: var(--color-white);
           border-radius: 0;
           margin-top: 0;
           padding: 15px 20px;
@@ -194,7 +194,7 @@ const Header = () => {
         .header .dropdown-icon,
         .mobile-menu-toggle,
         .social-link-item {
-          color: var(--color-white);
+          color: var(--text-primary);
           text-shadow: none;
         }
 
@@ -210,6 +210,12 @@ const Header = () => {
         .header .logo-img {
           filter: none;
           transition: filter 0.4s ease;
+
+        }
+
+        logo {
+           width: 100px;
+           height: 100px;
         }
 
         .header-scrolled .logo-img {
@@ -228,7 +234,7 @@ const Header = () => {
           display: flex;
           align-items: center;
           gap: var(--spacing-sm);
-          color: var(--color-white);
+          color: var(--text-primary);
         }
 
         .header .social-link-item {
@@ -291,8 +297,8 @@ const Header = () => {
         }
 
         .logo-img {
-          width: 130px;
-          height: 56px;
+          width: 180px;
+          height: 80px;
           object-fit: contain;
           transition: all 0.4s ease;
         }
@@ -315,7 +321,7 @@ const Header = () => {
           font-family: var(--font-primary);
           font-size: 0.95rem;
           font-weight: var(--font-weight-medium);
-          color: var(--color-white);
+          color: var(--text-primary);
           position: relative;
           transition: color var(--transition-fast);
           background: none;
@@ -435,7 +441,7 @@ const Header = () => {
           display: none;
           background: transparent;
           font-size: var(--font-size-2xl);
-          color: var(--color-white);
+          color: var(--text-primary);
           font-size: 1.7rem !important;
           z-index: 1100; /* Ensure it's above everything */
           filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); /* Add contrast visibility */

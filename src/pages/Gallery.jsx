@@ -142,7 +142,7 @@ const Gallery = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
              <h2 className="section-title text-center mt-[12rem] " style={{ marginBottom: "var(--spacing-xl)" }}>
-                {t('gallery.autoSliderTitle')}
+                
              </h2>
              <AutoSlider images={featuredImages} height="500px" />
           </motion.div>
@@ -267,8 +267,16 @@ const Gallery = () => {
             background-color: var(--color-gray-50);
         }
 
+        .gallery-page {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+        }
+
         .gallery-content-wrapper {
+          flex: 1;
           padding-top: 140px;
+          padding-bottom: var(--spacing-4xl);
         }
 
         .gallery-section {

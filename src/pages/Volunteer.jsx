@@ -118,7 +118,7 @@ const Volunteer = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      placeholder={t('volunteer.placeholders.name')}
+                      // placeholder={t('volunteer.placeholders.name')}
                     />
                   </div>
                   <div className="form-group">
@@ -130,7 +130,7 @@ const Volunteer = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      placeholder={t('volunteer.placeholders.email')}
+                      // placeholder={t('volunteer.placeholders.email')}
                     />
                   </div>
                 </div>
@@ -143,7 +143,7 @@ const Volunteer = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder={t('volunteer.placeholders.phone')}
+                    //placeholder={t('volunteer.placeholders.phone')}
                   />
                 </div>
 
@@ -155,7 +155,7 @@ const Volunteer = () => {
                     name="profession"
                     value={formData.profession}
                     onChange={handleChange}
-                    placeholder={t('volunteer.placeholders.profession')}
+                    //placeholder={t('volunteer.placeholders.profession')}
                   />
                 </div>
 
@@ -201,7 +201,7 @@ const Volunteer = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows="5"
-                    placeholder={t('volunteer.placeholders.message')}
+                    //placeholder={t('volunteer.placeholders.message')}
                   ></textarea>
                 </div>
 

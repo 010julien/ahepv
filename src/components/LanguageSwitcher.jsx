@@ -6,9 +6,9 @@ const LanguageSwitcher = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const languages = [
-    { code: 'fr', label: 'Français', flag: '🇫🇷' },
-    { code: 'en', label: 'English', flag: '🇬🇧' },
-    { code: 'de', label: 'Deutsch', flag: '🇩🇪' }
+    { code: 'fr', label: 'Français', flag: '/images/flags/fr.svg' },
+    { code: 'en', label: 'English', flag: '/images/flags/gb.svg' },
+    { code: 'de', label: 'Deutsch', flag: '/images/flags/de.svg' }
   ];
 
   const currentLang = languages.find(lang => lang.code === language) || languages[0];
@@ -26,7 +26,7 @@ const LanguageSwitcher = () => {
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Change language"
         >
-          <span className="lang-flag">{currentLang.flag}</span>
+          <img src={currentLang.flag} alt="" className="lang-flag-img" />
           <span className="lang-code">{currentLang.code.toUpperCase()}</span>
         </button>
 
@@ -38,7 +38,7 @@ const LanguageSwitcher = () => {
                 className={`lang-option ${language === lang.code ? 'active' : ''}`}
                 onClick={() => handleLanguageChange(lang.code)}
               >
-                <span className="lang-flag">{lang.flag}</span>
+                <img src={lang.flag} alt="" className="lang-flag-img-small" />
                 <span className="lang-label">{lang.label}</span>
               </button>
             ))}
@@ -77,9 +77,19 @@ const LanguageSwitcher = () => {
           box-shadow: var(--shadow-2xl);
         }
 
-        .lang-flag {
-          font-size: var(--font-size-xl);
-          line-height: 1;
+        .lang-flag-img {
+          width: 24px;
+          height: 18px;
+          object-fit: cover;
+          border-radius: 2px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .lang-flag-img-small {
+          width: 20px;
+          height: 15px;
+          object-fit: cover;
+          border-radius: 1px;
         }
 
         .lang-code {

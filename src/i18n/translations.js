@@ -6,10 +6,10 @@ export const translations = {
       about: 'À Propos',
       gallery: 'Galerie',
       causes: 'Nos Causes',
-      events: 'Nos Activités',
+      events: 'Divertissement',
       blog: 'Blog',
       faq: 'FAQ',
-      donate: 'Faire un Don',
+      donate: 'Faire un don',
       contact: 'Contact',
       volunteer: 'Bénévolat'
     },
@@ -17,7 +17,22 @@ export const translations = {
       close: 'Fermer',
       scrollDown: 'Faire défiler',
       loading: 'Chargement...',
-      videoNotSupported: 'Votre navigateur ne supporte pas la lecture de vidéos.'
+      videoNotSupported: 'Votre navigateur ne supporte pas la lecture de vidéos.',
+      by: 'Par',
+      months: {
+        jan: 'JAN',
+        feb: 'FÉV',
+        mar: 'MAR',
+        apr: 'AVR',
+        may: 'MAI',
+        jun: 'JUIN',
+        jul: 'JUIL',
+        aug: 'AOÛT',
+        sep: 'SEP',
+        oct: 'OCT',
+        nov: 'NOV',
+        dec: 'DÉC'
+      }
     },
     
     // Footer
@@ -58,13 +73,13 @@ export const translations = {
       },
       featuredCauses: 'Causes en Vedette',
       featuredCausesDesc: 'Soutenez les causes qui comptent le plus et faites une réelle différence dans la vie des gens',
-      upcomingEvents: 'Activités à Venir',
+      upcomingEvents: 'Nos activités avenir',
       upcomingEventsDesc: 'Rejoignez-nous lors de nos prochaines activités et participez à quelque chose de significatif',
       latestNews: 'Dernières Actualités',
       latestNewsDesc: 'Découvrez notre impact et les vies que nous touchons chaque jour',
       viewAll: 'Voir Tout',
       donateNow: 'Faire un Don',
-      joinEvent: 'Rejoindre l\'activité',
+      joinEvent: 'Rejoindre l\'événement',
       readMore: 'Lire Plus',
       quotes: 'Nos Valeurs',
       quotesDesc: 'Découvrez les citations inspirantes qui guident notre mission humanitaire',
@@ -207,12 +222,12 @@ export const translations = {
     
     // Events Page
     events: {
-      title: 'Nos Activités',
-      subtitle: 'Rejoignez-nous lors de nos prochaines activités et participez à quelque chose de significatif',
-      breadcrumb: 'Activités',
-      upcoming: 'Activités à Venir',
-      past: 'Activités Passées',
-      noEvents: 'Aucune activité pour le moment.',
+      title: 'Divertissements & Activités',
+      subtitle: 'Découvrez nos moments de divertissement et nos activités solidaires pour soutenir nos causes.',
+      breadcrumb: 'Divertissement',
+      upcoming: 'À Venir',
+      past: 'Passés',
+      noEvents: 'Aucun divertissement ou activité pour le moment.',
       aboutTitle: "À propos de l'activité",
       videoTitle: "Vidéo de l'activité",
       registerTitle: 'Inscription',
@@ -232,8 +247,9 @@ export const translations = {
         donation: 'Don'
       },
       hero: {
-         title: "Nos Événements",
-         subtitle: "Participez à nos actions terrain et nos rencontres caritatives."
+         title: "Divertissements & Actions",
+         subtitle: "Vivez des moments forts à travers nos divertissements et nos actions sur le terrain.",
+         nextEvent: "Prochain Divertissement"
       }
     },
     
@@ -354,8 +370,183 @@ export const translations = {
          title: "Rejoignez le Mouvement",
          subtitle: "Donnez de votre temps et de vos compétences pour construire un monde meilleur."
       }
-    }
-  },
+    },
+
+    // FAQ Page
+    faq: {
+      breadcrumb: 'FAQ',
+      searchPlaceholder: 'Rechercher une question...',
+      noQuestions: 'Aucune question trouvée. Essayez autre chose.',
+      stillQuestions: 'Vous avez encore des questions ?',
+      stillQuestionsText: 'Notre équipe est là pour vous aider. N\'hésitez pas à nous contacter.',
+      contactUs: 'Nous contacter',
+      categories: {
+        all: 'Tout',
+        donations: 'Dons',
+        volunteering: 'Bénévolat',
+        general: 'Général',
+        programs: 'Programmes'
+      },
+      questions: [
+        {
+          id: 1,
+          category: 'donations',
+          question: 'Comment puis-je faire un don ?',
+          answer: 'Vous pouvez faire un don via notre site web en utilisant une carte de crédit, PayPal ou un virement bancaire. Cliquez simplement sur le bouton \'Faire un don\' sur n\'importe quelle page et suivez le processus de paiement sécurisé. Vous pouvez également envoyer un chèque à l\'adresse de notre bureau.'
+        },
+        {
+          id: 2,
+          category: 'donations',
+          question: 'Mes dons sont-ils déductibles des impôts ?',
+          answer: 'Oui, nous sommes une organisation à but non lucratif enregistrée. Tous les dons sont déductibles des impôts dans toute la mesure permise par la loi. Vous recevrez un reçu pour vos dossiers après chaque don.'
+        },
+        {
+          id: 3,
+          category: 'donations',
+          question: 'Puis-je mettre en place un don mensuel récurrent ?',
+          answer: 'Absolument ! Les dons mensuels récurrents sont incroyablement précieux car ils nous fournissent un financement prévisible pour planifier des programmes à long terme. Vous pouvez configurer des dons récurrents lors du processus de paiement ou via votre compte donateur.'
+        },
+        {
+          id: 4,
+          category: 'donations',
+          question: 'Comment mon don est-il utilisé ?',
+          answer: 'Nous nous engageons à la transparence. Environ 85 % de tous les dons vont directement à nos programmes, 10 % aux frais administratifs et 5 % aux efforts de collecte de fonds. Vous pouvez consulter nos rapports financiers détaillés sur notre site web.'
+        },
+        {
+          id: 5,
+          category: 'volunteering',
+          question: 'Comment puis-je devenir bénévole auprès de votre organisation ?',
+          answer: 'Nous accueillons des bénévoles de tous horizons ! Visitez notre page \'Bénévolat\' pour voir les opportunités de bénévolat actuelles. Vous pouvez vous inscrire en ligne, et notre coordinateur des bénévoles vous contactera pour les prochaines étapes.'
+        },
+        {
+          id: 6,
+          category: 'volunteering',
+          question: 'Ai-je besoin de compétences particulières pour faire du bénévolat ?',
+          answer: 'Pas nécessairement ! Bien que certains postes nécessitent des compétences spécifiques, nous avons de nombreuses opportunités qui ne demandent que de l\'enthousiasme et de l\'engagement. Nous offrons une formation et un soutien à tous les bénévoles.'
+        },
+        {
+          id: 7,
+          category: 'volunteering',
+          question: 'Quel est l\'engagement minimum pour les bénévoles ?',
+          answer: 'Cela varie selon le poste. Certaines opportunités sont des événements ponctuels (comme les collectes de nourriture), tandis que d\'autres peuvent nécessiter un engagement régulier hebdomadaire ou mensuel. Nous travaillons avec chaque bénévole pour trouver des opportunités qui correspondent à son emploi du temps.'
+        },
+        {
+          id: 8,
+          category: 'general',
+          question: 'Depuis combien de temps votre organisation existe-t-elle ?',
+          answer: 'Nous avons été fondés en 2005 et servons les communautés depuis plus de 18 ans. Durant cette période, nous avons aidé des milliers d\'individus et de familles grâce à nos divers programmes.'
+        },
+        {
+          id: 9,
+          category: 'general',
+          question: 'Quelles régions servez-vous ?',
+          answer: 'Bien que notre bureau principal soit situé en ville, nos programmes touchent des communautés dans toute la région, y compris les zones rurales et mal desservies. Nous soutenons également certains projets internationaux.'
+        },
+        {
+          id: 10,
+          category: 'general',
+          question: 'Comment puis-je rester informé de votre travail ?',
+          answer: 'Abonnez-vous à notre newsletter pour des mises à jour mensuelles, suivez-nous sur les réseaux sociaux (Facebook, Instagram, TikTok) et consultez notre blog pour des histoires régulières et des nouvelles de notre impact.'
+        },
+        {
+          id: 11,
+          category: 'programs',
+          question: 'Quels types de programmes proposez-vous ?',
+          answer: 'Nous menons des programmes dans les domaines de l\'éducation, de la santé, de la sécurité alimentaire, de l\'accès à l\'eau potable, du logement et de l\'autonomisation des femmes. Chaque programme est conçu pour créer un impact durable à long terme.'
+        },
+        {
+          id: 12,
+          category: 'programs',
+          question: 'Comment mesurez-vous le succès des programmes ?',
+          answer: 'Nous utilisons des mesures fondées sur des preuves et des évaluations régulières pour mesurer l\'impact. Cela inclut des données quantitatives (nombre de bénéficiaires, ressources distribuées) et des évaluations qualitatives (retours de la communauté, améliorations de la vie).'
+        }
+      ]
+    },
+
+    // Donate Page
+    donate: {
+      title: 'Faire un don',
+      subtitle: 'Transformez des vies par votre générosité',
+      breadcrumb: 'Don',
+      hero: {
+        title: 'Transformez des Vies par votre Générosité',
+        subtitle: 'Chaque contribution, petite ou grande, crée un impact réel et durable pour ceux qui en ont le plus besoin.',
+        cta: 'Apporter mon soutien'
+      },
+      impact: {
+        lives: 'Vies impactées',
+        volunteers: 'Bénévoles engagés',
+        projects: 'Projets humanitaires'
+      },
+      form: {
+        title: 'Formulaire de Don',
+        subtitle: 'Remplissez les informations ci-dessous pour valider votre soutien.',
+        section1: '1. Type de soutien',
+        section2: '2. Montant du don',
+        section3: '3. Mode de paiement',
+        section4: '4. Vos informations',
+        once: 'Don unique',
+        monthly: 'Don mensuel',
+        firstName: 'Prénom',
+        lastName: 'Nom',
+        email: 'Email',
+        agreement: 'Je souhaite recevoir un reçu fiscal.',
+        submit: 'Confirmer mon don {{amount}}',
+        security: 'Traitement sécurisé par cryptage SSL 256 bits'
+      },
+      sidebar: {
+        impactTitle: 'Votre Impact',
+        step1: 'Scolarise 5 enfants pour un trimestre.',
+        step2: 'Fournit un kit alimentaire complet à une famille.',
+        step3: 'Participe au financement d\'un puits d\'eau.',
+        transparencyTitle: 'Transparence Totale',
+        transparencyText: '90% de vos dons sont directement alloués aux projets sur le terrain. Nous publions un rapport annuel détaillé pour chaque donateur.'
+      },
+        modal: {
+          confirmTitle: 'Confirmer votre don',
+          amount: 'Montant du don :',
+          paymentMethod: 'Mode : {{method}}',
+          cardHolder: 'Titulaire de la carte',
+          cardNumber: 'Numéro de carte',
+          expiration: 'Expiration',
+          cvv: 'CVV',
+          phone: 'Numéro de téléphone',
+          methods: {
+            card: 'Carte Bancaire',
+            paypal: 'PayPal',
+            bank: 'Virement Bancaire',
+            mobile: 'Paiement Mobile'
+          },
+          mobile: {
+            title: 'Instructions Paiement Mobile',
+            provider: 'Opérateur :',
+            step1: 'Composez le : {{code}} sur votre mobile.',
+            step2: 'Entrez le montant : {{amount}}',
+            step3: 'Validez avec votre code secret.',
+            step4: 'Une fois validé, vous recevrez une confirmation.',
+            confirm: 'Initier le paiement',
+            tmoney: 'T-Money',
+            flooz: 'Moov Money (Flooz)'
+          },
+          bank: {
+            title: 'Détails du Virement',
+            bankName: 'Banque :',
+            accountName: 'Nom du compte :',
+            iban: 'IBAN / Numéro :',
+            swift: 'Code SWIFT :',
+            copy: 'Copier',
+            copied: 'Copié !',
+            confirm: 'Terminer'
+          },
+          paypal: {
+            title: 'Paiement via PayPal',
+            text: 'Vous allez être redirigé vers l\'interface sécurisée de PayPal.',
+            confirm: 'Continuer vers PayPal'
+          },
+          footer: 'En cliquant sur terminer, vous confirmez avoir pris connaissance des conditions.'
+        }
+      }
+    },
   
   en: {
     // Header
@@ -364,7 +555,7 @@ export const translations = {
       about: 'About',
       gallery: 'Gallery',
       causes: 'Our Causes',
-      events: 'Events',
+      events: 'Entertainment',
       blog: 'Blog',
       faq: 'FAQ',
       donate: 'Donate Now',
@@ -375,7 +566,22 @@ export const translations = {
       close: 'Close',
       scrollDown: 'Scroll down',
       loading: 'Loading...',
-      videoNotSupported: 'Your browser does not support video playback.'
+      videoNotSupported: 'Your browser does not support video playback.',
+      by: 'By',
+      months: {
+        jan: 'JAN',
+        feb: 'FEB',
+        mar: 'MAR',
+        apr: 'APR',
+        may: 'MAY',
+        jun: 'JUN',
+        jul: 'JUL',
+        aug: 'AUG',
+        sep: 'SEP',
+        oct: 'OCT',
+        nov: 'NOV',
+        dec: 'DEC'
+      }
     },
     
     // Footer
@@ -591,7 +797,8 @@ export const translations = {
       },
       hero: {
          title: "Our Events",
-         subtitle: "Participate in our field actions and charitable gatherings."
+         subtitle: "Participate in our field actions and charitable gatherings.",
+         nextEvent: "Next Entertainment"
       }
     },
     
@@ -622,14 +829,93 @@ export const translations = {
     
     // FAQ Page
     faq: {
-      title: 'Frequently Asked Questions',
-      subtitle: 'Find answers to common questions about our organization, donations, and programs',
       breadcrumb: 'FAQ',
-      searchPlaceholder: 'Search for questions...',
+      searchPlaceholder: 'Search for a question...',
+      noQuestions: 'No questions found. Try something else.',
       stillQuestions: 'Still have questions?',
-      stillQuestionsText: 'Can\'t find the answer you\'re looking for? Feel free to reach out to our team.',
+      stillQuestionsText: 'Our team is here to help. Don\'t hesitate to contact us.',
       contactUs: 'Contact Us',
-      noQuestions: 'No questions found matching your criteria.'
+      categories: {
+        all: 'All',
+        donations: 'Donations',
+        volunteering: 'Volunteering',
+        general: 'General',
+        programs: 'Programs'
+      },
+      questions: [
+        {
+          id: 1,
+          category: 'donations',
+          question: 'How can I make a donation?',
+          answer: 'You can donate via our website using a credit card, PayPal, or bank transfer. Simply click the \'Donate\' button on any page and follow the secure payment process. You can also send a check to our office address.'
+        },
+        {
+          id: 2,
+          category: 'donations',
+          question: 'Are my donations tax-deductible?',
+          answer: 'Yes, we are a registered non-profit organization. All donations are tax-deductible to the full extent permitted by law. You will receive a receipt for your records after each donation.'
+        },
+        {
+          id: 3,
+          category: 'donations',
+          question: 'Can I set up a monthly recurring donation?',
+          answer: 'Absolutely! Monthly recurring donations are incredibly valuable as they provide us with predictable funding to plan long-term programs. You can set up recurring donations during the checkout process or through your donor account.'
+        },
+        {
+          id: 4,
+          category: 'donations',
+          question: 'How is my donation used?',
+          answer: 'We are committed to transparency. Approximately 85% of all donations go directly to our programs, 10% to administrative costs, and 5% to fundraising efforts. You can view our detailed financial reports on our website.'
+        },
+        {
+          id: 5,
+          category: 'volunteering',
+          question: 'How can I volunteer with your organization?',
+          answer: 'We welcome volunteers from all backgrounds! Visit our \'Volunteer\' page to see current volunteering opportunities. You can sign up online, and our volunteer coordinator will contact you about next steps.'
+        },
+        {
+          id: 6,
+          category: 'volunteering',
+          question: 'Do I need special skills to volunteer?',
+          answer: 'Not necessarily! While some positions require specific skills, we have many opportunities that only require enthusiasm and commitment. We provide training and support to all volunteers.'
+        },
+        {
+          id: 7,
+          category: 'volunteering',
+          question: 'What is the minimum commitment for volunteers?',
+          answer: 'It varies by position. Some opportunities are one-time events (like food drives), while others may require regular weekly or monthly commitment. We work with each volunteer to find opportunities that fit their schedule.'
+        },
+        {
+          id: 8,
+          category: 'general',
+          question: 'How long has your organization been around?',
+          answer: 'We were founded in 2005 and have been serving communities for over 18 years. During this time, we have helped thousands of individuals and families through our various programs.'
+        },
+        {
+          id: 9,
+          category: 'general',
+          question: 'What regions do you serve?',
+          answer: 'While our main office is located in the city, our programs touch communities throughout the region, including rural and underserved areas. We also support some international projects.'
+        },
+        {
+          id: 10,
+          category: 'general',
+          question: 'How can I stay informed about your work?',
+          answer: 'Subscribe to our newsletter for monthly updates, follow us on social media (Facebook, Instagram, TikTok), and check our blog for regular stories and news about our impact.'
+        },
+        {
+          id: 11,
+          category: 'programs',
+          question: 'What types of programs do you offer?',
+          answer: 'We run programs in education, health, food security, access to clean water, housing, and women\'s empowerment. Each program is designed to create sustainable long-term impact.'
+        },
+        {
+          id: 12,
+          category: 'programs',
+          question: 'How do you measure program success?',
+          answer: 'We use evidence-based metrics and regular evaluations to measure impact. This includes quantitative data (number of beneficiaries, resources distributed) and qualitative assessments (community feedback, life improvements).'
+        }
+      ]
     },
 
     // Contact Page
@@ -712,6 +998,90 @@ export const translations = {
          title: "Join the Movement",
          subtitle: "Give your time and skills to build a better world."
       }
+    },
+
+    // Donate Page
+    donate: {
+      title: 'Donate',
+      subtitle: 'Transform lives through your generosity',
+      breadcrumb: 'Donate',
+      hero: {
+        title: 'Transform Lives through Your Generosity',
+        subtitle: 'Every contribution, large or small, creates a real and lasting impact for those who need it most.',
+        cta: 'Give My Support'
+      },
+      impact: {
+        lives: 'Lives impacted',
+        volunteers: 'Engaged volunteers',
+        projects: 'Humanitarian projects'
+      },
+      form: {
+        title: 'Donation Form',
+        subtitle: 'Fill out the information below to validate your support.',
+        section1: '1. Type of support',
+        section2: '2. Donation amount',
+        section3: '3. Payment method',
+        section4: '4. Your information',
+        once: 'One-time donation',
+        monthly: 'Monthly donation',
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        email: 'Email',
+        agreement: 'I wish to receive a tax receipt.',
+        submit: 'Confirm my donation {{amount}}',
+        security: 'Secure processing by 256-bit SSL encryption'
+      },
+      sidebar: {
+        impactTitle: 'Your Impact',
+        step1: 'Provides schooling for 5 children for one term.',
+        step2: 'Provides a complete food kit for a family.',
+        step3: 'Contributes to the funding of a water well.',
+        transparencyTitle: 'Total Transparency',
+        transparencyText: '90% of your donations are directly allocated to field projects. We publish a detailed annual report for every donor.'
+      },
+      modal: {
+        confirmTitle: 'Confirm your donation',
+        amount: 'Donation amount:',
+        paymentMethod: 'Method: {{method}}',
+        cardHolder: 'Card Holder',
+        cardNumber: 'Card Number',
+        expiration: 'Expiration',
+        cvv: 'CVV',
+        phone: 'Phone Number',
+        methods: {
+          card: 'Credit Card',
+          paypal: 'PayPal',
+          bank: 'Bank Transfer',
+          mobile: 'Mobile Payment'
+        },
+        mobile: {
+          title: 'Mobile Payment Instructions',
+          provider: 'Provider:',
+          step1: 'Dial: {{code}} on your mobile.',
+          step2: 'Enter the amount: {{amount}}',
+          step3: 'Validate with your secret code.',
+          step4: 'Once validated, you will receive a confirmation.',
+          confirm: 'Initiate Payment',
+          tmoney: 'T-Money',
+          flooz: 'Moov Money (Flooz)'
+        },
+        bank: {
+          title: 'Bank Transfer Details',
+          bankName: 'Bank:',
+          accountName: 'Account Name:',
+          iban: 'IBAN / Number:',
+          swift: 'SWIFT Code:',
+          copy: 'Copy',
+          copied: 'Copied!',
+          confirm: 'Finish'
+        },
+        paypal: {
+          title: 'Payment via PayPal',
+          text: 'You will be redirected to PayPal\'s secure interface.',
+          confirm: 'Continue to PayPal'
+        },
+        footer: 'By clicking finish, you confirm that you have read the conditions.'
+      }
     }
   },
   
@@ -722,7 +1092,7 @@ export const translations = {
       about: 'Über Uns',
       gallery: 'Galerie',
       causes: 'Unsere Anliegen',
-      events: 'Veranstaltungen',
+      events: 'Unterhaltung',
       blog: 'Blog',
       faq: 'FAQ',
       donate: 'Jetzt Spenden',
@@ -733,7 +1103,22 @@ export const translations = {
       close: 'Schließen',
       scrollDown: 'Nach unten scrollen',
       loading: 'Wird geladen...',
-      videoNotSupported: 'Ihr Browser unterstützt die Videowiedergabe nicht.'
+      videoNotSupported: 'Ihr Browser unterstützt die Videowiedergabe nicht.',
+      by: 'Von',
+      months: {
+        jan: 'JAN',
+        feb: 'FEB',
+        mar: 'MÄR',
+        apr: 'APR',
+        may: 'MAI',
+        jun: 'JUN',
+        jul: 'JUL',
+        aug: 'AUG',
+        sep: 'SEP',
+        oct: 'OKT',
+        nov: 'NOV',
+        dec: 'DEZ'
+      }
     },
     
     // Footer
@@ -947,7 +1332,8 @@ export const translations = {
       },
       hero: {
          title: "Unsere Veranstaltungen",
-         subtitle: "Nehmen Sie an unseren Feldaktionen und Wohltätigkeitsveranstaltungen teil."
+         subtitle: "Nehmen Sie an unseren Feldaktionen und Wohltätigkeitsveranstaltungen teil.",
+         nextEvent: "Nächste Unterhaltung"
       }
     },
     
@@ -978,14 +1364,93 @@ export const translations = {
     
     // FAQ Page
     faq: {
-      title: 'Häufig Gestellte Fragen',
-      subtitle: 'Finden Sie Antworten auf häufige Fragen zu unserer Organisation, Spenden und Programmen',
       breadcrumb: 'FAQ',
-      searchPlaceholder: 'Fragen suchen...',
+      searchPlaceholder: 'Frage suchen...',
+      noQuestions: 'Keine Fragen gefunden. Versuchen Sie etwas anderes.',
       stillQuestions: 'Noch Fragen?',
-      stillQuestionsText: 'Können Sie die gesuchte Antwort nicht finden? Zögern Sie nicht, unser Team zu kontaktieren.',
+      stillQuestionsText: 'Unser Team ist hier, um zu helfen. Zögern Sie nicht, uns zu kontaktieren.',
       contactUs: 'Kontaktieren Sie Uns',
-      noQuestions: 'Keine Fragen gefunden, die Ihren Kriterien entsprechen.'
+      categories: {
+        all: 'Alle',
+        donations: 'Spenden',
+        volunteering: 'Freiwilligenarbeit',
+        general: 'Allgemein',
+        programs: 'Programme'
+      },
+      questions: [
+        {
+          id: 1,
+          category: 'donations',
+          question: 'Wie kann ich spenden?',
+          answer: 'Sie können über unsere Website mit Kreditkarte, PayPal oder Banküberweisung spenden. Klicken Sie einfach auf die Schaltfläche \'Spenden\' auf einer beliebigen Seite und folgen Sie dem sicheren Zahlungsprozess. Sie können auch einen Scheck an unsere Büroadresse senden.'
+        },
+        {
+          id: 2,
+          category: 'donations',
+          question: 'Sind meine Spenden steuerlich absetzbar?',
+          answer: 'Ja, wir sind eine eingetragene gemeinnützige Organisation. Alle Spenden sind im vollen Umfang der gesetzlichen Bestimmungen steuerlich absetzbar. Sie erhalten nach jeder Spende eine Quittung für Ihre Unterlagen.'
+        },
+        {
+          id: 3,
+          category: 'donations',
+          question: 'Kann ich eine monatliche wiederkehrende Spende einrichten?',
+          answer: 'Absolut! Monatliche wiederkehrende Spenden sind unglaublich wertvoll, da sie uns eine vorhersehbare Finanzierung bieten, um langfristige Programme zu planen. Sie können wiederkehrende Spenden während des Checkout-Prozesses oder über Ihr Spenderkonto einrichten.'
+        },
+        {
+          id: 4,
+          category: 'donations',
+          question: 'Wie wird meine Spende verwendet?',
+          answer: 'Wir verpflichten uns zur Transparenz. Etwa 85 % aller Spenden fließen direkt in unsere Programme, 10 % in Verwaltungskosten und 5 % in Fundraising-Bemühungen. Detaillierte Finanzberichte finden Sie auf unserer Website.'
+        },
+        {
+          id: 5,
+          category: 'volunteering',
+          question: 'Wie kann ich mich bei Ihrer Organisation engagieren?',
+          answer: 'Wir begrüßen Freiwillige aus allen Bereichen! Besuchen Sie unsere \'Freiwilligen\'-Seite, um aktuelle Freiwilligenmöglichkeiten zu sehen. Sie können sich online anmelden, und unser Freiwilligenkoordinator wird Sie über die nächsten Schritte informieren.'
+        },
+        {
+          id: 6,
+          category: 'volunteering',
+          question: 'Benötige ich besondere Fähigkeiten, um Freiwilliger zu werden?',
+          answer: 'Nicht unbedingt! Obwohl einige Positionen spezifische Fähigkeiten erfordern, haben wir viele Möglichkeiten, die nur Enthusiasmus und Engagement erfordern. Wir bieten allen Freiwilligen Schulungen und Unterstützung.'
+        },
+        {
+          id: 7,
+          category: 'volunteering',
+          question: 'Was ist das Mindestengagement für Freiwillige?',
+          answer: 'Das variiert je nach Position. Einige Möglichkeiten sind Einzelveranstaltungen (wie Lebensmittelsammlungen), während andere ein regelmäßiges wöchentliches oder monatliches Engagement erfordern können. Wir arbeiten mit jedem Freiwilligen zusammen, um Möglichkeiten zu finden, die zu seinem Zeitplan passen.'
+        },
+        {
+          id: 8,
+          category: 'general',
+          question: 'Wie lange gibt es Ihre Organisation schon?',
+          answer: 'Wir wurden 2005 gegründet und dienen seit über 18 Jahren Gemeinden. In dieser Zeit haben wir Tausenden von Einzelpersonen und Familien durch unsere verschiedenen Programme geholfen.'
+        },
+        {
+          id: 9,
+          category: 'general',
+          question: 'Welche Regionen bedienen Sie?',
+          answer: 'Obwohl sich unser Hauptbüro in der Stadt befindet, berühren unsere Programme Gemein den in der gesamten Region, einschließlich ländlicher und unterversorgter Gebiete. Wir unterstützen auch einige internationale Projekte.'
+        },
+        {
+          id: 10,
+          category: 'general',
+          question: 'Wie kann ich über Ihre Arbeit informiert bleiben?',
+          answer: 'Abonnieren Sie unseren Newsletter für monatliche Updates, folgen Sie uns in sozialen Medien (Facebook, Instagram, TikTok) und besuchen Sie unseren Blog für regelmäßige Geschichten und Neuigkeiten über unsere Wirkung.'
+        },
+        {
+          id: 11,
+          category: 'programs',
+          question: 'Welche Art von Programmen bieten Sie an?',
+          answer: 'Wir führen Programme in den Bereichen Bildung, Gesundheit, Ernährungssicherheit, Zugang zu sauberem Wasser, Wohnen und Stärkung der Frauen durch. Jedes Programm ist darauf ausgelegt, nachhaltige langfristige Wirkung zu erzielen.'
+        },
+        {
+          id: 12,
+          category: 'programs',
+          question: 'Wie messen Sie den Erfolg von Programmen?',
+          answer: 'Wir verwenden evidenzbasierte Metriken und regelmäßige Evaluierungen, um die Wirkung zu messen. Dies umfasst quantitative Daten (Anzahl der Begünstigten, verteilte Ressourcen) und qualitative Bewertungen (Gemeinschaftsfeedback, Lebensverbesserungen).'
+        }
+      ]
     },
 
     // Contact Page
@@ -1066,6 +1531,90 @@ export const translations = {
       hero: {
          title: "Schließen Sie sich der Bewegung an",
          subtitle: "Geben Sie Ihre Zeit und Fähigkeiten, um eine bessere Welt zu bauen."
+      }
+    },
+
+    // Donate Page
+    donate: {
+      title: 'Spenden',
+      subtitle: 'Verändern Sie Leben durch Ihre Großzügigkeit',
+      breadcrumb: 'Spende',
+      hero: {
+        title: 'Verändern Sie Leben durch Ihre Großzügigkeit',
+        subtitle: 'Jeder Beitrag, egal ob klein oder groß, bewirkt eine echte und dauerhafte Veränderung für diejenigen, die sie am dringendsten benötigen.',
+        cta: 'Meine Unterstützung geben'
+      },
+      impact: {
+        lives: 'Beeinflusste Leben',
+        volunteers: 'Engagierte Freiwillige',
+        projects: 'Humanitäre Projekte'
+      },
+      form: {
+        title: 'Spendenformular',
+        subtitle: 'Füllen Sie die untenstehenden Informationen aus, um Ihre Unterstützung zu bestätigen.',
+        section1: '1. Art der Unterstützung',
+        section2: '2. Spendenbetrag',
+        section3: '3. Zahlungsmethode',
+        section4: '4. Ihre Informationen',
+        once: 'Einmalige Spende',
+        monthly: 'Monatliche Spende',
+        firstName: 'Vorname',
+        lastName: 'Nachname',
+        email: 'E-Mail',
+        agreement: 'Ich möchte eine Spendenbescheinigung erhalten.',
+        submit: 'Meine Spende von {{amount}} bestätigen',
+        security: 'Sichere Verarbeitung durch 256-Bit-SSL-Verschlüsselung'
+      },
+      sidebar: {
+        impactTitle: 'Ihre Wirkung',
+        step1: 'Ermöglicht 5 Kindern den Schulbesuch für ein Trimester.',
+        step2: 'Bietet ein komplettes Lebensmittelpaket für eine Familie.',
+        step3: 'Trägt zur Finanzierung eines Brunnens bei.',
+        transparencyTitle: 'Vollständige Transparenz',
+        transparencyText: '90% Ihrer Spenden fließen direkt in Projekte vor Ort. Wir veröffentlichen für jeden Spender einen detaillierten Jahresbericht.'
+      },
+      modal: {
+        confirmTitle: 'Spende bestätigen',
+        amount: 'Spendenbetrag:',
+        paymentMethod: 'Methode: {{method}}',
+        cardHolder: 'Karteninhaber',
+        cardNumber: 'Kartennummer',
+        expiration: 'Ablaufdatum',
+        cvv: 'CVV',
+        phone: 'Telefonnummer',
+        methods: {
+          card: 'Kreditkarte',
+          paypal: 'PayPal',
+          bank: 'Banküberweisung',
+          mobile: 'Mobiles Bezahlen'
+        },
+        mobile: {
+          title: 'Anleitung für mobiles Bezahlen',
+          provider: 'Anbieter:',
+          step1: 'Wählen Sie: {{code}} auf Ihrem Handy.',
+          step2: 'Geben Sie den Betrag ein: {{amount}}',
+          step3: 'Bestätigen Sie mit Ihrem Geheimcode.',
+          step4: 'Nach der Bestätigung erhalten Sie eine Quittung.',
+          confirm: 'Zahlung einleiten',
+          tmoney: 'T-Money',
+          flooz: 'Moov Money (Flooz)'
+        },
+        bank: {
+          title: 'Details zur Überweisung',
+          bankName: 'Bank:',
+          accountName: 'Kontoinhaber:',
+          iban: 'IBAN / Nummer:',
+          swift: 'SWIFT-Code:',
+          copy: 'Kopieren',
+          copied: 'Kopiert!',
+          confirm: 'Fertigstellen'
+        },
+        paypal: {
+          title: 'Zahlung über PayPal',
+          text: 'Sie werden zur sicheren PayPal-Schnittstelle weitergeleitet.',
+          confirm: 'Weiter zu PayPal'
+        },
+        footer: 'Durch Klicken auf Fertigstellen bestätigen Sie, dass Sie die Bedingungen gelesen haben.'
       }
     }
   }

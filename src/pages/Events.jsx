@@ -47,7 +47,7 @@ const Events = () => {
           size="lg" 
           onClick={() => document.querySelector('.events-grid').scrollIntoView({ behavior: 'smooth' })}
         >
-          Prochain événement
+          {t('events.hero.nextEvent')}
         </Button>
       </Hero>
 

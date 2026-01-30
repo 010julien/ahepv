@@ -74,7 +74,7 @@ const Contact = () => {
         title={t('contactPage.hero.title')} 
         subtitle={t('contactPage.hero.subtitle')}
         breadcrumb={t('contact.breadcrumb')}
-        images={['/images/contact-hero.jpg', '/images/boubouaka2.jpeg']}
+        images={['/images/contact-hero.jpg', '/images/boubouaka2.jpeg', '/images/contact-hero2.jpg']}
         overlayOpacity={0.2}
       />
 
@@ -97,7 +97,7 @@ const Contact = () => {
                       value={formData.firstName}
                       onChange={handleChange}
                       required
-                      placeholder={t('contactPage.placeholders.firstName')}
+                      //placeholder={t('contactPage.placeholders.firstName')}
                     />
                   </div>
                   <div className="form-group">
@@ -109,7 +109,7 @@ const Contact = () => {
                       value={formData.lastName}
                       onChange={handleChange}
                       required
-                      placeholder={t('contactPage.placeholders.lastName')}
+                      //placeholder={t('contactPage.placeholders.lastName')}
                     />
                   </div>
                 </div>
@@ -124,7 +124,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      placeholder={t('contactPage.placeholders.email')}
+                      // placeholder={t('contactPage.placeholders.email')}
                     />
                   </div>
                   <div className="form-group">
@@ -135,7 +135,7 @@ const Contact = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder={t('contactPage.placeholders.phone')}
+                      // placeholder={t('contactPage.placeholders.phone')}
                     />
                   </div>
                 </div>
@@ -148,7 +148,7 @@ const Contact = () => {
                     name="profession"
                     value={formData.profession}
                     onChange={handleChange}
-                    placeholder={t('contactPage.placeholders.profession')}
+                    // placeholder={t('contactPage.placeholders.profession')}
                   />
                 </div>
 
@@ -161,7 +161,7 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    placeholder={t('contactPage.placeholders.subject')}
+                    // placeholder={t('contactPage.placeholders.subject')}
                   />
                 </div>
 
@@ -174,7 +174,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows="6"
-                    placeholder={t('contactPage.placeholders.message')}
+                    //placeholder={t('contactPage.placeholders.message')}
                   ></textarea>
                 </div>
 

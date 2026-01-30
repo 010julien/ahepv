@@ -9,6 +9,7 @@ import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Causes from './pages/Causes';
 import Events from './pages/Events';
+import Divertissement from './pages/Divertissement';
 import FAQ from './pages/FAQ';
 import Donate from './pages/Donate';
 import Contact from './pages/Contact';
@@ -44,6 +45,7 @@ function App() {
               {/* Activities alias */}
               <Route path="/activities" element={<Events />} />
               <Route path="/activities/:id" element={<EventDetails />} />
+              <Route path="/divertissement" element={<Divertissement />} />
               <Route path="/volunteer" element={<Volunteer />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/contact" element={<Contact />} />

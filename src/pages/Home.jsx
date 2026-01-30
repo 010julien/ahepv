@@ -11,6 +11,7 @@ import { getLocalized, localeFromLang } from '../i18n/utils';
 import { causes } from '../data/causes';
 import { events } from '../data/events';
 import { quotes } from '../data/quotes';
+import { values } from '../data/values';
 
 // Background Bubbles Component
 const BackgroundBubbles = () => (
@@ -59,6 +60,7 @@ const Home = () => {
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
   const [objectiveIndex, setObjectiveIndex] = useState(0);
   const [heroIndex, setHeroIndex] = useState(0);
+  const [valuesIndex, setValuesIndex] = useState(0);
 
   const heroImages = [
     '/images/hero1.jpeg',
@@ -89,7 +91,7 @@ const Home = () => {
   useEffect(() => {
     const id = window.setInterval(() => {
       setObjectiveIndex((i) => (i + 1) % objectives.length);
-    }, 6500);
+    }, 8000); // Slowed down to 8 seconds
     return () => window.clearInterval(id);
   }, [objectives.length]);
 
@@ -99,6 +101,13 @@ const Home = () => {
     }, 6000); // Slow transition every 8 seconds
     return () => window.clearInterval(heroId);
   }, [heroImages.length]);
+
+  useEffect(() => {
+    const valuesId = window.setInterval(() => {
+      setValuesIndex((i) => (i + 1) % values.length);
+    }, 8000); // Slowed down to 8 seconds
+    return () => window.clearInterval(valuesId);
+  }, [values.length]);
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
@@ -224,14 +233,15 @@ const Home = () => {
             >
               {objectives.map((o, idx) => (
                 <div className="home-objective-slide" key={idx} aria-hidden={idx !== objectiveIndex}>
-                  <div className="home-objective-image">
+                  <div className="value-image">
                     <img src={o.image} alt={o.title} loading="lazy" />
+                    <div className="value-overlay"></div>
                   </div>
-                  <div className="home-objective-content">
-                    <h3>{o.title}</h3>
-                    <p>{o.text}</p>
-                    <Link to="/contact" className="home-link">
-                      Je veux participer <FaArrowRight />
+                  <div className="value-content">
+                    <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--color-primary)' }}>{o.title}</h3>
+                    <p className="value-quote" style={{ fontStyle: 'normal', fontSize: '1.2rem' }}>{o.text}</p>
+                    <Link to="/contact" className="btn btn-primary" style={{ marginTop: '1rem' }}>
+                      Je veux participer <FaArrowRight style={{ marginLeft: '8px' }} />
                     </Link>
                   </div>
                 </div>
@@ -297,18 +307,56 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Quote Carousel Section */}
-      <section className="section home-quotes">
-        <AnimatedSection animation="fade-up" delay={0}>
-          <div className="container">
+      {/* Values Section - Redesigned */}
+      <section className="section home-values">
+        <div className="container">
+          <AnimatedSection animation="fade-up" delay={0}>
             <div className="section-title">
-              <h2>{t('home.quotes')}</h2>
-              <p>{t('home.quotesDesc')}</p>
+              <h2>{t('about.values') || "Nos Valeurs"}</h2>
+              <p>Ce qui guide chacune de nos actions au quotidien.</p>
+            </div>
+          </AnimatedSection>
+
+          <div className="home-objectives-slider" aria-roledescription="carousel">
+            <div
+              className="home-objectives-track"
+              style={{ transform: `translateX(-${valuesIndex * 100}%)` }}
+            >
+              {values.map((value, index) => (
+                <div className="home-objective-slide" key={value.id} aria-hidden={index !== valuesIndex}>
+                  <div className="value-card slider-card">
+                    <div className="value-image">
+                      <img src={value.image} alt={value.author} />
+                      <div className="value-overlay"></div>
+                    </div>
+                    <div className="value-content">
+                      <div className="quote-icon">❝</div>
+                      <p className="value-quote">{value.quote}</p>
+                      <h4 className="value-author">{value.author}</h4>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="home-objectives-dots" role="tablist" aria-label="Valeurs">
+              {values.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  className={idx === valuesIndex ? 'home-dot active' : 'home-dot'}
+                  onClick={() => setValuesIndex(idx)}
+                  aria-label={`Valeur ${idx + 1}`}
+                  aria-pressed={idx === valuesIndex}
+                />
+              ))}
             </div>
           </div>
-        </AnimatedSection>
-        <QuoteCarousel quotes={quotes} language={language} />
+        </div>
       </section>
+
+      {/* Quote Carousel Section - REMOVED or KEPT based on preference, keeping for now but Values is new */}
+      {/* <section className="section home-quotes"> ... </section> */}
 
       {/* Featured Causes with 3D Cards */}
       <section className="section section-bg causes-section-enhanced">
@@ -344,9 +392,9 @@ const Home = () => {
                           raised={cause.raised}
                           goal={cause.goal}
                         />
-                        <div className="button-row">
-                          <Link to="/donate" className="btn btn-primary" onClick={(e) => e.stopPropagation()}>{t('home.donateNow')}</Link>
-                          <Link to={`/causes/${cause.id}`} className="btn btn-primary" onClick={(e) => e.stopPropagation()}>{t('home.readMore')}</Link>
+                        <div className="button-row featured-causes-btns">
+                          <Link to="/donate" className="btn btn-primary btn-sm" onClick={(e) => e.stopPropagation()}>{t('home.donateNow')}</Link>
+                          <Link to={`/causes/${cause.id}`} className="btn btn-primary btn-sm" onClick={(e) => e.stopPropagation()}>{t('home.readMore')}</Link>
                         </div>
                       </Card>
                     </div>
@@ -390,15 +438,15 @@ const Home = () => {
                     description={getLocalized(event.description, language)}
                     clickable
                     link={`/events/${event.id}`}
-                    linkText={t('home.readMore')}
-                    linkVariant="button"
-                    alwaysShowLink
                   >
                     <div className="event-meta">
                       <span className="event-date">{new Date(event.date).toLocaleDateString(localeFromLang(language))}</span>
                       <span className="event-location">{getLocalized(event.location, language)}</span>
                     </div>
-                    <Link to={`/events/${event.id}`} className="btn btn-secondary" onClick={(e) => e.stopPropagation()}>{t('home.joinEvent')}</Link>
+                    <div className="button-row event-buttons">
+                      <Link to={`/events/${event.id}`} className="btn btn-primary btn-sm" onClick={(e) => e.stopPropagation()}>{t('home.readMore')}</Link>
+                      <Link to={`/events/${event.id}`} className="btn btn-secondary btn-sm" onClick={(e) => e.stopPropagation()}>{t('home.joinEvent')}</Link>
+                    </div>
                   </Card>
                 </div>
               </AnimatedSection>
@@ -1329,6 +1377,181 @@ const Home = () => {
            .hero-scroll-btn-wrapper {
               display: none; 
            }
+        }
+        .home-values {
+          background-color: var(--bg-secondary);
+        }
+
+        /* Values Slider - Split Layout Design */
+        .home-values {
+          background-color: var(--bg-secondary);
+          padding: var(--spacing-4xl) 0;
+        }
+
+        .home-objectives-slider {
+          position: relative;
+          width: 100%;
+          max-width: 1200px; /* Increased from 1000px */
+          margin: 0 auto;
+          overflow: hidden;
+          background: var(--color-white);
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-xl);
+        }
+
+        .home-objectives-track {
+          display: flex;
+          transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+          height: 600px; /* Increased from 500px */
+        }
+
+        .home-objective-slide {
+          min-width: 100%;
+          height: 100%;
+          display: flex; /* Split layout */
+        }
+
+        .slider-card {
+          display: flex;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          max-width: none;
+          flex-direction: row; /* Side by side */
+        }
+
+        .value-image {
+          flex: 1;
+          position: relative;
+          height: 100%;
+          overflow: hidden;
+        }
+
+        .value-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 6s ease; /* Slow zoom effect */
+        }
+
+        .home-objective-slide[aria-hidden="false"] .value-image img {
+          transform: scale(1.1);
+        }
+
+        .value-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.2); /* Slight darken */
+        }
+
+        .value-content {
+          flex: 1;
+          padding: var(--spacing-3xl);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          background: var(--color-white);
+          position: relative;
+        }
+
+        .quote-icon {
+          font-size: 4rem;
+          color: var(--color-primary);
+          opacity: 0.2;
+          line-height: 1;
+          margin-bottom: var(--spacing-lg);
+        }
+
+        .value-quote {
+          font-family: var(--font-secondary); /* Use serif if available or just secondary */
+          font-style: italic;
+          color: var(--text-primary);
+          margin-bottom: var(--spacing-xl);
+          font-size: 1.5rem;
+          line-height: 1.6;
+        }
+
+        .value-author {
+          font-size: 1.1rem;
+          font-weight: var(--font-weight-bold);
+          color: var(--color-primary);
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          position: relative;
+          padding-top: var(--spacing-md);
+        }
+
+        .value-author::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 40px;
+          height: 3px;
+          background: var(--color-gray-300);
+        }
+
+        /* Dots Navigation */
+        .home-objectives-dots {
+          position: absolute;
+          bottom: var(--spacing-lg);
+          right: var(--spacing-lg); /* Position bottom-right of the whole card or just content side */
+          display: flex;
+          gap: var(--spacing-sm);
+          z-index: 10;
+        }
+
+        /* Responsive Design for Slider */
+        @media (max-width: 768px) {
+          .home-objectives-track {
+            height: auto;
+          }
+          
+          .slider-card {
+            flex-direction: column;
+          }
+
+          .value-image {
+            height: 250px;
+            flex: none;
+          }
+
+          .value-content {
+            padding: var(--spacing-xl) var(--spacing-lg);
+          }
+
+          .value-quote {
+            font-size: 1.2rem;
+          }
+          
+          .home-objectives-dots {
+             right: 50%;
+             transform: translateX(50%);
+             bottom: var(--spacing-md);
+          }
+        }
+
+        /* Featured Causes Buttons */
+        .featured-causes-btns, .event-buttons {
+          display: flex;
+          gap: var(--spacing-md);
+          margin-top: var(--spacing-md);
+        }
+
+        .featured-causes-btns .btn, .event-buttons .btn {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.5rem 1rem; /* Smaller padding */
+          font-size: 0.9rem; /* Smaller font */
+          text-align: center;
         }
       `}</style>
     </div>

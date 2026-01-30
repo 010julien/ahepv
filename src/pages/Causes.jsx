@@ -32,7 +32,7 @@ const Causes = () => {
         title={t('causes.hero.title')} 
         subtitle={t('causes.hero.subtitle')}
         breadcrumb={t('causes.breadcrumb')}
-        images={['/images/causes1.jpg', '/images/medical.jpg', '/images/education1.jpg']}
+        images={['/images/causes.jpg', '/images/medical.jpg', '/images/education1.jpg']}
         overlayOpacity={0.2}
       >
         <Button 
@@ -69,13 +69,13 @@ const Causes = () => {
                     <span className="donors-text">{cause.donors} {t('causes.donors')}</span>
                   </div>
                   <div className="button-row">
-                    <Link
+                    {/* <Link
                       to="/donate"
                       className="btn btn-primary"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {t('home.donateNow')}
-                    </Link>
+                    </Link> */}
                     <Link
                       to={`/causes/${cause.id}`}
                       className="btn btn-primary"
@@ -89,12 +89,16 @@ const Causes = () => {
             })}
           </div>
 
+
+          
+
           <Pagination 
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
           />
         </div>
+        
       </section>
 
       <style>{`
