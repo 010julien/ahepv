@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Hero from '../components/Hero';
-import Card from '../components/Card.jsx';
-import ProgressBar from '../components/ProgressBar.jsx';
-import Button from '../components/Button.jsx';
-import Pagination from '../components/Pagination';
-import { useTranslation } from '../i18n/useTranslation';
-import { getLocalized } from '../i18n/utils';
-import { causes } from '../data/causes';
-import { FaUsers } from 'react-icons/fa';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Hero from "../components/Hero";
+import Card from "../components/Card.jsx";
+import ProgressBar from "../components/ProgressBar.jsx";
+import Button from "../components/Button.jsx";
+import Pagination from "../components/Pagination";
+import { useTranslation } from "../i18n/useTranslation";
+import { getLocalized } from "../i18n/utils";
+import { causes } from "../data/causes";
+import { FaUsers } from "react-icons/fa";
 
 const Causes = () => {
   const { t, language } = useTranslation();
@@ -23,22 +23,32 @@ const Causes = () => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    document.getElementById('causes-list').scrollIntoView({ behavior: 'smooth' });
+    document
+      .getElementById("causes-list")
+      .scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div className="causes-page">
-      <Hero 
-        title={t('causes.hero.title')} 
-        subtitle={t('causes.hero.subtitle')}
-        breadcrumb={t('causes.breadcrumb')}
-        images={['/images/causes.jpg', '/images/medical.jpg', '/images/education1.jpg']}
+      <Hero
+        title={t("causes.hero.title")}
+        subtitle={t("causes.hero.subtitle")}
+        breadcrumb={t("causes.breadcrumb")}
+        images={[
+          "/images/causes.jpg",
+          "/images/medical.jpg",
+          "/images/education1.jpg",
+        ]}
         overlayOpacity={0.2}
       >
-        <Button 
-          variant="primary" 
-          size="lg" 
-          onClick={() => document.getElementById('causes-list').scrollIntoView({ behavior: 'smooth' })}
+        <Button
+          variant="primary"
+          size="lg"
+          onClick={() =>
+            document
+              .getElementById("causes-list")
+              .scrollIntoView({ behavior: "smooth" })
+          }
         >
           Voir les urgences
         </Button>
@@ -59,14 +69,16 @@ const Causes = () => {
                   clickable
                   link={`/causes/${cause.id}`}
                 >
-                  <ProgressBar
+                  {/* <ProgressBar
                     percentage={percentage}
                     raised={cause.raised}
                     goal={cause.goal}
-                  />
+                  /> */}
                   <div className="cause-donors">
                     <FaUsers />
-                    <span className="donors-text">{cause.donors} {t('causes.donors')}</span>
+                    <span className="donors-text">
+                      {cause.donors} {t("causes.donors")}
+                    </span>
                   </div>
                   <div className="button-row">
                     {/* <Link
@@ -81,7 +93,7 @@ const Causes = () => {
                       className="btn btn-primary"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      {t('home.readMore')}
+                      {t("home.readMore")}
                     </Link>
                   </div>
                 </Card>
@@ -89,16 +101,12 @@ const Causes = () => {
             })}
           </div>
 
-
-          
-
-          <Pagination 
+          <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
           />
         </div>
-        
       </section>
 
       <style>{`

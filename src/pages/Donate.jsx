@@ -1,27 +1,40 @@
-import { useState } from 'react';
-import Hero from '../components/Hero';
-import Button from '../components/Button.jsx';
-import { useTranslation } from '../i18n/useTranslation';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaHeart, FaUsers, FaHandHoldingHeart, FaCreditCard, FaPaypal, FaUniversity, FaMobileAlt, FaShieldAlt, FaCheck, FaTimes, FaLock, FaCopy } from 'react-icons/fa';
+import { useState } from "react";
+import Hero from "../components/Hero";
+import Button from "../components/Button.jsx";
+import { useTranslation } from "../i18n/useTranslation";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaHeart,
+  FaUsers,
+  FaHandHoldingHeart,
+  FaCreditCard,
+  FaPaypal,
+  FaUniversity,
+  FaMobileAlt,
+  FaShieldAlt,
+  FaCheck,
+  FaTimes,
+  FaLock,
+  FaCopy,
+} from "react-icons/fa";
 
 const Donate = () => {
   const { t } = useTranslation();
-  const [donationType, setDonationType] = useState('once');
-  const [customAmount, setCustomAmount] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('card');
+  const [donationType, setDonationType] = useState("once");
+  const [customAmount, setCustomAmount] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("card");
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [mobileProvider, setMobileProvider] = useState('tmoney');
+  const [mobileProvider, setMobileProvider] = useState("tmoney");
   const [personalInfo, setPersonalInfo] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
   });
 
   const handleInfoChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'firstName' || name === 'lastName') {
+    if (name === "firstName" || name === "lastName") {
       const regex = /^[a-zA-ZÀ-ÿ\s'-]*$/;
       if (!regex.test(value)) return;
     }
@@ -31,15 +44,15 @@ const Donate = () => {
   const handleDonate = (e) => {
     e.preventDefault();
     if (!customAmount || parseFloat(customAmount) <= 0) {
-        alert("Veuillez entrer un montant valide.");
-        return;
+      alert("Veuillez entrer un montant valide.");
+      return;
     }
     setShowPaymentModal(true);
   };
 
   return (
     <div className="donate-wrapper">
-      <Hero 
+      {/* <Hero 
         title={t('donate.hero.title')} 
         subtitle={t('donate.hero.subtitle')}
         breadcrumb={t('donate.breadcrumb')}
@@ -55,71 +68,79 @@ const Donate = () => {
             {t('donate.hero.cta')}
           </Button>
         </div>
-      </Hero>
+      </Hero> */}
 
       <section className="impact-overview">
-        <div className="container">
+        {/* <div className="container">
           <div className="impact-grid">
             <div className="impact-card-stat">
-              <div className="stat-icon-bg"><FaHeart /></div>
+              <div className="stat-icon-bg">
+                <FaHeart />
+              </div>
               <h3>150+</h3>
-              <p>{t('donate.impact.lives')}</p>
+              <p>{t("donate.impact.lives")}</p>
             </div>
             <div className="impact-card-stat">
-              <div className="stat-icon-bg"><FaUsers /></div>
+              <div className="stat-icon-bg">
+                <FaUsers />
+              </div>
               <h3>50+</h3>
-              <p>{t('donate.impact.volunteers')}</p>
+              <p>{t("donate.impact.volunteers")}</p>
             </div>
             <div className="impact-card-stat">
-              <div className="stat-icon-bg"><FaHandHoldingHeart /></div>
+              <div className="stat-icon-bg">
+                <FaHandHoldingHeart />
+              </div>
               <h3>5+</h3>
-              <p>{t('donate.impact.projects')}</p>
+              <p>{t("donate.impact.projects")}</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
 
       <div id="donate-anchor"></div>
-      
+
       <section className="donation-main-section">
         <div className="container">
           <div className="donate-page-layout">
-            
             <div className="donate-form-column">
               <div className="elegant-form-card">
                 <div className="form-header">
-                   <h2>{t('donate.form.title')}</h2>
-                   <p>{t('donate.form.subtitle')}</p>
+                  <h2>{t("donate.form.title")}</h2>
+                  <p>{t("donate.form.subtitle")}</p>
                 </div>
-                
+
                 <form onSubmit={handleDonate}>
                   <div className="form-section-wrapper">
-                    <h3 className="section-subtitle">{t('donate.form.section1')}</h3>
+                    <h3 className="section-subtitle">
+                      {t("donate.form.section1")}
+                    </h3>
                     <div className="type-toggle">
                       <button
                         type="button"
-                        className={donationType === 'once' ? 'active' : ''}
-                        onClick={() => setDonationType('once')}
+                        className={donationType === "once" ? "active" : ""}
+                        onClick={() => setDonationType("once")}
                       >
-                        {t('donate.form.once')}
+                        {t("donate.form.once")}
                       </button>
                       <button
                         type="button"
-                        className={donationType === 'monthly' ? 'active' : ''}
-                        onClick={() => setDonationType('monthly')}
+                        className={donationType === "monthly" ? "active" : ""}
+                        onClick={() => setDonationType("monthly")}
                       >
-                        {t('donate.form.monthly')}
+                        {t("donate.form.monthly")}
                       </button>
                     </div>
                   </div>
 
                   <div className="form-section-wrapper">
-                    <h3 className="section-subtitle">{t('donate.form.section2')}</h3>
+                    <h3 className="section-subtitle">
+                      {t("donate.form.section2")}
+                    </h3>
                     <div className="amount-input-box">
                       <div className="input-group-premium">
                         <input
                           type="number"
-                          
                           value={customAmount}
                           onChange={(e) => setCustomAmount(e.target.value)}
                           min="1"
@@ -131,78 +152,132 @@ const Donate = () => {
                   </div>
 
                   <div className="form-section-wrapper">
-                    <h3 className="section-subtitle">{t('donate.form.section3')}</h3>
+                    <h3 className="section-subtitle">
+                      {t("donate.form.section3")}
+                    </h3>
                     <div className="payment-grid-selection">
                       <button
                         type="button"
-                        className={`payment-choice-btn ${paymentMethod === 'card' ? 'active' : ''}`}
-                        onClick={() => setPaymentMethod('card')}
+                        className={`payment-choice-btn ${paymentMethod === "card" ? "active" : ""}`}
+                        onClick={() => setPaymentMethod("card")}
                       >
                         <div className="choice-icon-wrapper">
                           <FaCreditCard className="default-icon" />
                           <div className="hover-logos">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="pay-logo" />
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="pay-logo" />
+                            <img
+                              src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+                              alt="Visa"
+                              className="pay-logo"
+                            />
+                            <img
+                              src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+                              alt="Mastercard"
+                              className="pay-logo"
+                            />
                           </div>
                         </div>
-                        <span className="choice-label">{t('donate.modal.methods.card')}</span>
+                        <span className="choice-label">
+                          {t("donate.modal.methods.card")}
+                        </span>
                       </button>
 
                       <button
                         type="button"
-                        className={`payment-choice-btn ${paymentMethod === 'paypal' ? 'active' : ''}`}
-                        onClick={() => setPaymentMethod('paypal')}
+                        className={`payment-choice-btn ${paymentMethod === "paypal" ? "active" : ""}`}
+                        onClick={() => setPaymentMethod("paypal")}
                       >
                         <div className="choice-icon-wrapper">
                           <FaPaypal className="default-icon" />
-                          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="pay-logo hover-logo" />
+                          <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+                            alt="PayPal"
+                            className="pay-logo hover-logo"
+                          />
                         </div>
-                        <span className="choice-label">{t('donate.modal.methods.paypal')}</span>
+                        <span className="choice-label">
+                          {t("donate.modal.methods.paypal")}
+                        </span>
                       </button>
 
                       <button
                         type="button"
-                        className={`payment-choice-btn ${paymentMethod === 'bank' ? 'active' : ''}`}
-                        onClick={() => setPaymentMethod('bank')}
+                        className={`payment-choice-btn ${paymentMethod === "bank" ? "active" : ""}`}
+                        onClick={() => setPaymentMethod("bank")}
                       >
                         <div className="choice-icon-wrapper">
                           <FaUniversity className="default-icon" />
-                          <img src="/images/payment/bank.png" alt="Virement" className="pay-logo hover-logo" />
+                          <img
+                            src="/images/payment/bank.png"
+                            alt="Virement"
+                            className="pay-logo hover-logo"
+                          />
                         </div>
-                        <span className="choice-label">{t('donate.modal.methods.bank')}</span>
+                        <span className="choice-label">
+                          {t("donate.modal.methods.bank")}
+                        </span>
                       </button>
 
                       <button
                         type="button"
-                        className={`payment-choice-btn ${paymentMethod === 'mobile' ? 'active' : ''}`}
-                        onClick={() => setPaymentMethod('mobile')}
+                        className={`payment-choice-btn ${paymentMethod === "mobile" ? "active" : ""}`}
+                        onClick={() => setPaymentMethod("mobile")}
                       >
                         <div className="choice-icon-wrapper">
                           <FaMobileAlt className="default-icon" />
                           <div className="hover-logos">
-                            <img src="/images/payment/tmoney.jpg" alt="T-Money" className="pay-logo" />
-                            <img src="/images/payment/flooz.png" alt="Flooz" className="pay-logo" />
+                            <img
+                              src="/images/payment/tmoney.jpg"
+                              alt="T-Money"
+                              className="pay-logo"
+                            />
+                            <img
+                              src="/images/payment/flooz.png"
+                              alt="Flooz"
+                              className="pay-logo"
+                            />
                           </div>
                         </div>
-                        <span className="choice-label">{t('donate.modal.methods.mobile')}</span>
+                        <span className="choice-label">
+                          {t("donate.modal.methods.mobile")}
+                        </span>
                       </button>
                     </div>
                   </div>
 
                   <div className="form-section-wrapper">
-                    <h3 className="section-subtitle">{t('donate.form.section4')}</h3>
+                    <h3 className="section-subtitle">
+                      {t("donate.form.section4")}
+                    </h3>
                     <div className="input-grid-2">
                       <div className="premium-input-field">
-                        <label>{t('donate.form.firstName')}</label>
-                        <input type="text" name="firstName" value={personalInfo.firstName} onChange={handleInfoChange} required  />
+                        <label>{t("donate.form.firstName")}</label>
+                        <input
+                          type="text"
+                          name="firstName"
+                          value={personalInfo.firstName}
+                          onChange={handleInfoChange}
+                          required
+                        />
                       </div>
                       <div className="premium-input-field">
-                        <label>{t('donate.form.lastName')}</label>
-                        <input type="text" name="lastName" value={personalInfo.lastName} onChange={handleInfoChange} required  />
+                        <label>{t("donate.form.lastName")}</label>
+                        <input
+                          type="text"
+                          name="lastName"
+                          value={personalInfo.lastName}
+                          onChange={handleInfoChange}
+                          required
+                        />
                       </div>
                       <div className="premium-input-field full-row">
-                        <label>{t('donate.form.email')}</label>
-                        <input type="email" name="email" value={personalInfo.email} onChange={handleInfoChange} required  />
+                        <label>{t("donate.form.email")}</label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={personalInfo.email}
+                          onChange={handleInfoChange}
+                          required
+                        />
                       </div>
                     </div>
                   </div>
@@ -210,17 +285,19 @@ const Donate = () => {
                   <div className="form-agreement">
                     <label className="checkbox-item">
                       <input type="checkbox" defaultChecked />
-                      <span>{t('donate.form.agreement')}</span>
+                      <span>{t("donate.form.agreement")}</span>
                     </label>
                   </div>
 
                   <button type="submit" className="btn-submit-donate">
-                     {t('donate.form.submit', { amount: customAmount ? `de ${customAmount}` : '' })}
+                    {t("donate.form.submit", {
+                      amount: customAmount ? `de ${customAmount}` : "",
+                    })}
                   </button>
 
                   <div className="security-footer">
-                     <FaShieldAlt />
-                     <span>{t('donate.form.security')}</span>
+                    <FaShieldAlt />
+                    <span>{t("donate.form.security")}</span>
                   </div>
                 </form>
               </div>
@@ -228,32 +305,35 @@ const Donate = () => {
 
             <aside className="donate-info-column">
               <div className="sidebar-elegant-card highlight-border">
-                <h3>{t('donate.sidebar.impactTitle')}</h3>
+                <h3>{t("donate.sidebar.impactTitle")}</h3>
                 <div className="impact-steps">
-                   <div className="impact-step">
-                      <span className="step-val">25€</span>
-                      <p>{t('donate.sidebar.step1')}</p>
-                   </div>
-                   <div className="impact-step">
-                      <span className="step-val">50€</span>
-                      <p>{t('donate.sidebar.step2')}</p>
-                   </div>
-                   <div className="impact-step">
-                      <span className="step-val">100€</span>
-                      <p>{t('donate.sidebar.step3')}</p>
-                   </div>
+                  <div className="impact-step">
+                    <span className="step-val">25€</span>
+                    <p>{t("donate.sidebar.step1")}</p>
+                  </div>
+                  <div className="impact-step">
+                    <span className="step-val">50€</span>
+                    <p>{t("donate.sidebar.step2")}</p>
+                  </div>
+                  <div className="impact-step">
+                    <span className="step-val">100€</span>
+                    <p>{t("donate.sidebar.step3")}</p>
+                  </div>
                 </div>
               </div>
 
               <div className="sidebar-elegant-card bg-primary-gradient text-white">
-                <h3 className="text-white">{t('donate.sidebar.transparencyTitle')}</h3>
-                <p className="card-desc-white">{t('donate.sidebar.transparencyText')}</p>
+                <h3 className="text-white">
+                  {t("donate.sidebar.transparencyTitle")}
+                </h3>
+                <p className="card-desc-white">
+                  {t("donate.sidebar.transparencyText")}
+                </p>
                 <div className="trust-badges">
-                   <FaShieldAlt /> <FaLock /> <FaCheck />
+                  <FaShieldAlt /> <FaLock /> <FaCheck />
                 </div>
               </div>
             </aside>
-
           </div>
         </div>
       </section>
@@ -261,85 +341,128 @@ const Donate = () => {
       {/* Payment Modal Refined */}
       <AnimatePresence>
         {showPaymentModal && (
-          <motion.div className="donate-modal-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowPaymentModal(false)}>
-            <motion.div className="donate-modal-box" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} onClick={e => e.stopPropagation()}>
-               <div className="modal-header-refined">
-                  <h3>{t('donate.modal.confirmTitle')}</h3>
-                  <button className="close-x" onClick={() => setShowPaymentModal(false)}><FaTimes /></button>
-               </div>
-               
-               <div className="modal-body-refined">
-                  <div className="amount-display-pill">
-                     {t('donate.modal.amount')} <span>{customAmount} €/CFA</span>
+          <motion.div
+            className="donate-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowPaymentModal(false)}
+          >
+            <motion.div
+              className="donate-modal-box"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="modal-header-refined">
+                <h3>{t("donate.modal.confirmTitle")}</h3>
+                <button
+                  className="close-x"
+                  onClick={() => setShowPaymentModal(false)}
+                >
+                  <FaTimes />
+                </button>
+              </div>
+
+              <div className="modal-body-refined">
+                <div className="amount-display-pill">
+                  {t("donate.modal.amount")} <span>{customAmount} €/CFA</span>
+                </div>
+
+                {paymentMethod === "card" && (
+                  <div className="card-payment-form">
+                    <div className="form-group-p">
+                      <label>{t("donate.modal.cardHolder")}</label>
+                      <input type="text" />
+                    </div>
+                    <div className="form-group-p">
+                      <label>{t("donate.modal.cardNumber")}</label>
+                      <div className="icon-input">
+                        <FaCreditCard />
+                        <input type="text" />
+                      </div>
+                    </div>
+                    <div className="form-row-p">
+                      <div className="form-group-p">
+                        <label>{t("donate.modal.expiration")}</label>
+                        <input type="text" placeholder="MM/AA" />
+                      </div>
+                      <div className="form-group-p">
+                        <label>{t("donate.modal.cvv")}</label>
+                        <input type="text" placeholder="123" />
+                      </div>
+                    </div>
+                    <button className="confirm-btn-p">
+                      {t("donate.form.submit", { amount: "" })}
+                    </button>
                   </div>
+                )}
 
-                  {paymentMethod === 'card' && (
-                    <div className="card-payment-form">
-                       <div className="form-group-p">
-                          <label>{t('donate.modal.cardHolder')}</label>
-                          <input type="text"  />
-                       </div>
-                       <div className="form-group-p">
-                          <label>{t('donate.modal.cardNumber')}</label>
-                          <div className="icon-input">
-                             <FaCreditCard />
-                             <input type="text"  />
-                          </div>
-                       </div>
-                       <div className="form-row-p">
-                          <div className="form-group-p">
-                             <label>{t('donate.modal.expiration')}</label>
-                             <input type="text" placeholder="MM/AA" />
-                          </div>
-                          <div className="form-group-p">
-                             <label>{t('donate.modal.cvv')}</label>
-                             <input type="text" placeholder="123" />
-                          </div>
-                       </div>
-                       <button className="confirm-btn-p">{t('donate.form.submit', { amount: '' })}</button>
+                {paymentMethod === "mobile" && (
+                  <div className="mobile-payment-selection">
+                    <div className="mobile-providers">
+                      <div
+                        className={`provider-box ${mobileProvider === "tmoney" ? "active" : ""}`}
+                        onClick={() => setMobileProvider("tmoney")}
+                      >
+                        <img src="/images/payment/tmoney.jpg" alt="TMoney" />
+                        <span>T-Money</span>
+                      </div>
+                      <div
+                        className={`provider-box ${mobileProvider === "flooz" ? "selected" : ""}`}
+                        onClick={() => setMobileProvider("flooz")}
+                      >
+                        <img src="/images/payment/flooz.png" alt="Flooz" />
+                        <span>Flooz</span>
+                      </div>
                     </div>
-                  )}
+                    <div className="form-group-p">
+                      <label>{t("donate.modal.phone")}</label>
+                      <input type="tel" placeholder="Ex: 90123456" />
+                    </div>
+                    <button className="confirm-btn-p">
+                      {t("donate.modal.mobile.confirm")}
+                    </button>
+                  </div>
+                )}
 
-                  {paymentMethod === 'mobile' && (
-                    <div className="mobile-payment-selection">
-                       <div className="mobile-providers">
-                          <div className={`provider-box ${mobileProvider === 'tmoney' ? 'active' : ''}`} onClick={() => setMobileProvider('tmoney')}>
-                             <img src="/images/payment/tmoney.jpg" alt="TMoney" />
-                             <span>T-Money</span>
-                          </div>
-                          <div className={`provider-box ${mobileProvider === 'flooz' ? 'selected' : ''}`} onClick={() => setMobileProvider('flooz')}>
-                             <img src="/images/payment/flooz.png" alt="Flooz" />
-                             <span>Flooz</span>
-                          </div>
-                       </div>
-                       <div className="form-group-p">
-                          <label>{t('donate.modal.phone')}</label>
-                          <input type="tel" placeholder="Ex: 90123456" />
-                       </div>
-                       <button className="confirm-btn-p">{t('donate.modal.mobile.confirm')}</button>
+                {paymentMethod === "bank" && (
+                  <div className="bank-details-premium">
+                    <p>{t("donate.modal.mobile.title")}</p>
+                    <div className="bank-info-table">
+                      <div className="info-r">
+                        <span>{t("donate.modal.bank.bankName")}</span>{" "}
+                        <strong>ECOBANK TOGO</strong>
+                      </div>
+                      <div className="info-r">
+                        <span>{t("donate.modal.bank.accountName")}</span>{" "}
+                        <strong>ASSO AHP2V</strong>
+                      </div>
+                      <div className="info-r">
+                        <span>{t("donate.modal.bank.iban")}</span>{" "}
+                        <strong>TG25 1020 3040 5060 7080 9001</strong>
+                      </div>
                     </div>
-                  )}
+                    <button
+                      className="confirm-btn-p"
+                      onClick={() => setShowPaymentModal(false)}
+                    >
+                      {t("donate.modal.bank.confirm")}
+                    </button>
+                  </div>
+                )}
 
-                  {paymentMethod === 'bank' && (
-                    <div className="bank-details-premium">
-                       <p>{t('donate.modal.mobile.title')}</p>
-                       <div className="bank-info-table">
-                          <div className="info-r"><span>{t('donate.modal.bank.bankName')}</span> <strong>ECOBANK TOGO</strong></div>
-                          <div className="info-r"><span>{t('donate.modal.bank.accountName')}</span> <strong>ASSO AHP2V</strong></div>
-                          <div className="info-r"><span>{t('donate.modal.bank.iban')}</span> <strong>TG25 1020 3040 5060 7080 9001</strong></div>
-                       </div>
-                       <button className="confirm-btn-p" onClick={() => setShowPaymentModal(false)}>{t('donate.modal.bank.confirm')}</button>
-                    </div>
-                  )}
-
-                  {paymentMethod === 'paypal' && (
-                    <div className="paypal-center">
-                       <FaPaypal size={60} color="#003087" />
-                       <p>{t('donate.modal.paypal.text')}</p>
-                       <button className="confirm-btn-p">{t('donate.modal.paypal.confirm')}</button>
-                    </div>
-                  )}
-               </div>
+                {paymentMethod === "paypal" && (
+                  <div className="paypal-center">
+                    <FaPaypal size={60} color="#003087" />
+                    <p>{t("donate.modal.paypal.text")}</p>
+                    <button className="confirm-btn-p">
+                      {t("donate.modal.paypal.confirm")}
+                    </button>
+                  </div>
+                )}
+              </div>
             </motion.div>
           </motion.div>
         )}
@@ -352,9 +475,9 @@ const Donate = () => {
         }
 
         .impact-overview {
-          padding: var(--spacing-4xl) 0;
+          padding: 35px 0;
           background: white;
-          border-bottom: 2px solid var(--color-gray-100);
+          // border-bottom: 2px solid var(--color-gray-100);
         }
 
         .impact-grid {

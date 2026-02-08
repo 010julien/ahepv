@@ -1,25 +1,30 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FaHeart, FaHandHoldingHeart, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
-import Card from '../components/Card.jsx';
-import ProgressBar from '../components/ProgressBar.jsx';
-import Counter from '../components/Counter';
-import QuoteCarousel from '../components/QuoteCarousel';
-import AnimatedSection from '../components/AnimatedSection';
-import { useTranslation } from '../i18n/useTranslation';
-import { getLocalized, localeFromLang } from '../i18n/utils';
-import { causes } from '../data/causes';
-import { events } from '../data/events';
-import { quotes } from '../data/quotes';
-import { values } from '../data/values';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  FaHeart,
+  FaHandHoldingHeart,
+  FaArrowRight,
+  FaArrowLeft,
+} from "react-icons/fa";
+import Card from "../components/Card.jsx";
+import ProgressBar from "../components/ProgressBar.jsx";
+import Counter from "../components/Counter";
+import QuoteCarousel from "../components/QuoteCarousel";
+import AnimatedSection from "../components/AnimatedSection";
+import { useTranslation } from "../i18n/useTranslation";
+import { getLocalized, localeFromLang } from "../i18n/utils";
+import { causes } from "../data/causes";
+import { events } from "../data/events";
+import { quotes } from "../data/quotes";
+import { values } from "../data/values";
 
 // Background Bubbles Component
 const BackgroundBubbles = () => (
-    <div className="bubbles-container">
-      {[...Array(5)].map((_, i) => (
-        <div key={i} className={`bubble bubble-${i + 1}`}></div>
-      ))}
-      <style>{`
+  <div className="bubbles-container">
+    {[...Array(5)].map((_, i) => (
+      <div key={i} className={`bubble bubble-${i + 1}`}></div>
+    ))}
+    <style>{`
         .bubbles-container {
           position: absolute;
           top: 0;
@@ -48,43 +53,44 @@ const BackgroundBubbles = () => (
           66% { transform: translate(-20px, 20px); }
         }
       `}</style>
-    </div>
+  </div>
 );
-
 
 const Home = () => {
   const { t, language } = useTranslation();
   const featuredCauses = causes.slice(0, 3);
-  const upcomingEvents = events.filter(e => e.status === 'upcoming').slice(0, 3);
-  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const upcomingEvents = events
+    .filter((e) => e.status === "upcoming")
+    .slice(0, 3);
+  const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
   const [objectiveIndex, setObjectiveIndex] = useState(0);
   const [heroIndex, setHeroIndex] = useState(0);
   const [valuesIndex, setValuesIndex] = useState(0);
 
   const heroImages = [
-    '/images/hero1.jpeg',
-    '/images/hero2.jpeg',
-    '/images/hero3.jpeg',
-    '/images/hero4.jpg',
-    '/images/hero-image.jpg'
+    "/images/hero1.jpeg",
+    "/images/hero2.jpeg",
+    "/images/hero3.jpeg",
+    "/images/hero4.jpg",
+    "/images/hero-image.jpg",
   ];
 
   const objectives = [
     {
-      title: t('about.objectives.proximityTitle'),
-      text: t('about.objectives.proximityText'),
-      image: '/images/ong.jpg',
+      title: t("about.objectives.proximityTitle"),
+      text: t("about.objectives.proximityText"),
+      image: "/images/ong.jpg",
     },
     {
-      title: t('about.objectives.healthcareTitle'),
-      text: t('about.objectives.healthcareText'),
-      image: '/images/medical.jpg',
+      title: t("about.objectives.healthcareTitle"),
+      text: t("about.objectives.healthcareText"),
+      image: "/images/medical.jpg",
     },
     {
-      title: t('about.objectives.sustainableTitle'),
-      text: t('about.objectives.sustainableText'),
-      image: '/images/education1.jpg',
+      title: t("about.objectives.sustainableTitle"),
+      text: t("about.objectives.sustainableText"),
+      image: "/images/education1.jpg",
     },
   ];
 
@@ -113,7 +119,7 @@ const Home = () => {
     e.preventDefault();
     if (!newsletterEmail.trim()) return;
     setNewsletterSubmitted(true);
-    setNewsletterEmail('');
+    setNewsletterEmail("");
   };
 
   return (
@@ -122,63 +128,79 @@ const Home = () => {
       {/* Hero Section - Redesigned Split Layout */}
       <section className="about-slider-section">
         <div className="split-background-top">
-           <BackgroundBubbles />
+          <BackgroundBubbles />
         </div>
         <div className="split-background-bottom"></div>
-        
+
         <div className="container about-slider-container">
           <div className="about-slider-grid">
             {/* Text Side */}
             <div className="about-text-content">
               <h1 className="about-slide-title">
-                {t('home.hero.line1')} <span className="highlight-text">{t('home.hero.highlight1')}</span><br />
-                <span className="highlight-text">{t('home.hero.line2')}</span>{t('home.hero.line2suffix')}<br />
-                {t('home.hero.line3')} <span className="highlight-text">{t('home.hero.highlight3')}</span>
+                {t("home.hero.line1")}{" "}
+                <span className="highlight-text">
+                  {t("home.hero.highlight1")}
+                </span>
+                <br />
+                <span className="highlight-text">{t("home.hero.line2")}</span>
+                {t("home.hero.line2suffix")}
+                <br />
+                {t("home.hero.line3")}{" "}
+                <span className="highlight-text">
+                  {t("home.hero.highlight3")}
+                </span>
               </h1>
             </div>
 
             {/* Image Side */}
             <div className="about-image-wrapper">
               {heroImages.map((img, index) => (
-                <div 
+                <div
                   key={index}
-                  className={`home-hero-bg ${index === heroIndex ? 'active' : ''}`}
-                  style={{ 
+                  className={`home-hero-bg ${index === heroIndex ? "active" : ""}`}
+                  style={{
                     backgroundImage: `url(${img})`,
-                    borderRadius: 'var(--radius-lg)',
-                    boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
+                    borderRadius: "var(--radius-lg)",
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
                   }}
                 />
               ))}
             </div>
           </div>
 
-           {/* Scroll Down Indicator */}
-           <div className="hero-scroll-btn-wrapper">
-              <button 
-                className="hero-scroll-btn"
-                onClick={() => {
-                  const nextSection = document.querySelector('.home-about');
-                  if(nextSection) nextSection.scrollIntoView({ behavior: 'smooth' });
-                }}
-                aria-label="Découvrir plus"
-              >
-                <FaArrowLeft style={{ transform: 'rotate(-90deg)' }} />
-              </button>
-           </div>
+          {/* Scroll Down Indicator */}
+          <div className="hero-scroll-btn-wrapper">
+            <button
+              className="hero-scroll-btn"
+              onClick={() => {
+                const nextSection = document.querySelector(".home-about");
+                if (nextSection)
+                  nextSection.scrollIntoView({ behavior: "smooth" });
+              }}
+              aria-label="Découvrir plus"
+            >
+              <FaArrowLeft style={{ transform: "rotate(-90deg)" }} />
+            </button>
+          </div>
 
           {/* Slider Controls - Positioned at bottom left of section */}
           <div className="slider-controls">
-            <button 
-              className="slider-btn" 
-              onClick={() => setHeroIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length)}
+            <button
+              className="slider-btn"
+              onClick={() =>
+                setHeroIndex(
+                  (prev) => (prev - 1 + heroImages.length) % heroImages.length,
+                )
+              }
               aria-label="Previous Slide"
             >
               <FaArrowLeft />
             </button>
-            <button 
-              className="slider-btn" 
-              onClick={() => setHeroIndex((prev) => (prev + 1) % heroImages.length)}
+            <button
+              className="slider-btn"
+              onClick={() =>
+                setHeroIndex((prev) => (prev + 1) % heroImages.length)
+              }
               aria-label="Next Slide"
             >
               <FaArrowRight />
@@ -193,16 +215,16 @@ const Home = () => {
           <div className="home-split">
             <AnimatedSection animation="slide-right" delay={0}>
               <div className="home-split-content">
-                <p className="home-kicker">{t('home.learnMore')}</p>
-                <h2>{t('home.welcome')}</h2>
-                <p>{t('home.welcomeText1')}</p>
-                <p>{t('home.welcomeText2')}</p>
+                <p className="home-kicker">{t("home.learnMore")}</p>
+                <h2>{t("home.welcome")}</h2>
+                <p>{t("home.welcomeText1")}</p>
+                <p>{t("home.welcomeText2")}</p>
                 <div className="home-actions">
                   <Link to="/about" className="btn btn-primary">
-                    {t('home.discoverStory')}
+                    {t("home.discoverStory")}
                   </Link>
                   <Link to="/contact" className="btn btn-outline">
-                    {t('nav.contact')}
+                    {t("nav.contact")}
                   </Link>
                 </div>
               </div>
@@ -222,38 +244,69 @@ const Home = () => {
         <div className="container">
           <AnimatedSection animation="fade-up" delay={0}>
             <div className="section-title">
-              <h2>{t('about.objectivesTitle')}</h2>
+              <h2>{t("about.objectivesTitle")}</h2>
             </div>
           </AnimatedSection>
 
-          <div className="home-objectives-slider" aria-roledescription="carousel">
+          <div
+            className="home-objectives-slider"
+            aria-roledescription="carousel"
+          >
             <div
               className="home-objectives-track"
               style={{ transform: `translateX(-${objectiveIndex * 100}%)` }}
             >
               {objectives.map((o, idx) => (
-                <div className="home-objective-slide" key={idx} aria-hidden={idx !== objectiveIndex}>
+                <div
+                  className="home-objective-slide"
+                  key={idx}
+                  aria-hidden={idx !== objectiveIndex}
+                >
                   <div className="value-image">
                     <img src={o.image} alt={o.title} loading="lazy" />
                     <div className="value-overlay"></div>
                   </div>
                   <div className="value-content">
-                    <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--color-primary)' }}>{o.title}</h3>
-                    <p className="value-quote" style={{ fontStyle: 'normal', fontSize: '1.2rem' }}>{o.text}</p>
-                    <Link to="/contact" className="btn btn-primary" style={{ marginTop: '1rem' }}>
-                      Je veux participer <FaArrowRight style={{ marginLeft: '8px' }} />
+                    <h3
+                      style={{
+                        fontSize: "2rem",
+                        marginBottom: "1rem",
+                        color: "var(--color-primary)",
+                      }}
+                    >
+                      {o.title}
+                    </h3>
+                    <p
+                      className="value-quote"
+                      style={{ fontStyle: "normal", fontSize: "1.2rem" }}
+                    >
+                      {o.text}
+                    </p>
+                    <Link
+                      to="/contact"
+                      className="btn btn-primary"
+                      style={{ marginTop: "1rem" }}
+                    >
+                      Je veux participer{" "}
+                      <FaArrowRight style={{ marginLeft: "8px" }} />
                     </Link>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="home-objectives-dots" role="tablist" aria-label="Objectifs">
+            <div
+              className="home-objectives-dots"
+              role="tablist"
+              aria-label="Objectifs"
+            >
               {objectives.map((_, idx) => (
                 <button
                   key={idx}
                   type="button"
-                  className={idx === objectiveIndex ? 'home-dot active' : 'home-dot'}
+                  className={
+                    idx === objectiveIndex ? "home-dot active" : "home-dot"
+                  }
                   onClick={() => setObjectiveIndex(idx)}
                   aria-label={`Objectif ${idx + 1}`}
                   aria-pressed={idx === objectiveIndex}
@@ -276,7 +329,9 @@ const Home = () => {
                 <div className="home-stat-value">
                   <Counter end={80} suffix="+" />
                 </div>
-                <div className="home-stat-label">{t('home.stats.livesChanged')}</div>
+                <div className="home-stat-label">
+                  {t("home.stats.livesChanged")}
+                </div>
               </div>
             </AnimatedSection>
 
@@ -288,7 +343,9 @@ const Home = () => {
                 <div className="home-stat-value">
                   <Counter end={10} suffix="+" />
                 </div>
-                <div className="home-stat-label">{t('home.stats.projects')}</div>
+                <div className="home-stat-label">
+                  {t("home.stats.projects")}
+                </div>
               </div>
             </AnimatedSection>
 
@@ -300,7 +357,9 @@ const Home = () => {
                 <div className="home-stat-value">
                   $<Counter end={130} suffix="K+" />
                 </div>
-                <div className="home-stat-label">{t('home.stats.fundsRaised')}</div>
+                <div className="home-stat-label">
+                  {t("home.stats.fundsRaised")}
+                </div>
               </div>
             </AnimatedSection>
           </div>
@@ -312,18 +371,25 @@ const Home = () => {
         <div className="container">
           <AnimatedSection animation="fade-up" delay={0}>
             <div className="section-title">
-              <h2>{t('about.values') || "Nos Valeurs"}</h2>
+              <h2>{t("about.values") || "Nos Valeurs"}</h2>
               <p>Ce qui guide chacune de nos actions au quotidien.</p>
             </div>
           </AnimatedSection>
 
-          <div className="home-objectives-slider" aria-roledescription="carousel">
+          <div
+            className="home-objectives-slider"
+            aria-roledescription="carousel"
+          >
             <div
               className="home-objectives-track"
               style={{ transform: `translateX(-${valuesIndex * 100}%)` }}
             >
               {values.map((value, index) => (
-                <div className="home-objective-slide" key={value.id} aria-hidden={index !== valuesIndex}>
+                <div
+                  className="home-objective-slide"
+                  key={value.id}
+                  aria-hidden={index !== valuesIndex}
+                >
                   <div className="value-card slider-card">
                     <div className="value-image">
                       <img src={value.image} alt={value.author} />
@@ -339,12 +405,18 @@ const Home = () => {
               ))}
             </div>
 
-            <div className="home-objectives-dots" role="tablist" aria-label="Valeurs">
+            <div
+              className="home-objectives-dots"
+              role="tablist"
+              aria-label="Valeurs"
+            >
               {values.map((_, idx) => (
                 <button
                   key={idx}
                   type="button"
-                  className={idx === valuesIndex ? 'home-dot active' : 'home-dot'}
+                  className={
+                    idx === valuesIndex ? "home-dot active" : "home-dot"
+                  }
                   onClick={() => setValuesIndex(idx)}
                   aria-label={`Valeur ${idx + 1}`}
                   aria-pressed={idx === valuesIndex}
@@ -363,19 +435,21 @@ const Home = () => {
         <div className="container">
           <AnimatedSection animation="fade-up" delay={0}>
             <div className="section-title">
-              <h2>{t('home.featuredCauses')}</h2>
-              <p>{t('home.featuredCausesDesc')}</p>
+              <h2>{t("home.featuredCauses")}</h2>
+              <p>{t("home.featuredCausesDesc")}</p>
             </div>
           </AnimatedSection>
-          
+
           <div className="featured-causes">
             <div className="grid grid-3">
               {featuredCauses.map((cause, index) => {
-                const percentage = Math.floor((cause.raised / cause.goal) * 100);
+                const percentage = Math.floor(
+                  (cause.raised / cause.goal) * 100,
+                );
                 return (
-                  <AnimatedSection 
+                  <AnimatedSection
                     key={cause.id}
-                    animation="fade-up" 
+                    animation="fade-up"
                     delay={index * 150}
                   >
                     <div className="card-3d-wrapper">
@@ -387,14 +461,20 @@ const Home = () => {
                         clickable
                         link={`/causes/${cause.id}`}
                       >
-                        <ProgressBar
+                        {/* <ProgressBar
                           percentage={percentage}
                           raised={cause.raised}
                           goal={cause.goal}
-                        />
+                        /> */}
                         <div className="button-row featured-causes-btns">
-                          <Link to="/donate" className="btn btn-primary btn-sm" onClick={(e) => e.stopPropagation()}>{t('home.donateNow')}</Link>
-                          <Link to={`/causes/${cause.id}`} className="btn btn-primary btn-sm" onClick={(e) => e.stopPropagation()}>{t('home.readMore')}</Link>
+                          {/* <Link to="/donate" className="btn btn-primary btn-sm" onClick={(e) => e.stopPropagation()}>{t('home.donateNow')}</Link> */}
+                          <Link
+                            to={`/causes/${cause.id}`}
+                            className="btn btn-primary btn-sm"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {t("home.readMore")}
+                          </Link>
                         </div>
                       </Card>
                     </div>
@@ -403,11 +483,14 @@ const Home = () => {
               })}
             </div>
           </div>
-          
+
           <AnimatedSection animation="fade-up" delay={0}>
-            <div className="text-center" style={{ marginTop: 'var(--spacing-2xl)' }}>
+            <div
+              className="text-center"
+              style={{ marginTop: "var(--spacing-2xl)" }}
+            >
               <Link to="/causes" className="btn btn-outline">
-                {t('home.viewAll')} <FaArrowRight />
+                {t("home.viewAll")} <FaArrowRight />
               </Link>
             </div>
           </AnimatedSection>
@@ -419,14 +502,14 @@ const Home = () => {
         <div className="container">
           <AnimatedSection animation="fade-up" delay={0}>
             <div className="section-title">
-              <h2>{t('home.upcomingEvents')}</h2>
-              <p>{t('home.upcomingEventsDesc')}</p>
+              <h2>{t("home.upcomingEvents")}</h2>
+              <p>{t("home.upcomingEventsDesc")}</p>
             </div>
           </AnimatedSection>
-          
+
           <div className="grid grid-3">
             {upcomingEvents.map((event, index) => (
-              <AnimatedSection 
+              <AnimatedSection
                 key={event.id}
                 animation={index % 2 === 0 ? "slide-right" : "slide-left"}
                 delay={index * 100}
@@ -440,23 +523,44 @@ const Home = () => {
                     link={`/events/${event.id}`}
                   >
                     <div className="event-meta">
-                      <span className="event-date">{new Date(event.date).toLocaleDateString(localeFromLang(language))}</span>
-                      <span className="event-location">{getLocalized(event.location, language)}</span>
+                      <span className="event-date">
+                        {new Date(event.date).toLocaleDateString(
+                          localeFromLang(language),
+                        )}
+                      </span>
+                      <span className="event-location">
+                        {getLocalized(event.location, language)}
+                      </span>
                     </div>
                     <div className="button-row event-buttons">
-                      <Link to={`/events/${event.id}`} className="btn btn-primary btn-sm" onClick={(e) => e.stopPropagation()}>{t('home.readMore')}</Link>
-                      <Link to={`/events/${event.id}`} className="btn btn-secondary btn-sm" onClick={(e) => e.stopPropagation()}>{t('home.joinEvent')}</Link>
+                      <Link
+                        to={`/events/${event.id}`}
+                        className="btn btn-primary btn-sm"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {t("home.readMore")}
+                      </Link>
+                      <Link
+                        to={`/events/${event.id}`}
+                        className="btn btn-secondary btn-sm"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {t("home.joinEvent")}
+                      </Link>
                     </div>
                   </Card>
                 </div>
               </AnimatedSection>
             ))}
           </div>
-          
+
           <AnimatedSection animation="fade-up" delay={0}>
-            <div className="text-center" style={{ marginTop: 'var(--spacing-2xl)' }}>
+            <div
+              className="text-center"
+              style={{ marginTop: "var(--spacing-2xl)" }}
+            >
               <Link to="/events" className="btn btn-outline">
-                {t('home.viewAll')} <FaArrowRight />
+                {t("home.viewAll")} <FaArrowRight />
               </Link>
             </div>
           </AnimatedSection>
@@ -469,15 +573,15 @@ const Home = () => {
           <div className="home-split home-split-reverse">
             <AnimatedSection animation="slide-right" delay={0}>
               <div className="home-split-content">
-                <p className="home-kicker">{t('about.mission')}</p>
-                <h2>{t('about.mission')}</h2>
-                <p>{t('about.missionText')}</p>
+                <p className="home-kicker">{t("about.mission")}</p>
+                <h2>{t("about.mission")}</h2>
+                <p>{t("about.missionText")}</p>
                 <div className="home-actions">
-                  <Link to="/donate" className="btn btn-primary">
-                    {t('home.donateNow')}
-                  </Link>
+                  {/* <Link to="/donate" className="btn btn-primary">
+                    {t("home.donateNow")}
+                  </Link> */}
                   <Link to="/volunteer" className="btn btn-outline">
-                    {t('home.becomeVolunteer')}
+                    {t("home.becomeVolunteer")}
                   </Link>
                 </div>
               </div>
@@ -486,13 +590,13 @@ const Home = () => {
             <AnimatedSection animation="slide-left" delay={150}>
               <div className="home-mission-card">
                 <h3>Soutenez notre cause</h3>
-                <p>{t('home.ctaText')}</p>
+                <p>{t("home.ctaText")}</p>
                 <div className="home-mission-ctas">
                   <Link to="/donate" className="btn btn-secondary">
-                    {t('home.donateNow')}
+                    {t("home.donateNow")}
                   </Link>
                   <Link to="/contact" className="btn btn-outline">
-                    {t('nav.contact')}
+                    {t("nav.contact")}
                   </Link>
                 </div>
               </div>
@@ -506,10 +610,13 @@ const Home = () => {
         <div className="container">
           <div className="home-newsletter-inner">
             <div>
-              <h2>{t('footer.newsletter')}</h2>
-              <p>{t('footer.newsletterText')}</p>
+              <h2>{t("footer.newsletter")}</h2>
+              <p>{t("footer.newsletterText")}</p>
             </div>
-            <form className="home-newsletter-form" onSubmit={handleNewsletterSubmit}>
+            <form
+              className="home-newsletter-form"
+              onSubmit={handleNewsletterSubmit}
+            >
               <input
                 type="email"
                 value={newsletterEmail}
@@ -517,15 +624,17 @@ const Home = () => {
                   setNewsletterSubmitted(false);
                   setNewsletterEmail(e.target.value);
                 }}
-                placeholder={t('footer.emailPlaceholder')}
+                placeholder={t("footer.emailPlaceholder")}
                 required
               />
               <button className="btn btn-primary" type="submit">
-                {t('footer.subscribe')}
+                {t("footer.subscribe")}
               </button>
             </form>
             {newsletterSubmitted && (
-              <p className="home-newsletter-success">{t('footer.newsletterThanks')}</p>
+              <p className="home-newsletter-success">
+                {t("footer.newsletterThanks")}
+              </p>
             )}
           </div>
         </div>
@@ -536,14 +645,17 @@ const Home = () => {
         <div className="container">
           <AnimatedSection animation="zoom-in" delay={0}>
             <div className="cta-content">
-              <h2>{t('home.ctaTitle')}</h2>
-              <p>{t('home.ctaText')}</p>
+              <h2>{t("home.ctaTitle")}</h2>
+              <p>{t("home.ctaText")}</p>
               <div className="cta-buttons">
                 <Link to="/donate" className="btn btn-primary btn-lg pulse-btn">
-                  {t('home.donateNow')}
+                  {t("home.donateNow")}
                 </Link>
-                <Link to="/volunteer" className="btn btn-secondary btn-lg pulse-btn">
-                  {t('home.becomeVolunteer')}
+                <Link
+                  to="/volunteer"
+                  className="btn btn-secondary btn-lg pulse-btn"
+                >
+                  {t("home.becomeVolunteer")}
                 </Link>
               </div>
             </div>
