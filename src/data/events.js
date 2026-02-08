@@ -2,7 +2,7 @@ export const events = [
   {
     id: 1,
     title: {
-      fr: "Des roues pour l'espoir ONG la plus proche de vous (AH2PV)",
+      fr: "Des roues pour l'espoir ONG-Association Humanitaire Plus Proche de Vous (AH2PV)",
       en: "Wheels of Hope – Vogan",
       de: "Räder der Hoffnung – Vogan",
     },
@@ -26,7 +26,7 @@ export const events = [
   {
     id: 2,
     title: {
-      fr: "Des Roues pour l’Espoir constituera l’action solidaire portée par AH2PV.",
+      fr: "Des Roues pour l’Espoir constituera l’action solidaire portée par ONG-Association Humanitaire Plus Proche de Vous (AH2PV).",
       en: "Book Donation in Vogan",
       de: "Bücherspende in Vogan",
     },
