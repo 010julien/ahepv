@@ -1,8 +1,17 @@
-import Hero from '../components/Hero';
-import { teamMembers } from '../data/team';
-import { useTranslation } from '../i18n/useTranslation';
-import { FaEye, FaBullseye, FaHeart, FaUsers, FaHandshake, FaMapMarkerAlt, FaStethoscope, FaLeaf } from 'react-icons/fa';
-import SocialLink from '../components/SocialLink';
+import Hero from "../components/Hero";
+import { teamMembers } from "../data/team";
+import { useTranslation } from "../i18n/useTranslation";
+import {
+  FaEye,
+  FaBullseye,
+  FaHeart,
+  FaUsers,
+  FaHandshake,
+  FaMapMarkerAlt,
+  FaStethoscope,
+  FaLeaf,
+} from "react-icons/fa";
+import SocialLink from "../components/SocialLink";
 
 const About = () => {
   const { t, language } = useTranslation();
@@ -10,38 +19,42 @@ const About = () => {
   const otherMembers = teamMembers.slice(1);
   return (
     <div className="about">
-      <Hero 
-        title={t('about.hero.title')}
-        subtitle={t('about.hero.subtitle')}
-        breadcrumb={t('about.breadcrumb')}
-        images={['/images/apropos.jpg', '/images/apropos1.jpg', '/images/kante5.jpg']}
+      <Hero
+        title={t("about.hero.title")}
+        subtitle={t("about.hero.subtitle")}
+        breadcrumb={t("about.breadcrumb")}
+        images={[
+          "/images/apropos.jpg",
+          "/images/apropos1.jpg",
+          "/images/kante5.jpg",
+        ]}
         overlayOpacity={0.2}
       />
-      
+
       {/* Intro + Highlights */}
       <section className="section">
         <div className="container">
           <div className="intro-header">
-            <h2>{t('about.introTitle')}</h2>
-            <p className="intro-subtitle">{t('about.introSubtitle')}</p>
-            <p>{t('about.introText')}</p>
+            <h2>{t("about.introTitle")}</h2>
+            <p className="intro-subtitle">{t("about.introSubtitle")}</p>
+            <p>{t("about.introText")}</p>
           </div>
 
           <div className="values-grid">
             <div className="value-item">
               <FaMapMarkerAlt className="value-icon" />
-              <h4>{t('about.highlights.presenceTitle')}</h4>
-              <p>{t('about.highlights.presenceText')}</p>
+              <h4>{t("about.highlights.presenceTitle")}</h4>
+              <p>{t("about.highlights.presenceText")}</p>
             </div>
             <div className="value-item">
               <FaStethoscope className="value-icon" />
-              <h4>{t('about.highlights.focusTitle')}</h4>
-              <p>{t('about.highlights.focusText')}</p>
+              <h4>{t("about.highlights.focusTitle")}</h4>
+              <p>{t("about.highlights.focusText")}</p>
             </div>
             <div className="value-item">
               <FaHandshake className="value-icon" />
-              <h4>{t('about.highlights.collabTitle')}</h4>
-              <p>{t('about.highlights.collabText')}</p>
+              <h4>{t("about.highlights.collabTitle")}</h4>
+              <p>{t("about.highlights.collabText")}</p>
             </div>
           </div>
         </div>
@@ -52,39 +65,39 @@ const About = () => {
         <div className="container about-ong-grid">
           <div className="about-media-stack">
             <div className="about-ong-media video-wrapper">
-              <video 
-                width="100%" 
-                height="100%" 
+              <video
+                width="100%"
+                height="100%"
                 controls
-                src="/images/Video1.mp4" 
+                src="/images/Video1.mp4"
                 title="ONG AH2PV Presentation 1"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               >
                 Your browser does not support the video tag.
               </video>
             </div>
 
             <div className="about-ong-media video-wrapper">
-              <video 
-                width="100%" 
-                height="100%" 
+              <video
+                width="100%"
+                height="100%"
                 controls
-                src="/images/Video2.mp4" 
+                src="/images/Video2.mp4"
                 title="ONG AH2PV Presentation 2"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               >
                 Your browser does not support the video tag.
               </video>
             </div>
 
             <div className="about-ong-media video-wrapper">
-              <video 
-                width="100%" 
-                height="100%" 
+              <video
+                width="100%"
+                height="100%"
                 controls
-                src="/images/Video3.mp4" 
+                src="/images/Video3.mp4"
                 title="ONG AH2PV Presentation 3"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               >
                 Your browser does not support the video tag.
               </video>
@@ -92,10 +105,10 @@ const About = () => {
           </div>
 
           <div className="about-block">
-            <h2>{t('about.ong.title')}</h2>
-            <p>{t('about.ong.p1')}</p>
-            <p>{t('about.ong.p2')}</p>
-            <p>{t('about.ong.p3')}</p>
+            <h2>{t("about.ong.title")}</h2>
+            <p>{t("about.ong.p1")}</p>
+            <p>{t("about.ong.p2")}</p>
+            <p>{t("about.ong.p3")}</p>
           </div>
         </div>
       </section>
@@ -104,31 +117,46 @@ const About = () => {
       <section className="section section-bg">
         <div className="container">
           <div className="section-title">
-            <h2>{t('about.team')}</h2>
-            <p>{t('about.teamDesc')}</p>
+            <h2>{t("about.team")}</h2>
+            <p>{t("about.teamDesc")}</p>
           </div>
 
           {founder && (
-            <div className="founder-feature" style={{ marginBottom: otherMembers.length > 0 ? undefined : 0 }}>
+            <div
+              className="founder-feature"
+              style={{ marginBottom: otherMembers.length > 0 ? undefined : 0 }}
+            >
               <div className="founder-photo">
                 <img src={founder.image} alt={founder.name} loading="lazy" />
               </div>
               <div className="founder-content">
                 <h3 className="founder-name">{founder.name}</h3>
                 <p className="founder-role">
-                  {(founder.role && typeof founder.role === 'object')
-                    ? (founder.role[language] || founder.role.fr || founder.role.en || founder.role.de)
+                  {founder.role && typeof founder.role === "object"
+                    ? founder.role[language] ||
+                      founder.role.fr ||
+                      founder.role.en ||
+                      founder.role.de
                     : founder.role}
                 </p>
                 <p className="founder-bio">
-                  {(founder.bio && typeof founder.bio === 'object')
-                    ? (founder.bio[language] || founder.bio.fr || founder.bio.en || founder.bio.de)
+                  {founder.bio && typeof founder.bio === "object"
+                    ? founder.bio[language] ||
+                      founder.bio.fr ||
+                      founder.bio.en ||
+                      founder.bio.de
                     : founder.bio}
                 </p>
                 <div className="founder-social">
-                  <SocialLink platform="facebook" url={founder.social.facebook} />
+                  <SocialLink
+                    platform="facebook"
+                    url={founder.social.facebook}
+                  />
                   <SocialLink platform="twitter" url={founder.social.twitter} />
-                  <SocialLink platform="linkedin" url={founder.social.linkedin} />
+                  <SocialLink
+                    platform="linkedin"
+                    url={founder.social.linkedin}
+                  />
                   <SocialLink platform="tiktok" url={founder.social.tiktok} />
                 </div>
               </div>
@@ -143,16 +171,39 @@ const About = () => {
                     <img src={member.image} alt={member.name} />
                     <div className="team-overlay">
                       <div className="team-social">
-                        <SocialLink platform="facebook" url={member.social.facebook} />
-                        <SocialLink platform="twitter" url={member.social.twitter} />
-                        <SocialLink platform="linkedin" url={member.social.linkedin} />
+                        <SocialLink
+                          platform="facebook"
+                          url={member.social.facebook}
+                        />
+                        <SocialLink
+                          platform="twitter"
+                          url={member.social.twitter}
+                        />
+                        <SocialLink
+                          platform="linkedin"
+                          url={member.social.linkedin}
+                        />
                       </div>
                     </div>
                   </div>
                   <div className="team-info">
                     <h4>{member.name}</h4>
-                    <p className="team-role">{(member.role && typeof member.role === 'object') ? (member.role[language] || member.role.fr || member.role.en || member.role.de) : member.role}</p>
-                    <p className="team-bio">{(member.bio && typeof member.bio === 'object') ? (member.bio[language] || member.bio.fr || member.bio.en || member.bio.de) : member.bio}</p>
+                    <p className="team-role">
+                      {member.role && typeof member.role === "object"
+                        ? member.role[language] ||
+                          member.role.fr ||
+                          member.role.en ||
+                          member.role.de
+                        : member.role}
+                    </p>
+                    <p className="team-bio">
+                      {member.bio && typeof member.bio === "object"
+                        ? member.bio[language] ||
+                          member.bio.fr ||
+                          member.bio.en ||
+                          member.bio.de
+                        : member.bio}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -166,20 +217,20 @@ const About = () => {
         <div className="container">
           <div className="video-section-grid">
             <div className="video-wrapper">
-              <video 
-                width="100%" 
-                height="100%" 
+              <video
+                width="100%"
+                height="100%"
                 controls
-                src="/images/Video4.mp4" 
+                src="/images/Video4.mp4"
                 title="AH2PV Impact Video"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               >
                 Your browser does not support the video tag.
               </video>
             </div>
             <div className="video-content">
-              <h3>{t('about.videoSection.title')}</h3>
-              <p>{t('about.videoSection.description')}</p>
+              <h3>{t("about.videoSection.title")}</h3>
+              <p>{t("about.videoSection.description")}</p>
             </div>
           </div>
         </div>
@@ -189,38 +240,38 @@ const About = () => {
       <section className="section section-bg">
         <div className="container">
           <div className="section-title">
-            <h2>{t('about.roadmapTitle')}</h2>
+            <h2>{t("about.roadmapTitle")}</h2>
           </div>
           <div className="mission-vision">
             <div className="mv-card">
               <FaEye className="mv-icon" />
-              <h3>{t('about.vision')}</h3>
-              <p>{t('about.visionText')}</p>
+              <h3>{t("about.vision")}</h3>
+              <p>{t("about.visionText")}</p>
             </div>
             <div className="mv-card">
               <FaBullseye className="mv-icon" />
-              <h3>{t('about.mission')}</h3>
-              <p>{t('about.missionText')}</p>
+              <h3>{t("about.mission")}</h3>
+              <p>{t("about.missionText")}</p>
             </div>
           </div>
 
           <div className="objectives">
-            <h3 className="objectives-title">{t('about.objectivesTitle')}</h3>
+            <h3 className="objectives-title">{t("about.objectivesTitle")}</h3>
             <div className="values-grid">
               <div className="value-item">
                 <FaMapMarkerAlt className="value-icon" />
-                <h4>{t('about.objectives.proximityTitle')}</h4>
-                <p>{t('about.objectives.proximityText')}</p>
+                <h4>{t("about.objectives.proximityTitle")}</h4>
+                <p>{t("about.objectives.proximityText")}</p>
               </div>
               <div className="value-item">
                 <FaStethoscope className="value-icon" />
-                <h4>{t('about.objectives.healthcareTitle')}</h4>
-                <p>{t('about.objectives.healthcareText')}</p>
+                <h4>{t("about.objectives.healthcareTitle")}</h4>
+                <p>{t("about.objectives.healthcareText")}</p>
               </div>
               <div className="value-item">
                 <FaLeaf className="value-icon" />
-                <h4>{t('about.objectives.sustainableTitle')}</h4>
-                <p>{t('about.objectives.sustainableText')}</p>
+                <h4>{t("about.objectives.sustainableTitle")}</h4>
+                <p>{t("about.objectives.sustainableText")}</p>
               </div>
             </div>
           </div>
@@ -231,24 +282,24 @@ const About = () => {
       <section className="section">
         <div className="container">
           <div className="section-title">
-            <h2>{t('about.values')}</h2>
-            <p>{t('about.valuesDesc')}</p>
+            <h2>{t("about.values")}</h2>
+            <p>{t("about.valuesDesc")}</p>
           </div>
           <div className="values-grid">
             <div className="value-item">
               <FaHeart className="value-icon" />
-              <h4>{t('about.compassion')}</h4>
-              <p>{t('about.compassionText')}</p>
+              <h4>{t("about.compassion")}</h4>
+              <p>{t("about.compassionText")}</p>
             </div>
             <div className="value-item">
               <FaUsers className="value-icon" />
-              <h4>{t('about.community')}</h4>
-              <p>{t('about.communityText')}</p>
+              <h4>{t("about.community")}</h4>
+              <p>{t("about.communityText")}</p>
             </div>
             <div className="value-item">
               <FaHandshake className="value-icon" />
-              <h4>{t('about.integrity')}</h4>
-              <p>{t('about.integrityText')}</p>
+              <h4>{t("about.integrity")}</h4>
+              <p>{t("about.integrityText")}</p>
             </div>
           </div>
         </div>
@@ -258,36 +309,32 @@ const About = () => {
       <section className="section">
         <div className="container">
           <div className="callout">
-            <h3>{t('about.calloutTitle')}</h3>
-            <p>{t('about.calloutText')}</p>
+            <h3>{t("about.calloutTitle")}</h3>
+            <p>{t("about.calloutText")}</p>
           </div>
         </div>
       </section>
-
-      
-
-      
 
       {/* Discover Togo */}
       <section className="section section-bg">
         <div className="container">
           <div className="togo-grid">
             <div className="togo-image">
-              <img src="/images/CarteTogo.jpg" alt="Carte du Togo" loading="lazy" />
+              <img
+                src="/images/CarteTogo.jpg"
+                alt="Carte du Togo"
+                loading="lazy"
+              />
             </div>
             <div className="togo-content">
-              <h2 className="togo-title">{t('about.togo.title')}</h2>
-              <p className="togo-subtitle">{t('about.togo.subtitle')}</p>
-              <p>{t('about.togo.p1')}</p>
-              <p>{t('about.togo.p2')}</p>
+              <h2 className="togo-title">{t("about.togo.title")}</h2>
+              <p className="togo-subtitle">{t("about.togo.subtitle")}</p>
+              <p>{t("about.togo.p1")}</p>
+              <p>{t("about.togo.p2")}</p>
             </div>
           </div>
         </div>
       </section>
-
-      
-
-      
 
       <style>{`
         .story-content {
@@ -635,13 +682,46 @@ const About = () => {
           background: var(--bg-secondary);
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
           .about-ong-grid {
-            grid-template-columns: 1fr;
+            gap: var(--spacing-2xl);
+          }
+
+          .values-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-xl);
           }
 
           .team-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-lg);
+          }
+        }
+
+        @media (max-width: 1024px) {
+          .about-ong-grid {
+            grid-template-columns: 1fr;
+          }
+          
+          .about-media-stack {
+            order: 2;
+          }
+          
+          .about-block {
+            order: 1;
+          }
+
+          .mission-vision {
+            grid-template-columns: 1fr;
+            gap: var(--spacing-2xl);
+          }
+
+          .founder-feature {
+            grid-template-columns: 1fr;
+          }
+
+          .founder-photo {
+            min-height: 300px;
           }
         }
 
@@ -654,10 +734,11 @@ const About = () => {
           .values-grid,
           .team-grid {
             grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
           }
-
-          .founder-feature {
-            grid-template-columns: 1fr;
+          
+          .value-item {
+            padding: var(--spacing-xl);
           }
 
           .founder-content {
@@ -673,11 +754,59 @@ const About = () => {
           }
 
           .video-section-grid {
-             grid-template-columns: 1fr;
+            grid-template-columns: 1fr;
           }
+          
           .video-wrapper {
-             height: 250px;
+            height: 250px;
           }
+          
+          .team-image {
+            height: 250px;
+          }
+          
+          .mv-card {
+            padding: var(--spacing-2xl);
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .intro-header h2 {
+            font-size: var(--font-size-2xl);
+          }
+          
+          .value-item {
+            padding: var(--spacing-lg);
+          }
+          
+          .value-icon {
+            font-size: var(--font-size-3xl);
+          }
+          
+          .mv-card {
+            padding: var(--spacing-xl);
+          }
+          
+          .mv-icon {
+            font-size: var(--font-size-4xl);
+          }
+          
+          .founder-photo {
+            min-height: 250px;
+          }
+          
+          .founder-content {
+            padding: var(--spacing-lg);
+          }
+          
+          .team-image {
+            height: 220px;
+          }
+          
+          .video-wrapper {
+            height: 200px;
+          }
+        }
         }
         
         /* Video Section Styles */

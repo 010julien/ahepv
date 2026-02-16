@@ -1,64 +1,62 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaExpand, FaTimes } from 'react-icons/fa';
-import AutoSlider from '../components/AutoSlider.jsx';
-import { useTranslation } from '../i18n/useTranslation';
-import Pagination from '../components/Pagination';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaExpand, FaTimes } from "react-icons/fa";
+import AutoSlider from "../components/AutoSlider.jsx";
+import { useTranslation } from "../i18n/useTranslation";
+import Pagination from "../components/Pagination";
 
 const Gallery = () => {
   const { t } = useTranslation();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
   const itemsPerPage = 2; // Galleries per page
-  const base = (import.meta?.env?.BASE_URL || '/');
+  const base = import.meta?.env?.BASE_URL || "/";
   const [currentPageState, setCurrentPage] = useState(1);
 
-
-
   // Build galleries
-  const gallery1 = [1,2,3,4,5,6,7].map(n => ({
+  const gallery1 = [1, 2, 3, 4, 5, 6, 7].map((n) => ({
     src: `${base}images/gall1.${n}.jpg`,
-    title: t('gallery.items.actionTerrain', { n }),
-    paragraph: t('gallery.items.supportLocal')
+    title: t("gallery.items.actionTerrain", { n }),
+    paragraph: t("gallery.items.supportLocal"),
   }));
 
-  const gallery2 = [1,2,3,4,5,6,7,8].map(n => ({
+  const gallery2 = [1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
     src: `${base}images/gall2.${n}.jpg`,
-    title: t('gallery.items.healthCare', { n }),
-    paragraph: t('gallery.items.medicalCampaigns')
+    title: t("gallery.items.healthCare", { n }),
+    paragraph: t("gallery.items.medicalCampaigns"),
   }));
 
-  const gallery3 = [1,2,3,4,5,6,7,8].map(n => ({
+  const gallery3 = [1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
     src: `${base}images/gall3.${n}.jpg`,
-    title: t('gallery.items.educationTitle', { n }),
-    paragraph: t('gallery.items.schoolKits')
+    title: t("gallery.items.educationTitle", { n }),
+    paragraph: t("gallery.items.schoolKits"),
   }));
 
-  const gallery4 = [1,2,3,4,5,6,7,8,9,10,11,12].map(n => ({
+  const gallery4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => ({
     src: `${base}images/gall4.${n}.jpg`,
-    title: t('gallery.items.solidarityTitle', { n }),
-    paragraph: t('gallery.items.foodHelp')
+    title: t("gallery.items.solidarityTitle", { n }),
+    paragraph: t("gallery.items.foodHelp"),
   }));
 
-  const gallery5 = [1,2,3,4,5,6,7,8,9,10,11].map(n => ({
+  const gallery5 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((n) => ({
     src: `${base}images/gall5.${n}.jpg`,
-    title: t('gallery.items.environmentTitle', { n }),
-    paragraph: t('gallery.items.ecoActions')
+    title: t("gallery.items.environmentTitle", { n }),
+    paragraph: t("gallery.items.ecoActions"),
   }));
 
-  const gallery6 = [1,2,3,4,5,6,7,8,9,10,11].map(n => ({
+  const gallery6 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((n) => ({
     src: `${base}images/gall6.${n}.jpg`,
-    title: t('gallery.items.eventsTitle', { n }),
-    paragraph: t('gallery.items.highlights')
+    title: t("gallery.items.eventsTitle", { n }),
+    paragraph: t("gallery.items.highlights"),
   }));
 
   const galleries = [
-    { title: t('gallery.categories.recent'), images: gallery1 },
-    { title: t('gallery.categories.medical'), images: gallery2 },
-    { title: t('gallery.categories.school'), images: gallery3 },
-    { title: t('gallery.categories.solidarity'), images: gallery4 },
-    { title: t('gallery.categories.environment'), images: gallery5 },
-    { title: t('gallery.categories.association'), images: gallery6 },
+    { title: t("gallery.categories.recent"), images: gallery1 },
+    { title: t("gallery.categories.medical"), images: gallery2 },
+    { title: t("gallery.categories.school"), images: gallery3 },
+    { title: t("gallery.categories.solidarity"), images: gallery4 },
+    { title: t("gallery.categories.environment"), images: gallery5 },
+    { title: t("gallery.categories.association"), images: gallery6 },
   ];
 
   const categories = Object.keys(galleries);
@@ -68,7 +66,7 @@ const Gallery = () => {
     ...gallery2.slice(0, 1),
     ...gallery3.slice(0, 1),
     ...gallery4.slice(0, 1),
-    ...gallery5.slice(0, 1)
+    ...gallery5.slice(0, 1),
   ];
 
   // Pagination logic
@@ -79,19 +77,19 @@ const Gallery = () => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const openLightbox = (image) => {
     setCurrentImage(image);
     setLightboxOpen(true);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeLightbox = () => {
     setLightboxOpen(false);
     setCurrentImage(null);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = "auto";
   };
 
   // Animation Variants
@@ -101,18 +99,18 @@ const Gallery = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.15, // Stagger effect for children
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const cardVariants = {
-    hidden: { 
-      y: 80, 
+    hidden: {
+      y: 80,
       x: -40,
-      opacity: 0, 
+      opacity: 0,
       scale: 0.9,
-      rotateX: -15 
+      rotateX: -15,
     },
     visible: {
       y: 0,
@@ -124,15 +122,13 @@ const Gallery = () => {
         type: "spring",
         stiffness: 50,
         damping: 12,
-        mass: 1.2
-      }
-    }
+        mass: 1.2,
+      },
+    },
   };
 
   return (
     <div className="gallery-page">
-
-      
       <section className="section bg-gray-50 gallery-content-wrapper">
         <div className="container">
           {/* Featured Auto Slider */}
@@ -141,28 +137,27 @@ const Gallery = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-             <h2 className="section-title text-center mt-[12rem] " style={{ marginBottom: "var(--spacing-xl)" }}>
-                
-             </h2>
-             <AutoSlider images={featuredImages} height="500px" />
+            <h2
+              className="section-title text-center mt-[12rem] "
+              style={{ marginBottom: "var(--spacing-xl)" }}
+            ></h2>
+            <AutoSlider images={featuredImages} height="500px" />
           </motion.div>
 
           {currentGalleries.map((gal) => (
             <div key={gal.title} className="gallery-section">
-              <motion.div 
-                 className="gallery-header"
-                 initial={{ opacity: 0, x: -50 }}
-                 whileInView={{ opacity: 1, x: 0 }}
-                 viewport={{ once: true, margin: "-100px" }}
-                 transition={{ duration: 0.7, ease: "easeOut" }}
+              <motion.div
+                className="gallery-header"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
               >
-                  <h3 className="gallery-section-title">{gal.title}</h3>
-                  <div className="gallery-divider"></div>
+                <h3 className="gallery-section-title">{gal.title}</h3>
+                <div className="gallery-divider"></div>
               </motion.div>
-              
-              <motion.div 
-                className="gallery-grid"
-              >
+
+              <motion.div className="gallery-grid">
                 {gal.images.map((image, index) => (
                   <motion.div
                     key={image.src}
@@ -172,10 +167,10 @@ const Gallery = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
-                    whileHover={{ 
-                        y: -12, 
-                        scale: 1.02,
-                        transition: { type: "spring", stiffness: 300 }
+                    whileHover={{
+                      y: -12,
+                      scale: 1.02,
+                      transition: { type: "spring", stiffness: 300 },
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -186,30 +181,30 @@ const Gallery = () => {
                         loading="lazy"
                         className="gallery-img"
                         onError={(e) => {
-                          if (e.currentTarget.dataset.fallback !== '1') {
-                            e.currentTarget.dataset.fallback = '1';
+                          if (e.currentTarget.dataset.fallback !== "1") {
+                            e.currentTarget.dataset.fallback = "1";
                             e.currentTarget.src = `${base}images/5ans.jpg`;
                           }
                         }}
                       />
                       <div className="gallery-overlay">
                         <motion.div
-                            initial={{ scale: 0, rotate: -180 }}
-                            whileInView={{ scale: 1, rotate: 0 }}
-                            transition={{ type: "spring" }}
+                          initial={{ scale: 0, rotate: -180 }}
+                          whileInView={{ scale: 1, rotate: 0 }}
+                          transition={{ type: "spring" }}
                         >
-                             <FaExpand className="expand-icon" />
+                          <FaExpand className="expand-icon" />
                         </motion.div>
                       </div>
                     </div>
-                    
-                    <motion.div 
-                        className="gallery-content"
-                        initial={{ opacity: 0.8 }}
-                        whileHover={{ opacity: 1, x: 5 }} // Slight translation on text
+
+                    <motion.div
+                      className="gallery-content"
+                      initial={{ opacity: 0.8 }}
+                      whileHover={{ opacity: 1, x: 5 }} // Slight translation on text
                     >
-                       <h4>{image.title}</h4>
-                       <p>{image.paragraph}</p>
+                      <h4>{image.title}</h4>
+                      <p>{image.paragraph}</p>
                     </motion.div>
                   </motion.div>
                 ))}
@@ -217,7 +212,7 @@ const Gallery = () => {
             </div>
           ))}
 
-          <Pagination 
+          <Pagination
             currentPage={currentPageState}
             totalPages={totalPages}
             onPageChange={handlePageChange}
@@ -228,34 +223,34 @@ const Gallery = () => {
       {/* Lightbox */}
       <AnimatePresence>
         {lightboxOpen && (
-          <motion.div 
-            className="lightbox" 
+          <motion.div
+            className="lightbox"
             onClick={closeLightbox}
             initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
             animate={{ opacity: 1, backdropFilter: "blur(10px)" }}
             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
             transition={{ duration: 0.3 }}
           >
-            <motion.div 
-                className="lightbox-content" 
-                onClick={(e) => e.stopPropagation()}
-                initial={{ scale: 0.5, opacity: 0, y: 100 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.5, opacity: 0, y: 100 }}
-                transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            <motion.div
+              className="lightbox-content"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.5, opacity: 0, y: 100 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.5, opacity: 0, y: 100 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
             >
               <button className="lightbox-close" onClick={closeLightbox}>
-                 <FaTimes />
+                <FaTimes />
               </button>
               <img src={currentImage.src} alt={currentImage.title} />
-              <motion.div 
-                  className="lightbox-caption"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
+              <motion.div
+                className="lightbox-caption"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
               >
-                  <h3>{currentImage.title}</h3>
-                  <p>{currentImage.paragraph}</p>
+                <h3>{currentImage.title}</h3>
+                <p>{currentImage.paragraph}</p>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -444,21 +439,49 @@ const Gallery = () => {
           transition: all 0.3s;
         }
 
+        @media (max-width: 1024px) {
+          .gallery-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+          }
+        }
+
         @media (max-width: 768px) {
-           .lightbox-close {
-               top: -50px;
-               right: 0;
-           }
+          .lightbox-close {
+            top: -50px;
+            right: 0;
+          }
            
           .gallery-grid {
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: var(--spacing-md);
+          }
+          
+          .gallery-item {
+            min-height: 200px;
+          }
+          
+          .featured-slider {
+            margin-bottom: var(--spacing-2xl);
           }
         }
 
         @media (max-width: 580px) {
           .gallery-grid {
             grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+          }
+          
+          .gallery-item {
+            min-height: 250px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .lightbox-close {
+            width: 40px;
+            height: 40px;
+            top: -45px;
           }
         }
       `}</style>

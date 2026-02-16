@@ -1,29 +1,29 @@
-import { useState } from 'react';
-import Hero from '../components/Hero';
-import Button from '../components/Button.jsx';
-import { useTranslation } from '../i18n/useTranslation';
-import { FaPhone, FaEnvelope, FaLocationDot, FaClock } from 'react-icons/fa6';
-import SocialLink from '../components/SocialLink';
-import { CONTACT } from '../config/site';
-import { sendEmail } from '../utils/email';
+import { useState } from "react";
+import Hero from "../components/Hero";
+import Button from "../components/Button.jsx";
+import { useTranslation } from "../i18n/useTranslation";
+import { FaPhone, FaEnvelope, FaLocationDot, FaClock } from "react-icons/fa6";
+import SocialLink from "../components/SocialLink";
+import { CONTACT } from "../config/site";
+import { sendEmail } from "../utils/email";
 
 const Contact = () => {
   const { t, language } = useTranslation();
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    profession: '',
-    subject: '',
-    message: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    profession: "",
+    subject: "",
+    message: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     // Restrict Name fields to alphabetic characters only
-    if (name === 'firstName' || name === 'lastName') {
+    if (name === "firstName" || name === "lastName") {
       // Regex allows letters (including accents), spaces, hyphens, and apostrophes
       const regex = /^[a-zA-ZÀ-ÿ\s'-]*$/;
       if (!regex.test(value)) {
@@ -33,7 +33,7 @@ const Contact = () => {
 
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -50,31 +50,38 @@ const Contact = () => {
       reply_to: formData.email,
     };
     try {
-      await sendEmail(import.meta?.env?.VITE_EMAILJS_TEMPLATE_CONTACT || 'contact_template', payload);
-      alert(t('contactPage.success'));
+      await sendEmail(
+        import.meta?.env?.VITE_EMAILJS_TEMPLATE_CONTACT || "contact_template",
+        payload,
+      );
+      alert(t("contactPage.success"));
     } catch (err) {
       const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-        `${t('contactPage.firstName')}: ${formData.firstName}\n${t('contactPage.lastName')}: ${formData.lastName}\n${t('contactPage.email')}: ${formData.email}\n${t('contactPage.phone')}: ${formData.phone}\n${t('contactPage.profession')}: ${formData.profession}\n\n${formData.message}`
+        `${t("contactPage.firstName")}: ${formData.firstName}\n${t("contactPage.lastName")}: ${formData.lastName}\n${t("contactPage.email")}: ${formData.email}\n${t("contactPage.phone")}: ${formData.phone}\n${t("contactPage.profession")}: ${formData.profession}\n\n${formData.message}`,
       )}`;
       window.location.href = mailto;
     }
     setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
     });
   };
 
   return (
     <div className="contact-page">
-      <Hero 
-        title={t('contactPage.hero.title')} 
-        subtitle={t('contactPage.hero.subtitle')}
-        breadcrumb={t('contact.breadcrumb')}
-        images={['/images/contact-hero.jpg', '/images/boubouaka2.jpeg', '/images/contact-hero2.jpg']}
+      <Hero
+        title={t("contactPage.hero.title")}
+        subtitle={t("contactPage.hero.subtitle")}
+        breadcrumb={t("contact.breadcrumb")}
+        images={[
+          "/images/contact-hero.jpg",
+          "/images/boubouaka2.jpeg",
+          "/images/contact-hero2.jpg",
+        ]}
         overlayOpacity={0.2}
       />
 
@@ -83,13 +90,15 @@ const Contact = () => {
           <div className="contact-layout">
             {/* Contact Form */}
             <div className="contact-form-container">
-              <h2>{t('contactPage.formTitle')}</h2>
-              <p className="form-intro">{t('contactPage.formIntro')}</p>
-              
+              <h2>{t("contactPage.formTitle")}</h2>
+              <p className="form-intro">{t("contactPage.formIntro")}</p>
+
               <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="firstName">{t('contactPage.firstName')} *</label>
+                    <label htmlFor="firstName">
+                      {t("contactPage.firstName")} *
+                    </label>
                     <input
                       type="text"
                       id="firstName"
@@ -101,7 +110,9 @@ const Contact = () => {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="lastName">{t('contactPage.lastName')} *</label>
+                    <label htmlFor="lastName">
+                      {t("contactPage.lastName")} *
+                    </label>
                     <input
                       type="text"
                       id="lastName"
@@ -116,7 +127,7 @@ const Contact = () => {
 
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="email">{t('contactPage.email')} *</label>
+                    <label htmlFor="email">{t("contactPage.email")} *</label>
                     <input
                       type="email"
                       id="email"
@@ -128,7 +139,7 @@ const Contact = () => {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="phone">{t('contactPage.phone')}</label>
+                    <label htmlFor="phone">{t("contactPage.phone")}</label>
                     <input
                       type="tel"
                       id="phone"
@@ -141,7 +152,9 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group full-width">
-                  <label htmlFor="profession">{t('contactPage.profession')}</label>
+                  <label htmlFor="profession">
+                    {t("contactPage.profession")}
+                  </label>
                   <input
                     type="text"
                     id="profession"
@@ -153,7 +166,7 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group full-width">
-                  <label htmlFor="subject">{t('contactPage.subject')} *</label>
+                  <label htmlFor="subject">{t("contactPage.subject")} *</label>
                   <input
                     type="text"
                     id="subject"
@@ -166,7 +179,7 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group full-width">
-                  <label htmlFor="message">{t('contactPage.message')} *</label>
+                  <label htmlFor="message">{t("contactPage.message")} *</label>
                   <textarea
                     id="message"
                     name="message"
@@ -178,8 +191,12 @@ const Contact = () => {
                   ></textarea>
                 </div>
 
-                <Button variant="primary" type="submit" style={{ width: '100%', padding: '1rem 2rem' }}>
-                  {t('contactPage.send')}
+                <Button
+                  variant="primary"
+                  type="submit"
+                  style={{ width: "100%", padding: "1rem 2rem" }}
+                >
+                  {t("contactPage.send")}
                 </Button>
               </form>
             </div>
@@ -187,15 +204,17 @@ const Contact = () => {
             {/* Contact Info Sidebar */}
             <aside className="contact-sidebar">
               <div className="contact-info-card">
-                <h3>{t('contactPage.infoTitle')}</h3>
-                
+                <h3>{t("contactPage.infoTitle")}</h3>
+
                 <div className="contact-info-item">
                   <div className="info-icon">
                     <FaLocationDot />
                   </div>
                   <div className="info-content">
-                    <h4>{t('contactPage.addressTitle')}</h4>
-                    <p style={{ whiteSpace: 'pre-line' }}>{CONTACT.address?.[language] || ''}</p>
+                    <h4>{t("contactPage.addressTitle")}</h4>
+                    <p style={{ whiteSpace: "pre-line" }}>
+                      {CONTACT.address?.[language] || ""}
+                    </p>
                   </div>
                 </div>
 
@@ -204,9 +223,11 @@ const Contact = () => {
                     <FaPhone />
                   </div>
                   <div className="info-content">
-                    <h4>{t('contactPage.phoneTitle')}</h4>
+                    <h4>{t("contactPage.phoneTitle")}</h4>
                     <p>
-                      <a href={`tel:${CONTACT.phone.replace(/\s+/g, '')}`}>{CONTACT.phone}</a>
+                      <a href={`tel:${CONTACT.phone.replace(/\s+/g, "")}`}>
+                        {CONTACT.phone}
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -216,7 +237,7 @@ const Contact = () => {
                     <FaEnvelope />
                   </div>
                   <div className="info-content">
-                    <h4>{t('contactPage.emailTitle')}</h4>
+                    <h4>{t("contactPage.emailTitle")}</h4>
                     <p>
                       <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
                     </p>
@@ -228,20 +249,42 @@ const Contact = () => {
                     <FaClock />
                   </div>
                   <div className="info-content">
-                    <h4>{t('contactPage.hoursTitle')}</h4>
-                    <p style={{ whiteSpace: 'pre-line' }}>{t('contactPage.hoursText')}</p>
+                    <h4>{t("contactPage.hoursTitle")}</h4>
+                    <p style={{ whiteSpace: "pre-line" }}>
+                      {t("contactPage.hoursText")}
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div className="social-card">
-                <h3>{t('contactPage.followUs')}</h3>
+                <h3>{t("contactPage.followUs")}</h3>
                 <div className="social-links">
-                  <SocialLink platform="facebook" url="#" style={{ color: 'var(--color-primary)' }} />
-                  <SocialLink platform="twitter" url="#" style={{ color: 'var(--color-primary)' }} />
-                  <SocialLink platform="linkedin" url="#" style={{ color: 'var(--color-primary)' }} />
-                  <SocialLink platform="instagram" url="#" style={{ color: 'var(--color-primary)' }} />
-                  <SocialLink platform="tiktok" url="https://www.tiktok.com/@jeannettetonye" style={{ color: 'var(--color-primary)' }} />
+                  <SocialLink
+                    platform="facebook"
+                    url="#"
+                    style={{ color: "var(--color-primary)" }}
+                  />
+                  <SocialLink
+                    platform="twitter"
+                    url="#"
+                    style={{ color: "var(--color-primary)" }}
+                  />
+                  <SocialLink
+                    platform="linkedin"
+                    url="#"
+                    style={{ color: "var(--color-primary)" }}
+                  />
+                  <SocialLink
+                    platform="instagram"
+                    url="#"
+                    style={{ color: "var(--color-primary)" }}
+                  />
+                  <SocialLink
+                    platform="tiktok"
+                    url="https://www.tiktok.com/@jeannettetonye"
+                    style={{ color: "var(--color-primary)" }}
+                  />
                 </div>
               </div>
             </aside>
@@ -260,7 +303,7 @@ const Contact = () => {
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title={t('contactPage.addressTitle')}
+            title={t("contactPage.addressTitle")}
           ></iframe>
         </div>
       </section>
@@ -421,9 +464,17 @@ const Contact = () => {
           box-shadow: var(--shadow-xl);
         }
 
+        @media (max-width: 1200px) {
+          .contact-layout {
+            grid-template-columns: 1.5fr 1fr;
+            gap: var(--spacing-2xl);
+          }
+        }
+
         @media (max-width: 1024px) {
           .contact-layout {
             grid-template-columns: 1fr;
+            gap: var(--spacing-3xl);
           }
 
           .contact-sidebar {
@@ -442,6 +493,24 @@ const Contact = () => {
 
           .map-container {
             height: 300px;
+          }
+          
+          .contact-info-item {
+            padding: var(--spacing-lg);
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .contact-form-container {
+            padding: var(--spacing-lg);
+          }
+          
+          .contact-form-container h2 {
+            font-size: var(--font-size-2xl);
+          }
+          
+          .map-container {
+            height: 250px;
           }
         }
       `}</style>

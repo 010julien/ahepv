@@ -281,7 +281,7 @@ export const translations = {
       placeTitle: "Lieu",
       nameLabel: "Nom complet",
       emailLabel: "Email",
-      phoneLabel: "Téléphone",
+      phoneLabel: "Téléphone ",
       professionLabel: "Profession",
       ticketsLabel: "Nombre de places",
       registerSuccess: "Inscription confirmée !",
@@ -368,7 +368,7 @@ export const translations = {
       },
       infoTitle: "Informations de contact",
       addressTitle: "Adresse",
-      phoneTitle: "Téléphone",
+      phoneTitle: "Téléphone Whatsapp",
       emailTitle: "Email",
       hoursTitle: "Horaires d'ouverture",
       hoursText:

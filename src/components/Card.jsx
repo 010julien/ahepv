@@ -1,20 +1,36 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const Card = ({ image, images, title, description, link, linkText = 'Learn More', linkVariant = 'text', linkClassName = '', linkSize = '', clickable = false, alwaysShowLink = false, linkPosition = 'after', children }) => {
+const Card = ({
+  image,
+  images,
+  title,
+  description,
+  link,
+  linkText = "Learn More",
+  linkVariant = "text",
+  linkClassName = "",
+  linkSize = "",
+  clickable = false,
+  alwaysShowLink = false,
+  linkPosition = "after",
+  children,
+}) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
-  
+
   // Use images array if provided, otherwise fallback to single image wrapped in array
-  const imageList = images && images.length > 0 ? images : (image ? [image] : []);
+  const imageList = images && images.length > 0 ? images : image ? [image] : [];
   const hasMultipleImages = imageList.length > 1;
   useEffect(() => {
     if (!hasMultipleImages || isHovered) return;
 
     const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev === imageList.length - 1 ? 0 : prev + 1));
+      setCurrentImageIndex((prev) =>
+        prev === imageList.length - 1 ? 0 : prev + 1,
+      );
     }, 4000); // Change image every 4 seconds
 
     return () => clearInterval(interval);
@@ -23,13 +39,17 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
   const nextImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev === imageList.length - 1 ? 0 : prev + 1));
+    setCurrentImageIndex((prev) =>
+      prev === imageList.length - 1 ? 0 : prev + 1,
+    );
   };
 
   const prevImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev === 0 ? imageList.length - 1 : prev - 1));
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? imageList.length - 1 : prev - 1,
+    );
   };
 
   const handleCardClick = () => {
@@ -40,7 +60,7 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
 
   const handleKeyDown = (e) => {
     if (!clickable || !link) return;
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       navigate(link);
     }
@@ -48,31 +68,44 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
 
   return (
     <div
-      className={`card ${clickable ? 'clickable' : ''}`}
+      className={`card ${clickable ? "clickable" : ""}`}
       onClick={handleCardClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      role={clickable ? 'button' : undefined}
+      role={clickable ? "button" : undefined}
       tabIndex={clickable ? 0 : undefined}
       onKeyDown={handleKeyDown}
     >
       {imageList.length > 0 && (
         <div className="card-img-wrapper">
-          <img src={imageList[currentImageIndex]} alt={title} className="card-img" loading="lazy" />
-          
+          <img
+            src={imageList[currentImageIndex]}
+            alt={title}
+            className="card-img"
+            loading="lazy"
+          />
+
           {hasMultipleImages && (
             <>
-              <button className="slider-btn slider-prev" onClick={prevImage} aria-label="Previous image">
+              <button
+                className="slider-btn slider-prev"
+                onClick={prevImage}
+                aria-label="Previous image"
+              >
                 <FaChevronLeft />
               </button>
-              <button className="slider-btn slider-next" onClick={nextImage} aria-label="Next image">
+              <button
+                className="slider-btn slider-next"
+                onClick={nextImage}
+                aria-label="Next image"
+              >
                 <FaChevronRight />
               </button>
               <div className="slider-dots">
                 {imageList.map((_, idx) => (
-                  <span 
-                    key={idx} 
-                    className={`slider-dot ${idx === currentImageIndex ? 'active' : ''}`}
+                  <span
+                    key={idx}
+                    className={`slider-dot ${idx === currentImageIndex ? "active" : ""}`}
                   />
                 ))}
               </div>
@@ -83,25 +116,41 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
       <div className="card-content">
         {title && <h3 className="card-title">{title}</h3>}
         {description && <p className="card-text">{description}</p>}
-        {link && (!clickable || alwaysShowLink) && linkPosition === 'before' && (
-          <Link
-            to={link}
-            className={linkVariant === 'button' ? `btn btn-primary ${linkSize} ${linkClassName}` : `card-link ${linkClassName}`}
-            onClick={(e) => { if (clickable) e.stopPropagation(); }}
-          >
-            {linkText}
-          </Link>
-        )}
+        {link &&
+          (!clickable || alwaysShowLink) &&
+          linkPosition === "before" && (
+            <Link
+              to={link}
+              className={
+                linkVariant === "button"
+                  ? `btn btn-primary ${linkSize} ${linkClassName}`
+                  : `card-link ${linkClassName}`
+              }
+              onClick={(e) => {
+                if (clickable) e.stopPropagation();
+              }}
+            >
+              {linkText}
+            </Link>
+          )}
         {children}
-        {link && (!clickable || alwaysShowLink) && linkPosition !== 'before' && (
-          <Link
-            to={link}
-            className={linkVariant === 'button' ? `btn btn-primary ${linkSize} ${linkClassName}` : `card-link ${linkClassName}`}
-            onClick={(e) => { if (clickable) e.stopPropagation(); }}
-          >
-            {linkText}
-          </Link>
-        )}
+        {link &&
+          (!clickable || alwaysShowLink) &&
+          linkPosition !== "before" && (
+            <Link
+              to={link}
+              className={
+                linkVariant === "button"
+                  ? `btn btn-primary ${linkSize} ${linkClassName}`
+                  : `card-link ${linkClassName}`
+              }
+              onClick={(e) => {
+                if (clickable) e.stopPropagation();
+              }}
+            >
+              {linkText}
+            </Link>
+          )}
       </div>
 
       <style>{`
@@ -216,6 +265,12 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
         }
 
         /* Responsive adjustments */
+        @media (max-width: 1024px) {
+          .card-img-wrapper {
+            height: 230px;
+          }
+        }
+
         @media (max-width: 768px) {
           .card-img-wrapper {
             height: 220px;
@@ -223,8 +278,8 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
 
           .card-img-wrapper .slider-btn {
             opacity: 1;
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
           }
 
           .card-img-wrapper .slider-dots {
@@ -232,10 +287,15 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
           }
 
           .card-img-wrapper .slider-dot {
-            width: 10px;
-            height: 10px;
+            width: 9px;
+            height: 9px;
+          }
+          
+          .card-content {
+            padding: var(--spacing-lg);
           }
         }
+        
         @media (max-width: 480px) {
           .card-img-wrapper {
             height: 200px;
@@ -248,6 +308,16 @@ const Card = ({ image, images, title, description, link, linkText = 'Learn More'
           .card-img-wrapper .slider-next {
             right: 8px;
           }
+          
+          .card-img-wrapper .slider-btn {
+            width: 32px;
+            height: 32px;
+          }
+          
+          .card-content {
+            padding: var(--spacing-md);
+          }
+        }
         }
       `}</style>
     </div>

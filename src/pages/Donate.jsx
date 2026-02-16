@@ -528,9 +528,44 @@ const Donate = () => {
           align-items: start;
         }
 
+        @media (max-width: 1200px) {
+          .donate-page-layout { 
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+          }
+        }
+
         @media (max-width: 992px) {
-          .donate-page-layout { grid-template-columns: 1fr; }
-          .impact-grid { grid-template-columns: 1fr; }
+          .donate-page-layout { 
+            grid-template-columns: 1fr;
+            gap: var(--spacing-2xl);
+          }
+          .impact-grid { 
+            grid-template-columns: 1fr; 
+          }
+          
+          .elegant-form-card {
+            padding: 40px;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .elegant-form-card {
+            padding: 30px 20px;
+          }
+          
+          .form-header h2 { 
+            font-size: 2rem; 
+          }
+          
+          .payment-grid-selection {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+          
+          .input-group-premium input {
+            font-size: 1.5rem;
+          }
         }
 
         .elegant-form-card {
@@ -618,8 +653,38 @@ const Donate = () => {
           gap: 15px;
         }
 
-        @media (max-width: 500px) {
-          .payment-grid-selection { grid-template-columns: repeat(2, 1fr); }
+        @media (max-width: 768px) {
+          .payment-grid-selection { 
+            grid-template-columns: repeat(2, 1fr); 
+          }
+        }
+
+        @media (max-width: 480px) {
+          .payment-grid-selection { 
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+          
+          .elegant-form-card {
+            padding: 20px 15px;
+          }
+          
+          .form-header h2 { 
+            font-size: 1.75rem; 
+          }
+          
+          .input-group-premium input {
+            font-size: 1.25rem;
+          }
+          
+          .type-toggle {
+            gap: 10px;
+          }
+          
+          .type-toggle button {
+            padding: 12px;
+            font-size: 0.9rem;
+          }
         }
 
         .payment-choice-btn {

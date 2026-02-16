@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
-import { FaHome, FaChevronRight, FaChevronDown } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { useTranslation } from '../i18n/useTranslation';
+import { useEffect, useRef, useState } from "react";
+import { FaHome, FaChevronRight, FaChevronDown } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { useTranslation } from "../i18n/useTranslation";
 
-const Hero = ({ 
-  title, 
+const Hero = ({
+  title,
   subtitle,
-  breadcrumb, 
-  backgroundImage = '/images/hero-bg.jpg', 
-  images = [], 
+  breadcrumb,
+  backgroundImage = "/images/hero-bg.jpg",
+  images = [],
   bottomGap = 48,
   overlayOpacity = 0.4,
-  children 
+  children,
 }) => {
   const heroRef = useRef(null);
   const { t } = useTranslation();
@@ -32,23 +32,29 @@ const Hero = ({
 
   useEffect(() => {
     const setOffsets = () => {
-      const header = document.querySelector('.header');
+      const header = document.querySelector(".header");
       const headerH = header ? header.offsetHeight : 80;
       let annPx = 0;
       try {
-        const val = getComputedStyle(document.documentElement).getPropertyValue('--announcement-offset') || '0px';
+        const val =
+          getComputedStyle(document.documentElement).getPropertyValue(
+            "--announcement-offset",
+          ) || "0px";
         annPx = parseFloat(val) || 0;
       } catch (_) {}
       const totalTop = headerH + annPx;
       if (heroRef.current) {
-        heroRef.current.style.setProperty('--hero-top-offset', `${totalTop}px`);
-        heroRef.current.style.setProperty('--hero-bottom-gap', typeof bottomGap === 'number' ? `${bottomGap}px` : String(bottomGap));
+        heroRef.current.style.setProperty("--hero-top-offset", `${totalTop}px`);
+        heroRef.current.style.setProperty(
+          "--hero-bottom-gap",
+          typeof bottomGap === "number" ? `${bottomGap}px` : String(bottomGap),
+        );
       }
     };
 
     setOffsets();
-    window.addEventListener('resize', setOffsets);
-    return () => window.removeEventListener('resize', setOffsets);
+    window.addEventListener("resize", setOffsets);
+    return () => window.removeEventListener("resize", setOffsets);
   }, [bottomGap]);
 
   const scrollNext = () => {
@@ -56,9 +62,9 @@ const Hero = ({
     if (!el) return;
     const next = el.nextElementSibling;
     if (next) {
-      next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      next.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' });
+      window.scrollBy({ top: window.innerHeight * 0.9, behavior: "smooth" });
     }
   };
 
@@ -67,41 +73,45 @@ const Hero = ({
       {/* Background Slideshow */}
       <div className="hero-bg-container">
         {slides.map((img, index) => (
-          <div 
-            key={index} 
-            className={`hero-bg-slide ${index === heroIndex ? 'active' : ''}`}
+          <div
+            key={index}
+            className={`hero-bg-slide ${index === heroIndex ? "active" : ""}`}
             style={{ backgroundImage: `url(${img})` }}
           />
         ))}
       </div>
 
       <div className="hero-overlay" style={{ opacity: overlayOpacity }}></div>
-      
+
       <div className="container">
         <div className="hero-content">
           {breadcrumb && (
             <div className="breadcrumb">
               <Link to="/">
                 <FaHome />
-                <span>{t('nav.home')}</span>
+                <span>{t("nav.home")}</span>
               </Link>
               <FaChevronRight />
               <span>{breadcrumb}</span>
             </div>
           )}
-          
+
           <h1 className="hero-title">{title}</h1>
-          
+
           <div className="hero-divider"></div>
-          
+
           {subtitle && <p className="hero-subtitle">{subtitle}</p>}
-          
+
           {children && <div className="hero-actions">{children}</div>}
         </div>
       </div>
 
       <div className="hero-scroll-indicator">
-        <button className="scroll-btn" onClick={scrollNext} aria-label={t('common.scrollDown')}>
+        <button
+          className="scroll-btn"
+          onClick={scrollNext}
+          aria-label={t("common.scrollDown")}
+        >
           <FaChevronDown />
         </button>
       </div>
@@ -293,34 +303,135 @@ const Hero = ({
           60% {transform: translateY(-5px);}
         }
 
-        @media (max-width: 1024px) {
+        /* Responsive Breakpoints */
+        @media (max-width: 1200px) {
           .hero {
-            /* Disable fixed background on mobile/tablets for smoother scroll */
-            background-attachment: scroll;
-            min-height: 60vh;
+            min-height: 75vh;
           }
           
           .hero-content {
-             align-items: center;
-             text-align: center;
-             margin: 0 auto;
-             padding: 2rem;
+            max-width: 700px;
+          }
+        }
+
+        @media (max-width: 1024px) {
+          .hero {
+            background-attachment: scroll;
+            min-height: 65vh;
+          }
+          
+          .hero-content {
+            align-items: center;
+            text-align: center;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
           }
 
           .hero-title, .hero-subtitle {
-             text-align: center;
+            text-align: center;
           }
 
           .breadcrumb {
-             justify-content: center;
+            justify-content: center;
           }
 
           .hero-divider {
-             display: none; /* Hide divider on smaller screens for cleaner look */
+            margin-left: auto;
+            margin-right: auto;
           }
            
           .hero-actions {
-             justify-content: center;
+            justify-content: center;
+          }
+          
+          .hero-scroll-indicator {
+            bottom: 1.5rem;
+          }
+          
+          .scroll-btn {
+            width: 45px;
+            height: 45px;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .hero {
+            min-height: 55vh;
+            margin-top: calc(var(--hero-top-offset, 80px) - 10px);
+          }
+          
+          .hero-content {
+            padding: 1.5rem 1rem;
+          }
+          
+          .hero-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+          }
+          
+          .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: 1.5rem;
+          }
+          
+          .hero-divider {
+            width: 80px;
+            height: 5px;
+            margin-bottom: 1.5rem;
+          }
+          
+          .breadcrumb {
+            font-size: 0.8rem;
+            gap: 0.5rem;
+          }
+          
+          .hero-actions {
+            flex-direction: column;
+            width: 100%;
+            gap: 0.75rem;
+          }
+          
+          .hero-actions .btn {
+            width: 100%;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .hero {
+            min-height: 50vh;
+          }
+          
+          .hero-content {
+            padding: 1rem 0.5rem;
+          }
+          
+          .hero-title {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 0.75rem;
+          }
+          
+          .hero-subtitle {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            margin-bottom: 1rem;
+          }
+          
+          .hero-divider {
+            width: 60px;
+            height: 4px;
+            margin-bottom: 1rem;
+          }
+          
+          .breadcrumb {
+            font-size: 0.7rem;
+          }
+          
+          .hero-scroll-indicator {
+            bottom: 1rem;
+          }
+          
+          .scroll-btn {
+            width: 40px;
+            height: 40px;
           }
         }
       `}</style>

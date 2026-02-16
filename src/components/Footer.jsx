@@ -1,30 +1,30 @@
-import { Link } from 'react-router-dom';
-import { FaHeart, FaEnvelope, FaPhone, FaLocationDot } from 'react-icons/fa6';
-import { useTranslation } from '../i18n/useTranslation';
-import logoARR from '/images/LogoARR.png';
-import SocialLink from './SocialLink';
-import { CONTACT, SITE } from '../config/site';
+import { Link } from "react-router-dom";
+import { FaHeart, FaEnvelope, FaPhone, FaLocationDot } from "react-icons/fa6";
+import { useTranslation } from "../i18n/useTranslation";
+import logoARR from "/images/LogoARR.png";
+import SocialLink from "./SocialLink";
+import { CONTACT, SITE } from "../config/site";
 
 const Footer = () => {
   const { t, language } = useTranslation();
   const quickLinks = [
-    { path: '/', label: t('nav.home') },
-    { path: '/about', label: t('nav.about') },
-    { path: '/causes', label: t('nav.causes') },
-    { path: '/events', label: t('nav.events') },
-    { path: '/donate', label: t('nav.donate') }
+    { path: "/", label: t("nav.home") },
+    { path: "/about", label: t("nav.about") },
+    { path: "/causes", label: t("nav.causes") },
+    { path: "/events", label: t("nav.events") },
+    { path: "/donate", label: t("nav.donate") },
   ];
 
   const supportLinks = [
-    { path: '/gallery', label: t('nav.gallery') },
-    { path: '/faq', label: t('nav.faq') },
-    { path: '/contact', label: t('nav.contact') },
-    { path: '/volunteer', label: t('nav.volunteer') }
+    { path: "/gallery", label: t("nav.gallery") },
+    { path: "/faq", label: t("nav.faq") },
+    { path: "/contact", label: t("nav.contact") },
+    { path: "/volunteer", label: t("nav.volunteer") },
   ];
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
-    alert(t('footer.newsletterThanks'));
+    alert(t("footer.newsletterThanks"));
   };
 
   return (
@@ -35,28 +35,48 @@ const Footer = () => {
             {/* Column 1: About */}
             <div className="footer-col footer-about">
               <div className="footer-logo">
-                 <img src={logoARR} alt="" style={
-                              {
-                                width: '150px',
-                                height: '90px'
-                              }
-                            }/>
+                <img
+                  src={logoARR}
+                  alt=""
+                  style={{
+                    width: "150px",
+                    height: "90px",
+                  }}
+                />
               </div>
-              <p className="footer-desc">
-                {t('footer.description')}
-              </p>
+              <p className="footer-desc">{t("footer.description")}</p>
               <div className="social-links">
-                <SocialLink platform="facebook" url="#" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
-                <SocialLink platform="twitter" url="#" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
-                <SocialLink platform="instagram" url="#" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
-                <SocialLink platform="linkedin" url="#" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
-                <SocialLink platform="tiktok" url="https://www.tiktok.com/@jeannettetonye" style={{ background: 'rgba(255, 255, 255, 0.08)' }} />
+                <SocialLink
+                  platform="facebook"
+                  url="#"
+                  style={{ background: "rgba(255, 255, 255, 0.08)" }}
+                />
+                <SocialLink
+                  platform="twitter"
+                  url="#"
+                  style={{ background: "rgba(255, 255, 255, 0.08)" }}
+                />
+                <SocialLink
+                  platform="instagram"
+                  url="#"
+                  style={{ background: "rgba(255, 255, 255, 0.08)" }}
+                />
+                <SocialLink
+                  platform="linkedin"
+                  url="#"
+                  style={{ background: "rgba(255, 255, 255, 0.08)" }}
+                />
+                <SocialLink
+                  platform="tiktok"
+                  url="https://www.tiktok.com/@jeannettetonye"
+                  style={{ background: "rgba(255, 255, 255, 0.08)" }}
+                />
               </div>
             </div>
 
             {/* ... other cols ... */}
             <div className="footer-col">
-              <h4>{t('footer.quickLinks')}</h4>
+              <h4>{t("footer.quickLinks")}</h4>
               <ul className="footer-links">
                 {quickLinks.map((link) => (
                   <li key={link.path}>
@@ -68,7 +88,7 @@ const Footer = () => {
 
             {/* Column 3: Support */}
             <div className="footer-col">
-              <h4>{t('footer.support')}</h4>
+              <h4>{t("footer.support")}</h4>
               <ul className="footer-links">
                 {supportLinks.map((link) => (
                   <li key={link.path}>
@@ -80,33 +100,52 @@ const Footer = () => {
 
             {/* Column 4: Contact & Newsletter */}
             <div className="footer-col">
-              <h4>{t('footer.contactInfo')}</h4>
+              <h4>{t("footer.contactInfo")}</h4>
               <div className="contact-info">
                 <div className="contact-item">
                   <FaLocationDot />
-                  <span style={{ whiteSpace: 'pre-line' }}>{CONTACT.address?.[language] || ''}</span>
+                  <span style={{ whiteSpace: "pre-line" }}>
+                    {CONTACT.address?.[language] || ""}
+                  </span>
                 </div>
                 <div className="contact-item">
                   <FaPhone />
-                  <span><a href={`tel:${CONTACT.phone.replace(/\s+/g, '')}`} style={{ color: 'inherit' }}>{CONTACT.phone}</a></span>
+                  <span>
+                    <a
+                      href={`tel:${CONTACT.phone.replace(/\s+/g, "")}`}
+                      style={{ color: "inherit" }}
+                    >
+                      {CONTACT.phone}
+                    </a>
+                  </span>
                 </div>
                 <div className="contact-item">
                   <FaEnvelope />
-                  <span><a href={`mailto:${CONTACT.email}`} style={{ color: 'inherit' }}>{CONTACT.email}</a></span>
+                  <span>
+                    <a
+                      href={`mailto:${CONTACT.email}`}
+                      style={{ color: "inherit" }}
+                    >
+                      {CONTACT.email}
+                    </a>
+                  </span>
                 </div>
               </div>
-              
+
               <div className="newsletter-section">
-                <h5>{t('footer.newsletter')}</h5>
-                <p>{t('footer.newsletterText')}</p>
-                <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
+                <h5>{t("footer.newsletter")}</h5>
+                <p>{t("footer.newsletterText")}</p>
+                <form
+                  className="newsletter-form"
+                  onSubmit={handleNewsletterSubmit}
+                >
                   <input
                     type="email"
-                    placeholder={t('footer.emailPlaceholder')}
+                    placeholder={t("footer.emailPlaceholder")}
                     required
                   />
                   <button type="submit" className="btn-subscribe">
-                    {t('footer.subscribe')}
+                    {t("footer.subscribe")}
                   </button>
                 </form>
               </div>
@@ -119,13 +158,16 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="container">
           <div className="footer-bottom-content">
-            <p>&copy; {new Date().getFullYear()} {SITE.name}. {t('footer.rights')}.</p>
+            <p>
+              &copy; {new Date().getFullYear()} {SITE.name}.{" "}
+              {t("footer.rights")}.
+            </p>
             <div className="footer-bottom-links">
-              <Link to="/privacy">{t('footer.privacy')}</Link>
+              <Link to="/privacy">{t("footer.privacy")}</Link>
               <span className="separator">|</span>
-              <Link to="/terms">{t('footer.terms')}</Link>
+              <Link to="/terms">{t("footer.terms")}</Link>
               <span className="separator">|</span>
-              <Link to="/contact">{t('nav.contact')}</Link>
+              <Link to="/contact">{t("nav.contact")}</Link>
             </div>
           </div>
         </div>
@@ -349,19 +391,33 @@ const Footer = () => {
           color: var(--color-gray-600);
         }
 
+        @media (max-width: 1200px) {
+          .footer-content {
+            grid-template-columns: 1.8fr 1fr 1fr 1.5fr;
+            gap: var(--spacing-2xl);
+          }
+        }
+
         @media (max-width: 1024px) {
           .footer-content {
             grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-xl);
           }
 
           .footer-about {
             grid-column: 1 / -1;
+            max-width: 100%;
           }
         }
 
         @media (max-width: 768px) {
+          .footer-main {
+            padding: var(--spacing-3xl) 0 var(--spacing-2xl);
+          }
+
           .footer-content {
             grid-template-columns: 1fr;
+            gap: var(--spacing-2xl);
           }
 
           .footer-bottom-content {
@@ -373,6 +429,39 @@ const Footer = () => {
           .footer-bottom-links {
             flex-wrap: wrap;
             justify-content: center;
+          }
+          
+          .newsletter-form {
+            flex-direction: column;
+          }
+          
+          .newsletter-form input {
+            width: 100%;
+          }
+          
+          .btn-subscribe {
+            width: 100%;
+            padding: var(--spacing-md);
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .footer-desc {
+            font-size: var(--font-size-sm);
+          }
+          
+          .footer-col h4 {
+            font-size: var(--font-size-base);
+          }
+          
+          .social-links a {
+            width: 38px;
+            height: 38px;
+            font-size: var(--font-size-base);
+          }
+          
+          .footer-bottom {
+            padding: var(--spacing-md) 0;
           }
         }
       `}</style>
