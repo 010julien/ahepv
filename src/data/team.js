@@ -5,20 +5,20 @@ export const teamMembers = [
     role: {
       fr: "Fondateuse et Directrice Exécutive de l'Association Humanitaire Plus Proche de Vous (AH2PV)",
       en: "Founder and Executive Director of the NGO 'Association Humanitaire Plus Proche de Vous (AH2PV)'",
-      de: "Gründerin und Geschäftsführerin der NGO 'Association Humanitaire Plus Proche de Vous (AH2PV)'"
+      de: "Gründerin und Geschäftsführerin der NGO 'Association Humanitaire Plus Proche de Vous (AH2PV)'",
     },
-    image: "/images/fondatrice.jpg",
+    image: "/images/Esther.jpeg",
     bio: {
       fr: "Elle œuvre principalement au Togo, avec une approche centrée sur la proximité communautaire, la collaboration et la transparence.",
       en: "She works mainly in Togo with a community-centered approach, collaboration and transparency.",
-      de: "Sie arbeitet hauptsächlich in Togo mit einem gemeinschaftsorientierten Ansatz, Zusammenarbeit und Transparenz."
+      de: "Sie arbeitet hauptsächlich in Togo mit einem gemeinschaftsorientierten Ansatz, Zusammenarbeit und Transparenz.",
     },
     social: {
       facebook: "#",
       twitter: "#",
       linkedin: "#",
-      tiktok: "https://www.tiktok.com/@jeannettetonye"     
-    }
+      tiktok: "https://www.tiktok.com/@jeannettetonye",
+    },
   },
   // {
   //   id: 2,
